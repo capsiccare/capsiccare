@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+/.pnpm-store
+
+# Next.js build output
+.next/
+out/
+
+# Environment files and credentials (CRITICAL: NEVER COMMIT)
+.env
+.env*.local
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.pem
+*.key
+
+# Debug and runtime logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Vercel deployment cache
+.vercel
+
+# TypeScript build info
+*.tsbuildinfo
+next-env.d.ts
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Temporary and scratch workspaces
+tmp/
+scratch/
+supabase/.temp/
+
+# v0 runtime files
+__v0_runtime_loader.js
+__v0_devtools.tsx
+__v0_jsx-dev-runtime.ts

@@ -1,0 +1,901 @@
+parameter_id,test_id,parameter_name,unit,reference_range
+PAR0001,TST0001,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0002,TST0001,TSH,µIU/mL,0.4 - 4.0
+PAR0003,TST0001,Creatinine,mg/dL,0.6 - 1.2
+PAR0004,TST0002,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0005,TST0002,TSH,µIU/mL,0.4 - 4.0
+PAR0006,TST0002,Triglycerides,mg/dL,< 150
+PAR0007,TST0003,TSH,µIU/mL,0.4 - 4.0
+PAR0008,TST0003,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0009,TST0003,Cholesterol,mg/dL,< 200
+PAR0010,TST0004,RBC,millions/cu.mm,4.5 - 5.5
+PAR0011,TST0004,Triglycerides,mg/dL,< 150
+PAR0012,TST0004,TSH,µIU/mL,0.4 - 4.0
+PAR0013,TST0005,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0014,TST0005,RBC,millions/cu.mm,4.5 - 5.5
+PAR0015,TST0005,Creatinine,mg/dL,0.6 - 1.2
+PAR0016,TST0006,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0017,TST0006,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0018,TST0006,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0019,TST0007,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0020,TST0007,RBC,millions/cu.mm,4.5 - 5.5
+PAR0021,TST0007,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0022,TST0008,RBC,millions/cu.mm,4.5 - 5.5
+PAR0023,TST0008,Triglycerides,mg/dL,< 150
+PAR0024,TST0008,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0025,TST0009,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0026,TST0009,RBC,millions/cu.mm,4.5 - 5.5
+PAR0027,TST0009,Hemoglobin,g/dL,13.0 - 17.0
+PAR0028,TST0010,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0029,TST0010,TSH,µIU/mL,0.4 - 4.0
+PAR0030,TST0010,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0031,TST0011,Cholesterol,mg/dL,< 200
+PAR0032,TST0011,TSH,µIU/mL,0.4 - 4.0
+PAR0033,TST0011,Hemoglobin,g/dL,13.0 - 17.0
+PAR0034,TST0012,Creatinine,mg/dL,0.6 - 1.2
+PAR0035,TST0012,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0036,TST0012,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0037,TST0013,Creatinine,mg/dL,0.6 - 1.2
+PAR0038,TST0013,Cholesterol,mg/dL,< 200
+PAR0039,TST0013,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0040,TST0014,TSH,µIU/mL,0.4 - 4.0
+PAR0041,TST0014,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0042,TST0014,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0043,TST0015,Triglycerides,mg/dL,< 150
+PAR0044,TST0015,Cholesterol,mg/dL,< 200
+PAR0045,TST0015,Hemoglobin,g/dL,13.0 - 17.0
+PAR0046,TST0016,Triglycerides,mg/dL,< 150
+PAR0047,TST0016,TSH,µIU/mL,0.4 - 4.0
+PAR0048,TST0016,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0049,TST0017,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0050,TST0017,Triglycerides,mg/dL,< 150
+PAR0051,TST0017,Cholesterol,mg/dL,< 200
+PAR0052,TST0018,Cholesterol,mg/dL,< 200
+PAR0053,TST0018,Hemoglobin,g/dL,13.0 - 17.0
+PAR0054,TST0018,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0055,TST0019,RBC,millions/cu.mm,4.5 - 5.5
+PAR0056,TST0019,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0057,TST0019,Cholesterol,mg/dL,< 200
+PAR0058,TST0020,Creatinine,mg/dL,0.6 - 1.2
+PAR0059,TST0020,RBC,millions/cu.mm,4.5 - 5.5
+PAR0060,TST0020,Hemoglobin,g/dL,13.0 - 17.0
+PAR0061,TST0021,Hemoglobin,g/dL,13.0 - 17.0
+PAR0062,TST0021,RBC,millions/cu.mm,4.5 - 5.5
+PAR0063,TST0021,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0064,TST0022,Cholesterol,mg/dL,< 200
+PAR0065,TST0022,RBC,millions/cu.mm,4.5 - 5.5
+PAR0066,TST0022,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0067,TST0023,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0068,TST0023,TSH,µIU/mL,0.4 - 4.0
+PAR0069,TST0023,Hemoglobin,g/dL,13.0 - 17.0
+PAR0070,TST0024,TSH,µIU/mL,0.4 - 4.0
+PAR0071,TST0024,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0072,TST0024,Triglycerides,mg/dL,< 150
+PAR0073,TST0025,Cholesterol,mg/dL,< 200
+PAR0074,TST0025,Hemoglobin,g/dL,13.0 - 17.0
+PAR0075,TST0025,TSH,µIU/mL,0.4 - 4.0
+PAR0076,TST0026,Creatinine,mg/dL,0.6 - 1.2
+PAR0077,TST0026,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0078,TST0026,Hemoglobin,g/dL,13.0 - 17.0
+PAR0079,TST0027,Creatinine,mg/dL,0.6 - 1.2
+PAR0080,TST0027,RBC,millions/cu.mm,4.5 - 5.5
+PAR0081,TST0027,TSH,µIU/mL,0.4 - 4.0
+PAR0082,TST0028,RBC,millions/cu.mm,4.5 - 5.5
+PAR0083,TST0028,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0084,TST0028,Triglycerides,mg/dL,< 150
+PAR0085,TST0029,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0086,TST0029,Hemoglobin,g/dL,13.0 - 17.0
+PAR0087,TST0029,RBC,millions/cu.mm,4.5 - 5.5
+PAR0088,TST0030,TSH,µIU/mL,0.4 - 4.0
+PAR0089,TST0030,RBC,millions/cu.mm,4.5 - 5.5
+PAR0090,TST0030,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0091,TST0031,Triglycerides,mg/dL,< 150
+PAR0092,TST0031,Cholesterol,mg/dL,< 200
+PAR0093,TST0031,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0094,TST0032,Cholesterol,mg/dL,< 200
+PAR0095,TST0032,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0096,TST0032,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0097,TST0033,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0098,TST0033,Hemoglobin,g/dL,13.0 - 17.0
+PAR0099,TST0033,RBC,millions/cu.mm,4.5 - 5.5
+PAR0100,TST0034,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0101,TST0034,Hemoglobin,g/dL,13.0 - 17.0
+PAR0102,TST0034,TSH,µIU/mL,0.4 - 4.0
+PAR0103,TST0035,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0104,TST0035,TSH,µIU/mL,0.4 - 4.0
+PAR0105,TST0035,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0106,TST0036,RBC,millions/cu.mm,4.5 - 5.5
+PAR0107,TST0036,TSH,µIU/mL,0.4 - 4.0
+PAR0108,TST0036,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0109,TST0037,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0110,TST0037,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0111,TST0037,Triglycerides,mg/dL,< 150
+PAR0112,TST0038,RBC,millions/cu.mm,4.5 - 5.5
+PAR0113,TST0038,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0114,TST0038,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0115,TST0039,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0116,TST0039,RBC,millions/cu.mm,4.5 - 5.5
+PAR0117,TST0039,Triglycerides,mg/dL,< 150
+PAR0118,TST0040,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0119,TST0040,RBC,millions/cu.mm,4.5 - 5.5
+PAR0120,TST0040,TSH,µIU/mL,0.4 - 4.0
+PAR0121,TST0041,Creatinine,mg/dL,0.6 - 1.2
+PAR0122,TST0041,Triglycerides,mg/dL,< 150
+PAR0123,TST0041,Cholesterol,mg/dL,< 200
+PAR0124,TST0042,Hemoglobin,g/dL,13.0 - 17.0
+PAR0125,TST0042,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0126,TST0042,Cholesterol,mg/dL,< 200
+PAR0127,TST0043,RBC,millions/cu.mm,4.5 - 5.5
+PAR0128,TST0043,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0129,TST0043,TSH,µIU/mL,0.4 - 4.0
+PAR0130,TST0044,Cholesterol,mg/dL,< 200
+PAR0131,TST0044,RBC,millions/cu.mm,4.5 - 5.5
+PAR0132,TST0044,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0133,TST0045,Cholesterol,mg/dL,< 200
+PAR0134,TST0045,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0135,TST0045,RBC,millions/cu.mm,4.5 - 5.5
+PAR0136,TST0046,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0137,TST0046,TSH,µIU/mL,0.4 - 4.0
+PAR0138,TST0046,Hemoglobin,g/dL,13.0 - 17.0
+PAR0139,TST0047,Triglycerides,mg/dL,< 150
+PAR0140,TST0047,RBC,millions/cu.mm,4.5 - 5.5
+PAR0141,TST0047,TSH,µIU/mL,0.4 - 4.0
+PAR0142,TST0048,Hemoglobin,g/dL,13.0 - 17.0
+PAR0143,TST0048,Triglycerides,mg/dL,< 150
+PAR0144,TST0048,Cholesterol,mg/dL,< 200
+PAR0145,TST0049,Triglycerides,mg/dL,< 150
+PAR0146,TST0049,TSH,µIU/mL,0.4 - 4.0
+PAR0147,TST0049,Hemoglobin,g/dL,13.0 - 17.0
+PAR0148,TST0050,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0149,TST0050,Hemoglobin,g/dL,13.0 - 17.0
+PAR0150,TST0050,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0151,TST0051,Cholesterol,mg/dL,< 200
+PAR0152,TST0051,Triglycerides,mg/dL,< 150
+PAR0153,TST0051,TSH,µIU/mL,0.4 - 4.0
+PAR0154,TST0052,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0155,TST0052,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0156,TST0052,Cholesterol,mg/dL,< 200
+PAR0157,TST0053,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0158,TST0053,Triglycerides,mg/dL,< 150
+PAR0159,TST0053,Cholesterol,mg/dL,< 200
+PAR0160,TST0054,Triglycerides,mg/dL,< 150
+PAR0161,TST0054,Hemoglobin,g/dL,13.0 - 17.0
+PAR0162,TST0054,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0163,TST0055,Creatinine,mg/dL,0.6 - 1.2
+PAR0164,TST0055,TSH,µIU/mL,0.4 - 4.0
+PAR0165,TST0055,Triglycerides,mg/dL,< 150
+PAR0166,TST0056,Hemoglobin,g/dL,13.0 - 17.0
+PAR0167,TST0056,RBC,millions/cu.mm,4.5 - 5.5
+PAR0168,TST0056,TSH,µIU/mL,0.4 - 4.0
+PAR0169,TST0057,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0170,TST0057,TSH,µIU/mL,0.4 - 4.0
+PAR0171,TST0057,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0172,TST0058,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0173,TST0058,Cholesterol,mg/dL,< 200
+PAR0174,TST0058,Hemoglobin,g/dL,13.0 - 17.0
+PAR0175,TST0059,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0176,TST0059,Cholesterol,mg/dL,< 200
+PAR0177,TST0059,Hemoglobin,g/dL,13.0 - 17.0
+PAR0178,TST0060,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0179,TST0060,RBC,millions/cu.mm,4.5 - 5.5
+PAR0180,TST0060,TSH,µIU/mL,0.4 - 4.0
+PAR0181,TST0061,Creatinine,mg/dL,0.6 - 1.2
+PAR0182,TST0061,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0183,TST0061,RBC,millions/cu.mm,4.5 - 5.5
+PAR0184,TST0062,TSH,µIU/mL,0.4 - 4.0
+PAR0185,TST0062,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0186,TST0062,Cholesterol,mg/dL,< 200
+PAR0187,TST0063,Hemoglobin,g/dL,13.0 - 17.0
+PAR0188,TST0063,TSH,µIU/mL,0.4 - 4.0
+PAR0189,TST0063,Creatinine,mg/dL,0.6 - 1.2
+PAR0190,TST0064,Creatinine,mg/dL,0.6 - 1.2
+PAR0191,TST0064,TSH,µIU/mL,0.4 - 4.0
+PAR0192,TST0064,Hemoglobin,g/dL,13.0 - 17.0
+PAR0193,TST0065,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0194,TST0065,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0195,TST0065,TSH,µIU/mL,0.4 - 4.0
+PAR0196,TST0066,Triglycerides,mg/dL,< 150
+PAR0197,TST0066,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0198,TST0066,TSH,µIU/mL,0.4 - 4.0
+PAR0199,TST0067,Hemoglobin,g/dL,13.0 - 17.0
+PAR0200,TST0067,TSH,µIU/mL,0.4 - 4.0
+PAR0201,TST0067,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0202,TST0068,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0203,TST0068,Triglycerides,mg/dL,< 150
+PAR0204,TST0068,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0205,TST0069,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0206,TST0069,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0207,TST0069,Creatinine,mg/dL,0.6 - 1.2
+PAR0208,TST0070,Cholesterol,mg/dL,< 200
+PAR0209,TST0070,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0210,TST0070,Hemoglobin,g/dL,13.0 - 17.0
+PAR0211,TST0071,Hemoglobin,g/dL,13.0 - 17.0
+PAR0212,TST0071,TSH,µIU/mL,0.4 - 4.0
+PAR0213,TST0071,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0214,TST0072,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0215,TST0072,Triglycerides,mg/dL,< 150
+PAR0216,TST0072,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0217,TST0073,Hemoglobin,g/dL,13.0 - 17.0
+PAR0218,TST0073,Cholesterol,mg/dL,< 200
+PAR0219,TST0073,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0220,TST0074,Hemoglobin,g/dL,13.0 - 17.0
+PAR0221,TST0074,RBC,millions/cu.mm,4.5 - 5.5
+PAR0222,TST0074,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0223,TST0075,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0224,TST0075,TSH,µIU/mL,0.4 - 4.0
+PAR0225,TST0075,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0226,TST0076,TSH,µIU/mL,0.4 - 4.0
+PAR0227,TST0076,Cholesterol,mg/dL,< 200
+PAR0228,TST0076,Creatinine,mg/dL,0.6 - 1.2
+PAR0229,TST0077,RBC,millions/cu.mm,4.5 - 5.5
+PAR0230,TST0077,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0231,TST0077,Hemoglobin,g/dL,13.0 - 17.0
+PAR0232,TST0078,Creatinine,mg/dL,0.6 - 1.2
+PAR0233,TST0078,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0234,TST0078,RBC,millions/cu.mm,4.5 - 5.5
+PAR0235,TST0079,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0236,TST0079,Cholesterol,mg/dL,< 200
+PAR0237,TST0079,Hemoglobin,g/dL,13.0 - 17.0
+PAR0238,TST0080,Creatinine,mg/dL,0.6 - 1.2
+PAR0239,TST0080,Cholesterol,mg/dL,< 200
+PAR0240,TST0080,TSH,µIU/mL,0.4 - 4.0
+PAR0241,TST0081,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0242,TST0081,Cholesterol,mg/dL,< 200
+PAR0243,TST0081,Creatinine,mg/dL,0.6 - 1.2
+PAR0244,TST0082,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0245,TST0082,TSH,µIU/mL,0.4 - 4.0
+PAR0246,TST0082,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0247,TST0083,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0248,TST0083,TSH,µIU/mL,0.4 - 4.0
+PAR0249,TST0083,Cholesterol,mg/dL,< 200
+PAR0250,TST0084,Hemoglobin,g/dL,13.0 - 17.0
+PAR0251,TST0084,RBC,millions/cu.mm,4.5 - 5.5
+PAR0252,TST0084,TSH,µIU/mL,0.4 - 4.0
+PAR0253,TST0085,Creatinine,mg/dL,0.6 - 1.2
+PAR0254,TST0085,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0255,TST0085,Triglycerides,mg/dL,< 150
+PAR0256,TST0086,Cholesterol,mg/dL,< 200
+PAR0257,TST0086,Creatinine,mg/dL,0.6 - 1.2
+PAR0258,TST0086,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0259,TST0087,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0260,TST0087,Creatinine,mg/dL,0.6 - 1.2
+PAR0261,TST0087,Cholesterol,mg/dL,< 200
+PAR0262,TST0088,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0263,TST0088,Triglycerides,mg/dL,< 150
+PAR0264,TST0088,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0265,TST0089,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0266,TST0089,Cholesterol,mg/dL,< 200
+PAR0267,TST0089,Triglycerides,mg/dL,< 150
+PAR0268,TST0090,Cholesterol,mg/dL,< 200
+PAR0269,TST0090,RBC,millions/cu.mm,4.5 - 5.5
+PAR0270,TST0090,Creatinine,mg/dL,0.6 - 1.2
+PAR0271,TST0091,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0272,TST0091,TSH,µIU/mL,0.4 - 4.0
+PAR0273,TST0091,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0274,TST0092,Creatinine,mg/dL,0.6 - 1.2
+PAR0275,TST0092,Triglycerides,mg/dL,< 150
+PAR0276,TST0092,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0277,TST0093,RBC,millions/cu.mm,4.5 - 5.5
+PAR0278,TST0093,Triglycerides,mg/dL,< 150
+PAR0279,TST0093,Creatinine,mg/dL,0.6 - 1.2
+PAR0280,TST0094,TSH,µIU/mL,0.4 - 4.0
+PAR0281,TST0094,Triglycerides,mg/dL,< 150
+PAR0282,TST0094,Cholesterol,mg/dL,< 200
+PAR0283,TST0095,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0284,TST0095,Creatinine,mg/dL,0.6 - 1.2
+PAR0285,TST0095,TSH,µIU/mL,0.4 - 4.0
+PAR0286,TST0096,Hemoglobin,g/dL,13.0 - 17.0
+PAR0287,TST0096,Creatinine,mg/dL,0.6 - 1.2
+PAR0288,TST0096,RBC,millions/cu.mm,4.5 - 5.5
+PAR0289,TST0097,TSH,µIU/mL,0.4 - 4.0
+PAR0290,TST0097,Triglycerides,mg/dL,< 150
+PAR0291,TST0097,Cholesterol,mg/dL,< 200
+PAR0292,TST0098,Hemoglobin,g/dL,13.0 - 17.0
+PAR0293,TST0098,RBC,millions/cu.mm,4.5 - 5.5
+PAR0294,TST0098,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0295,TST0099,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0296,TST0099,Triglycerides,mg/dL,< 150
+PAR0297,TST0099,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0298,TST0100,RBC,millions/cu.mm,4.5 - 5.5
+PAR0299,TST0100,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0300,TST0100,Triglycerides,mg/dL,< 150
+PAR0301,TST0101,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0302,TST0101,Cholesterol,mg/dL,< 200
+PAR0303,TST0101,Triglycerides,mg/dL,< 150
+PAR0304,TST0102,RBC,millions/cu.mm,4.5 - 5.5
+PAR0305,TST0102,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0306,TST0102,Triglycerides,mg/dL,< 150
+PAR0307,TST0103,RBC,millions/cu.mm,4.5 - 5.5
+PAR0308,TST0103,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0309,TST0103,TSH,µIU/mL,0.4 - 4.0
+PAR0310,TST0104,Cholesterol,mg/dL,< 200
+PAR0311,TST0104,TSH,µIU/mL,0.4 - 4.0
+PAR0312,TST0104,Hemoglobin,g/dL,13.0 - 17.0
+PAR0313,TST0105,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0314,TST0105,Hemoglobin,g/dL,13.0 - 17.0
+PAR0315,TST0105,Triglycerides,mg/dL,< 150
+PAR0316,TST0106,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0317,TST0106,RBC,millions/cu.mm,4.5 - 5.5
+PAR0318,TST0106,Cholesterol,mg/dL,< 200
+PAR0319,TST0107,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0320,TST0107,Creatinine,mg/dL,0.6 - 1.2
+PAR0321,TST0107,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0322,TST0108,Cholesterol,mg/dL,< 200
+PAR0323,TST0108,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0324,TST0108,TSH,µIU/mL,0.4 - 4.0
+PAR0325,TST0109,Creatinine,mg/dL,0.6 - 1.2
+PAR0326,TST0109,Triglycerides,mg/dL,< 150
+PAR0327,TST0109,Hemoglobin,g/dL,13.0 - 17.0
+PAR0328,TST0110,Hemoglobin,g/dL,13.0 - 17.0
+PAR0329,TST0110,Cholesterol,mg/dL,< 200
+PAR0330,TST0110,Creatinine,mg/dL,0.6 - 1.2
+PAR0331,TST0111,RBC,millions/cu.mm,4.5 - 5.5
+PAR0332,TST0111,Cholesterol,mg/dL,< 200
+PAR0333,TST0111,Hemoglobin,g/dL,13.0 - 17.0
+PAR0334,TST0112,Hemoglobin,g/dL,13.0 - 17.0
+PAR0335,TST0112,Creatinine,mg/dL,0.6 - 1.2
+PAR0336,TST0112,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0337,TST0113,Creatinine,mg/dL,0.6 - 1.2
+PAR0338,TST0113,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0339,TST0113,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0340,TST0114,RBC,millions/cu.mm,4.5 - 5.5
+PAR0341,TST0114,Triglycerides,mg/dL,< 150
+PAR0342,TST0114,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0343,TST0115,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0344,TST0115,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0345,TST0115,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0346,TST0116,Creatinine,mg/dL,0.6 - 1.2
+PAR0347,TST0116,Cholesterol,mg/dL,< 200
+PAR0348,TST0116,Hemoglobin,g/dL,13.0 - 17.0
+PAR0349,TST0117,Cholesterol,mg/dL,< 200
+PAR0350,TST0117,Creatinine,mg/dL,0.6 - 1.2
+PAR0351,TST0117,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0352,TST0118,Creatinine,mg/dL,0.6 - 1.2
+PAR0353,TST0118,Cholesterol,mg/dL,< 200
+PAR0354,TST0118,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0355,TST0119,Triglycerides,mg/dL,< 150
+PAR0356,TST0119,Creatinine,mg/dL,0.6 - 1.2
+PAR0357,TST0119,Hemoglobin,g/dL,13.0 - 17.0
+PAR0358,TST0120,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0359,TST0120,TSH,µIU/mL,0.4 - 4.0
+PAR0360,TST0120,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0361,TST0121,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0362,TST0121,Hemoglobin,g/dL,13.0 - 17.0
+PAR0363,TST0121,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0364,TST0122,RBC,millions/cu.mm,4.5 - 5.5
+PAR0365,TST0122,TSH,µIU/mL,0.4 - 4.0
+PAR0366,TST0122,Triglycerides,mg/dL,< 150
+PAR0367,TST0123,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0368,TST0123,RBC,millions/cu.mm,4.5 - 5.5
+PAR0369,TST0123,Creatinine,mg/dL,0.6 - 1.2
+PAR0370,TST0124,Hemoglobin,g/dL,13.0 - 17.0
+PAR0371,TST0124,Cholesterol,mg/dL,< 200
+PAR0372,TST0124,Creatinine,mg/dL,0.6 - 1.2
+PAR0373,TST0125,RBC,millions/cu.mm,4.5 - 5.5
+PAR0374,TST0125,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0375,TST0125,TSH,µIU/mL,0.4 - 4.0
+PAR0376,TST0126,TSH,µIU/mL,0.4 - 4.0
+PAR0377,TST0126,Cholesterol,mg/dL,< 200
+PAR0378,TST0126,RBC,millions/cu.mm,4.5 - 5.5
+PAR0379,TST0127,TSH,µIU/mL,0.4 - 4.0
+PAR0380,TST0127,Hemoglobin,g/dL,13.0 - 17.0
+PAR0381,TST0127,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0382,TST0128,Cholesterol,mg/dL,< 200
+PAR0383,TST0128,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0384,TST0128,Triglycerides,mg/dL,< 150
+PAR0385,TST0129,Triglycerides,mg/dL,< 150
+PAR0386,TST0129,TSH,µIU/mL,0.4 - 4.0
+PAR0387,TST0129,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0388,TST0130,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0389,TST0130,Creatinine,mg/dL,0.6 - 1.2
+PAR0390,TST0130,TSH,µIU/mL,0.4 - 4.0
+PAR0391,TST0131,Triglycerides,mg/dL,< 150
+PAR0392,TST0131,TSH,µIU/mL,0.4 - 4.0
+PAR0393,TST0131,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0394,TST0132,TSH,µIU/mL,0.4 - 4.0
+PAR0395,TST0132,Cholesterol,mg/dL,< 200
+PAR0396,TST0132,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0397,TST0133,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0398,TST0133,Hemoglobin,g/dL,13.0 - 17.0
+PAR0399,TST0133,Triglycerides,mg/dL,< 150
+PAR0400,TST0134,TSH,µIU/mL,0.4 - 4.0
+PAR0401,TST0134,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0402,TST0134,Cholesterol,mg/dL,< 200
+PAR0403,TST0135,Creatinine,mg/dL,0.6 - 1.2
+PAR0404,TST0135,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0405,TST0135,Cholesterol,mg/dL,< 200
+PAR0406,TST0136,TSH,µIU/mL,0.4 - 4.0
+PAR0407,TST0136,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0408,TST0136,RBC,millions/cu.mm,4.5 - 5.5
+PAR0409,TST0137,Triglycerides,mg/dL,< 150
+PAR0410,TST0137,RBC,millions/cu.mm,4.5 - 5.5
+PAR0411,TST0137,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0412,TST0138,Creatinine,mg/dL,0.6 - 1.2
+PAR0413,TST0138,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0414,TST0138,TSH,µIU/mL,0.4 - 4.0
+PAR0415,TST0139,Cholesterol,mg/dL,< 200
+PAR0416,TST0139,TSH,µIU/mL,0.4 - 4.0
+PAR0417,TST0139,RBC,millions/cu.mm,4.5 - 5.5
+PAR0418,TST0140,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0419,TST0140,Hemoglobin,g/dL,13.0 - 17.0
+PAR0420,TST0140,Creatinine,mg/dL,0.6 - 1.2
+PAR0421,TST0141,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0422,TST0141,Triglycerides,mg/dL,< 150
+PAR0423,TST0141,RBC,millions/cu.mm,4.5 - 5.5
+PAR0424,TST0142,Hemoglobin,g/dL,13.0 - 17.0
+PAR0425,TST0142,Cholesterol,mg/dL,< 200
+PAR0426,TST0142,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0427,TST0143,TSH,µIU/mL,0.4 - 4.0
+PAR0428,TST0143,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0429,TST0143,RBC,millions/cu.mm,4.5 - 5.5
+PAR0430,TST0144,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0431,TST0144,RBC,millions/cu.mm,4.5 - 5.5
+PAR0432,TST0144,Triglycerides,mg/dL,< 150
+PAR0433,TST0145,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0434,TST0145,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0435,TST0145,Cholesterol,mg/dL,< 200
+PAR0436,TST0146,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0437,TST0146,Creatinine,mg/dL,0.6 - 1.2
+PAR0438,TST0146,Triglycerides,mg/dL,< 150
+PAR0439,TST0147,Cholesterol,mg/dL,< 200
+PAR0440,TST0147,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0441,TST0147,RBC,millions/cu.mm,4.5 - 5.5
+PAR0442,TST0148,Cholesterol,mg/dL,< 200
+PAR0443,TST0148,Creatinine,mg/dL,0.6 - 1.2
+PAR0444,TST0148,Triglycerides,mg/dL,< 150
+PAR0445,TST0149,Triglycerides,mg/dL,< 150
+PAR0446,TST0149,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0447,TST0149,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0448,TST0150,Triglycerides,mg/dL,< 150
+PAR0449,TST0150,Creatinine,mg/dL,0.6 - 1.2
+PAR0450,TST0150,Hemoglobin,g/dL,13.0 - 17.0
+PAR0451,TST0151,Hemoglobin,g/dL,13.0 - 17.0
+PAR0452,TST0151,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0453,TST0151,RBC,millions/cu.mm,4.5 - 5.5
+PAR0454,TST0152,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0455,TST0152,Triglycerides,mg/dL,< 150
+PAR0456,TST0152,Cholesterol,mg/dL,< 200
+PAR0457,TST0153,Creatinine,mg/dL,0.6 - 1.2
+PAR0458,TST0153,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0459,TST0153,Hemoglobin,g/dL,13.0 - 17.0
+PAR0460,TST0154,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0461,TST0154,Hemoglobin,g/dL,13.0 - 17.0
+PAR0462,TST0154,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0463,TST0155,RBC,millions/cu.mm,4.5 - 5.5
+PAR0464,TST0155,Hemoglobin,g/dL,13.0 - 17.0
+PAR0465,TST0155,Cholesterol,mg/dL,< 200
+PAR0466,TST0156,RBC,millions/cu.mm,4.5 - 5.5
+PAR0467,TST0156,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0468,TST0156,Creatinine,mg/dL,0.6 - 1.2
+PAR0469,TST0157,Creatinine,mg/dL,0.6 - 1.2
+PAR0470,TST0157,TSH,µIU/mL,0.4 - 4.0
+PAR0471,TST0157,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0472,TST0158,Creatinine,mg/dL,0.6 - 1.2
+PAR0473,TST0158,Hemoglobin,g/dL,13.0 - 17.0
+PAR0474,TST0158,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0475,TST0159,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0476,TST0159,RBC,millions/cu.mm,4.5 - 5.5
+PAR0477,TST0159,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0478,TST0160,Hemoglobin,g/dL,13.0 - 17.0
+PAR0479,TST0160,TSH,µIU/mL,0.4 - 4.0
+PAR0480,TST0160,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0481,TST0161,TSH,µIU/mL,0.4 - 4.0
+PAR0482,TST0161,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0483,TST0161,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0484,TST0162,TSH,µIU/mL,0.4 - 4.0
+PAR0485,TST0162,Cholesterol,mg/dL,< 200
+PAR0486,TST0162,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0487,TST0163,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0488,TST0163,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0489,TST0163,Hemoglobin,g/dL,13.0 - 17.0
+PAR0490,TST0164,Triglycerides,mg/dL,< 150
+PAR0491,TST0164,RBC,millions/cu.mm,4.5 - 5.5
+PAR0492,TST0164,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0493,TST0165,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0494,TST0165,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0495,TST0165,TSH,µIU/mL,0.4 - 4.0
+PAR0496,TST0166,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0497,TST0166,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0498,TST0166,TSH,µIU/mL,0.4 - 4.0
+PAR0499,TST0167,RBC,millions/cu.mm,4.5 - 5.5
+PAR0500,TST0167,TSH,µIU/mL,0.4 - 4.0
+PAR0501,TST0167,Hemoglobin,g/dL,13.0 - 17.0
+PAR0502,TST0168,RBC,millions/cu.mm,4.5 - 5.5
+PAR0503,TST0168,Creatinine,mg/dL,0.6 - 1.2
+PAR0504,TST0168,Hemoglobin,g/dL,13.0 - 17.0
+PAR0505,TST0169,Triglycerides,mg/dL,< 150
+PAR0506,TST0169,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0507,TST0169,Creatinine,mg/dL,0.6 - 1.2
+PAR0508,TST0170,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0509,TST0170,RBC,millions/cu.mm,4.5 - 5.5
+PAR0510,TST0170,Creatinine,mg/dL,0.6 - 1.2
+PAR0511,TST0171,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0512,TST0171,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0513,TST0171,TSH,µIU/mL,0.4 - 4.0
+PAR0514,TST0172,Cholesterol,mg/dL,< 200
+PAR0515,TST0172,Triglycerides,mg/dL,< 150
+PAR0516,TST0172,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0517,TST0173,RBC,millions/cu.mm,4.5 - 5.5
+PAR0518,TST0173,Cholesterol,mg/dL,< 200
+PAR0519,TST0173,Triglycerides,mg/dL,< 150
+PAR0520,TST0174,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0521,TST0174,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0522,TST0174,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0523,TST0175,TSH,µIU/mL,0.4 - 4.0
+PAR0524,TST0175,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0525,TST0175,Hemoglobin,g/dL,13.0 - 17.0
+PAR0526,TST0176,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0527,TST0176,Creatinine,mg/dL,0.6 - 1.2
+PAR0528,TST0176,TSH,µIU/mL,0.4 - 4.0
+PAR0529,TST0177,Cholesterol,mg/dL,< 200
+PAR0530,TST0177,Hemoglobin,g/dL,13.0 - 17.0
+PAR0531,TST0177,Creatinine,mg/dL,0.6 - 1.2
+PAR0532,TST0178,Cholesterol,mg/dL,< 200
+PAR0533,TST0178,RBC,millions/cu.mm,4.5 - 5.5
+PAR0534,TST0178,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0535,TST0179,Hemoglobin,g/dL,13.0 - 17.0
+PAR0536,TST0179,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0537,TST0179,Triglycerides,mg/dL,< 150
+PAR0538,TST0180,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0539,TST0180,Creatinine,mg/dL,0.6 - 1.2
+PAR0540,TST0180,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0541,TST0181,Cholesterol,mg/dL,< 200
+PAR0542,TST0181,TSH,µIU/mL,0.4 - 4.0
+PAR0543,TST0181,RBC,millions/cu.mm,4.5 - 5.5
+PAR0544,TST0182,Creatinine,mg/dL,0.6 - 1.2
+PAR0545,TST0182,RBC,millions/cu.mm,4.5 - 5.5
+PAR0546,TST0182,Triglycerides,mg/dL,< 150
+PAR0547,TST0183,Triglycerides,mg/dL,< 150
+PAR0548,TST0183,TSH,µIU/mL,0.4 - 4.0
+PAR0549,TST0183,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0550,TST0184,Creatinine,mg/dL,0.6 - 1.2
+PAR0551,TST0184,Hemoglobin,g/dL,13.0 - 17.0
+PAR0552,TST0184,Triglycerides,mg/dL,< 150
+PAR0553,TST0185,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0554,TST0185,Creatinine,mg/dL,0.6 - 1.2
+PAR0555,TST0185,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0556,TST0186,Creatinine,mg/dL,0.6 - 1.2
+PAR0557,TST0186,RBC,millions/cu.mm,4.5 - 5.5
+PAR0558,TST0186,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0559,TST0187,Creatinine,mg/dL,0.6 - 1.2
+PAR0560,TST0187,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0561,TST0187,Hemoglobin,g/dL,13.0 - 17.0
+PAR0562,TST0188,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0563,TST0188,Cholesterol,mg/dL,< 200
+PAR0564,TST0188,Triglycerides,mg/dL,< 150
+PAR0565,TST0189,Creatinine,mg/dL,0.6 - 1.2
+PAR0566,TST0189,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0567,TST0189,TSH,µIU/mL,0.4 - 4.0
+PAR0568,TST0190,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0569,TST0190,Triglycerides,mg/dL,< 150
+PAR0570,TST0190,TSH,µIU/mL,0.4 - 4.0
+PAR0571,TST0191,TSH,µIU/mL,0.4 - 4.0
+PAR0572,TST0191,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0573,TST0191,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0574,TST0192,Hemoglobin,g/dL,13.0 - 17.0
+PAR0575,TST0192,TSH,µIU/mL,0.4 - 4.0
+PAR0576,TST0192,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0577,TST0193,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0578,TST0193,RBC,millions/cu.mm,4.5 - 5.5
+PAR0579,TST0193,Cholesterol,mg/dL,< 200
+PAR0580,TST0194,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0581,TST0194,Triglycerides,mg/dL,< 150
+PAR0582,TST0194,Creatinine,mg/dL,0.6 - 1.2
+PAR0583,TST0195,Triglycerides,mg/dL,< 150
+PAR0584,TST0195,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0585,TST0195,Hemoglobin,g/dL,13.0 - 17.0
+PAR0586,TST0196,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0587,TST0196,Hemoglobin,g/dL,13.0 - 17.0
+PAR0588,TST0196,TSH,µIU/mL,0.4 - 4.0
+PAR0589,TST0197,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0590,TST0197,Triglycerides,mg/dL,< 150
+PAR0591,TST0197,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0592,TST0198,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0593,TST0198,Creatinine,mg/dL,0.6 - 1.2
+PAR0594,TST0198,TSH,µIU/mL,0.4 - 4.0
+PAR0595,TST0199,Triglycerides,mg/dL,< 150
+PAR0596,TST0199,Creatinine,mg/dL,0.6 - 1.2
+PAR0597,TST0199,Hemoglobin,g/dL,13.0 - 17.0
+PAR0598,TST0200,Hemoglobin,g/dL,13.0 - 17.0
+PAR0599,TST0200,TSH,µIU/mL,0.4 - 4.0
+PAR0600,TST0200,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0601,TST0201,RBC,millions/cu.mm,4.5 - 5.5
+PAR0602,TST0201,Cholesterol,mg/dL,< 200
+PAR0603,TST0201,TSH,µIU/mL,0.4 - 4.0
+PAR0604,TST0202,Triglycerides,mg/dL,< 150
+PAR0605,TST0202,Hemoglobin,g/dL,13.0 - 17.0
+PAR0606,TST0202,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0607,TST0203,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0608,TST0203,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0609,TST0203,Cholesterol,mg/dL,< 200
+PAR0610,TST0204,Creatinine,mg/dL,0.6 - 1.2
+PAR0611,TST0204,Hemoglobin,g/dL,13.0 - 17.0
+PAR0612,TST0204,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0613,TST0205,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0614,TST0205,Cholesterol,mg/dL,< 200
+PAR0615,TST0205,Triglycerides,mg/dL,< 150
+PAR0616,TST0206,Triglycerides,mg/dL,< 150
+PAR0617,TST0206,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0618,TST0206,TSH,µIU/mL,0.4 - 4.0
+PAR0619,TST0207,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0620,TST0207,TSH,µIU/mL,0.4 - 4.0
+PAR0621,TST0207,Creatinine,mg/dL,0.6 - 1.2
+PAR0622,TST0208,Creatinine,mg/dL,0.6 - 1.2
+PAR0623,TST0208,Cholesterol,mg/dL,< 200
+PAR0624,TST0208,Hemoglobin,g/dL,13.0 - 17.0
+PAR0625,TST0209,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0626,TST0209,Hemoglobin,g/dL,13.0 - 17.0
+PAR0627,TST0209,Triglycerides,mg/dL,< 150
+PAR0628,TST0210,Hemoglobin,g/dL,13.0 - 17.0
+PAR0629,TST0210,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0630,TST0210,Triglycerides,mg/dL,< 150
+PAR0631,TST0211,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0632,TST0211,Triglycerides,mg/dL,< 150
+PAR0633,TST0211,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0634,TST0212,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0635,TST0212,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0636,TST0212,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0637,TST0213,Cholesterol,mg/dL,< 200
+PAR0638,TST0213,Creatinine,mg/dL,0.6 - 1.2
+PAR0639,TST0213,Hemoglobin,g/dL,13.0 - 17.0
+PAR0640,TST0214,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0641,TST0214,Cholesterol,mg/dL,< 200
+PAR0642,TST0214,TSH,µIU/mL,0.4 - 4.0
+PAR0643,TST0215,RBC,millions/cu.mm,4.5 - 5.5
+PAR0644,TST0215,Hemoglobin,g/dL,13.0 - 17.0
+PAR0645,TST0215,Triglycerides,mg/dL,< 150
+PAR0646,TST0216,Triglycerides,mg/dL,< 150
+PAR0647,TST0216,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0648,TST0216,RBC,millions/cu.mm,4.5 - 5.5
+PAR0649,TST0217,RBC,millions/cu.mm,4.5 - 5.5
+PAR0650,TST0217,Cholesterol,mg/dL,< 200
+PAR0651,TST0217,Creatinine,mg/dL,0.6 - 1.2
+PAR0652,TST0218,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0653,TST0218,Hemoglobin,g/dL,13.0 - 17.0
+PAR0654,TST0218,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0655,TST0219,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0656,TST0219,Triglycerides,mg/dL,< 150
+PAR0657,TST0219,RBC,millions/cu.mm,4.5 - 5.5
+PAR0658,TST0220,Cholesterol,mg/dL,< 200
+PAR0659,TST0220,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0660,TST0220,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0661,TST0221,Hemoglobin,g/dL,13.0 - 17.0
+PAR0662,TST0221,Creatinine,mg/dL,0.6 - 1.2
+PAR0663,TST0221,RBC,millions/cu.mm,4.5 - 5.5
+PAR0664,TST0222,RBC,millions/cu.mm,4.5 - 5.5
+PAR0665,TST0222,TSH,µIU/mL,0.4 - 4.0
+PAR0666,TST0222,Triglycerides,mg/dL,< 150
+PAR0667,TST0223,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0668,TST0223,TSH,µIU/mL,0.4 - 4.0
+PAR0669,TST0223,Triglycerides,mg/dL,< 150
+PAR0670,TST0224,TSH,µIU/mL,0.4 - 4.0
+PAR0671,TST0224,Triglycerides,mg/dL,< 150
+PAR0672,TST0224,Hemoglobin,g/dL,13.0 - 17.0
+PAR0673,TST0225,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0674,TST0225,Triglycerides,mg/dL,< 150
+PAR0675,TST0225,Hemoglobin,g/dL,13.0 - 17.0
+PAR0676,TST0226,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0677,TST0226,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0678,TST0226,Triglycerides,mg/dL,< 150
+PAR0679,TST0227,TSH,µIU/mL,0.4 - 4.0
+PAR0680,TST0227,Cholesterol,mg/dL,< 200
+PAR0681,TST0227,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0682,TST0228,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0683,TST0228,Hemoglobin,g/dL,13.0 - 17.0
+PAR0684,TST0228,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0685,TST0229,RBC,millions/cu.mm,4.5 - 5.5
+PAR0686,TST0229,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0687,TST0229,Cholesterol,mg/dL,< 200
+PAR0688,TST0230,Cholesterol,mg/dL,< 200
+PAR0689,TST0230,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0690,TST0230,Hemoglobin,g/dL,13.0 - 17.0
+PAR0691,TST0231,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0692,TST0231,Triglycerides,mg/dL,< 150
+PAR0693,TST0231,Hemoglobin,g/dL,13.0 - 17.0
+PAR0694,TST0232,Hemoglobin,g/dL,13.0 - 17.0
+PAR0695,TST0232,Cholesterol,mg/dL,< 200
+PAR0696,TST0232,TSH,µIU/mL,0.4 - 4.0
+PAR0697,TST0233,Cholesterol,mg/dL,< 200
+PAR0698,TST0233,TSH,µIU/mL,0.4 - 4.0
+PAR0699,TST0233,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0700,TST0234,Triglycerides,mg/dL,< 150
+PAR0701,TST0234,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0702,TST0234,Creatinine,mg/dL,0.6 - 1.2
+PAR0703,TST0235,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0704,TST0235,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0705,TST0235,Triglycerides,mg/dL,< 150
+PAR0706,TST0236,Creatinine,mg/dL,0.6 - 1.2
+PAR0707,TST0236,RBC,millions/cu.mm,4.5 - 5.5
+PAR0708,TST0236,Triglycerides,mg/dL,< 150
+PAR0709,TST0237,RBC,millions/cu.mm,4.5 - 5.5
+PAR0710,TST0237,Cholesterol,mg/dL,< 200
+PAR0711,TST0237,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0712,TST0238,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0713,TST0238,Creatinine,mg/dL,0.6 - 1.2
+PAR0714,TST0238,Hemoglobin,g/dL,13.0 - 17.0
+PAR0715,TST0239,Triglycerides,mg/dL,< 150
+PAR0716,TST0239,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0717,TST0239,Hemoglobin,g/dL,13.0 - 17.0
+PAR0718,TST0240,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0719,TST0240,Creatinine,mg/dL,0.6 - 1.2
+PAR0720,TST0240,Cholesterol,mg/dL,< 200
+PAR0721,TST0241,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0722,TST0241,Creatinine,mg/dL,0.6 - 1.2
+PAR0723,TST0241,RBC,millions/cu.mm,4.5 - 5.5
+PAR0724,TST0242,Triglycerides,mg/dL,< 150
+PAR0725,TST0242,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0726,TST0242,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0727,TST0243,TSH,µIU/mL,0.4 - 4.0
+PAR0728,TST0243,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0729,TST0243,Triglycerides,mg/dL,< 150
+PAR0730,TST0244,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0731,TST0244,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0732,TST0244,Hemoglobin,g/dL,13.0 - 17.0
+PAR0733,TST0245,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0734,TST0245,TSH,µIU/mL,0.4 - 4.0
+PAR0735,TST0245,Hemoglobin,g/dL,13.0 - 17.0
+PAR0736,TST0246,Hemoglobin,g/dL,13.0 - 17.0
+PAR0737,TST0246,RBC,millions/cu.mm,4.5 - 5.5
+PAR0738,TST0246,Cholesterol,mg/dL,< 200
+PAR0739,TST0247,Creatinine,mg/dL,0.6 - 1.2
+PAR0740,TST0247,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0741,TST0247,Cholesterol,mg/dL,< 200
+PAR0742,TST0248,Hemoglobin,g/dL,13.0 - 17.0
+PAR0743,TST0248,Triglycerides,mg/dL,< 150
+PAR0744,TST0248,Cholesterol,mg/dL,< 200
+PAR0745,TST0249,Cholesterol,mg/dL,< 200
+PAR0746,TST0249,Hemoglobin,g/dL,13.0 - 17.0
+PAR0747,TST0249,Creatinine,mg/dL,0.6 - 1.2
+PAR0748,TST0250,Creatinine,mg/dL,0.6 - 1.2
+PAR0749,TST0250,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0750,TST0250,TSH,µIU/mL,0.4 - 4.0
+PAR0751,TST0251,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0752,TST0251,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0753,TST0251,Hemoglobin,g/dL,13.0 - 17.0
+PAR0754,TST0252,Triglycerides,mg/dL,< 150
+PAR0755,TST0252,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0756,TST0252,TSH,µIU/mL,0.4 - 4.0
+PAR0757,TST0253,Triglycerides,mg/dL,< 150
+PAR0758,TST0253,TSH,µIU/mL,0.4 - 4.0
+PAR0759,TST0253,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0760,TST0254,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0761,TST0254,Triglycerides,mg/dL,< 150
+PAR0762,TST0254,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0763,TST0255,TSH,µIU/mL,0.4 - 4.0
+PAR0764,TST0255,Creatinine,mg/dL,0.6 - 1.2
+PAR0765,TST0255,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0766,TST0256,TSH,µIU/mL,0.4 - 4.0
+PAR0767,TST0256,Creatinine,mg/dL,0.6 - 1.2
+PAR0768,TST0256,Cholesterol,mg/dL,< 200
+PAR0769,TST0257,Triglycerides,mg/dL,< 150
+PAR0770,TST0257,Creatinine,mg/dL,0.6 - 1.2
+PAR0771,TST0257,Hemoglobin,g/dL,13.0 - 17.0
+PAR0772,TST0258,Creatinine,mg/dL,0.6 - 1.2
+PAR0773,TST0258,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0774,TST0258,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0775,TST0259,Cholesterol,mg/dL,< 200
+PAR0776,TST0259,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0777,TST0259,Creatinine,mg/dL,0.6 - 1.2
+PAR0778,TST0260,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0779,TST0260,Creatinine,mg/dL,0.6 - 1.2
+PAR0780,TST0260,Hemoglobin,g/dL,13.0 - 17.0
+PAR0781,TST0261,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0782,TST0261,Hemoglobin,g/dL,13.0 - 17.0
+PAR0783,TST0261,Cholesterol,mg/dL,< 200
+PAR0784,TST0262,TSH,µIU/mL,0.4 - 4.0
+PAR0785,TST0262,Cholesterol,mg/dL,< 200
+PAR0786,TST0262,Triglycerides,mg/dL,< 150
+PAR0787,TST0263,Creatinine,mg/dL,0.6 - 1.2
+PAR0788,TST0263,Cholesterol,mg/dL,< 200
+PAR0789,TST0263,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0790,TST0264,Hemoglobin,g/dL,13.0 - 17.0
+PAR0791,TST0264,TSH,µIU/mL,0.4 - 4.0
+PAR0792,TST0264,RBC,millions/cu.mm,4.5 - 5.5
+PAR0793,TST0265,Cholesterol,mg/dL,< 200
+PAR0794,TST0265,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0795,TST0265,RBC,millions/cu.mm,4.5 - 5.5
+PAR0796,TST0266,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0797,TST0266,TSH,µIU/mL,0.4 - 4.0
+PAR0798,TST0266,Cholesterol,mg/dL,< 200
+PAR0799,TST0267,Triglycerides,mg/dL,< 150
+PAR0800,TST0267,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0801,TST0267,TSH,µIU/mL,0.4 - 4.0
+PAR0802,TST0268,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0803,TST0268,RBC,millions/cu.mm,4.5 - 5.5
+PAR0804,TST0268,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0805,TST0269,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0806,TST0269,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0807,TST0269,Hemoglobin,g/dL,13.0 - 17.0
+PAR0808,TST0270,Hemoglobin,g/dL,13.0 - 17.0
+PAR0809,TST0270,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0810,TST0270,RBC,millions/cu.mm,4.5 - 5.5
+PAR0811,TST0271,TSH,µIU/mL,0.4 - 4.0
+PAR0812,TST0271,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0813,TST0271,Creatinine,mg/dL,0.6 - 1.2
+PAR0814,TST0272,TSH,µIU/mL,0.4 - 4.0
+PAR0815,TST0272,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0816,TST0272,Creatinine,mg/dL,0.6 - 1.2
+PAR0817,TST0273,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0818,TST0273,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0819,TST0273,RBC,millions/cu.mm,4.5 - 5.5
+PAR0820,TST0274,Cholesterol,mg/dL,< 200
+PAR0821,TST0274,TSH,µIU/mL,0.4 - 4.0
+PAR0822,TST0274,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0823,TST0275,TSH,µIU/mL,0.4 - 4.0
+PAR0824,TST0275,Triglycerides,mg/dL,< 150
+PAR0825,TST0275,Creatinine,mg/dL,0.6 - 1.2
+PAR0826,TST0276,TSH,µIU/mL,0.4 - 4.0
+PAR0827,TST0276,RBC,millions/cu.mm,4.5 - 5.5
+PAR0828,TST0276,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0829,TST0277,TSH,µIU/mL,0.4 - 4.0
+PAR0830,TST0277,RBC,millions/cu.mm,4.5 - 5.5
+PAR0831,TST0277,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0832,TST0278,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0833,TST0278,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0834,TST0278,Triglycerides,mg/dL,< 150
+PAR0835,TST0279,Hemoglobin,g/dL,13.0 - 17.0
+PAR0836,TST0279,TSH,µIU/mL,0.4 - 4.0
+PAR0837,TST0279,Creatinine,mg/dL,0.6 - 1.2
+PAR0838,TST0280,TSH,µIU/mL,0.4 - 4.0
+PAR0839,TST0280,Creatinine,mg/dL,0.6 - 1.2
+PAR0840,TST0280,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0841,TST0281,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0842,TST0281,Creatinine,mg/dL,0.6 - 1.2
+PAR0843,TST0281,Triglycerides,mg/dL,< 150
+PAR0844,TST0282,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0845,TST0282,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0846,TST0282,Cholesterol,mg/dL,< 200
+PAR0847,TST0283,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0848,TST0283,Cholesterol,mg/dL,< 200
+PAR0849,TST0283,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0850,TST0284,TSH,µIU/mL,0.4 - 4.0
+PAR0851,TST0284,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0852,TST0284,RBC,millions/cu.mm,4.5 - 5.5
+PAR0853,TST0285,Cholesterol,mg/dL,< 200
+PAR0854,TST0285,Creatinine,mg/dL,0.6 - 1.2
+PAR0855,TST0285,RBC,millions/cu.mm,4.5 - 5.5
+PAR0856,TST0286,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0857,TST0286,Cholesterol,mg/dL,< 200
+PAR0858,TST0286,Hemoglobin,g/dL,13.0 - 17.0
+PAR0859,TST0287,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0860,TST0287,TSH,µIU/mL,0.4 - 4.0
+PAR0861,TST0287,Hemoglobin,g/dL,13.0 - 17.0
+PAR0862,TST0288,RBC,millions/cu.mm,4.5 - 5.5
+PAR0863,TST0288,Hemoglobin,g/dL,13.0 - 17.0
+PAR0864,TST0288,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0865,TST0289,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0866,TST0289,Cholesterol,mg/dL,< 200
+PAR0867,TST0289,Triglycerides,mg/dL,< 150
+PAR0868,TST0290,Hemoglobin,g/dL,13.0 - 17.0
+PAR0869,TST0290,TSH,µIU/mL,0.4 - 4.0
+PAR0870,TST0290,Triglycerides,mg/dL,< 150
+PAR0871,TST0291,Cholesterol,mg/dL,< 200
+PAR0872,TST0291,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0873,TST0291,Platelets,lakhs/cu.mm,1.5 - 4.5
+PAR0874,TST0292,Hemoglobin,g/dL,13.0 - 17.0
+PAR0875,TST0292,TSH,µIU/mL,0.4 - 4.0
+PAR0876,TST0292,RBC,millions/cu.mm,4.5 - 5.5
+PAR0877,TST0293,Hemoglobin,g/dL,13.0 - 17.0
+PAR0878,TST0293,TSH,µIU/mL,0.4 - 4.0
+PAR0879,TST0293,Creatinine,mg/dL,0.6 - 1.2
+PAR0880,TST0294,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0881,TST0294,RBC,millions/cu.mm,4.5 - 5.5
+PAR0882,TST0294,Cholesterol,mg/dL,< 200
+PAR0883,TST0295,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0884,TST0295,Cholesterol,mg/dL,< 200
+PAR0885,TST0295,RBC,millions/cu.mm,4.5 - 5.5
+PAR0886,TST0296,Creatinine,mg/dL,0.6 - 1.2
+PAR0887,TST0296,Triglycerides,mg/dL,< 150
+PAR0888,TST0296,Hemoglobin,g/dL,13.0 - 17.0
+PAR0889,TST0297,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0890,TST0297,Creatinine,mg/dL,0.6 - 1.2
+PAR0891,TST0297,RBC,millions/cu.mm,4.5 - 5.5
+PAR0892,TST0298,RBC,millions/cu.mm,4.5 - 5.5
+PAR0893,TST0298,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0894,TST0298,Hemoglobin,g/dL,13.0 - 17.0
+PAR0895,TST0299,Creatinine,mg/dL,0.6 - 1.2
+PAR0896,TST0299,RBC,millions/cu.mm,4.5 - 5.5
+PAR0897,TST0299,WBC,cells/cu.mm,"4,000 - 11,000"
+PAR0898,TST0300,RBC,millions/cu.mm,4.5 - 5.5
+PAR0899,TST0300,Glucose,mg/dL,70 - 100 (Fasting)
+PAR0900,TST0300,Platelets,lakhs/cu.mm,1.5 - 4.5

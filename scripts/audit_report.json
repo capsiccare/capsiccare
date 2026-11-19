@@ -1,0 +1,3541 @@
+{
+  "completed": [
+    "Outpatient cash memo includes home collection calculation logic."
+  ],
+  "issues": [
+    {
+      "item": "Test price mismatch: tests.csv=5390 vs user_tests.csv=4800",
+      "location": "public/data/tests.csv (TST0001 - 1,3-Beta D Glucan Level)",
+      "fix": "Update tests.csv selling price to approved price ₹4800"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=3105 vs user_tests.csv=2400",
+      "location": "public/data/tests.csv (TST0002 - 1-25-Hydroxy Vitamin D)",
+      "fix": "Update tests.csv selling price to approved price ₹2400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=990 vs user_tests.csv=880",
+      "location": "public/data/tests.csv (TST0003 - 17-Alpha Hydroxy Progesterone(17-Ohp))",
+      "fix": "Update tests.csv selling price to approved price ₹880"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=160 vs user_tests.csv=140",
+      "location": "public/data/tests.csv (TST0004 - 24 Hrs Urine For Cholesterol)",
+      "fix": "Update tests.csv selling price to approved price ₹140"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1670 vs user_tests.csv=1490",
+      "location": "public/data/tests.csv (TST0005 - 5-Alpha-Dihydrotestosterone; 5-Alpha-Dht,)",
+      "fix": "Update tests.csv selling price to approved price ₹1490"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1980 vs user_tests.csv=1760",
+      "location": "public/data/tests.csv (TST0006 - 5-Hiaa(5-Hydroxy Indoleacetic Acid)24Hrs  Urine)",
+      "fix": "Update tests.csv selling price to approved price ₹1760"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=990 vs user_tests.csv=880",
+      "location": "public/data/tests.csv (TST0007 - A4 (Androstenedione))",
+      "fix": "Update tests.csv selling price to approved price ₹880"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=110 vs user_tests.csv=100",
+      "location": "public/data/tests.csv (TST0008 - Abnormal Cells(Blood))",
+      "fix": "Update tests.csv selling price to approved price ₹100"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=100 vs user_tests.csv=90",
+      "location": "public/data/tests.csv (TST0009 - Absolute Count(Basophils))",
+      "fix": "Update tests.csv selling price to approved price ₹90"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=100 vs user_tests.csv=90",
+      "location": "public/data/tests.csv (TST0010 - Absolute Eosinophil Count)",
+      "fix": "Update tests.csv selling price to approved price ₹90"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=100 vs user_tests.csv=90",
+      "location": "public/data/tests.csv (TST0011 - Absolute Lymphocyte Count (Alc))",
+      "fix": "Update tests.csv selling price to approved price ₹90"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=100 vs user_tests.csv=90",
+      "location": "public/data/tests.csv (TST0012 - Absolute Monocyte Count)",
+      "fix": "Update tests.csv selling price to approved price ₹90"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=100 vs user_tests.csv=90",
+      "location": "public/data/tests.csv (TST0013 - Absolute Neutrophil Count)",
+      "fix": "Update tests.csv selling price to approved price ₹90"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=410 vs user_tests.csv=370",
+      "location": "public/data/tests.csv (TST0014 - Aca (Anti Cardiolipin Antibody) Iga /Igg/Igm)",
+      "fix": "Update tests.csv selling price to approved price ₹370"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=850 vs user_tests.csv=760",
+      "location": "public/data/tests.csv (TST0015 - Ace (Angiotensin Converting Enzyme))",
+      "fix": "Update tests.csv selling price to approved price ₹760"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2880 vs user_tests.csv=2560",
+      "location": "public/data/tests.csv (TST0016 - Acetyl Choline Receptor Binding Antibody(Achr))",
+      "fix": "Update tests.csv selling price to approved price ₹2560"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=180 vs user_tests.csv=160",
+      "location": "public/data/tests.csv (TST0017 - Acid Phosphatase (Acp) (Total))",
+      "fix": "Update tests.csv selling price to approved price ₹160"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=390 vs user_tests.csv=350",
+      "location": "public/data/tests.csv (TST0018 - Acid Phosphatase (Prostatic))",
+      "fix": "Update tests.csv selling price to approved price ₹350"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=400 vs user_tests.csv=360",
+      "location": "public/data/tests.csv (TST0019 - Acr : Microalbumin:Creatinine Ratio Spot)",
+      "fix": "Update tests.csv selling price to approved price ₹360"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=990 vs user_tests.csv=880",
+      "location": "public/data/tests.csv (TST0020 - Acth Stimulation Test For 17- Oh Progesterone)",
+      "fix": "Update tests.csv selling price to approved price ₹880"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=990 vs user_tests.csv=880",
+      "location": "public/data/tests.csv (TST0021 - Acth(Adrenocorticotrophic Hormone))",
+      "fix": "Update tests.csv selling price to approved price ₹880"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=410 vs user_tests.csv=370",
+      "location": "public/data/tests.csv (TST0022 - Ada (Adenosine Deaminase Activity))",
+      "fix": "Update tests.csv selling price to approved price ₹370"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0023 - Aerobic Culture & Sensitivity)",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1080 vs user_tests.csv=960",
+      "location": "public/data/tests.csv (TST0024 - Aerobic Culture & Sensitivity ( Bactec Method))",
+      "fix": "Update tests.csv selling price to approved price ₹960"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=260 vs user_tests.csv=240",
+      "location": "public/data/tests.csv (TST0025 - Afb Culture & Sensitivity, Miscellaneous)",
+      "fix": "Update tests.csv selling price to approved price ₹240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1080 vs user_tests.csv=960",
+      "location": "public/data/tests.csv (TST0026 - Afb Culture (Bactec Method))",
+      "fix": "Update tests.csv selling price to approved price ₹960"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=760 vs user_tests.csv=680",
+      "location": "public/data/tests.csv (TST0027 - Afb Culture : Sputum (Single Sp.) X 3 Days)",
+      "fix": "Update tests.csv selling price to approved price ₹680"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=250 vs user_tests.csv=230",
+      "location": "public/data/tests.csv (TST0028 - Afb Culture : Sputum(Single Sp))",
+      "fix": "Update tests.csv selling price to approved price ₹230"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=130 vs user_tests.csv=120",
+      "location": "public/data/tests.csv (TST0029 - Afb Stain (Z-N Stain))",
+      "fix": "Update tests.csv selling price to approved price ₹120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=400 vs user_tests.csv=360",
+      "location": "public/data/tests.csv (TST0030 - Afp (Alpha Fetoprotein), Maternal)",
+      "fix": "Update tests.csv selling price to approved price ₹360"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=400 vs user_tests.csv=360",
+      "location": "public/data/tests.csv (TST0031 - Afp (Alpha Fetoprotein), Tumor Marker)",
+      "fix": "Update tests.csv selling price to approved price ₹360"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0032 - Albert Stain For Klb)",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=230 vs user_tests.csv=210",
+      "location": "public/data/tests.csv (TST0033 - Alberts Stain)",
+      "fix": "Update tests.csv selling price to approved price ₹210"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=130 vs user_tests.csv=120",
+      "location": "public/data/tests.csv (TST0034 - Albumin)",
+      "fix": "Update tests.csv selling price to approved price ₹120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=170 vs user_tests.csv=160",
+      "location": "public/data/tests.csv (TST0035 - Albumin- Globulin Ratio)",
+      "fix": "Update tests.csv selling price to approved price ₹160"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1520 vs user_tests.csv=1360",
+      "location": "public/data/tests.csv (TST0036 - Alcohol)",
+      "fix": "Update tests.csv selling price to approved price ₹1360"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=140 vs user_tests.csv=130",
+      "location": "public/data/tests.csv (TST0037 - Aldehyde Test)",
+      "fix": "Update tests.csv selling price to approved price ₹130"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=760 vs user_tests.csv=680",
+      "location": "public/data/tests.csv (TST0038 - Aldolase)",
+      "fix": "Update tests.csv selling price to approved price ₹680"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1420 vs user_tests.csv=1270",
+      "location": "public/data/tests.csv (TST0039 - Aldosterone)",
+      "fix": "Update tests.csv selling price to approved price ₹1270"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=3600 vs user_tests.csv=3200",
+      "location": "public/data/tests.csv (TST0040 - Aldosterone To Renin Ratio)",
+      "fix": "Update tests.csv selling price to approved price ₹3200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=130 vs user_tests.csv=120",
+      "location": "public/data/tests.csv (TST0041 - Alkaline Phosphatase)",
+      "fix": "Update tests.csv selling price to approved price ₹120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1400 vs user_tests.csv=1110",
+      "location": "public/data/tests.csv (TST0042 - Allergy Profile (Blood))",
+      "fix": "Update tests.csv selling price to approved price ₹1110"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2150 vs user_tests.csv=1920",
+      "location": "public/data/tests.csv (TST0043 - Allergy Profile (Drug))",
+      "fix": "Update tests.csv selling price to approved price ₹1920"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1130 vs user_tests.csv=1010",
+      "location": "public/data/tests.csv (TST0044 - Allergy Profile (Kolkata Immuno))",
+      "fix": "Update tests.csv selling price to approved price ₹1010"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=5350 vs user_tests.csv=4760",
+      "location": "public/data/tests.csv (TST0045 - Allergy Profile (Medcis))",
+      "fix": "Update tests.csv selling price to approved price ₹4760"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1710 vs user_tests.csv=1520",
+      "location": "public/data/tests.csv (TST0046 - Alpha-1 Antitrypsin (Aat))",
+      "fix": "Update tests.csv selling price to approved price ₹1520"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1120 vs user_tests.csv=1000",
+      "location": "public/data/tests.csv (TST0047 - Amh ( Anti Mullerian Hormone ))",
+      "fix": "Update tests.csv selling price to approved price ₹1000"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=390 vs user_tests.csv=350",
+      "location": "public/data/tests.csv (TST0048 - Ammonia)",
+      "fix": "Update tests.csv selling price to approved price ₹350"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=260 vs user_tests.csv=240",
+      "location": "public/data/tests.csv (TST0049 - Amylase (Serum))",
+      "fix": "Update tests.csv selling price to approved price ₹240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=410 vs user_tests.csv=370",
+      "location": "public/data/tests.csv (TST0050 - Ana (Anti Nuclear Antibodies ))",
+      "fix": "Update tests.csv selling price to approved price ₹370"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=680 vs user_tests.csv=610",
+      "location": "public/data/tests.csv (TST0051 - Ana (Hep-2))",
+      "fix": "Update tests.csv selling price to approved price ₹610"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2540 vs user_tests.csv=2260",
+      "location": "public/data/tests.csv (TST0052 - Ana Profile)",
+      "fix": "Update tests.csv selling price to approved price ₹2260"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=220 vs user_tests.csv=200",
+      "location": "public/data/tests.csv (TST0053 - Anaerobic Culture)",
+      "fix": "Update tests.csv selling price to approved price ₹200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=580 vs user_tests.csv=520",
+      "location": "public/data/tests.csv (TST0054 - Anaerobic Culture - Tissue)",
+      "fix": "Update tests.csv selling price to approved price ₹520"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=720 vs user_tests.csv=640",
+      "location": "public/data/tests.csv (TST0055 - Anca Pr3/C-Anca)",
+      "fix": "Update tests.csv selling price to approved price ₹640"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=760 vs user_tests.csv=680",
+      "location": "public/data/tests.csv (TST0056 - Anca-Mpo/P-Anca)",
+      "fix": "Update tests.csv selling price to approved price ₹680"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1750 vs user_tests.csv=1560",
+      "location": "public/data/tests.csv (TST0057 - Androgens (Testosterone & Shbg))",
+      "fix": "Update tests.csv selling price to approved price ₹1560"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1120 vs user_tests.csv=1000",
+      "location": "public/data/tests.csv (TST0058 - Androstenedione (A4))",
+      "fix": "Update tests.csv selling price to approved price ₹1000"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=440 vs user_tests.csv=400",
+      "location": "public/data/tests.csv (TST0059 - Anf (Anti Nuclear Factor ))",
+      "fix": "Update tests.csv selling price to approved price ₹400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=400 vs user_tests.csv=360",
+      "location": "public/data/tests.csv (TST0060 - Anti Cardiolipin Antibody - Iga)",
+      "fix": "Update tests.csv selling price to approved price ₹360"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=400 vs user_tests.csv=360",
+      "location": "public/data/tests.csv (TST0061 - Anti Cardiolipin Antibody - Igg)",
+      "fix": "Update tests.csv selling price to approved price ₹360"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=400 vs user_tests.csv=360",
+      "location": "public/data/tests.csv (TST0062 - Anti Cardiolipin Antibody - Igm)",
+      "fix": "Update tests.csv selling price to approved price ₹360"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=670 vs user_tests.csv=600",
+      "location": "public/data/tests.csv (TST0063 - Anti Ccp (Cyclic Citrullinated Peptide))",
+      "fix": "Update tests.csv selling price to approved price ₹600"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1750 vs user_tests.csv=1560",
+      "location": "public/data/tests.csv (TST0064 - Anti Chlamydia Antibodies Igm)",
+      "fix": "Update tests.csv selling price to approved price ₹1560"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2520 vs user_tests.csv=2240",
+      "location": "public/data/tests.csv (TST0065 - Anti Dnase-B)",
+      "fix": "Update tests.csv selling price to approved price ₹2240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=960 vs user_tests.csv=860",
+      "location": "public/data/tests.csv (TST0066 - Anti Ds-Dna Ifa With Titre)",
+      "fix": "Update tests.csv selling price to approved price ₹860"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=420 vs user_tests.csv=380",
+      "location": "public/data/tests.csv (TST0067 - Anti Ds-Dna, Total)",
+      "fix": "Update tests.csv selling price to approved price ₹380"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=410 vs user_tests.csv=370",
+      "location": "public/data/tests.csv (TST0068 - Anti Hbc (Igg))",
+      "fix": "Update tests.csv selling price to approved price ₹370"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=410 vs user_tests.csv=370",
+      "location": "public/data/tests.csv (TST0069 - Anti Hbc (Igm))",
+      "fix": "Update tests.csv selling price to approved price ₹370"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=4050 vs user_tests.csv=3600",
+      "location": "public/data/tests.csv (TST0070 - Anti Ia-2 (Insulinoma Associated Antigen))",
+      "fix": "Update tests.csv selling price to approved price ₹3600"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1080 vs user_tests.csv=960",
+      "location": "public/data/tests.csv (TST0071 - Anti Mitochondrial Antibody (Ama))",
+      "fix": "Update tests.csv selling price to approved price ₹960"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=4140 vs user_tests.csv=3680",
+      "location": "public/data/tests.csv (TST0072 - Anti Musk Antibodies)",
+      "fix": "Update tests.csv selling price to approved price ₹3680"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1170 vs user_tests.csv=1040",
+      "location": "public/data/tests.csv (TST0073 - Anti Neutrophilic Cytoplasmic Antibody (Anca))",
+      "fix": "Update tests.csv selling price to approved price ₹1040"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2250 vs user_tests.csv=2000",
+      "location": "public/data/tests.csv (TST0074 - Anti Parietal Cell Antibody)",
+      "fix": "Update tests.csv selling price to approved price ₹2000"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=760 vs user_tests.csv=680",
+      "location": "public/data/tests.csv (TST0075 - Anti Phospholipid (Anti Bodies Panel Igg& Igm))",
+      "fix": "Update tests.csv selling price to approved price ₹680"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=400 vs user_tests.csv=360",
+      "location": "public/data/tests.csv (TST0076 - Anti Phospholipid Antibody (Igg))",
+      "fix": "Update tests.csv selling price to approved price ₹360"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=400 vs user_tests.csv=360",
+      "location": "public/data/tests.csv (TST0077 - Anti Phospholipid Antibody (Igm))",
+      "fix": "Update tests.csv selling price to approved price ₹360"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1440 vs user_tests.csv=1280",
+      "location": "public/data/tests.csv (TST0078 - Anti Smooth Muscle Antibody(Asma)-Ifa)",
+      "fix": "Update tests.csv selling price to approved price ₹1280"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1420 vs user_tests.csv=1270",
+      "location": "public/data/tests.csv (TST0079 - Anti Ss-A/Ro Antibody)",
+      "fix": "Update tests.csv selling price to approved price ₹1270"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1420 vs user_tests.csv=1270",
+      "location": "public/data/tests.csv (TST0080 - Anti Ss-B/La Antibody)",
+      "fix": "Update tests.csv selling price to approved price ₹1270"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2690 vs user_tests.csv=2400",
+      "location": "public/data/tests.csv (TST0081 - Anti Thrombin Iii (Antigenic))",
+      "fix": "Update tests.csv selling price to approved price ₹2400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=620 vs user_tests.csv=560",
+      "location": "public/data/tests.csv (TST0082 - Anti Thyroglobulin Antibody (Atg))",
+      "fix": "Update tests.csv selling price to approved price ₹560"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=500 vs user_tests.csv=450",
+      "location": "public/data/tests.csv (TST0083 - Anti Tpo (Anti Thyroid Peroxidase))",
+      "fix": "Update tests.csv selling price to approved price ₹450"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1120 vs user_tests.csv=1000",
+      "location": "public/data/tests.csv (TST0084 - Anti Ttg Igg)",
+      "fix": "Update tests.csv selling price to approved price ₹1000"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2610 vs user_tests.csv=2320",
+      "location": "public/data/tests.csv (TST0085 - Antidiuretic Hormone (Adh))",
+      "fix": "Update tests.csv selling price to approved price ₹2320"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=400 vs user_tests.csv=360",
+      "location": "public/data/tests.csv (TST0086 - Anti-Hbeab)",
+      "fix": "Update tests.csv selling price to approved price ₹360"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=400 vs user_tests.csv=360",
+      "location": "public/data/tests.csv (TST0087 - Anti-Hcv)",
+      "fix": "Update tests.csv selling price to approved price ₹360"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=400 vs user_tests.csv=360",
+      "location": "public/data/tests.csv (TST0088 - Anti-Hepatitis A Virus (Hav) Igm)",
+      "fix": "Update tests.csv selling price to approved price ₹360"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=530 vs user_tests.csv=480",
+      "location": "public/data/tests.csv (TST0089 - Apo-B / Apo-A1 Ratio)",
+      "fix": "Update tests.csv selling price to approved price ₹480"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=530 vs user_tests.csv=480",
+      "location": "public/data/tests.csv (TST0090 - Apolipoprotein A1 (Apo-A1))",
+      "fix": "Update tests.csv selling price to approved price ₹480"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=530 vs user_tests.csv=480",
+      "location": "public/data/tests.csv (TST0091 - Apolipoprotein B (Apo-B))",
+      "fix": "Update tests.csv selling price to approved price ₹480"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=220 vs user_tests.csv=200",
+      "location": "public/data/tests.csv (TST0092 - Aptt (Activated Partial Thromboplastin Time))",
+      "fix": "Update tests.csv selling price to approved price ₹200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=3590 vs user_tests.csv=3200",
+      "location": "public/data/tests.csv (TST0093 - Aquaporin -4 (Nmo) Antibody)",
+      "fix": "Update tests.csv selling price to approved price ₹3200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=3320 vs user_tests.csv=2960",
+      "location": "public/data/tests.csv (TST0094 - Arsenic)",
+      "fix": "Update tests.csv selling price to approved price ₹2960"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2552 vs user_tests.csv=2320",
+      "location": "public/data/tests.csv (TST0095 - Asca (Anti Saccharomyces Cerevisiae Antibody))",
+      "fix": "Update tests.csv selling price to approved price ₹2320"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2600 vs user_tests.csv=2320",
+      "location": "public/data/tests.csv (TST0096 - Asca (Anti Saccharomyces Cerevisiae Antibody))",
+      "fix": "Update tests.csv selling price to approved price ₹2320"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=420 vs user_tests.csv=380",
+      "location": "public/data/tests.csv (TST0097 - Any Body Fluid : Ada)",
+      "fix": "Update tests.csv selling price to approved price ₹380"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=350 vs user_tests.csv=320",
+      "location": "public/data/tests.csv (TST0098 - Any Body Fluid : Afb (If))",
+      "fix": "Update tests.csv selling price to approved price ₹320"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=130 vs user_tests.csv=120",
+      "location": "public/data/tests.csv (TST0099 - Any Body Fluid : Afb (Z.N. Stain))",
+      "fix": "Update tests.csv selling price to approved price ₹120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=110 vs user_tests.csv=100",
+      "location": "public/data/tests.csv (TST0100 - Any Body Fluid : Albumin)",
+      "fix": "Update tests.csv selling price to approved price ₹100"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=280 vs user_tests.csv=250",
+      "location": "public/data/tests.csv (TST0101 - Any Body Fluid : Amylase)",
+      "fix": "Update tests.csv selling price to approved price ₹250"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0102 - Any Body Fluid : Cell Count & Type)",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=320 vs user_tests.csv=290",
+      "location": "public/data/tests.csv (TST0103 - Any Body Fluid : Fungus Stain)",
+      "fix": "Update tests.csv selling price to approved price ₹290"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=130 vs user_tests.csv=120",
+      "location": "public/data/tests.csv (TST0104 - Any Body Fluid : Gram Stain)",
+      "fix": "Update tests.csv selling price to approved price ₹120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0105 - Any Body Fluid : Hanging Drop Preparation)",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=260 vs user_tests.csv=240",
+      "location": "public/data/tests.csv (TST0106 - Any Body Fluid : Ldh)",
+      "fix": "Update tests.csv selling price to approved price ₹240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=160 vs user_tests.csv=150",
+      "location": "public/data/tests.csv (TST0108 - Any Body Fluid : Total Protein)",
+      "fix": "Update tests.csv selling price to approved price ₹150"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=300 vs user_tests.csv=270",
+      "location": "public/data/tests.csv (TST0109 - Any Body Fluid :Biochemistry)",
+      "fix": "Update tests.csv selling price to approved price ₹270"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=470 vs user_tests.csv=420",
+      "location": "public/data/tests.csv (TST0110 - CSF: Biochemistry & Cell Count & Type)",
+      "fix": "Update tests.csv selling price to approved price ₹420"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=220 vs user_tests.csv=200",
+      "location": "public/data/tests.csv (TST0111 - Aso Titre (Immunoturbidimetry))",
+      "fix": "Update tests.csv selling price to approved price ₹200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1490 vs user_tests.csv=1330",
+      "location": "public/data/tests.csv (TST0112 - Aspergillus Fumigatus Ige)",
+      "fix": "Update tests.csv selling price to approved price ₹1330"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1490 vs user_tests.csv=1330",
+      "location": "public/data/tests.csv (TST0113 - Aspergillus Fumigatus Igg)",
+      "fix": "Update tests.csv selling price to approved price ₹1330"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1490 vs user_tests.csv=1330",
+      "location": "public/data/tests.csv (TST0114 - Aspergillus Fumigatus Igm)",
+      "fix": "Update tests.csv selling price to approved price ₹1330"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1350 vs user_tests.csv=1200",
+      "location": "public/data/tests.csv (TST0115 - B-2M (B-2 Microglobulin))",
+      "fix": "Update tests.csv selling price to approved price ₹1200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=5670 vs user_tests.csv=6000",
+      "location": "public/data/tests.csv (TST0117 - Bcr-Abl Gene Rearrangement, Pcr)",
+      "fix": "Update tests.csv selling price to approved price ₹6000"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=6750 vs user_tests.csv=6000",
+      "location": "public/data/tests.csv (TST0118 - Bcr-Abl Gene Rearrangement,Pcr)",
+      "fix": "Update tests.csv selling price to approved price ₹6000"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=450 vs user_tests.csv=400",
+      "location": "public/data/tests.csv (TST0119 - Bence Jones Proteins, Urine)",
+      "fix": "Update tests.csv selling price to approved price ₹400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=450 vs user_tests.csv=400",
+      "location": "public/data/tests.csv (TST0120 - Beta Human Chorionic Gonadotropin (Beta-Hcg))",
+      "fix": "Update tests.csv selling price to approved price ₹400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1350 vs user_tests.csv=1200",
+      "location": "public/data/tests.csv (TST0121 - Beta-2 Microglobulin(Beta-2M))",
+      "fix": "Update tests.csv selling price to approved price ₹1200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=850 vs user_tests.csv=760",
+      "location": "public/data/tests.csv (TST0122 - Beta-2-Glycoprotein 1 (B2 Gp1) - Iga)",
+      "fix": "Update tests.csv selling price to approved price ₹760"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=850 vs user_tests.csv=760",
+      "location": "public/data/tests.csv (TST0123 - Beta-2-Glycoprotein 1 (B2 Gp1) - Igg)",
+      "fix": "Update tests.csv selling price to approved price ₹760"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=850 vs user_tests.csv=760",
+      "location": "public/data/tests.csv (TST0124 - Beta-2-Glycoprotein 1 (B2 Gp1) - Igm)",
+      "fix": "Update tests.csv selling price to approved price ₹760"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=190 vs user_tests.csv=170",
+      "location": "public/data/tests.csv (TST0125 - Bicarbonate (Hco3))",
+      "fix": "Update tests.csv selling price to approved price ₹170"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1160 vs user_tests.csv=1040",
+      "location": "public/data/tests.csv (TST0126 - Bile Acids Total)",
+      "fix": "Update tests.csv selling price to approved price ₹1040"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=90 vs user_tests.csv=80",
+      "location": "public/data/tests.csv (TST0128 - Bile Salt(Qyali),Random Urine)",
+      "fix": "Update tests.csv selling price to approved price ₹80"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=130 vs user_tests.csv=120",
+      "location": "public/data/tests.csv (TST0129 - Bilirubin Conjugated)",
+      "fix": "Update tests.csv selling price to approved price ₹120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=130 vs user_tests.csv=120",
+      "location": "public/data/tests.csv (TST0130 - Bilirubin Total, Conj. & Unconj.)",
+      "fix": "Update tests.csv selling price to approved price ₹120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=130 vs user_tests.csv=120",
+      "location": "public/data/tests.csv (TST0131 - Bilirubin Unconjugated)",
+      "fix": "Update tests.csv selling price to approved price ₹120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1120 vs user_tests.csv=1000",
+      "location": "public/data/tests.csv (TST0132 - Biopsy (Five Slides))",
+      "fix": "Update tests.csv selling price to approved price ₹1000"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=890 vs user_tests.csv=800",
+      "location": "public/data/tests.csv (TST0133 - Biopsy (Four Slides))",
+      "fix": "Update tests.csv selling price to approved price ₹800"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=220 vs user_tests.csv=200",
+      "location": "public/data/tests.csv (TST0134 - Biopsy (One Slide))",
+      "fix": "Update tests.csv selling price to approved price ₹200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1390 vs user_tests.csv=1240",
+      "location": "public/data/tests.csv (TST0135 - Biopsy (Six Slides))",
+      "fix": "Update tests.csv selling price to approved price ₹1240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=670 vs user_tests.csv=600",
+      "location": "public/data/tests.csv (TST0136 - Biopsy (Three Slides))",
+      "fix": "Update tests.csv selling price to approved price ₹600"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=450 vs user_tests.csv=400",
+      "location": "public/data/tests.csv (TST0137 - Biopsy (Two Slides))",
+      "fix": "Update tests.csv selling price to approved price ₹400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=430 vs user_tests.csv=390",
+      "location": "public/data/tests.csv (TST0138 - Biopsy Mouse Organ (One Slide))",
+      "fix": "Update tests.csv selling price to approved price ₹390"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=140 vs user_tests.csv=130",
+      "location": "public/data/tests.csv (TST0139 - Blast Cells)",
+      "fix": "Update tests.csv selling price to approved price ₹130"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1130 vs user_tests.csv=1010",
+      "location": "public/data/tests.csv (TST0140 - Blood Culture - Bact/Alert)",
+      "fix": "Update tests.csv selling price to approved price ₹1010"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1430 vs user_tests.csv=1280",
+      "location": "public/data/tests.csv (TST0141 - Blood Culture & Sensitivity ( Aerobic))",
+      "fix": "Update tests.csv selling price to approved price ₹1280"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1430 vs user_tests.csv=1280",
+      "location": "public/data/tests.csv (TST0142 - Blood Culture & Sensitivity (Anaerobic))",
+      "fix": "Update tests.csv selling price to approved price ₹1280"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=40 vs user_tests.csv=80",
+      "location": "public/data/tests.csv (TST0143 - Blood Group Abo And Rh Typing)",
+      "fix": "Update tests.csv selling price to approved price ₹80"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=3870 vs user_tests.csv=3440",
+      "location": "public/data/tests.csv (TST0144 - Bone Marrow (Chromosomal Analysis))",
+      "fix": "Update tests.csv selling price to approved price ₹3440"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=670 vs user_tests.csv=600",
+      "location": "public/data/tests.csv (TST0145 - Brucella Igg Antibody)",
+      "fix": "Update tests.csv selling price to approved price ₹600"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=670 vs user_tests.csv=600",
+      "location": "public/data/tests.csv (TST0146 - Brucella Igm Antibody)",
+      "fix": "Update tests.csv selling price to approved price ₹600"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=90 vs user_tests.csv=80",
+      "location": "public/data/tests.csv (TST0147 - Bt & Ct (Bleeding Time & Clotting Time))",
+      "fix": "Update tests.csv selling price to approved price ₹80"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=130 vs user_tests.csv=120",
+      "location": "public/data/tests.csv (TST0148 - Bun (Blood Urea Nitrogen))",
+      "fix": "Update tests.csv selling price to approved price ₹120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=480 vs user_tests.csv=430",
+      "location": "public/data/tests.csv (TST0149 - C- Peptide Level)",
+      "fix": "Update tests.csv selling price to approved price ₹430"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=470 vs user_tests.csv=420",
+      "location": "public/data/tests.csv (TST0150 - C- Peptide Level(Pp))",
+      "fix": "Update tests.csv selling price to approved price ₹420"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2890 vs user_tests.csv=2570",
+      "location": "public/data/tests.csv (TST0151 - C.S.F Electrophoresis)",
+      "fix": "Update tests.csv selling price to approved price ₹2570"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0152 - C/S:Catheter Tube)",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=220 vs user_tests.csv=200",
+      "location": "public/data/tests.csv (TST0153 - C/S:Catheter Urine)",
+      "fix": "Update tests.csv selling price to approved price ₹200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=250 vs user_tests.csv=230",
+      "location": "public/data/tests.csv (TST0154 - C/S:Pus)",
+      "fix": "Update tests.csv selling price to approved price ₹230"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=250 vs user_tests.csv=230",
+      "location": "public/data/tests.csv (TST0155 - C/S:Semen)",
+      "fix": "Update tests.csv selling price to approved price ₹230"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=3150 vs user_tests.csv=2800",
+      "location": "public/data/tests.csv (TST0156 - C1 Esterase Inhibitor, Protein Quantitation)",
+      "fix": "Update tests.csv selling price to approved price ₹2800"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=600 vs user_tests.csv=540",
+      "location": "public/data/tests.csv (TST0157 - C-3(Complementary 3))",
+      "fix": "Update tests.csv selling price to approved price ₹540"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=600 vs user_tests.csv=540",
+      "location": "public/data/tests.csv (TST0158 - C-4 (Complementary 4))",
+      "fix": "Update tests.csv selling price to approved price ₹540"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=4010 vs user_tests.csv=3570",
+      "location": "public/data/tests.csv (TST0159 - Ca (Cyfra) 21-1;Lung Cancer Marker)",
+      "fix": "Update tests.csv selling price to approved price ₹3570"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=470 vs user_tests.csv=420",
+      "location": "public/data/tests.csv (TST0160 - Ca 125 (Male))",
+      "fix": "Update tests.csv selling price to approved price ₹420"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=450 vs user_tests.csv=400",
+      "location": "public/data/tests.csv (TST0161 - Ca 125 (Overian Cancer Marker))",
+      "fix": "Update tests.csv selling price to approved price ₹400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=480 vs user_tests.csv=430",
+      "location": "public/data/tests.csv (TST0162 - Ca 15.3 (Breast Cancer Marker))",
+      "fix": "Update tests.csv selling price to approved price ₹430"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=680 vs user_tests.csv=610",
+      "location": "public/data/tests.csv (TST0163 - Ca 19.9 (Pancreatic Cancer Marker))",
+      "fix": "Update tests.csv selling price to approved price ₹610"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1620 vs user_tests.csv=1440",
+      "location": "public/data/tests.csv (TST0164 - Ca 72.4 (Gastric Cancer Marker))",
+      "fix": "Update tests.csv selling price to approved price ₹1440"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1440 vs user_tests.csv=1280",
+      "location": "public/data/tests.csv (TST0165 - Calcitonin / Thyrocalcitonin)",
+      "fix": "Update tests.csv selling price to approved price ₹1280"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=160 vs user_tests.csv=150",
+      "location": "public/data/tests.csv (TST0166 - Calcium (24Hrs. Urine))",
+      "fix": "Update tests.csv selling price to approved price ₹150"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=320 vs user_tests.csv=290",
+      "location": "public/data/tests.csv (TST0167 - Calcium (Ionised))",
+      "fix": "Update tests.csv selling price to approved price ₹290"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0169 - Calcium Random Urine)",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=350 vs user_tests.csv=320",
+      "location": "public/data/tests.csv (TST0170 - Calcium/Creatinine Ratio Urine Spot)",
+      "fix": "Update tests.csv selling price to approved price ₹320"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=390 vs user_tests.csv=350",
+      "location": "public/data/tests.csv (TST0171 - Calcium:Phosphorus Ratio)",
+      "fix": "Update tests.csv selling price to approved price ₹350"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=620 vs user_tests.csv=560",
+      "location": "public/data/tests.csv (TST0172 - Carbamazepine (Tegretol))",
+      "fix": "Update tests.csv selling price to approved price ₹560"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2020 vs user_tests.csv=1800",
+      "location": "public/data/tests.csv (TST0173 - Catecholamines Fractionated, 24 Hours)",
+      "fix": "Update tests.csv selling price to approved price ₹1800"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2240 vs user_tests.csv=2000",
+      "location": "public/data/tests.csv (TST0174 - Catecholamines Fractionated, Random Urine)",
+      "fix": "Update tests.csv selling price to approved price ₹2000"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2650 vs user_tests.csv=2360",
+      "location": "public/data/tests.csv (TST0175 - Catecholamines, Plasma)",
+      "fix": "Update tests.csv selling price to approved price ₹2360"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=180 vs user_tests.csv=160",
+      "location": "public/data/tests.csv (TST0176 - Cbc (Complete Blood Count))",
+      "fix": "Update tests.csv selling price to approved price ₹160"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2280 vs user_tests.csv=2030",
+      "location": "public/data/tests.csv (TST0177 - Cb-Naat (Genexpert Mtb/Rif))",
+      "fix": "Update tests.csv selling price to approved price ₹2030"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0178 - Cct (Creatinine Clearance Test))",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2070 vs user_tests.csv=1840",
+      "location": "public/data/tests.csv (TST0179 - Cd19)",
+      "fix": "Update tests.csv selling price to approved price ₹1840"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=4430 vs user_tests.csv=3940",
+      "location": "public/data/tests.csv (TST0180 - Cd19,Cd20)",
+      "fix": "Update tests.csv selling price to approved price ₹3940"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2390 vs user_tests.csv=2130",
+      "location": "public/data/tests.csv (TST0181 - Cd20)",
+      "fix": "Update tests.csv selling price to approved price ₹2130"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=930 vs user_tests.csv=830",
+      "location": "public/data/tests.csv (TST0182 - Cd3 Counts)",
+      "fix": "Update tests.csv selling price to approved price ₹830"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1340 vs user_tests.csv=1200",
+      "location": "public/data/tests.csv (TST0183 - Cd4 Cd8 Counts)",
+      "fix": "Update tests.csv selling price to approved price ₹1200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=930 vs user_tests.csv=830",
+      "location": "public/data/tests.csv (TST0184 - Cd4 Counts)",
+      "fix": "Update tests.csv selling price to approved price ₹830"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1790 vs user_tests.csv=1600",
+      "location": "public/data/tests.csv (TST0185 - Cd4,Cd3,Cd8)",
+      "fix": "Update tests.csv selling price to approved price ₹1600"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=930 vs user_tests.csv=830",
+      "location": "public/data/tests.csv (TST0186 - Cd8 Counts)",
+      "fix": "Update tests.csv selling price to approved price ₹830"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=370 vs user_tests.csv=330",
+      "location": "public/data/tests.csv (TST0187 - Cea(Carcino Embryonic Antigen))",
+      "fix": "Update tests.csv selling price to approved price ₹330"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1420 vs user_tests.csv=1270",
+      "location": "public/data/tests.csv (TST0188 - Centromere Antibody)",
+      "fix": "Update tests.csv selling price to approved price ₹1270"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=740 vs user_tests.csv=660",
+      "location": "public/data/tests.csv (TST0189 - Ceruloplasmin)",
+      "fix": "Update tests.csv selling price to approved price ₹660"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=130 vs user_tests.csv=120",
+      "location": "public/data/tests.csv (TST0190 - Cervical Smear : Afb (Z. N. Stain))",
+      "fix": "Update tests.csv selling price to approved price ₹120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=260 vs user_tests.csv=240",
+      "location": "public/data/tests.csv (TST0191 - Cervical Smear : Fungus Stain)",
+      "fix": "Update tests.csv selling price to approved price ₹240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=130 vs user_tests.csv=120",
+      "location": "public/data/tests.csv (TST0192 - Cervical Smear : Gram Stain)",
+      "fix": "Update tests.csv selling price to approved price ₹120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=220 vs user_tests.csv=200",
+      "location": "public/data/tests.csv (TST0193 - Cervical Smear : Malignant Cells (Pap))",
+      "fix": "Update tests.csv selling price to approved price ₹200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=500 vs user_tests.csv=450",
+      "location": "public/data/tests.csv (TST0194 - Chikungunya Igm)",
+      "fix": "Update tests.csv selling price to approved price ₹450"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2250 vs user_tests.csv=2000",
+      "location": "public/data/tests.csv (TST0195 - Chikungunya Qualitative Rt-Pcr Test)",
+      "fix": "Update tests.csv selling price to approved price ₹2000"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0196 - Chloride (Serum))",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=190 vs user_tests.csv=170",
+      "location": "public/data/tests.csv (TST0197 - Chloride, Urine Spot)",
+      "fix": "Update tests.csv selling price to approved price ₹170"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=190 vs user_tests.csv=170",
+      "location": "public/data/tests.csv (TST0198 - Cholesterol-Total)",
+      "fix": "Update tests.csv selling price to approved price ₹170"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=530 vs user_tests.csv=480",
+      "location": "public/data/tests.csv (TST0199 - Cholinesterase.)",
+      "fix": "Update tests.csv selling price to approved price ₹480"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=4320 vs user_tests.csv=3840",
+      "location": "public/data/tests.csv (TST0200 - Chromogranin - A Level)",
+      "fix": "Update tests.csv selling price to approved price ₹3840"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1120 vs user_tests.csv=1000",
+      "location": "public/data/tests.csv (TST0201 - Citrate, 24 Hour Urine)",
+      "fix": "Update tests.csv selling price to approved price ₹1000"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=220 vs user_tests.csv=200",
+      "location": "public/data/tests.csv (TST0202 - Ck-Nac)",
+      "fix": "Update tests.csv selling price to approved price ₹200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1790 vs user_tests.csv=1600",
+      "location": "public/data/tests.csv (TST0203 - Clostridium Difficile Assay From Stool)",
+      "fix": "Update tests.csv selling price to approved price ₹1600"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=180 vs user_tests.csv=160",
+      "location": "public/data/tests.csv (TST0204 - Complete Hemogram)",
+      "fix": "Update tests.csv selling price to approved price ₹160"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=260 vs user_tests.csv=240",
+      "location": "public/data/tests.csv (TST0205 - Conjunctival Swab (Lt) C/S)",
+      "fix": "Update tests.csv selling price to approved price ₹240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=260 vs user_tests.csv=240",
+      "location": "public/data/tests.csv (TST0206 - Conjunctival Swab (Rt) C/S)",
+      "fix": "Update tests.csv selling price to approved price ₹240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=250 vs user_tests.csv=230",
+      "location": "public/data/tests.csv (TST0207 - Coomb`S Test Indirect)",
+      "fix": "Update tests.csv selling price to approved price ₹230"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=240 vs user_tests.csv=220",
+      "location": "public/data/tests.csv (TST0208 - Coomb`S Test, Direct.)",
+      "fix": "Update tests.csv selling price to approved price ₹220"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=670 vs user_tests.csv=600",
+      "location": "public/data/tests.csv (TST0209 - Copper (Serum))",
+      "fix": "Update tests.csv selling price to approved price ₹600"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=800 vs user_tests.csv=720",
+      "location": "public/data/tests.csv (TST0210 - Copper (Urine))",
+      "fix": "Update tests.csv selling price to approved price ₹720"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=400 vs user_tests.csv=360",
+      "location": "public/data/tests.csv (TST0211 - Cortisol (Random))",
+      "fix": "Update tests.csv selling price to approved price ₹360"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=390 vs user_tests.csv=350",
+      "location": "public/data/tests.csv (TST0212 - Cortisol A.M (Morning))",
+      "fix": "Update tests.csv selling price to approved price ₹350"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=390 vs user_tests.csv=350",
+      "location": "public/data/tests.csv (TST0213 - Cortisol P.M (Evening))",
+      "fix": "Update tests.csv selling price to approved price ₹350"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=450 vs user_tests.csv=400",
+      "location": "public/data/tests.csv (TST0214 - Cortisol, Free (24 Hrs Urine))",
+      "fix": "Update tests.csv selling price to approved price ₹400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1250 vs user_tests.csv=1120",
+      "location": "public/data/tests.csv (TST0215 - Covid Igg Against Spike Protein)",
+      "fix": "Update tests.csv selling price to approved price ₹1120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=220 vs user_tests.csv=200",
+      "location": "public/data/tests.csv (TST0216 - Cpk (Creatine Phospho Kinase))",
+      "fix": "Update tests.csv selling price to approved price ₹200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=220 vs user_tests.csv=200",
+      "location": "public/data/tests.csv (TST0217 - Cpk-Mb)",
+      "fix": "Update tests.csv selling price to approved price ₹200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=130 vs user_tests.csv=120",
+      "location": "public/data/tests.csv (TST0219 - Creatinine Body Fluid)",
+      "fix": "Update tests.csv selling price to approved price ₹120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=130 vs user_tests.csv=120",
+      "location": "public/data/tests.csv (TST0220 - Creatinine, Cath Urine)",
+      "fix": "Update tests.csv selling price to approved price ₹120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=160 vs user_tests.csv=150",
+      "location": "public/data/tests.csv (TST0221 - Creatinine, Urine 24 Hrs)",
+      "fix": "Update tests.csv selling price to approved price ₹150"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=220 vs user_tests.csv=200",
+      "location": "public/data/tests.csv (TST0222 - Crp (C-Reactive Protein))",
+      "fix": "Update tests.csv selling price to approved price ₹200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=510 vs user_tests.csv=460",
+      "location": "public/data/tests.csv (TST0223 - Cryoglobulins, Qualitative)",
+      "fix": "Update tests.csv selling price to approved price ₹460"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1170 vs user_tests.csv=1040",
+      "location": "public/data/tests.csv (TST0224 - Cryptococcus Antigen Rapid)",
+      "fix": "Update tests.csv selling price to approved price ₹1040"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1480 vs user_tests.csv=1320",
+      "location": "public/data/tests.csv (TST0225 - Csf Igg Index)",
+      "fix": "Update tests.csv selling price to approved price ₹1320"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=400 vs user_tests.csv=360",
+      "location": "public/data/tests.csv (TST0226 - Csf Magnesium)",
+      "fix": "Update tests.csv selling price to approved price ₹360"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=3030 vs user_tests.csv=2700",
+      "location": "public/data/tests.csv (TST0227 - Csf Oligoclonal Bands)",
+      "fix": "Update tests.csv selling price to approved price ₹2700"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=900 vs user_tests.csv=800",
+      "location": "public/data/tests.csv (TST0228 - Culture, Fungus)",
+      "fix": "Update tests.csv selling price to approved price ₹800"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=620 vs user_tests.csv=560",
+      "location": "public/data/tests.csv (TST0229 - Culture, Tissue)",
+      "fix": "Update tests.csv selling price to approved price ₹560"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2240 vs user_tests.csv=2000",
+      "location": "public/data/tests.csv (TST0230 - Cystatin C)",
+      "fix": "Update tests.csv selling price to approved price ₹2000"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1510 vs user_tests.csv=1350",
+      "location": "public/data/tests.csv (TST0231 - Cysticercosis (Taenia Solium) Antibody, Igg)",
+      "fix": "Update tests.csv selling price to approved price ₹1350"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=3220 vs user_tests.csv=2870",
+      "location": "public/data/tests.csv (TST0232 - Cytomegalovirus (Cmv) Pcr , Qualitative)",
+      "fix": "Update tests.csv selling price to approved price ₹2870"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=310 vs user_tests.csv=280",
+      "location": "public/data/tests.csv (TST0233 - Cytomegalovirus(Cmv)- Igm)",
+      "fix": "Update tests.csv selling price to approved price ₹280"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=310 vs user_tests.csv=280",
+      "location": "public/data/tests.csv (TST0234 - Cytomegalovirus(Cmv)-Igg)",
+      "fix": "Update tests.csv selling price to approved price ₹280"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=540 vs user_tests.csv=480",
+      "location": "public/data/tests.csv (TST0237 - D-Dimer, Quantitative)",
+      "fix": "Update tests.csv selling price to approved price ₹480"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=500 vs user_tests.csv=450",
+      "location": "public/data/tests.csv (TST0238 - Dengu Elisa Igm Antibody Capture)",
+      "fix": "Update tests.csv selling price to approved price ₹450"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=380 vs user_tests.csv=340",
+      "location": "public/data/tests.csv (TST0239 - Dengue Elisa - Igg)",
+      "fix": "Update tests.csv selling price to approved price ₹340"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=380 vs user_tests.csv=340",
+      "location": "public/data/tests.csv (TST0240 - Dengue Elisa - Igm)",
+      "fix": "Update tests.csv selling price to approved price ₹340"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=580 vs user_tests.csv=520",
+      "location": "public/data/tests.csv (TST0241 - Dengue Elisa (Igg & Igm) Antibodies)",
+      "fix": "Update tests.csv selling price to approved price ₹520"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=630 vs user_tests.csv=560",
+      "location": "public/data/tests.csv (TST0242 - Dengue Elisa (Ns1) & Ab (Igm & Igg))",
+      "fix": "Update tests.csv selling price to approved price ₹560"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=440 vs user_tests.csv=400",
+      "location": "public/data/tests.csv (TST0243 - Dengue Elisa Ns1 Antigen)",
+      "fix": "Update tests.csv selling price to approved price ₹400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=4490 vs user_tests.csv=4000",
+      "location": "public/data/tests.csv (TST0244 - Desmoglein)",
+      "fix": "Update tests.csv selling price to approved price ₹4000"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1660 vs user_tests.csv=1480",
+      "location": "public/data/tests.csv (TST0245 - Dhea; Dehydroepiandrosterone)",
+      "fix": "Update tests.csv selling price to approved price ₹1480"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=620 vs user_tests.csv=560",
+      "location": "public/data/tests.csv (TST0246 - Dhea-S (Dehydroepiandrosterone- Sulphate))",
+      "fix": "Update tests.csv selling price to approved price ₹560"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=440 vs user_tests.csv=400",
+      "location": "public/data/tests.csv (TST0247 - Dhea-So4)",
+      "fix": "Update tests.csv selling price to approved price ₹400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=3590 vs user_tests.csv=3200",
+      "location": "public/data/tests.csv (TST0248 - Dopamine)",
+      "fix": "Update tests.csv selling price to approved price ₹3200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=10690 vs user_tests.csv=9510",
+      "location": "public/data/tests.csv (TST0249 - Dpd Gene Mutations (5-Fu Toxicity) Detection)",
+      "fix": "Update tests.csv selling price to approved price ₹9510"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=3050 vs user_tests.csv=2720",
+      "location": "public/data/tests.csv (TST0250 - Drugs Of Abuse Screen, Urine 8 Drugs)",
+      "fix": "Update tests.csv selling price to approved price ₹2720"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1650 vs user_tests.csv=1470",
+      "location": "public/data/tests.csv (TST0251 - Dual Test or Double Marker)",
+      "fix": "Update tests.csv selling price to approved price ₹1470"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=460 vs user_tests.csv=410",
+      "location": "public/data/tests.csv (TST0252 - E2(Estradial/Estrogen/Ostrogen))",
+      "fix": "Update tests.csv selling price to approved price ₹410"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=890 vs user_tests.csv=800",
+      "location": "public/data/tests.csv (TST0253 - E3 (Estriol), Unconjugated, Blood)",
+      "fix": "Update tests.csv selling price to approved price ₹800"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=220 vs user_tests.csv=200",
+      "location": "public/data/tests.csv (TST0254 - Egfr)",
+      "fix": "Update tests.csv selling price to approved price ₹200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=350 vs user_tests.csv=320",
+      "location": "public/data/tests.csv (TST0255 - Electrolyte Profile-I)",
+      "fix": "Update tests.csv selling price to approved price ₹320"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1330 vs user_tests.csv=1190",
+      "location": "public/data/tests.csv (TST0256 - Epo (Erythropoietin))",
+      "fix": "Update tests.csv selling price to approved price ₹1190"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1584 vs user_tests.csv=1440",
+      "location": "public/data/tests.csv (TST0257 - Epstein Barr Virus Antibody To Viral Capsid Ag (Vc))",
+      "fix": "Update tests.csv selling price to approved price ₹1440"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1610 vs user_tests.csv=1440",
+      "location": "public/data/tests.csv (TST0258 - Epstein Barr Virus Antibody To Viral Capsid Ag (Vc))",
+      "fix": "Update tests.csv selling price to approved price ₹1440"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1780 vs user_tests.csv=1590",
+      "location": "public/data/tests.csv (TST0259 - Er (Estrogen Receptor))",
+      "fix": "Update tests.csv selling price to approved price ₹1590"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=5380 vs user_tests.csv=4790",
+      "location": "public/data/tests.csv (TST0260 - Er-Pr & Her2Neu)",
+      "fix": "Update tests.csv selling price to approved price ₹4790"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=260 vs user_tests.csv=240",
+      "location": "public/data/tests.csv (TST0262 - F.N.A.C (Material Smear For Report))",
+      "fix": "Update tests.csv selling price to approved price ₹240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1390 vs user_tests.csv=1240",
+      "location": "public/data/tests.csv (TST0263 - Factor Ix Defficient)",
+      "fix": "Update tests.csv selling price to approved price ₹1240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=3730 vs user_tests.csv=3320",
+      "location": "public/data/tests.csv (TST0264 - Factor V Leiden Mutation By Pcr)",
+      "fix": "Update tests.csv selling price to approved price ₹3320"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=4030 vs user_tests.csv=3590",
+      "location": "public/data/tests.csv (TST0265 - Factor V, Functional)",
+      "fix": "Update tests.csv selling price to approved price ₹3590"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2780 vs user_tests.csv=2480",
+      "location": "public/data/tests.csv (TST0266 - Factor Vii Defficient)",
+      "fix": "Update tests.csv selling price to approved price ₹2480"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1510 vs user_tests.csv=1350",
+      "location": "public/data/tests.csv (TST0267 - Factor Viii Immunodepleted)",
+      "fix": "Update tests.csv selling price to approved price ₹1350"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=4220 vs user_tests.csv=3760",
+      "location": "public/data/tests.csv (TST0268 - Factor X, Functional)",
+      "fix": "Update tests.csv selling price to approved price ₹3760"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=3050 vs user_tests.csv=2720",
+      "location": "public/data/tests.csv (TST0269 - Factor Xi, Functional)",
+      "fix": "Update tests.csv selling price to approved price ₹2720"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=3050 vs user_tests.csv=2720",
+      "location": "public/data/tests.csv (TST0270 - Factor Xii, Functional)",
+      "fix": "Update tests.csv selling price to approved price ₹2720"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=760 vs user_tests.csv=680",
+      "location": "public/data/tests.csv (TST0271 - Factor Xiii, Functional, Qualitative)",
+      "fix": "Update tests.csv selling price to approved price ₹680"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2830 vs user_tests.csv=2520",
+      "location": "public/data/tests.csv (TST0272 - Faecal Calprotectin)",
+      "fix": "Update tests.csv selling price to approved price ₹2520"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=710 vs user_tests.csv=640",
+      "location": "public/data/tests.csv (TST0273 - Fdp (Fibrinogen Degradation Products))",
+      "fix": "Update tests.csv selling price to approved price ₹640"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=320 vs user_tests.csv=310",
+      "location": "public/data/tests.csv (TST0274 - Ferritin)",
+      "fix": "Update tests.csv selling price to approved price ₹310"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=430 vs user_tests.csv=390",
+      "location": "public/data/tests.csv (TST0275 - Fetal Haemoglobin)",
+      "fix": "Update tests.csv selling price to approved price ₹390"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=400 vs user_tests.csv=360",
+      "location": "public/data/tests.csv (TST0276 - Fetal Haemoglobin By Hplc)",
+      "fix": "Update tests.csv selling price to approved price ₹360"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=590 vs user_tests.csv=530",
+      "location": "public/data/tests.csv (TST0277 - Fibrinogen)",
+      "fix": "Update tests.csv selling price to approved price ₹530"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=790 vs user_tests.csv=710",
+      "location": "public/data/tests.csv (TST0278 - Filaria Antibodies, Serum)",
+      "fix": "Update tests.csv selling price to approved price ₹710"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=620 vs user_tests.csv=560",
+      "location": "public/data/tests.csv (TST0279 - Filaria Antigen)",
+      "fix": "Update tests.csv selling price to approved price ₹560"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=6280 vs user_tests.csv=5590",
+      "location": "public/data/tests.csv (TST0280 - Fish - Aneuploidy Detection, Products Of Conception (Poc))",
+      "fix": "Update tests.csv selling price to approved price ₹5590"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=580 vs user_tests.csv=520",
+      "location": "public/data/tests.csv (TST0281 - Folate (Folic Acid))",
+      "fix": "Update tests.csv selling price to approved price ₹520"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1930 vs user_tests.csv=1720",
+      "location": "public/data/tests.csv (TST0282 - Free Androgen Index(Fai))",
+      "fix": "Update tests.csv selling price to approved price ₹1720"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=430 vs user_tests.csv=390",
+      "location": "public/data/tests.csv (TST0283 - Free Insulin)",
+      "fix": "Update tests.csv selling price to approved price ₹390"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=3510 vs user_tests.csv=3120",
+      "location": "public/data/tests.csv (TST0284 - Free Light Chain)",
+      "fix": "Update tests.csv selling price to approved price ₹3120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=430 vs user_tests.csv=390",
+      "location": "public/data/tests.csv (TST0285 - Free P S A)",
+      "fix": "Update tests.csv selling price to approved price ₹390"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=950 vs user_tests.csv=850",
+      "location": "public/data/tests.csv (TST0286 - Free Psa / Psa Ratio)",
+      "fix": "Update tests.csv selling price to approved price ₹850"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=250 vs user_tests.csv=240",
+      "location": "public/data/tests.csv (TST0287 - Free T3 (Free Tri-Iodothyronine))",
+      "fix": "Update tests.csv selling price to approved price ₹240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=240 vs user_tests.csv=210",
+      "location": "public/data/tests.csv (TST0288 - Free T4 (Free Thyroxine))",
+      "fix": "Update tests.csv selling price to approved price ₹210"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=440 vs user_tests.csv=400",
+      "location": "public/data/tests.csv (TST0289 - Free Testosterone)",
+      "fix": "Update tests.csv selling price to approved price ₹400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=880 vs user_tests.csv=790",
+      "location": "public/data/tests.csv (TST0290 - Fructosamine, Serum)",
+      "fix": "Update tests.csv selling price to approved price ₹790"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=510 vs user_tests.csv=460",
+      "location": "public/data/tests.csv (TST0291 - Fsh & Lh)",
+      "fix": "Update tests.csv selling price to approved price ₹460"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=290 vs user_tests.csv=260",
+      "location": "public/data/tests.csv (TST0292 - Fsh (Follicle Stimulating Hormone))",
+      "fix": "Update tests.csv selling price to approved price ₹260"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=620 vs user_tests.csv=560",
+      "location": "public/data/tests.csv (TST0293 - Fsh + Lh + Prl)",
+      "fix": "Update tests.csv selling price to approved price ₹560"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=580 vs user_tests.csv=520",
+      "location": "public/data/tests.csv (TST0294 - Ft3, Ft4, Tsh)",
+      "fix": "Update tests.csv selling price to approved price ₹520"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=410 vs user_tests.csv=370",
+      "location": "public/data/tests.csv (TST0295 - Ft3, Tsh)",
+      "fix": "Update tests.csv selling price to approved price ₹370"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=410 vs user_tests.csv=370",
+      "location": "public/data/tests.csv (TST0296 - Ft4 , Tsh)",
+      "fix": "Update tests.csv selling price to approved price ₹370"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1790 vs user_tests.csv=1600",
+      "location": "public/data/tests.csv (TST0297 - Fta-Abs (Fluorescent Treponemal Antibodies))",
+      "fix": "Update tests.csv selling price to approved price ₹1600"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0298 - Fungal Stain)",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=770 vs user_tests.csv=690",
+      "location": "public/data/tests.csv (TST0299 - Fungus Culture)",
+      "fix": "Update tests.csv selling price to approved price ₹690"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=320 vs user_tests.csv=290",
+      "location": "public/data/tests.csv (TST0300 - Fungus Routine, Koh Preparation)",
+      "fix": "Update tests.csv selling price to approved price ₹290"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=260 vs user_tests.csv=240",
+      "location": "public/data/tests.csv (TST0301 - G6Pd ( Glucose 6 Phosphate Dehydrogenase))",
+      "fix": "Update tests.csv selling price to approved price ₹240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=3860 vs user_tests.csv=3440",
+      "location": "public/data/tests.csv (TST0302 - Gad-65 (Glutamic Acid Decarboxylase-65) Igg)",
+      "fix": "Update tests.csv selling price to approved price ₹3440"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2560 vs user_tests.csv=2280",
+      "location": "public/data/tests.csv (TST0303 - Galactomannan (Aspergillus Antigen))",
+      "fix": "Update tests.csv selling price to approved price ₹2280"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=8540 vs user_tests.csv=7600",
+      "location": "public/data/tests.csv (TST0304 - Galactosemia, Newborn Screen)",
+      "fix": "Update tests.csv selling price to approved price ₹7600"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1430 vs user_tests.csv=1280",
+      "location": "public/data/tests.csv (TST0305 - Gastrin Level)",
+      "fix": "Update tests.csv selling price to approved price ₹1280"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2280 vs user_tests.csv=2030",
+      "location": "public/data/tests.csv (TST0306 - Genexpert Mtb / Rif)",
+      "fix": "Update tests.csv selling price to approved price ₹2030"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=500 vs user_tests.csv=450",
+      "location": "public/data/tests.csv (TST0307 - Gfr (Glomerular Filtration Rate))",
+      "fix": "Update tests.csv selling price to approved price ₹450"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0308 - Ggt (Gamma-Gt))",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=510 vs user_tests.csv=460",
+      "location": "public/data/tests.csv (TST0309 - Gh (Growth Hormone))",
+      "fix": "Update tests.csv selling price to approved price ₹460"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1340 vs user_tests.csv=1200",
+      "location": "public/data/tests.csv (TST0310 - Gliadin Antibody Igg)",
+      "fix": "Update tests.csv selling price to approved price ₹1200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=120 vs user_tests.csv=110",
+      "location": "public/data/tests.csv (TST0311 - Globulin)",
+      "fix": "Update tests.csv selling price to approved price ₹110"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1480 vs user_tests.csv=1320",
+      "location": "public/data/tests.csv (TST0312 - Glomerular Basement Membrane Antibody(Gbm))",
+      "fix": "Update tests.csv selling price to approved price ₹1320"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=130 vs user_tests.csv=120",
+      "location": "public/data/tests.csv (TST0317 - Gram Stain)",
+      "fix": "Update tests.csv selling price to approved price ₹120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=210 vs user_tests.csv=190",
+      "location": "public/data/tests.csv (TST0318 - Gtt (Glucose Tolerance Test ))",
+      "fix": "Update tests.csv selling price to approved price ₹190"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=4390 vs user_tests.csv=3910",
+      "location": "public/data/tests.csv (TST0319 - Hapatitis Virus Profile)",
+      "fix": "Update tests.csv selling price to approved price ₹3910"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1610 vs user_tests.csv=1440",
+      "location": "public/data/tests.csv (TST0320 - Haptoglobin)",
+      "fix": "Update tests.csv selling price to approved price ₹1440"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=440 vs user_tests.csv=400",
+      "location": "public/data/tests.csv (TST0321 - Hav (Hepatitis A Virus) - Igg)",
+      "fix": "Update tests.csv selling price to approved price ₹400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=440 vs user_tests.csv=400",
+      "location": "public/data/tests.csv (TST0322 - Hav (Hepatitis A Virus) - Igm)",
+      "fix": "Update tests.csv selling price to approved price ₹400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=440 vs user_tests.csv=400",
+      "location": "public/data/tests.csv (TST0323 - Hav (Igm))",
+      "fix": "Update tests.csv selling price to approved price ₹400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=160 vs user_tests.csv=150",
+      "location": "public/data/tests.csv (TST0324 - Hb & Esr)",
+      "fix": "Update tests.csv selling price to approved price ₹150"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=160 vs user_tests.csv=150",
+      "location": "public/data/tests.csv (TST0325 - Hb ,Tc ,Dc ,Mp)",
+      "fix": "Update tests.csv selling price to approved price ₹150"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=130 vs user_tests.csv=120",
+      "location": "public/data/tests.csv (TST0326 - Hb Tc Dc)",
+      "fix": "Update tests.csv selling price to approved price ₹120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=150 vs user_tests.csv=140",
+      "location": "public/data/tests.csv (TST0327 - Hb Tc Dc Platelet Count)",
+      "fix": "Update tests.csv selling price to approved price ₹140"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=120 vs user_tests.csv=110",
+      "location": "public/data/tests.csv (TST0328 - Hb Tc Esr)",
+      "fix": "Update tests.csv selling price to approved price ₹110"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=90 vs user_tests.csv=80",
+      "location": "public/data/tests.csv (TST0329 - Hb% (Haemoglobin))",
+      "fix": "Update tests.csv selling price to approved price ₹80"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=130 vs user_tests.csv=120",
+      "location": "public/data/tests.csv (TST0330 - Hb, Tc, Dc, Esr)",
+      "fix": "Update tests.csv selling price to approved price ₹120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=160 vs user_tests.csv=150",
+      "location": "public/data/tests.csv (TST0331 - Hb,Tc,Dc,Esr,Mp)",
+      "fix": "Update tests.csv selling price to approved price ₹150"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=190 vs user_tests.csv=170",
+      "location": "public/data/tests.csv (TST0332 - Hb,Tc,Dc,Mp,Platelet Count.)",
+      "fix": "Update tests.csv selling price to approved price ₹170"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=180 vs user_tests.csv=160",
+      "location": "public/data/tests.csv (TST0333 - Hb,Tc,Dc,Pcv)",
+      "fix": "Update tests.csv selling price to approved price ₹160"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=170 vs user_tests.csv=160",
+      "location": "public/data/tests.csv (TST0334 - Hb,Tc,Dc,Rbc Morphology)",
+      "fix": "Update tests.csv selling price to approved price ₹160"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=350 vs user_tests.csv=320",
+      "location": "public/data/tests.csv (TST0335 - Hba1C(Glycosylated Haemoglobin) By Hplc)",
+      "fix": "Update tests.csv selling price to approved price ₹320"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=410 vs user_tests.csv=370",
+      "location": "public/data/tests.csv (TST0336 - Hbcab-Total (Hepatitis B Core Antibody Total))",
+      "fix": "Update tests.csv selling price to approved price ₹370"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=410 vs user_tests.csv=370",
+      "location": "public/data/tests.csv (TST0337 - Hbeag)",
+      "fix": "Update tests.csv selling price to approved price ₹370"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=390 vs user_tests.csv=350",
+      "location": "public/data/tests.csv (TST0338 - Hbsag (Hepatitis B Surface Antigen) Elisa)",
+      "fix": "Update tests.csv selling price to approved price ₹350"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=240 vs user_tests.csv=220",
+      "location": "public/data/tests.csv (TST0339 - Hbsag Test (Australia Antigen Test))",
+      "fix": "Update tests.csv selling price to approved price ₹220"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=450 vs user_tests.csv=400",
+      "location": "public/data/tests.csv (TST0340 - Hcg)",
+      "fix": "Update tests.csv selling price to approved price ₹400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=450 vs user_tests.csv=400",
+      "location": "public/data/tests.csv (TST0341 - Hcv (Hepatitis C Virus) Antibody - Igg)",
+      "fix": "Update tests.csv selling price to approved price ₹400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=450 vs user_tests.csv=400",
+      "location": "public/data/tests.csv (TST0342 - Hcv (Hepatitis C Virus) Antibody - Igm)",
+      "fix": "Update tests.csv selling price to approved price ₹400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=400 vs user_tests.csv=360",
+      "location": "public/data/tests.csv (TST0343 - Hcv Ab)",
+      "fix": "Update tests.csv selling price to approved price ₹360"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=7550 vs user_tests.csv=6720",
+      "location": "public/data/tests.csv (TST0344 - Hcv Genotyping + Viral Load)",
+      "fix": "Update tests.csv selling price to approved price ₹6720"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=440 vs user_tests.csv=400",
+      "location": "public/data/tests.csv (TST0345 - Hcv(Elisa))",
+      "fix": "Update tests.csv selling price to approved price ₹400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=120 vs user_tests.csv=110",
+      "location": "public/data/tests.csv (TST0346 - Hdl-Cholesterol)",
+      "fix": "Update tests.csv selling price to approved price ₹110"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1610 vs user_tests.csv=1440",
+      "location": "public/data/tests.csv (TST0347 - Hdv (Hepatitis D Virus ) Antibody, Total)",
+      "fix": "Update tests.csv selling price to approved price ₹1440"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2690 vs user_tests.csv=2400",
+      "location": "public/data/tests.csv (TST0348 - He4 ( Human Epididymis Protein 4))",
+      "fix": "Update tests.csv selling price to approved price ₹2400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1140 vs user_tests.csv=1020",
+      "location": "public/data/tests.csv (TST0349 - Helicobacter Pylori Antigen)",
+      "fix": "Update tests.csv selling price to approved price ₹1020"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=850 vs user_tests.csv=760",
+      "location": "public/data/tests.csv (TST0350 - Helicobacter Pylori Iga)",
+      "fix": "Update tests.csv selling price to approved price ₹760"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=850 vs user_tests.csv=760",
+      "location": "public/data/tests.csv (TST0351 - Helicobacter Pylori Igg)",
+      "fix": "Update tests.csv selling price to approved price ₹760"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=850 vs user_tests.csv=760",
+      "location": "public/data/tests.csv (TST0352 - Helicobacter Pylori Igm)",
+      "fix": "Update tests.csv selling price to approved price ₹760"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1030 vs user_tests.csv=920",
+      "location": "public/data/tests.csv (TST0353 - Hemosiderin Urine)",
+      "fix": "Update tests.csv selling price to approved price ₹920"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=410 vs user_tests.csv=370",
+      "location": "public/data/tests.csv (TST0354 - Hepatitis A Igm/ Igg (Each))",
+      "fix": "Update tests.csv selling price to approved price ₹370"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=410 vs user_tests.csv=370",
+      "location": "public/data/tests.csv (TST0355 - Hepatitis B Envelope Antigen (Hbeag))",
+      "fix": "Update tests.csv selling price to approved price ₹370"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=410 vs user_tests.csv=370",
+      "location": "public/data/tests.csv (TST0356 - Hepatitis B Surface Antibody (Anti- Hbs))",
+      "fix": "Update tests.csv selling price to approved price ₹370"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1520 vs user_tests.csv=1360",
+      "location": "public/data/tests.csv (TST0357 - Hepatitis B Viral Dna Qualitative Pcr, Blood)",
+      "fix": "Update tests.csv selling price to approved price ₹1360"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1840 vs user_tests.csv=1640",
+      "location": "public/data/tests.csv (TST0358 - Hepatitis B Viral Dna Quantitative Real Time Pcr)",
+      "fix": "Update tests.csv selling price to approved price ₹1640"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1840 vs user_tests.csv=1640",
+      "location": "public/data/tests.csv (TST0359 - Hepatitis C Viral Rna Qualitative Pcr, Blood)",
+      "fix": "Update tests.csv selling price to approved price ₹1640"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=5660 vs user_tests.csv=5040",
+      "location": "public/data/tests.csv (TST0360 - Hepatitis C Virus Genotyping)",
+      "fix": "Update tests.csv selling price to approved price ₹5040"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=410 vs user_tests.csv=370",
+      "location": "public/data/tests.csv (TST0361 - Hepatitis-C Ab (Card))",
+      "fix": "Update tests.csv selling price to approved price ₹370"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=3930 vs user_tests.csv=3500",
+      "location": "public/data/tests.csv (TST0362 - Pcr)",
+      "fix": "Update tests.csv selling price to approved price ₹3500"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1790 vs user_tests.csv=1600",
+      "location": "public/data/tests.csv (TST0363 - Her-2/Neu)",
+      "fix": "Update tests.csv selling price to approved price ₹1600"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=310 vs user_tests.csv=280",
+      "location": "public/data/tests.csv (TST0364 - Herpes (Hsv) 1 Igg)",
+      "fix": "Update tests.csv selling price to approved price ₹280"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=310 vs user_tests.csv=280",
+      "location": "public/data/tests.csv (TST0365 - Herpes (Hsv) 1 Igm)",
+      "fix": "Update tests.csv selling price to approved price ₹280"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=610 vs user_tests.csv=550",
+      "location": "public/data/tests.csv (TST0366 - Herpes (Hsv) 1&2 Igg)",
+      "fix": "Update tests.csv selling price to approved price ₹550"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=610 vs user_tests.csv=550",
+      "location": "public/data/tests.csv (TST0367 - Herpes (Hsv) 1&2 Igm)",
+      "fix": "Update tests.csv selling price to approved price ₹550"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=310 vs user_tests.csv=280",
+      "location": "public/data/tests.csv (TST0368 - Herpes (Hsv) 2 Igg)",
+      "fix": "Update tests.csv selling price to approved price ₹280"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=310 vs user_tests.csv=280",
+      "location": "public/data/tests.csv (TST0369 - Herpes (Hsv) 2 Igm)",
+      "fix": "Update tests.csv selling price to approved price ₹280"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=3460 vs user_tests.csv=3080",
+      "location": "public/data/tests.csv (TST0370 - Herpes Simplex Virus 1 & 2 Dna Qualitative Pcr)",
+      "fix": "Update tests.csv selling price to approved price ₹3080"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=410 vs user_tests.csv=370",
+      "location": "public/data/tests.csv (TST0371 - Hev Igg)",
+      "fix": "Update tests.csv selling price to approved price ₹370"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=410 vs user_tests.csv=370",
+      "location": "public/data/tests.csv (TST0372 - Hev Igm)",
+      "fix": "Update tests.csv selling price to approved price ₹370"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=410 vs user_tests.csv=370",
+      "location": "public/data/tests.csv (TST0373 - Hiv (I & Ii) Antibodies)",
+      "fix": "Update tests.csv selling price to approved price ₹370"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1790 vs user_tests.csv=1600",
+      "location": "public/data/tests.csv (TST0374 - Hiv 1 & 2 Antibodies, Western Blot, Serum)",
+      "fix": "Update tests.csv selling price to approved price ₹1600"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=3490 vs user_tests.csv=3110",
+      "location": "public/data/tests.csv (TST0375 - Hiv- 1 Rna Quantitative)",
+      "fix": "Update tests.csv selling price to approved price ₹3110"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=410 vs user_tests.csv=370",
+      "location": "public/data/tests.csv (TST0376 - Hiv Elisa)",
+      "fix": "Update tests.csv selling price to approved price ₹370"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=6750 vs user_tests.csv=6000",
+      "location": "public/data/tests.csv (TST0377 - Hla - B*07, Whole Blood)",
+      "fix": "Update tests.csv selling price to approved price ₹6000"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=970 vs user_tests.csv=870",
+      "location": "public/data/tests.csv (TST0378 - Hla B27)",
+      "fix": "Update tests.csv selling price to approved price ₹870"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1070 vs user_tests.csv=960",
+      "location": "public/data/tests.csv (TST0379 - Hla B27 (Pcr))",
+      "fix": "Update tests.csv selling price to approved price ₹960"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=620 vs user_tests.csv=560",
+      "location": "public/data/tests.csv (TST0380 - Homa Ir; Insulin Resistance Index)",
+      "fix": "Update tests.csv selling price to approved price ₹560"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1160 vs user_tests.csv=1040",
+      "location": "public/data/tests.csv (TST0381 - Homocystine (Blood))",
+      "fix": "Update tests.csv selling price to approved price ₹1040"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=430 vs user_tests.csv=390",
+      "location": "public/data/tests.csv (TST0382 - Hplc (Hb% Electrophoresis))",
+      "fix": "Update tests.csv selling price to approved price ₹390"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=510 vs user_tests.csv=460",
+      "location": "public/data/tests.csv (TST0383 - Hs Crp (High Sensitivity C-Reactive Protein))",
+      "fix": "Update tests.csv selling price to approved price ₹460"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2870 vs user_tests.csv=2560",
+      "location": "public/data/tests.csv (TST0384 - Htlv - I / Ii Antibody, Screen)",
+      "fix": "Update tests.csv selling price to approved price ₹2560"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1790 vs user_tests.csv=1600",
+      "location": "public/data/tests.csv (TST0385 - Human Papilloma Virus (Hpv) Dna Pcr)",
+      "fix": "Update tests.csv selling price to approved price ₹1600"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1120 vs user_tests.csv=1000",
+      "location": "public/data/tests.csv (TST0386 - Hydatid Serology (Echinococcus Antibody - Igg))",
+      "fix": "Update tests.csv selling price to approved price ₹1000"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=350 vs user_tests.csv=320",
+      "location": "public/data/tests.csv (TST0387 - Ige (Immunoglobulin E ) - Total)",
+      "fix": "Update tests.csv selling price to approved price ₹320"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2960 vs user_tests.csv=2640",
+      "location": "public/data/tests.csv (TST0388 - Igf-1 (Somatomedin-C))",
+      "fix": "Update tests.csv selling price to approved price ₹2640"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2960 vs user_tests.csv=2640",
+      "location": "public/data/tests.csv (TST0389 - Ihc(Immunohisto Chemistry)1Marker)",
+      "fix": "Update tests.csv selling price to approved price ₹2640"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=5390 vs user_tests.csv=4800",
+      "location": "public/data/tests.csv (TST0390 - Ihc(Immunohisto Chemistry)2Marker)",
+      "fix": "Update tests.csv selling price to approved price ₹4800"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=7190 vs user_tests.csv=6400",
+      "location": "public/data/tests.csv (TST0391 - Ihc(Immunohisto Chemistry)3Marker)",
+      "fix": "Update tests.csv selling price to approved price ₹6400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=4940 vs user_tests.csv=4400",
+      "location": "public/data/tests.csv (TST0392 - Immunofixation Electrophoresis)",
+      "fix": "Update tests.csv selling price to approved price ₹4400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=390 vs user_tests.csv=350",
+      "location": "public/data/tests.csv (TST0393 - Immunoglobulin - Iga)",
+      "fix": "Update tests.csv selling price to approved price ₹350"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=390 vs user_tests.csv=350",
+      "location": "public/data/tests.csv (TST0394 - Immunoglobulin - Igg)",
+      "fix": "Update tests.csv selling price to approved price ₹350"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=390 vs user_tests.csv=350",
+      "location": "public/data/tests.csv (TST0395 - Immunoglobulin - Igm)",
+      "fix": "Update tests.csv selling price to approved price ₹350"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=4940 vs user_tests.csv=4400",
+      "location": "public/data/tests.csv (TST0396 - Immunoglobulin Igg Subclass 4 (Igg4),Serum)",
+      "fix": "Update tests.csv selling price to approved price ₹4400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1390 vs user_tests.csv=1240",
+      "location": "public/data/tests.csv (TST0397 - Inhibin A)",
+      "fix": "Update tests.csv selling price to approved price ₹1240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1880 vs user_tests.csv=1680",
+      "location": "public/data/tests.csv (TST0398 - Inhibin B)",
+      "fix": "Update tests.csv selling price to approved price ₹1680"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=130 vs user_tests.csv=120",
+      "location": "public/data/tests.csv (TST0399 - Inorganic Phosphorus (Serum))",
+      "fix": "Update tests.csv selling price to approved price ₹120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=350 vs user_tests.csv=320",
+      "location": "public/data/tests.csv (TST0400 - Insulin - Random)",
+      "fix": "Update tests.csv selling price to approved price ₹320"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=350 vs user_tests.csv=320",
+      "location": "public/data/tests.csv (TST0401 - Insulin (F))",
+      "fix": "Update tests.csv selling price to approved price ₹320"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=350 vs user_tests.csv=320",
+      "location": "public/data/tests.csv (TST0402 - Insulin (Pp))",
+      "fix": "Update tests.csv selling price to approved price ₹320"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1670 vs user_tests.csv=1490",
+      "location": "public/data/tests.csv (TST0403 - Interleukin - 6 (Il-6))",
+      "fix": "Update tests.csv selling price to approved price ₹1490"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1340 vs user_tests.csv=1200",
+      "location": "public/data/tests.csv (TST0404 - Intrinsic Factor Antibody Igg)",
+      "fix": "Update tests.csv selling price to approved price ₹1200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=220 vs user_tests.csv=200",
+      "location": "public/data/tests.csv (TST0405 - Iron)",
+      "fix": "Update tests.csv selling price to approved price ₹200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=450 vs user_tests.csv=400",
+      "location": "public/data/tests.csv (TST0406 - Iron & Tibc)",
+      "fix": "Update tests.csv selling price to approved price ₹400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=510 vs user_tests.csv=460",
+      "location": "public/data/tests.csv (TST0407 - Iron Panel)",
+      "fix": "Update tests.csv selling price to approved price ₹460"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=760 vs user_tests.csv=680",
+      "location": "public/data/tests.csv (TST0408 - Iron Studies Monitoring Panel)",
+      "fix": "Update tests.csv selling price to approved price ₹680"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=4490 vs user_tests.csv=4000",
+      "location": "public/data/tests.csv (TST0409 - Japanese Encephalitis Virus (Jev) Pcr)",
+      "fix": "Update tests.csv selling price to approved price ₹4000"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=90 vs user_tests.csv=80",
+      "location": "public/data/tests.csv (TST0410 - Kahn Test)",
+      "fix": "Update tests.csv selling price to approved price ₹80"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2050 vs user_tests.csv=1830",
+      "location": "public/data/tests.csv (TST0411 - Karyotyping (Chromosomal Analysis))",
+      "fix": "Update tests.csv selling price to approved price ₹1830"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=4090 vs user_tests.csv=3640",
+      "location": "public/data/tests.csv (TST0412 - Karyotyping With C-Banding (Tissue))",
+      "fix": "Update tests.csv selling price to approved price ₹3640"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1340 vs user_tests.csv=1200",
+      "location": "public/data/tests.csv (TST0413 - Ketone Bodies (Beta Hydroxybutyrate))",
+      "fix": "Update tests.csv selling price to approved price ₹1200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=160 vs user_tests.csv=150",
+      "location": "public/data/tests.csv (TST0415 - Klb Detection- Smear)",
+      "fix": "Update tests.csv selling price to approved price ₹150"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=510 vs user_tests.csv=460",
+      "location": "public/data/tests.csv (TST0416 - Lactate, Lactic Acid)",
+      "fix": "Update tests.csv selling price to approved price ₹460"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=220 vs user_tests.csv=200",
+      "location": "public/data/tests.csv (TST0417 - Ldh (Lactate Dehydrogenase), Fluid)",
+      "fix": "Update tests.csv selling price to approved price ₹200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=290 vs user_tests.csv=260",
+      "location": "public/data/tests.csv (TST0418 - Ldh (Total))",
+      "fix": "Update tests.csv selling price to approved price ₹260"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=350 vs user_tests.csv=320",
+      "location": "public/data/tests.csv (TST0419 - Ldh-1)",
+      "fix": "Update tests.csv selling price to approved price ₹320"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=260 vs user_tests.csv=240",
+      "location": "public/data/tests.csv (TST0420 - Ldl - Cholesterol)",
+      "fix": "Update tests.csv selling price to approved price ₹240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=390 vs user_tests.csv=350",
+      "location": "public/data/tests.csv (TST0421 - Ldl- Hdl Ratio)",
+      "fix": "Update tests.csv selling price to approved price ₹350"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=260 vs user_tests.csv=240",
+      "location": "public/data/tests.csv (TST0422 - Ldl-Direct)",
+      "fix": "Update tests.csv selling price to approved price ₹240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=130 vs user_tests.csv=120",
+      "location": "public/data/tests.csv (TST0423 - Le-Cell Preparation)",
+      "fix": "Update tests.csv selling price to approved price ₹120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=580 vs user_tests.csv=520",
+      "location": "public/data/tests.csv (TST0424 - Leishmania (Kala Azar) Rk-39 Antibody)",
+      "fix": "Update tests.csv selling price to approved price ₹520"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=440 vs user_tests.csv=400",
+      "location": "public/data/tests.csv (TST0425 - Leptospira Antibody Igg)",
+      "fix": "Update tests.csv selling price to approved price ₹400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=440 vs user_tests.csv=400",
+      "location": "public/data/tests.csv (TST0426 - Leptospira Antibody Igm)",
+      "fix": "Update tests.csv selling price to approved price ₹400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=440 vs user_tests.csv=400",
+      "location": "public/data/tests.csv (TST0427 - Lft (Liver Function Test))",
+      "fix": "Update tests.csv selling price to approved price ₹400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=490 vs user_tests.csv=440",
+      "location": "public/data/tests.csv (TST0428 - Lft With Ggt)",
+      "fix": "Update tests.csv selling price to approved price ₹440"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=310 vs user_tests.csv=280",
+      "location": "public/data/tests.csv (TST0429 - Lh (Lutenising Hormone))",
+      "fix": "Update tests.csv selling price to approved price ₹280"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=310 vs user_tests.csv=280",
+      "location": "public/data/tests.csv (TST0430 - Lipase)",
+      "fix": "Update tests.csv selling price to approved price ₹280"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=340 vs user_tests.csv=310",
+      "location": "public/data/tests.csv (TST0431 - Lipase(Fluid))",
+      "fix": "Update tests.csv selling price to approved price ₹310"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=320 vs user_tests.csv=290",
+      "location": "public/data/tests.csv (TST0432 - Lipase, Urine 24 Hrs)",
+      "fix": "Update tests.csv selling price to approved price ₹290"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=440 vs user_tests.csv=400",
+      "location": "public/data/tests.csv (TST0433 - Lipid Profile)",
+      "fix": "Update tests.csv selling price to approved price ₹400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=520 vs user_tests.csv=470",
+      "location": "public/data/tests.csv (TST0434 - Lipoprotein A (Lp-A))",
+      "fix": "Update tests.csv selling price to approved price ₹470"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=320 vs user_tests.csv=290",
+      "location": "public/data/tests.csv (TST0435 - Lithium Level)",
+      "fix": "Update tests.csv selling price to approved price ₹290"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1340 vs user_tests.csv=1200",
+      "location": "public/data/tests.csv (TST0436 - Lkm (Liver Kidney Microsomal) Antibody)",
+      "fix": "Update tests.csv selling price to approved price ₹1200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1340 vs user_tests.csv=1200",
+      "location": "public/data/tests.csv (TST0437 - Lkm1 Antibody)",
+      "fix": "Update tests.csv selling price to approved price ₹1200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1250 vs user_tests.csv=1120",
+      "location": "public/data/tests.csv (TST0438 - Lupus Anticoagulant)",
+      "fix": "Update tests.csv selling price to approved price ₹1120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=350 vs user_tests.csv=320",
+      "location": "public/data/tests.csv (TST0439 - Magnesium (Mg++))",
+      "fix": "Update tests.csv selling price to approved price ₹320"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2960 vs user_tests.csv=2640",
+      "location": "public/data/tests.csv (TST0440 - Malaria By Real Time Pcr)",
+      "fix": "Update tests.csv selling price to approved price ₹2640"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=350 vs user_tests.csv=320",
+      "location": "public/data/tests.csv (TST0441 - Malaria(Pf. & Pv.) Dual Antigens)",
+      "fix": "Update tests.csv selling price to approved price ₹320"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=110 vs user_tests.csv=100",
+      "location": "public/data/tests.csv (TST0442 - Mantoux Test ( 10 Tu Ppd))",
+      "fix": "Update tests.csv selling price to approved price ₹100"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=110 vs user_tests.csv=100",
+      "location": "public/data/tests.csv (TST0443 - Mantoux Test ( 5 Tu Ppd))",
+      "fix": "Update tests.csv selling price to approved price ₹100"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=100 vs user_tests.csv=90",
+      "location": "public/data/tests.csv (TST0444 - Mch (Mean Corpuscular Haemoglobin))",
+      "fix": "Update tests.csv selling price to approved price ₹90"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=100 vs user_tests.csv=90",
+      "location": "public/data/tests.csv (TST0445 - Mchc (Mean Corpuscular Hb. Concentration))",
+      "fix": "Update tests.csv selling price to approved price ₹90"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=100 vs user_tests.csv=90",
+      "location": "public/data/tests.csv (TST0446 - Mcv (Mean Corpuscular Volume))",
+      "fix": "Update tests.csv selling price to approved price ₹90"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=170 vs user_tests.csv=160",
+      "location": "public/data/tests.csv (TST0447 - Mean Platelet Volume(Mpv))",
+      "fix": "Update tests.csv selling price to approved price ₹160"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1120 vs user_tests.csv=1000",
+      "location": "public/data/tests.csv (TST0448 - Measles / Rubeola Antibody - Igg)",
+      "fix": "Update tests.csv selling price to approved price ₹1000"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1120 vs user_tests.csv=1000",
+      "location": "public/data/tests.csv (TST0449 - Measles / Rubeola Antibody - Igm)",
+      "fix": "Update tests.csv selling price to approved price ₹1000"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2240 vs user_tests.csv=2000",
+      "location": "public/data/tests.csv (TST0450 - Measles/Rubeola Antibodies - (Igg & Igm))",
+      "fix": "Update tests.csv selling price to approved price ₹2000"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1250 vs user_tests.csv=1120",
+      "location": "public/data/tests.csv (TST0451 - Mensturual Blood For Tb Dna Pcr)",
+      "fix": "Update tests.csv selling price to approved price ₹1120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2240 vs user_tests.csv=2000",
+      "location": "public/data/tests.csv (TST0452 - Metanephrines, 24 Hour Urine)",
+      "fix": "Update tests.csv selling price to approved price ₹2000"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=3280 vs user_tests.csv=2920",
+      "location": "public/data/tests.csv (TST0453 - Metanephrines, Free, Plasma)",
+      "fix": "Update tests.csv selling price to approved price ₹2920"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=90 vs user_tests.csv=80",
+      "location": "public/data/tests.csv (TST0454 - Micro Filaria (Urine))",
+      "fix": "Update tests.csv selling price to approved price ₹80"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=120 vs user_tests.csv=110",
+      "location": "public/data/tests.csv (TST0455 - Micro Filaria (Wet Preparation))",
+      "fix": "Update tests.csv selling price to approved price ₹110"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=320 vs user_tests.csv=290",
+      "location": "public/data/tests.csv (TST0456 - Microalbumin Assay Urine (Spot/Morning))",
+      "fix": "Update tests.csv selling price to approved price ₹290"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=390 vs user_tests.csv=350",
+      "location": "public/data/tests.csv (TST0457 - Microalbumin-Creatinine Ratio Urine)",
+      "fix": "Update tests.csv selling price to approved price ₹350"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=320 vs user_tests.csv=290",
+      "location": "public/data/tests.csv (TST0458 - Microprotein /24Hrs Urinary Protein)",
+      "fix": "Update tests.csv selling price to approved price ₹290"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0459 - Microprotein /Spot Urinary Protein)",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=5210 vs user_tests.csv=4640",
+      "location": "public/data/tests.csv (TST0460 - Mog (Myelin Oligodendrocyte Glycoprotein) Antibody)",
+      "fix": "Update tests.csv selling price to approved price ₹4640"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=170 vs user_tests.csv=160",
+      "location": "public/data/tests.csv (TST0461 - Mp (Malarial Parasite) Thick & Thin)",
+      "fix": "Update tests.csv selling price to approved price ₹160"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2280 vs user_tests.csv=2030",
+      "location": "public/data/tests.csv (TST0462 - Mumps Virus Antibodies Panel, Igg & Igm)",
+      "fix": "Update tests.csv selling price to approved price ₹2030"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1140 vs user_tests.csv=1020",
+      "location": "public/data/tests.csv (TST0463 - Mumps Virus Antibody, Igg,Serum)",
+      "fix": "Update tests.csv selling price to approved price ₹1020"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1140 vs user_tests.csv=1020",
+      "location": "public/data/tests.csv (TST0464 - Mumps Virus Antibody, Igm, Serum)",
+      "fix": "Update tests.csv selling price to approved price ₹1020"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1210 vs user_tests.csv=1080",
+      "location": "public/data/tests.csv (TST0465 - Mycobacterium Tuberculosis Pcr, Tb Dna Pcr)",
+      "fix": "Update tests.csv selling price to approved price ₹1080"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=950 vs user_tests.csv=850",
+      "location": "public/data/tests.csv (TST0466 - Myoglobin)",
+      "fix": "Update tests.csv selling price to approved price ₹850"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=90 vs user_tests.csv=80",
+      "location": "public/data/tests.csv (TST0467 - Nasal Swab For Eosinophil Count)",
+      "fix": "Update tests.csv selling price to approved price ₹80"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2960 vs user_tests.csv=2640",
+      "location": "public/data/tests.csv (TST0468 - Neisseria Gonorrhoeae)",
+      "fix": "Update tests.csv selling price to approved price ₹2640"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=150 vs user_tests.csv=140",
+      "location": "public/data/tests.csv (TST0469 - Neonatal Bilirubin)",
+      "fix": "Update tests.csv selling price to approved price ₹140"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=160 vs user_tests.csv=150",
+      "location": "public/data/tests.csv (TST0470 - Neutrophil To Lymphocyte Ratio (Nlr))",
+      "fix": "Update tests.csv selling price to approved price ₹150"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=8900 vs user_tests.csv=7920",
+      "location": "public/data/tests.csv (TST0471 - Nipt(Non-Invasive Prenatal Screening Test Repor)",
+      "fix": "Update tests.csv selling price to approved price ₹7920"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=8000 vs user_tests.csv=7120",
+      "location": "public/data/tests.csv (TST0472 - Nmo-Mog Antibody (Cell Based Assay))",
+      "fix": "Update tests.csv selling price to approved price ₹7120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2690 vs user_tests.csv=2400",
+      "location": "public/data/tests.csv (TST0473 - Nor-Metanephrines, 24 Hour Urine)",
+      "fix": "Update tests.csv selling price to approved price ₹2400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=120 vs user_tests.csv=110",
+      "location": "public/data/tests.csv (TST0474 - Npn ( Non Protein Nitrogen))",
+      "fix": "Update tests.csv selling price to approved price ₹110"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1430 vs user_tests.csv=1280",
+      "location": "public/data/tests.csv (TST0475 - Nt- Probnp (N-Terminal Pro B Type Natriuretic Pept)",
+      "fix": "Update tests.csv selling price to approved price ₹1280"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=350 vs user_tests.csv=320",
+      "location": "public/data/tests.csv (TST0476 - Optimal Malaria Antigen (Pf & Pv))",
+      "fix": "Update tests.csv selling price to approved price ₹320"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1070 vs user_tests.csv=960",
+      "location": "public/data/tests.csv (TST0477 - Osmatic Fragility Test)",
+      "fix": "Update tests.csv selling price to approved price ₹960"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=510 vs user_tests.csv=460",
+      "location": "public/data/tests.csv (TST0478 - Osmolality (Serum))",
+      "fix": "Update tests.csv selling price to approved price ₹460"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=510 vs user_tests.csv=460",
+      "location": "public/data/tests.csv (TST0479 - Osmolality (Urine))",
+      "fix": "Update tests.csv selling price to approved price ₹460"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=260 vs user_tests.csv=240",
+      "location": "public/data/tests.csv (TST0480 - Ot Swabs Culture (Aerobic))",
+      "fix": "Update tests.csv selling price to approved price ₹240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=710 vs user_tests.csv=640",
+      "location": "public/data/tests.csv (TST0481 - Oxalate, 24 Hour Urine)",
+      "fix": "Update tests.csv selling price to approved price ₹640"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1120 vs user_tests.csv=1000",
+      "location": "public/data/tests.csv (TST0482 - Oxalates - Plasma)",
+      "fix": "Update tests.csv selling price to approved price ₹1000"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=230 vs user_tests.csv=210",
+      "location": "public/data/tests.csv (TST0483 - Pap Smear -Cervical Cytology)",
+      "fix": "Update tests.csv selling price to approved price ₹210"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=220 vs user_tests.csv=200",
+      "location": "public/data/tests.csv (TST0484 - Pap Stain:Smear (Out. Slide))",
+      "fix": "Update tests.csv selling price to approved price ₹200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1390 vs user_tests.csv=1240",
+      "location": "public/data/tests.csv (TST0485 - Papp-A (Pregnancy Associated Plasma Protein -A))",
+      "fix": "Update tests.csv selling price to approved price ₹1240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2560 vs user_tests.csv=2280",
+      "location": "public/data/tests.csv (TST0486 - Parvovirus B 19 Antibody, Igg, Serum)",
+      "fix": "Update tests.csv selling price to approved price ₹2280"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2560 vs user_tests.csv=2280",
+      "location": "public/data/tests.csv (TST0487 - Parvovirus B 19 Antibody, Igm, Serum)",
+      "fix": "Update tests.csv selling price to approved price ₹2280"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=90 vs user_tests.csv=80",
+      "location": "public/data/tests.csv (TST0488 - Pcv Haematocrit)",
+      "fix": "Update tests.csv selling price to approved price ₹80"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=90 vs user_tests.csv=80",
+      "location": "public/data/tests.csv (TST0489 - Peripheral Smear)",
+      "fix": "Update tests.csv selling price to approved price ₹80"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1210 vs user_tests.csv=1080",
+      "location": "public/data/tests.csv (TST0490 - Ph, Blood)",
+      "fix": "Update tests.csv selling price to approved price ₹1080"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=610 vs user_tests.csv=550",
+      "location": "public/data/tests.csv (TST0491 - Phenytoin (Level) / Dilantin)",
+      "fix": "Update tests.csv selling price to approved price ₹550"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=5840 vs user_tests.csv=5200",
+      "location": "public/data/tests.csv (TST0492 - Phospholipase A2 Receptor Antibody Igg)",
+      "fix": "Update tests.csv selling price to approved price ₹5200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=760 vs user_tests.csv=680",
+      "location": "public/data/tests.csv (TST0493 - Phospholipid Antibody Igg & Igm)",
+      "fix": "Update tests.csv selling price to approved price ₹680"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=160 vs user_tests.csv=150",
+      "location": "public/data/tests.csv (TST0494 - Phosphorus)",
+      "fix": "Update tests.csv selling price to approved price ₹150"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0495 - Phosphorus Random Urine)",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=220 vs user_tests.csv=200",
+      "location": "public/data/tests.csv (TST0496 - Phosphorus, 24 Hour Urine)",
+      "fix": "Update tests.csv selling price to approved price ₹200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2870 vs user_tests.csv=2560",
+      "location": "public/data/tests.csv (TST0497 - Plasma Renin Activity)",
+      "fix": "Update tests.csv selling price to approved price ₹2560"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=90 vs user_tests.csv=80",
+      "location": "public/data/tests.csv (TST0498 - Platelet Count)",
+      "fix": "Update tests.csv selling price to approved price ₹80"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=4490 vs user_tests.csv=4000",
+      "location": "public/data/tests.csv (TST0499 - Pnh  Paroxysmal Nocturnal Haemoglobinuria Panel)",
+      "fix": "Update tests.csv selling price to approved price ₹4000"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1390 vs user_tests.csv=1240",
+      "location": "public/data/tests.csv (TST0500 - Pocd (Poly Cystic Ovarian Disorder))",
+      "fix": "Update tests.csv selling price to approved price ₹1240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=410 vs user_tests.csv=370",
+      "location": "public/data/tests.csv (TST0501 - Positive Hiv I & Ii)",
+      "fix": "Update tests.csv selling price to approved price ₹370"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0502 - Potassium (24Hrs. Urine))",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0503 - Potassium (Fluid ))",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0504 - Potassium (K+), Random Urine Assay)",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=170 vs user_tests.csv=160",
+      "location": "public/data/tests.csv (TST0505 - Potassium (K+Serum))",
+      "fix": "Update tests.csv selling price to approved price ₹160"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=410 vs user_tests.csv=370",
+      "location": "public/data/tests.csv (TST0506 - Potassium Creatinine Ratio(Random Urine))",
+      "fix": "Update tests.csv selling price to approved price ₹370"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1700 vs user_tests.csv=1520",
+      "location": "public/data/tests.csv (TST0507 - Pr (Progesterone Receptor))",
+      "fix": "Update tests.csv selling price to approved price ₹1520"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=120 vs user_tests.csv=110",
+      "location": "public/data/tests.csv (TST0508 - Pregnancy Card Test(Hcg.02Iu))",
+      "fix": "Update tests.csv selling price to approved price ₹110"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=120 vs user_tests.csv=110",
+      "location": "public/data/tests.csv (TST0509 - Pregnancy Elisa Test)",
+      "fix": "Update tests.csv selling price to approved price ₹110"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=290 vs user_tests.csv=260",
+      "location": "public/data/tests.csv (TST0510 - Prl (Prolactin))",
+      "fix": "Update tests.csv selling price to approved price ₹260"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1300 vs user_tests.csv=1160",
+      "location": "public/data/tests.csv (TST0511 - Procalcitonin)",
+      "fix": "Update tests.csv selling price to approved price ₹1160"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=350 vs user_tests.csv=320",
+      "location": "public/data/tests.csv (TST0512 - Progesterone)",
+      "fix": "Update tests.csv selling price to approved price ₹320"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2870 vs user_tests.csv=2560",
+      "location": "public/data/tests.csv (TST0513 - Prostate Health Index (Phi), Serum)",
+      "fix": "Update tests.csv selling price to approved price ₹2560"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2510 vs user_tests.csv=2240",
+      "location": "public/data/tests.csv (TST0514 - Protein C)",
+      "fix": "Update tests.csv selling price to approved price ₹2240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=440 vs user_tests.csv=400",
+      "location": "public/data/tests.csv (TST0515 - Protein Creatinine Ratio)",
+      "fix": "Update tests.csv selling price to approved price ₹400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2420 vs user_tests.csv=2160",
+      "location": "public/data/tests.csv (TST0516 - Protein Electrophoresis, 24-Hour Urine)",
+      "fix": "Update tests.csv selling price to approved price ₹2160"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=590 vs user_tests.csv=530",
+      "location": "public/data/tests.csv (TST0517 - Protein Electrophoresis, Blood)",
+      "fix": "Update tests.csv selling price to approved price ₹530"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2510 vs user_tests.csv=2240",
+      "location": "public/data/tests.csv (TST0518 - Protein S)",
+      "fix": "Update tests.csv selling price to approved price ₹2240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=210 vs user_tests.csv=190",
+      "location": "public/data/tests.csv (TST0519 - Prothrombin Time (Pt/Inr))",
+      "fix": "Update tests.csv selling price to approved price ₹190"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=350 vs user_tests.csv=320",
+      "location": "public/data/tests.csv (TST0520 - Psa (Prostate Specific Antigen))",
+      "fix": "Update tests.csv selling price to approved price ₹320"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=620 vs user_tests.csv=560",
+      "location": "public/data/tests.csv (TST0521 - Pth Intact (Intact Parathyroid Hormone))",
+      "fix": "Update tests.csv selling price to approved price ₹560"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=580 vs user_tests.csv=520",
+      "location": "public/data/tests.csv (TST0522 - Pus Culture And Sensitivity For Bacteria)",
+      "fix": "Update tests.csv selling price to approved price ₹520"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=220 vs user_tests.csv=200",
+      "location": "public/data/tests.csv (TST0523 - Pus; Malignant Cells (Pap))",
+      "fix": "Update tests.csv selling price to approved price ₹200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2290 vs user_tests.csv=2040",
+      "location": "public/data/tests.csv (TST0524 - Quadruple Marker Test)",
+      "fix": "Update tests.csv selling price to approved price ₹2040"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0525 - Ra-Factor)",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=110 vs user_tests.csv=100",
+      "location": "public/data/tests.csv (TST0527 - Rdw)",
+      "fix": "Update tests.csv selling price to approved price ₹100"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=140 vs user_tests.csv=130",
+      "location": "public/data/tests.csv (TST0528 - Reticulocyte Count)",
+      "fix": "Update tests.csv selling price to approved price ₹130"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=260 vs user_tests.csv=240",
+      "location": "public/data/tests.csv (TST0529 - Reticulocyte Production Index)",
+      "fix": "Update tests.csv selling price to approved price ₹240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2240 vs user_tests.csv=2000",
+      "location": "public/data/tests.csv (TST0530 - Rev T3 (Reverse Triiodothyronine))",
+      "fix": "Update tests.csv selling price to approved price ₹2000"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=230 vs user_tests.csv=210",
+      "location": "public/data/tests.csv (TST0531 - Review Biopsy (Each Slide))",
+      "fix": "Update tests.csv selling price to approved price ₹210"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=260 vs user_tests.csv=240",
+      "location": "public/data/tests.csv (TST0532 - Review Fnac Slide)",
+      "fix": "Update tests.csv selling price to approved price ₹240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=310 vs user_tests.csv=280",
+      "location": "public/data/tests.csv (TST0533 - Rhd Antibody Titer)",
+      "fix": "Update tests.csv selling price to approved price ₹280"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=4130 vs user_tests.csv=3680",
+      "location": "public/data/tests.csv (TST0534 - Roma (Risk Of Ovarian Malignancy Algorithm))",
+      "fix": "Update tests.csv selling price to approved price ₹3680"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=710 vs user_tests.csv=640",
+      "location": "public/data/tests.csv (TST0535 - Rubella Avidity, Igg, Serum)",
+      "fix": "Update tests.csv selling price to approved price ₹640"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=310 vs user_tests.csv=280",
+      "location": "public/data/tests.csv (TST0536 - Rubella-Igg)",
+      "fix": "Update tests.csv selling price to approved price ₹280"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=310 vs user_tests.csv=280",
+      "location": "public/data/tests.csv (TST0537 - Rubella-Igm)",
+      "fix": "Update tests.csv selling price to approved price ₹280"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=400 vs user_tests.csv=360",
+      "location": "public/data/tests.csv (TST0538 - Saag (Serum Ascites Albumin Gradient))",
+      "fix": "Update tests.csv selling price to approved price ₹360"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=20600 vs user_tests.csv=18320",
+      "location": "public/data/tests.csv (TST0539 - Sanger Sequencing For Tsc1 And Tsc2)",
+      "fix": "Update tests.csv selling price to approved price ₹18320"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=980 vs user_tests.csv=880",
+      "location": "public/data/tests.csv (TST0540 - Sars Cov 2 Antibody Igg)",
+      "fix": "Update tests.csv selling price to approved price ₹880"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=980 vs user_tests.csv=880",
+      "location": "public/data/tests.csv (TST0541 - Sars Cov 2 Antibody Igm)",
+      "fix": "Update tests.csv selling price to approved price ₹880"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1340 vs user_tests.csv=1200",
+      "location": "public/data/tests.csv (TST0542 - Scl-70 Igg)",
+      "fix": "Update tests.csv selling price to approved price ₹1200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=800 vs user_tests.csv=720",
+      "location": "public/data/tests.csv (TST0543 - Scrub Typhus)",
+      "fix": "Update tests.csv selling price to approved price ₹720"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=830 vs user_tests.csv=740",
+      "location": "public/data/tests.csv (TST0544 - Scrub Typhus Antibody Igg(Eia))",
+      "fix": "Update tests.csv selling price to approved price ₹740"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=830 vs user_tests.csv=740",
+      "location": "public/data/tests.csv (TST0545 - Scrub Typhus Antibody Igm(Eia))",
+      "fix": "Update tests.csv selling price to approved price ₹740"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1660 vs user_tests.csv=1480",
+      "location": "public/data/tests.csv (TST0546 - Scrub Typhus Igg & Igm)",
+      "fix": "Update tests.csv selling price to approved price ₹1480"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=800 vs user_tests.csv=720",
+      "location": "public/data/tests.csv (TST0547 - Scrub Typhus Igm.)",
+      "fix": "Update tests.csv selling price to approved price ₹720"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0548 - Semen Analysis)",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=350 vs user_tests.csv=320",
+      "location": "public/data/tests.csv (TST0549 - Serum Albumin:Creatinine Ratio)",
+      "fix": "Update tests.csv selling price to approved price ₹320"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=210 vs user_tests.csv=190",
+      "location": "public/data/tests.csv (TST0550 - Serum Cpk (Creatine Phospho Kinase))",
+      "fix": "Update tests.csv selling price to approved price ₹190"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1520 vs user_tests.csv=1360",
+      "location": "public/data/tests.csv (TST0551 - Sex Hormone Binding Globulin (Shbg))",
+      "fix": "Update tests.csv selling price to approved price ₹1360"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=120 vs user_tests.csv=110",
+      "location": "public/data/tests.csv (TST0552 - Sgot / Ast)",
+      "fix": "Update tests.csv selling price to approved price ₹110"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=120 vs user_tests.csv=110",
+      "location": "public/data/tests.csv (TST0553 - Sgpt / Alt)",
+      "fix": "Update tests.csv selling price to approved price ₹110"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=410 vs user_tests.csv=370",
+      "location": "public/data/tests.csv (TST0554 - Sickling, Screening Test)",
+      "fix": "Update tests.csv selling price to approved price ₹370"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0555 - Skin Scraping For (Afb))",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=260 vs user_tests.csv=240",
+      "location": "public/data/tests.csv (TST0556 - Skin Scraping For (Fungus))",
+      "fix": "Update tests.csv selling price to approved price ₹240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1340 vs user_tests.csv=1200",
+      "location": "public/data/tests.csv (TST0557 - Sm ( Smith) Antibody Igg)",
+      "fix": "Update tests.csv selling price to approved price ₹1200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1340 vs user_tests.csv=1200",
+      "location": "public/data/tests.csv (TST0558 - Sm/Rnp Antibody/Anti-U1 Rnp Antibody)",
+      "fix": "Update tests.csv selling price to approved price ₹1200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=310 vs user_tests.csv=280",
+      "location": "public/data/tests.csv (TST0559 - Sodium & Potasium)",
+      "fix": "Update tests.csv selling price to approved price ₹280"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0560 - Sodium (24Hrs. Urine))",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0561 - Sodium (Na+ Serum))",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0562 - Sodium, Fluid)",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=4760 vs user_tests.csv=4240",
+      "location": "public/data/tests.csv (TST0563 - Soluble Liver Antigen(Sla))",
+      "fix": "Update tests.csv selling price to approved price ₹4240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=260 vs user_tests.csv=240",
+      "location": "public/data/tests.csv (TST0564 - Sputum (Morning) : Fungus Stain)",
+      "fix": "Update tests.csv selling price to approved price ₹240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=130 vs user_tests.csv=120",
+      "location": "public/data/tests.csv (TST0565 - Sputum (Morning) : Gram Stain)",
+      "fix": "Update tests.csv selling price to approved price ₹120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=260 vs user_tests.csv=240",
+      "location": "public/data/tests.csv (TST0566 - Sputum Culture & Sensitivity)",
+      "fix": "Update tests.csv selling price to approved price ₹240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=130 vs user_tests.csv=120",
+      "location": "public/data/tests.csv (TST0567 - Sputum For Afb (Z.N. Stain))",
+      "fix": "Update tests.csv selling price to approved price ₹120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=260 vs user_tests.csv=240",
+      "location": "public/data/tests.csv (TST0568 - Sputum For Gram & Afb Stain)",
+      "fix": "Update tests.csv selling price to approved price ₹240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=220 vs user_tests.csv=200",
+      "location": "public/data/tests.csv (TST0569 - Sputum For Malignant Cell)",
+      "fix": "Update tests.csv selling price to approved price ₹200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0570 - Stool Culture & Sensitivity)",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=120 vs user_tests.csv=110",
+      "location": "public/data/tests.csv (TST0572 - Stool Re & Obt)",
+      "fix": "Update tests.csv selling price to approved price ₹110"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=90 vs user_tests.csv=80",
+      "location": "public/data/tests.csv (TST0574 - Stool Routine Examination)",
+      "fix": "Update tests.csv selling price to approved price ₹80"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=410 vs user_tests.csv=370",
+      "location": "public/data/tests.csv (TST0576 - Subtype Ige)",
+      "fix": "Update tests.csv selling price to approved price ₹370"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=170 vs user_tests.csv=160",
+      "location": "public/data/tests.csv (TST0577 - T3 (Total Tri-Iodothyronine))",
+      "fix": "Update tests.csv selling price to approved price ₹160"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=180 vs user_tests.csv=160",
+      "location": "public/data/tests.csv (TST0578 - T4 (Total Thyroxine))",
+      "fix": "Update tests.csv selling price to approved price ₹160"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=350 vs user_tests.csv=320",
+      "location": "public/data/tests.csv (TST0579 - T4 , Tsh)",
+      "fix": "Update tests.csv selling price to approved price ₹320"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2690 vs user_tests.csv=2400",
+      "location": "public/data/tests.csv (TST0580 - Tacrolimus Level)",
+      "fix": "Update tests.csv selling price to approved price ₹2400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1750 vs user_tests.csv=1560",
+      "location": "public/data/tests.csv (TST0581 - Tb Gold)",
+      "fix": "Update tests.csv selling price to approved price ₹1560"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1120 vs user_tests.csv=1000",
+      "location": "public/data/tests.csv (TST0582 - Tb Pcr Dna)",
+      "fix": "Update tests.csv selling price to approved price ₹1000"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1700 vs user_tests.csv=1520",
+      "location": "public/data/tests.csv (TST0583 - Tb Pcr Rna)",
+      "fix": "Update tests.csv selling price to approved price ₹1520"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=110 vs user_tests.csv=100",
+      "location": "public/data/tests.csv (TST0585 - Tc Dc)",
+      "fix": "Update tests.csv selling price to approved price ₹100"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=120 vs user_tests.csv=110",
+      "location": "public/data/tests.csv (TST0586 - Tc Dc Esr)",
+      "fix": "Update tests.csv selling price to approved price ₹110"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=130 vs user_tests.csv=120",
+      "location": "public/data/tests.csv (TST0587 - Tc,Dc,Mp)",
+      "fix": "Update tests.csv selling price to approved price ₹120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=700 vs user_tests.csv=630",
+      "location": "public/data/tests.csv (TST0588 - Testosterone / Cortisol Ratio)",
+      "fix": "Update tests.csv selling price to approved price ₹630"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=360 vs user_tests.csv=320",
+      "location": "public/data/tests.csv (TST0589 - Testosterone, Total)",
+      "fix": "Update tests.csv selling price to approved price ₹320"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=260 vs user_tests.csv=240",
+      "location": "public/data/tests.csv (TST0590 - Throat Swab Culture & Sensitivity)",
+      "fix": "Update tests.csv selling price to approved price ₹240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=90 vs user_tests.csv=80",
+      "location": "public/data/tests.csv (TST0591 - Throat Swab For Gram Stain)",
+      "fix": "Update tests.csv selling price to approved price ₹80"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=160 vs user_tests.csv=150",
+      "location": "public/data/tests.csv (TST0592 - Throat Swab For Klb Stain)",
+      "fix": "Update tests.csv selling price to approved price ₹150"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=350 vs user_tests.csv=320",
+      "location": "public/data/tests.csv (TST0593 - Thrombin Time)",
+      "fix": "Update tests.csv selling price to approved price ₹320"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=800 vs user_tests.csv=720",
+      "location": "public/data/tests.csv (TST0594 - Thyroglobulin (Tg))",
+      "fix": "Update tests.csv selling price to approved price ₹720"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=800 vs user_tests.csv=720",
+      "location": "public/data/tests.csv (TST0595 - Thyroglobulin Antibody)",
+      "fix": "Update tests.csv selling price to approved price ₹720"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=440 vs user_tests.csv=400",
+      "location": "public/data/tests.csv (TST0596 - Thyroid Profile (T3, T4, Tsh))",
+      "fix": "Update tests.csv selling price to approved price ₹400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1160 vs user_tests.csv=1040",
+      "location": "public/data/tests.csv (TST0597 - Thyroxine Binding Globulin (Tbg))",
+      "fix": "Update tests.csv selling price to approved price ₹1040"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=220 vs user_tests.csv=200",
+      "location": "public/data/tests.csv (TST0598 - Tibc (Total Iron Binding Capacity))",
+      "fix": "Update tests.csv selling price to approved price ₹200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=670 vs user_tests.csv=600",
+      "location": "public/data/tests.csv (TST0599 - Tissue Culture And Sensitivity For Bacteria)",
+      "fix": "Update tests.csv selling price to approved price ₹600"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=890 vs user_tests.csv=800",
+      "location": "public/data/tests.csv (TST0600 - Tissue Transglutaminase (Ttg) Antibody Iga)",
+      "fix": "Update tests.csv selling price to approved price ₹800"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1520 vs user_tests.csv=1360",
+      "location": "public/data/tests.csv (TST0601 - Torch -Igg & Igm (10 Parameter))",
+      "fix": "Update tests.csv selling price to approved price ₹1360"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1430 vs user_tests.csv=1280",
+      "location": "public/data/tests.csv (TST0602 - Torch -Igg & Igm (8 Parameter))",
+      "fix": "Update tests.csv selling price to approved price ₹1280"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=890 vs user_tests.csv=800",
+      "location": "public/data/tests.csv (TST0603 - Torch-Igg)",
+      "fix": "Update tests.csv selling price to approved price ₹800"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=890 vs user_tests.csv=800",
+      "location": "public/data/tests.csv (TST0604 - Torch-Igm)",
+      "fix": "Update tests.csv selling price to approved price ₹800"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=120 vs user_tests.csv=110",
+      "location": "public/data/tests.csv (TST0605 - Total Protein)",
+      "fix": "Update tests.csv selling price to approved price ₹110"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=170 vs user_tests.csv=160",
+      "location": "public/data/tests.csv (TST0606 - Total Protein: Albumin/ Globulin)",
+      "fix": "Update tests.csv selling price to approved price ₹160"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=310 vs user_tests.csv=280",
+      "location": "public/data/tests.csv (TST0607 - Toxoplasma-Igg)",
+      "fix": "Update tests.csv selling price to approved price ₹280"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=310 vs user_tests.csv=280",
+      "location": "public/data/tests.csv (TST0608 - Toxoplasma-Igm)",
+      "fix": "Update tests.csv selling price to approved price ₹280"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=260 vs user_tests.csv=240",
+      "location": "public/data/tests.csv (TST0609 - Tpha (Syphilis Antibodies Screening Test))",
+      "fix": "Update tests.csv selling price to approved price ₹240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=710 vs user_tests.csv=640",
+      "location": "public/data/tests.csv (TST0610 - Transferrin, Serum)",
+      "fix": "Update tests.csv selling price to approved price ₹640"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=400 vs user_tests.csv=360",
+      "location": "public/data/tests.csv (TST0611 - Transferrin Saturation Index)",
+      "fix": "Update tests.csv selling price to approved price ₹360"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=220 vs user_tests.csv=200",
+      "location": "public/data/tests.csv (TST0612 - Triglycerides)",
+      "fix": "Update tests.csv selling price to approved price ₹200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=210 vs user_tests.csv=190",
+      "location": "public/data/tests.csv (TST0613 - Triglycerides (Fluid))",
+      "fix": "Update tests.csv selling price to approved price ₹190"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1160 vs user_tests.csv=1040",
+      "location": "public/data/tests.csv (TST0614 - Triple Marker Test)",
+      "fix": "Update tests.csv selling price to approved price ₹1040"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1160 vs user_tests.csv=1040",
+      "location": "public/data/tests.csv (TST0615 - Troponin I, Serum (High Sensitive))",
+      "fix": "Update tests.csv selling price to approved price ₹1040"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=760 vs user_tests.csv=680",
+      "location": "public/data/tests.csv (TST0616 - Troponin-I)",
+      "fix": "Update tests.csv selling price to approved price ₹680"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=760 vs user_tests.csv=680",
+      "location": "public/data/tests.csv (TST0617 - Troponin-T (Trop-T))",
+      "fix": "Update tests.csv selling price to approved price ₹680"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0618 - Tsh - Thyroid-Stimulating Hormone)",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=3590 vs user_tests.csv=3200",
+      "location": "public/data/tests.csv (TST0619 - Tsh Receptor Antibody)",
+      "fix": "Update tests.csv selling price to approved price ₹3200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=580 vs user_tests.csv=520",
+      "location": "public/data/tests.csv (TST0620 - Typhi Dot/ Salmonella Typhi Igm Elisa)",
+      "fix": "Update tests.csv selling price to approved price ₹520"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=220 vs user_tests.csv=200",
+      "location": "public/data/tests.csv (TST0621 - Typhoid/Typhi Igg)",
+      "fix": "Update tests.csv selling price to approved price ₹200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=220 vs user_tests.csv=200",
+      "location": "public/data/tests.csv (TST0622 - Typhoid/Typhi Igm)",
+      "fix": "Update tests.csv selling price to approved price ₹200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=320 vs user_tests.csv=290",
+      "location": "public/data/tests.csv (TST0623 - Typhoid/Typhi Igm & Igg)",
+      "fix": "Update tests.csv selling price to approved price ₹290"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=260 vs user_tests.csv=240",
+      "location": "public/data/tests.csv (TST0624 - Uibc (Unsaturated Iron Binding Capacity))",
+      "fix": "Update tests.csv selling price to approved price ₹240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=160 vs user_tests.csv=150",
+      "location": "public/data/tests.csv (TST0625 - Urea & Creatinine (Serum))",
+      "fix": "Update tests.csv selling price to approved price ₹150"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=130 vs user_tests.csv=120",
+      "location": "public/data/tests.csv (TST0626 - Urea (Serum))",
+      "fix": "Update tests.csv selling price to approved price ₹120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=130 vs user_tests.csv=120",
+      "location": "public/data/tests.csv (TST0627 - Urea, Cath Urine)",
+      "fix": "Update tests.csv selling price to approved price ₹120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=190 vs user_tests.csv=170",
+      "location": "public/data/tests.csv (TST0628 - Uric Acid (24 Hours Urine))",
+      "fix": "Update tests.csv selling price to approved price ₹170"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=450 vs user_tests.csv=400",
+      "location": "public/data/tests.csv (TST0630 - Urinary Beta Hcg(Titre))",
+      "fix": "Update tests.csv selling price to approved price ₹400"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=290 vs user_tests.csv=260",
+      "location": "public/data/tests.csv (TST0631 - Urine (24 Hours) : Amylase)",
+      "fix": "Update tests.csv selling price to approved price ₹260"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0632 - Urine (24 Hours) : Calcium)",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0633 - Urine (24 Hours) : Chloride)",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0634 - Urine (24 Hours) : Creatinine)",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=410 vs user_tests.csv=370",
+      "location": "public/data/tests.csv (TST0635 - Urine (24 Hours) : Magnesium)",
+      "fix": "Update tests.csv selling price to approved price ₹370"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=320 vs user_tests.csv=290",
+      "location": "public/data/tests.csv (TST0636 - Urine (24 Hours) : Microalbumin)",
+      "fix": "Update tests.csv selling price to approved price ₹290"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0637 - Urine (24 Hours) : Microprotein)",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0638 - Urine (24Hours) : Na+/K+ (Each))",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=120 vs user_tests.csv=110",
+      "location": "public/data/tests.csv (TST0639 - Urine (Spot/Morning) : Albumin)",
+      "fix": "Update tests.csv selling price to approved price ₹110"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=400 vs user_tests.csv=360",
+      "location": "public/data/tests.csv (TST0640 - Urine (Spot/Morning) : Bence Jones Protein)",
+      "fix": "Update tests.csv selling price to approved price ₹360"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0641 - Urine (Spot/Morning) : Calcium Assay)",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0642 - Urine (Spot/Morning) : Chloride Assay)",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=410 vs user_tests.csv=370",
+      "location": "public/data/tests.csv (TST0643 - Urine (Spot/Morning) : Magnesium Assay)",
+      "fix": "Update tests.csv selling price to approved price ₹370"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=220 vs user_tests.csv=200",
+      "location": "public/data/tests.csv (TST0644 - Urine (Spot/Morning) : Malignant Cells (Pap))",
+      "fix": "Update tests.csv selling price to approved price ₹200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=320 vs user_tests.csv=290",
+      "location": "public/data/tests.csv (TST0645 - Urine (Spot/Morning) : Microalbumin Assay)",
+      "fix": "Update tests.csv selling price to approved price ₹290"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0646 - Urine (Spot/Morning) : Microprotein Assay)",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0647 - Urine (Spot/Morning) : Na+/K+ Assay (Each))",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0648 - Urine (Spot/Morning) : Uric Acid Assay)",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=130 vs user_tests.csv=120",
+      "location": "public/data/tests.csv (TST0651 - Urine (Spot/Morning) Excess Phosphate)",
+      "fix": "Update tests.csv selling price to approved price ₹120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=350 vs user_tests.csv=320",
+      "location": "public/data/tests.csv (TST0652 - Urine (Spot/Morning) Porphobilinogen)",
+      "fix": "Update tests.csv selling price to approved price ₹320"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0655 - Urine (Spot/Random) : Creatinine Assay)",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=170 vs user_tests.csv=160",
+      "location": "public/data/tests.csv (TST0656 - Urine (Spot/Random) : Urea Assay)",
+      "fix": "Update tests.csv selling price to approved price ₹160"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=580 vs user_tests.csv=520",
+      "location": "public/data/tests.csv (TST0657 - Urine For Chyle Test)",
+      "fix": "Update tests.csv selling price to approved price ₹520"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0658 - Urine For Culture & Sensitivity)",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=580 vs user_tests.csv=520",
+      "location": "public/data/tests.csv (TST0659 - Urine For Lemphocyte)",
+      "fix": "Update tests.csv selling price to approved price ₹520"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=580 vs user_tests.csv=520",
+      "location": "public/data/tests.csv (TST0660 - Urine For Nitrate)",
+      "fix": "Update tests.csv selling price to approved price ₹520"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=130 vs user_tests.csv=120",
+      "location": "public/data/tests.csv (TST0661 - Urine For Preg Colour Test)",
+      "fix": "Update tests.csv selling price to approved price ₹120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=3590 vs user_tests.csv=3200",
+      "location": "public/data/tests.csv (TST0662 - Urine For Toxicology/Drug Screen)",
+      "fix": "Update tests.csv selling price to approved price ₹3200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=90 vs user_tests.csv=80",
+      "location": "public/data/tests.csv (TST0663 - Urine Ketone Body / Acetone)",
+      "fix": "Update tests.csv selling price to approved price ₹80"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=200 vs user_tests.csv=180",
+      "location": "public/data/tests.csv (TST0664 - Urine Proteins (24Hrs))",
+      "fix": "Update tests.csv selling price to approved price ₹180"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=90 vs user_tests.csv=80",
+      "location": "public/data/tests.csv (TST0665 - Urine Routine Examination)",
+      "fix": "Update tests.csv selling price to approved price ₹80"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=120 vs user_tests.csv=110",
+      "location": "public/data/tests.csv (TST0666 - Urine Sugar (Spot/Morning))",
+      "fix": "Update tests.csv selling price to approved price ₹110"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=90 vs user_tests.csv=80",
+      "location": "public/data/tests.csv (TST0667 - Urine Urobilinogen (Spot/Morning))",
+      "fix": "Update tests.csv selling price to approved price ₹80"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=90 vs user_tests.csv=80",
+      "location": "public/data/tests.csv (TST0668 - Urine, Reducing Substances)",
+      "fix": "Update tests.csv selling price to approved price ₹80"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=220 vs user_tests.csv=200",
+      "location": "public/data/tests.csv (TST0669 - Vaginal Smear For Pap)",
+      "fix": "Update tests.csv selling price to approved price ₹200"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=580 vs user_tests.csv=520",
+      "location": "public/data/tests.csv (TST0670 - Valproic Acid (Sodium Valproate))",
+      "fix": "Update tests.csv selling price to approved price ₹520"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1160 vs user_tests.csv=1040",
+      "location": "public/data/tests.csv (TST0671 - Varicella Zoster Virus (Vzv) Antibody, Igg, Serum)",
+      "fix": "Update tests.csv selling price to approved price ₹1040"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1170 vs user_tests.csv=1040",
+      "location": "public/data/tests.csv (TST0672 - Varicella Zoster Virus (Vzv) Antibody, Igm, Serum)",
+      "fix": "Update tests.csv selling price to approved price ₹1040"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=120 vs user_tests.csv=110",
+      "location": "public/data/tests.csv (TST0673 - Vdrl Test)",
+      "fix": "Update tests.csv selling price to approved price ₹110"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=230 vs user_tests.csv=210",
+      "location": "public/data/tests.csv (TST0674 - Vdrl Test With Quantitation)",
+      "fix": "Update tests.csv selling price to approved price ₹210"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=4025 vs user_tests.csv=3120",
+      "location": "public/data/tests.csv (TST0675 - Vitamin A(Retinol))",
+      "fix": "Update tests.csv selling price to approved price ₹3120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=4025 vs user_tests.csv=3120",
+      "location": "public/data/tests.csv (TST0676 - Vitamin B1 (Thiamine Pyrophosphate))",
+      "fix": "Update tests.csv selling price to approved price ₹3120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=633 vs user_tests.csv=560",
+      "location": "public/data/tests.csv (TST0677 - Vitamin B12)",
+      "fix": "Update tests.csv selling price to approved price ₹560"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=828 vs user_tests.csv=640",
+      "location": "public/data/tests.csv (TST0678 - Vitamin B12; Cyanocobalamin)",
+      "fix": "Update tests.csv selling price to approved price ₹640"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=3611 vs user_tests.csv=2800",
+      "location": "public/data/tests.csv (TST0679 - Vitamin B2; Riboflavin)",
+      "fix": "Update tests.csv selling price to approved price ₹2800"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=3818 vs user_tests.csv=2960",
+      "location": "public/data/tests.csv (TST0680 - Vitamin B6; Pyridoxine)",
+      "fix": "Update tests.csv selling price to approved price ₹2960"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=3921 vs user_tests.csv=3040",
+      "location": "public/data/tests.csv (TST0681 - Vitamin C (L-Ascorbic Acid))",
+      "fix": "Update tests.csv selling price to approved price ₹3040"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=747 vs user_tests.csv=560",
+      "location": "public/data/tests.csv (TST0682 - Vitamin D3 (25 - Oh))",
+      "fix": "Update tests.csv selling price to approved price ₹560"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=3921 vs user_tests.csv=3040",
+      "location": "public/data/tests.csv (TST0683 - Vitamin E (Tocopherol))",
+      "fix": "Update tests.csv selling price to approved price ₹3040"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=5164 vs user_tests.csv=4000",
+      "location": "public/data/tests.csv (TST0684 - Vitamin K1)",
+      "fix": "Update tests.csv selling price to approved price ₹4000"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=160 vs user_tests.csv=150",
+      "location": "public/data/tests.csv (TST0685 - Vldl - Cholesterol)",
+      "fix": "Update tests.csv selling price to approved price ₹150"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1250 vs user_tests.csv=1120",
+      "location": "public/data/tests.csv (TST0686 - Vma (Vanilmandelic Acid) , Random Urine)",
+      "fix": "Update tests.csv selling price to approved price ₹1120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1250 vs user_tests.csv=1120",
+      "location": "public/data/tests.csv (TST0687 - Vma (Vanilmandelic Acid), 24 Hour Urine)",
+      "fix": "Update tests.csv selling price to approved price ₹1120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=2420 vs user_tests.csv=2160",
+      "location": "public/data/tests.csv (TST0688 - Von Willebrand Factor Antigen; Vwf)",
+      "fix": "Update tests.csv selling price to approved price ₹2160"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=130 vs user_tests.csv=120",
+      "location": "public/data/tests.csv (TST0689 - Wassermann Reaction)",
+      "fix": "Update tests.csv selling price to approved price ₹120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=800 vs user_tests.csv=720",
+      "location": "public/data/tests.csv (TST0690 - Weil Felix Test)",
+      "fix": "Update tests.csv selling price to approved price ₹720"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=130 vs user_tests.csv=120",
+      "location": "public/data/tests.csv (TST0691 - Widal Test ( Slide Method ))",
+      "fix": "Update tests.csv selling price to approved price ₹120"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=150 vs user_tests.csv=140",
+      "location": "public/data/tests.csv (TST0692 - Widal Test (Tube Method))",
+      "fix": "Update tests.csv selling price to approved price ₹140"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=260 vs user_tests.csv=240",
+      "location": "public/data/tests.csv (TST0693 - Wound Swab : Cs)",
+      "fix": "Update tests.csv selling price to approved price ₹240"
+    },
+    {
+      "item": "Test price mismatch: tests.csv=1160 vs user_tests.csv=1040",
+      "location": "public/data/tests.csv (TST0694 - Zinc)",
+      "fix": "Update tests.csv selling price to approved price ₹1040"
+    }
+  ],
+  "missing": [],
+  "packageImagesInfo": [
+    {
+      "slug": "basic-full-body-checkup",
+      "name": "Basic Full Body Check-Up",
+      "status": "EXISTS",
+      "width": 1024,
+      "height": 1024,
+      "sizeKb": 517,
+      "price": 699,
+      "mrp": 1713,
+      "discountPct": 59
+    },
+    {
+      "slug": "diabetes-sugar-care-package",
+      "name": "Diabetes & Sugar Care Package",
+      "status": "EXISTS",
+      "width": 1024,
+      "height": 1024,
+      "sizeKb": 495,
+      "price": 699,
+      "mrp": 1650,
+      "discountPct": 58
+    },
+    {
+      "slug": "thyroid-wellness-check-package",
+      "name": "Thyroid & Wellness Check Package",
+      "status": "EXISTS",
+      "width": 1024,
+      "height": 1024,
+      "sizeKb": 509,
+      "price": 499,
+      "mrp": 1289,
+      "discountPct": 61
+    },
+    {
+      "slug": "heart-metabolic-check-package",
+      "name": "Heart & Metabolic Check Package",
+      "status": "EXISTS",
+      "width": 1024,
+      "height": 1024,
+      "sizeKb": 495,
+      "price": 799,
+      "mrp": 1879,
+      "discountPct": 57
+    },
+    {
+      "slug": "vitamin-energy-check-package",
+      "name": "Vitamin & Energy Check Package",
+      "status": "EXISTS",
+      "width": 1024,
+      "height": 1024,
+      "sizeKb": 506,
+      "price": 1091,
+      "mrp": 2835,
+      "discountPct": 62
+    },
+    {
+      "slug": "comprehensive-healthy-heart-package",
+      "name": "Comprehensive Healthy Heart & Cardiac Risk Profile",
+      "status": "EXISTS",
+      "width": 1024,
+      "height": 1024,
+      "sizeKb": 528,
+      "price": 1049,
+      "mrp": 2900,
+      "discountPct": 64
+    },
+    {
+      "slug": "advanced-spine-joint-nerve-pain-package",
+      "name": "Advanced Spine, Joint & Nerve Pain Care Package",
+      "status": "EXISTS",
+      "width": 1024,
+      "height": 1024,
+      "sizeKb": 531,
+      "price": 1199,
+      "mrp": 3200,
+      "discountPct": 63
+    },
+    {
+      "slug": "neuro-metabolic-memory-wellness-package",
+      "name": "Neuro-Metabolic & Memory Wellness Profile",
+      "status": "EXISTS",
+      "width": 1024,
+      "height": 1024,
+      "sizeKb": 526,
+      "price": 1299,
+      "mrp": 3400,
+      "discountPct": 62
+    },
+    {
+      "slug": "pcos-hormonal-women-wellness-package",
+      "name": "PCOS, Hormonal & Women Wellness Complete Package",
+      "status": "EXISTS",
+      "width": 1024,
+      "height": 1024,
+      "sizeKb": 520,
+      "price": 1049,
+      "mrp": 3100,
+      "discountPct": 66
+    },
+    {
+      "slug": "orthopedic-bone-density-joint-package",
+      "name": "Orthopedic Bone Density & Joint Health Screening",
+      "status": "EXISTS",
+      "width": 1024,
+      "height": 1024,
+      "sizeKb": 536,
+      "price": 999,
+      "mrp": 2850,
+      "discountPct": 65
+    },
+    {
+      "slug": "acute-infection-immunity-fever-package",
+      "name": "Acute Infection, Immunity & Fever Screening Profile",
+      "status": "EXISTS",
+      "width": 1024,
+      "height": 1024,
+      "sizeKb": 544,
+      "price": 849,
+      "mrp": 2400,
+      "discountPct": 65
+    },
+    {
+      "slug": "advanced-diabetes-reversal-organ-shield",
+      "name": "Advanced Diabetes Reversal & Vital Organ Shield",
+      "status": "EXISTS",
+      "width": 1024,
+      "height": 1024,
+      "sizeKb": 542,
+      "price": 1149,
+      "mrp": 3300,
+      "discountPct": 65
+    },
+    {
+      "slug": "senior-citizen-chronic-disease-package",
+      "name": "Senior Citizen Comprehensive Chronic Disease & Vital Health Checkup",
+      "status": "EXISTS",
+      "width": 1024,
+      "height": 1024,
+      "sizeKb": 530,
+      "price": 1299,
+      "mrp": 3600,
+      "discountPct": 64
+    },
+    {
+      "slug": "junior-wellness-child-growth-package",
+      "name": "Junior Wellness & Child Growth Immunity Profile",
+      "status": "EXISTS",
+      "width": 1200,
+      "height": 896,
+      "sizeKb": 601,
+      "price": 949,
+      "mrp": 2600,
+      "discountPct": 64
+    },
+    {
+      "slug": "neonatal-pediatric-allergy-nutrition-panel",
+      "name": "Neonatal & Pediatric Allergy & Nutrition Panel",
+      "status": "EXISTS",
+      "width": 1200,
+      "height": 896,
+      "sizeKb": 670,
+      "price": 999,
+      "mrp": 2750,
+      "discountPct": 64
+    },
+    {
+      "slug": "holistic-allergy-inflammation-wellness-screen",
+      "name": "Holistic Allergy & Chronic Inflammation Wellness Screen",
+      "status": "EXISTS",
+      "width": 1200,
+      "height": 896,
+      "sizeKb": 688,
+      "price": 899,
+      "mrp": 2500,
+      "discountPct": 64
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+symptom_id,symptom_name,description,related_tests
+SYM001,Fever,Elevated body temperature,TST0001|TST0100|TST0200
+SYM002,Fatigue,Persistent tiredness,TST0002|TST0200|TST0300

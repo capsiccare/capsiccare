@@ -1,0 +1,699 @@
+test_name,New Price,OLD Price,Standard_price/MRP,Discount,Save
+"1,3-Beta D Glucan Level",5390,5989,8000,33%,2610
+1-25-Hydroxy Vitamin D,3105,2999,4485,31%,1200
+17-Alpha Hydroxy Progesterone(17-Ohp),990,1099,1500,34%,510
+24 Hrs Urine For Cholesterol,160,175,250,36%,90
+"5-Alpha-Dihydrotestosterone; 5-Alpha-Dht,",1670,1855,2650,37%,980
+5-Hiaa(5-Hydroxy Indoleacetic Acid)24Hrs  Urine,1980,2199,2844,30%,864
+A4 (Androstenedione),990,1099,1530,35%,540
+Abnormal Cells(Blood),110,119,165,33%,55
+Absolute Count(Basophils),100,109,150,33%,50
+Absolute Eosinophil Count,100,109,150,33%,50
+Absolute Lymphocyte Count (Alc),100,109,150,33%,50
+Absolute Monocyte Count,100,109,150,33%,50
+Absolute Neutrophil Count,100,109,150,33%,50
+Aca (Anti Cardiolipin Antibody) Iga /Igg/Igm,410,459,650,37%,240
+Ace (Angiotensin Converting Enzyme),850,949,1350,37%,500
+Acetyl Choline Receptor Binding Antibody(Achr),2880,3199,4200,31%,1320
+Acid Phosphatase (Acp) (Total),180,199,269,33%,89
+Acid Phosphatase (Prostatic),390,429,600,35%,210
+Acr : Microalbumin:Creatinine Ratio Spot,400,449,640,38%,240
+Acth Stimulation Test For 17- Oh Progesterone,990,1099,1440,31%,450
+Acth(Adrenocorticotrophic Hormone),990,1099,1440,31%,450
+Ada (Adenosine Deaminase Activity),410,459,650,37%,240
+Aerobic Culture & Sensitivity,200,219,300,33%,100
+Aerobic Culture & Sensitivity ( Bactec Method),1080,1199,1710,37%,630
+"Afb Culture & Sensitivity, Miscellaneous",260,289,400,35%,140
+Afb Culture (Bactec Method),1080,1199,1700,36%,620
+Afb Culture : Sputum (Single Sp.) X 3 Days,760,849,1200,37%,440
+Afb Culture : Sputum(Single Sp),250,279,400,38%,150
+Afb Stain (Z-N Stain),130,149,200,35%,70
+"Afp (Alpha Fetoprotein), Maternal",400,449,650,38%,250
+"Afp (Alpha Fetoprotein), Tumor Marker",400,449,650,38%,250
+Albert Stain For Klb,200,219,300,33%,100
+Alberts Stain,230,259,350,34%,120
+Albumin,130,149,200,35%,70
+Albumin- Globulin Ratio,170,189,265,36%,95
+Alcohol,1520,1689,2400,37%,880
+Aldehyde Test,140,159,230,39%,90
+Aldolase,760,849,1080,30%,320
+Aldosterone,1420,1579,2100,32%,680
+Aldosterone To Renin Ratio,3600,3999,5790,38%,2190
+Alkaline Phosphatase,130,149,200,35%,70
+Allergy Profile (Blood),1400,1386,2280,39%,880
+Allergy Profile (Drug),2150,2389,3210,33%,1060
+Allergy Profile (Kolkata Immuno),1130,1259,1790,37%,660
+Allergy Profile (Medcis),5350,5949,8000,33%,2650
+Alpha-1 Antitrypsin (Aat),1710,1899,2540,33%,830
+Amh ( Anti Mullerian Hormone ),1120,1246,1780,37%,660
+Ammonia,390,429,600,35%,210
+Amylase (Serum),260,289,400,35%,140
+Ana (Anti Nuclear Antibodies ),410,459,650,37%,240
+Ana (Hep-2),680,759,1080,37%,400
+Ana Profile,2540,2819,3730,32%,1190
+Anaerobic Culture,220,249,356,38%,136
+Anaerobic Culture - Tissue,580,649,835,31%,255
+Anca Pr3/C-Anca,720,799,1150,37%,430
+Anca-Mpo/P-Anca,760,849,1200,37%,440
+Androgens (Testosterone & Shbg),1750,1939,2640,34%,890
+Androstenedione (A4),1120,1239,1640,32%,520
+Anf (Anti Nuclear Factor ),440,489,700,37%,260
+Anti Cardiolipin Antibody - Iga,400,449,640,38%,240
+Anti Cardiolipin Antibody - Igg,400,449,640,38%,240
+Anti Cardiolipin Antibody - Igm,400,449,640,38%,240
+Anti Ccp (Cyclic Citrullinated Peptide),670,739,1040,36%,370
+Anti Chlamydia Antibodies Igm,1750,1949,2650,34%,900
+Anti Dnase-B,2520,2799,3804,34%,1284
+Anti Ds-Dna Ifa With Titre,960,1069,1460,34%,500
+"Anti Ds-Dna, Total",420,469,660,36%,240
+Anti Hbc (Igg),410,459,650,37%,240
+Anti Hbc (Igm),410,459,650,37%,240
+Anti Ia-2 (Insulinoma Associated Antigen),4050,4499,5930,32%,1880
+Anti Mitochondrial Antibody (Ama),1080,1199,1708,37%,628
+Anti Musk Antibodies,4140,4599,5910,30%,1770
+Anti Neutrophilic Cytoplasmic Antibody (Anca),1170,1299,1820,36%,650
+Anti Parietal Cell Antibody,2250,2499,3880,42%,1630
+Anti Phospholipid (Anti Bodies Panel Igg& Igm),760,849,1200,37%,440
+Anti Phospholipid Antibody (Igg),400,449,640,38%,240
+Anti Phospholipid Antibody (Igm),400,449,640,38%,240
+Anti Smooth Muscle Antibody(Asma)-Ifa,1440,1599,2300,37%,860
+Anti Ss-A/Ro Antibody,1420,1579,2090,32%,670
+Anti Ss-B/La Antibody,1420,1579,2190,35%,770
+Anti Thrombin Iii (Antigenic),2690,2989,3910,31%,1220
+Anti Thyroglobulin Antibody (Atg),620,689,990,37%,370
+Anti Tpo (Anti Thyroid Peroxidase),500,559,810,38%,310
+Anti Ttg Igg,1120,1249,1750,36%,630
+Antidiuretic Hormone (Adh),2610,2899,3930,34%,1320
+Anti-Hbeab,400,449,654,39%,254
+Anti-Hcv,400,449,642,38%,242
+Anti-Hepatitis A Virus (Hav) Igm,400,449,630,37%,230
+Any Body Fluid : Ada,420,469,660,36%,240
+Any Body Fluid : Afb (If),350,389,560,38%,210
+Any Body Fluid : Afb (Z.N. Stain),130,149,200,35%,70
+Any Body Fluid : Albumin,110,119,170,35%,60
+Any Body Fluid : Amylase,280,309,436,36%,156
+Any Body Fluid : Cell Count & Type,200,219,314,36%,114
+Any Body Fluid : Fungus Stain,320,359,508,37%,188
+Any Body Fluid : Gram Stain,130,149,200,35%,70
+Any Body Fluid : Hanging Drop Preparation,200,219,308,35%,108
+Any Body Fluid : Ldh,260,289,400,35%,140
+Any Body Fluid : Sugar,40,49,60,33%,20
+Any Body Fluid : Total Protein,160,179,250,36%,90
+Any Body Fluid :Biochemistry,300,329,470,36%,170
+Apo-B / Apo-A1 Ratio,530,589,780,32%,250
+Apolipoprotein A1 (Apo-A1),530,589,780,32%,250
+Apolipoprotein B (Apo-B),530,589,790,33%,260
+Aptt (Activated Partial Thromboplastin Time),220,239,346,36%,126
+Aquaporin -4 (Nmo) Antibody,3590,3989,5590,36%,2000
+Arsenic,3320,3689,5500,40%,2180
+Asca (Anti Saccharomyces Cerevisiae Antibody),2600,2889,3730,30%,1130
+Asca (Anti Saccharomyces Cerevisiae Antibody),2600,2889,4130,37%,1530
+Aso Titre (Immunoturbidimetry),220,249,350,37%,130
+Aspergillus Fumigatus Ige,1490,1659,2190,32%,700
+Aspergillus Fumigatus Igg,1490,1659,2290,35%,800
+Aspergillus Fumigatus Igm,1490,1659,2199,32%,709
+B-2M (B-2 Microglobulin),1350,1499,2000,33%,650
+"Band Cell, Toxic Granules",70,79,104,33%,34
+"Bcr-Abl Gene Rearrangement, Pcr",5670,6299,8140,30%,2470
+"Bcr-Abl Gene Rearrangement,Pcr",6750,7499,9790,31%,3040
+"Bence Jones Proteins, Urine",450,499,690,35%,240
+Beta Human Chorionic Gonadotropin (Beta-Hcg),450,499,710,37%,260
+Beta-2 Microglobulin(Beta-2M),1350,1499,1990,32%,640
+Beta-2-Glycoprotein 1 (B2 Gp1) - Iga,850,949,1350,37%,500
+Beta-2-Glycoprotein 1 (B2 Gp1) - Igg,850,949,1350,37%,500
+Beta-2-Glycoprotein 1 (B2 Gp1) - Igm,850,949,1350,37%,500
+Bicarbonate (Hco3),190,209,290,34%,100
+Bile Acids Total,1160,1289,1730,33%,570
+"Bile Pigments(Quali),Urine(R)",80,89,123,35%,43
+"Bile Salt(Qyali),Random Urine",90,99,133,32%,43
+Bilirubin Conjugated,130,149,200,35%,70
+"Bilirubin Total, Conj. & Unconj.",130,149,200,35%,70
+Bilirubin Unconjugated,130,139,199,35%,69
+Biopsy (Five Slides),1120,1239,1780,37%,660
+Biopsy (Four Slides),890,989,1400,36%,510
+Biopsy (One Slide),220,249,350,37%,130
+Biopsy (Six Slides),1390,1539,2196,37%,806
+Biopsy (Three Slides),670,739,1050,36%,380
+Biopsy (Two Slides),450,499,700,36%,250
+Biopsy Mouse Organ (One Slide),430,479,700,39%,270
+Blast Cells,140,159,226,38%,86
+Blood Culture - Bact/Alert,1130,1259,1710,34%,580
+Blood Culture & Sensitivity ( Aerobic),1430,1589,2200,35%,770
+Blood Culture & Sensitivity (Anaerobic),1430,1589,2110,32%,680
+Blood Group Abo And Rh Typing,40,89,120,67%,80
+Bone Marrow (Chromosomal Analysis),3870,4299,6000,36%,2130
+Brucella Igg Antibody,670,749,990,32%,320
+Brucella Igm Antibody,670,749,990,32%,320
+Bt & Ct (Bleeding Time & Clotting Time),90,99,145,38%,55
+Bun (Blood Urea Nitrogen),130,139,199,35%,69
+C- Peptide Level,480,529,750,36%,270
+C- Peptide Level(Pp),470,519,730,36%,260
+C.S.F Electrophoresis,2890,3209,4280,32%,1390
+C/S:Catheter Tube,200,219,310,35%,110
+C/S:Catheter Urine,220,239,330,33%,110
+C/S:Pus,250,279,400,38%,150
+C/S:Semen,250,279,400,38%,150
+"C1 Esterase Inhibitor, Protein Quantitation",3150,3499,4500,30%,1350
+C-3(Complementary 3),600,669,950,37%,350
+C-4 (Complementary 4),600,669,950,37%,350
+Ca (Cyfra) 21-1;Lung Cancer Marker,4010,4459,5710,30%,1700
+Ca 125 (Male),470,519,740,36%,270
+Ca 125 (Overian Cancer Marker),450,499,720,38%,270
+Ca 15.3 (Breast Cancer Marker),480,529,750,36%,270
+Ca 19.9 (Pancreatic Cancer Marker),680,759,1080,37%,400
+Ca 72.4 (Gastric Cancer Marker),1620,1799,2390,32%,770
+Calcitonin / Thyrocalcitonin,1440,1599,2180,34%,740
+Calcium (24Hrs. Urine),160,179,250,36%,90
+Calcium (Ionised),320,359,500,36%,180
+Calcium (Serum),120,149,210,43%,90
+Calcium Random Urine,200,219,300,33%,100
+Calcium/Creatinine Ratio Urine Spot,350,389,550,36%,200
+Calcium:Phosphorus Ratio,390,429,600,35%,210
+Carbamazepine (Tegretol),620,689,980,37%,360
+"Catecholamines Fractionated, 24 Hours",2020,2239,3200,37%,1180
+"Catecholamines Fractionated, Random Urine",2240,2489,3200,30%,960
+"Catecholamines, Plasma",2650,2939,3900,32%,1250
+Cbc (Complete Blood Count),180,199,280,36%,100
+Cb-Naat (Genexpert Mtb/Rif),2280,2529,3600,37%,1320
+Cct (Creatinine Clearance Test),200,219,304,34%,104
+Cd19,2070,2299,3300,37%,1230
+"Cd19,Cd20",4430,4919,6490,32%,2060
+Cd20,2390,2659,3600,34%,1210
+Cd3 Counts,930,1029,1470,37%,540
+Cd4 Cd8 Counts,1340,1489,2100,36%,760
+Cd4 Counts,930,1029,1470,37%,540
+"Cd4,Cd3,Cd8",1790,1989,2830,37%,1040
+Cd8 Counts,930,1029,1470,37%,540
+Cea(Carcino Embryonic Antigen),370,409,580,36%,210
+Centromere Antibody,1420,1579,2190,35%,770
+Ceruloplasmin,740,819,1170,37%,430
+Cervical Smear : Afb (Z. N. Stain),130,149,200,35%,70
+Cervical Smear : Fungus Stain,260,289,400,35%,140
+Cervical Smear : Gram Stain,130,149,200,35%,70
+Cervical Smear : Malignant Cells (Pap),220,249,356,38%,136
+Chikungunya Igm,500,559,800,38%,300
+Chikungunya Qualitative Rt-Pcr Test,2250,2499,3460,35%,1210
+Chloride (Serum),200,219,300,33%,100
+"Chloride, Urine Spot",190,209,289,34%,99
+Cholesterol-Total,190,209,293,35%,103
+Cholinesterase.,530,589,836,37%,306
+Chromogranin - A Level,4320,4799,6340,32%,2020
+"Citrate, 24 Hour Urine",1120,1249,1630,31%,510
+Ck-Nac,220,249,344,36%,124
+Clostridium Difficile Assay From Stool,1790,1989,2630,32%,840
+Complete Hemogram,180,199,280,36%,100
+Conjunctival Swab (Lt) C/S,260,289,400,35%,140
+Conjunctival Swab (Rt) C/S,260,289,400,35%,140
+Coomb`S Test Indirect,250,279,387,35%,137
+"Coomb`S Test, Direct.",240,269,377,36%,137
+Copper (Serum),670,749,1070,37%,400
+Copper (Urine),800,889,1270,37%,470
+Cortisol (Random),400,449,640,38%,240
+Cortisol A.M (Morning),390,429,600,35%,210
+Cortisol P.M (Evening),390,429,600,35%,210
+"Cortisol, Free (24 Hrs Urine)",450,499,700,36%,250
+Covid Igg Against Spike Protein,1250,1389,1800,31%,550
+Cpk (Creatine Phospho Kinase),220,239,334,34%,114
+Cpk-Mb,220,249,354,38%,134
+Creatinine (Serum),80,99,130,38%,50
+Creatinine Body Fluid,130,149,200,35%,70
+"Creatinine, Cath Urine",130,149,200,35%,70
+"Creatinine, Urine 24 Hrs",160,179,253,37%,93
+Crp (C-Reactive Protein),220,239,330,33%,110
+"Cryoglobulins, Qualitative",510,569,810,37%,300
+Cryptococcus Antigen Rapid,1170,1299,1710,32%,540
+Csf Igg Index,1480,1649,2280,35%,800
+Csf Magnesium,400,449,640,38%,240
+Csf Oligoclonal Bands,3030,3369,4800,37%,1770
+CSF: Biochemistry & Cell Count & Type,470,519,740,36%,270
+"Culture, Fungus",900,999,1350,33%,450
+"Culture, Tissue",620,689,1000,38%,380
+Cystatin C,2240,2489,3270,31%,1030
+"Cysticercosis (Taenia Solium) Antibody, Igg",1510,1679,2250,33%,740
+"Cytomegalovirus (Cmv) Pcr , Qualitative",3220,3579,4730,32%,1510
+Cytomegalovirus(Cmv)- Igm,310,339,480,35%,170
+Cytomegalovirus(Cmv)-Igg,310,339,480,35%,170
+"Dc, (Differential Counts Leucocytes)",60,69,95,37%,35
+"Dc,Mp",80,89,120,33%,40
+"D-Dimer, Quantitative",540,599,850,36%,310
+Dengu Elisa Igm Antibody Capture,500,559,800,38%,300
+Dengue Elisa - Igg,380,419,600,37%,220
+Dengue Elisa - Igm,380,419,600,37%,220
+Dengue Elisa (Igg & Igm) Antibodies,580,639,900,36%,320
+Dengue Elisa (Ns1) & Ab (Igm & Igg),630,699,1000,37%,370
+Dengue Elisa Ns1 Antigen,440,489,700,37%,260
+Desmoglein,4490,4989,6560,32%,2070
+Dhea; Dehydroepiandrosterone,1660,1839,2450,32%,790
+Dhea-S (Dehydroepiandrosterone- Sulphate),620,689,990,37%,370
+Dhea-So4,440,489,700,37%,260
+Dopamine,3590,3989,5370,33%,1780
+Dpd Gene Mutations (5-Fu Toxicity) Detection,10690,11879,16300,34%,5610
+"Drugs Of Abuse Screen, Urine 8 Drugs",3050,3389,4500,32%,1450
+Dual Test or Double Marker,1650,1829,2610,37%,960
+E2(Estradial/Estrogen/Ostrogen),460,509,730,37%,270
+"E3 (Estriol), Unconjugated, Blood",890,989,1424,38%,534
+Egfr,220,249,350,37%,130
+Electrolyte Profile-I,350,389,550,36%,200
+Epo (Erythropoietin),1330,1479,2000,34%,670
+Epstein Barr Virus Antibody To Viral Capsid Ag (Vc),1610,1789,2380,32%,770
+Epstein Barr Virus Antibody To Viral Capsid Ag (Vc),1610,1789,2380,32%,770
+Er (Estrogen Receptor),1780,1979,2930,39%,1150
+Er-Pr & Her2Neu,5380,5979,7940,32%,2560
+Esr,50,59,80,38%,30
+F.N.A.C (Material Smear For Report),260,289,400,35%,140
+Factor Ix Defficient,1390,1549,2200,37%,810
+Factor V Leiden Mutation By Pcr,3730,4139,5900,37%,2170
+"Factor V, Functional",4030,4479,5900,32%,1870
+Factor Vii Defficient,2780,3089,3990,30%,1210
+Factor Viii Immunodepleted,1510,1679,2300,34%,790
+"Factor X, Functional",4220,4689,6220,32%,2000
+"Factor Xi, Functional",3050,3389,4400,31%,1350
+"Factor Xii, Functional",3050,3389,4500,32%,1450
+"Factor Xiii, Functional, Qualitative",760,839,1150,34%,390
+Faecal Calprotectin,2830,3149,4380,35%,1550
+Fdp (Fibrinogen Degradation Products),710,789,1100,35%,390
+Ferritin,320,379,550,42%,230
+Fetal Haemoglobin,430,479,680,37%,250
+Fetal Haemoglobin By Hplc,400,449,650,38%,250
+Fibrinogen,590,659,890,34%,300
+"Filaria Antibodies, Serum",790,879,1250,37%,460
+Filaria Antigen,620,689,1000,38%,380
+"Fish - Aneuploidy Detection, Products Of Conception (Poc)",6280,6979,9460,34%,3180
+Folate (Folic Acid),580,639,900,36%,320
+Free Androgen Index(Fai),1930,2149,3076,37%,1146
+Free Insulin,430,479,700,39%,270
+Free Light Chain,3510,3899,5000,30%,1490
+Free P S A,430,479,680,37%,250
+Free Psa / Psa Ratio,950,1059,1500,37%,550
+Free T3 (Free Tri-Iodothyronine),260,289,400,35%,140
+Free T4 (Free Thyroxine),230,259,362,36%,132
+Free Testosterone,440,489,700,37%,260
+"Fructosamine, Serum",880,979,1396,37%,516
+Fsh & Lh,510,569,800,36%,290
+Fsh (Follicle Stimulating Hormone),290,319,450,36%,160
+Fsh + Lh + Prl,620,689,986,37%,366
+"Ft3, Ft4, Tsh",580,639,900,36%,320
+Ft4,240,350,450,47%,210
+Ft3,250,350,450,44%,200
+"Ft3, Tsh",410,459,650,37%,240
+"Ft4 , Tsh",410,459,650,37%,240
+Fta-Abs (Fluorescent Treponemal Antibodies),1790,1989,2720,34%,930
+Fungal Stain,200,219,300,33%,100
+Fungus Culture,770,859,1224,37%,454
+"Fungus Routine, Koh Preparation",320,359,500,36%,180
+G6Pd ( Glucose 6 Phosphate Dehydrogenase),260,289,400,35%,140
+Gad-65 (Glutamic Acid Decarboxylase-65) Igg,3860,4289,6000,36%,2140
+Galactomannan (Aspergillus Antigen),2560,2849,4060,37%,1500
+"Galactosemia, Newborn Screen",8540,9489,12500,32%,3960
+Gastrin Level,1430,1589,2190,35%,760
+Genexpert Mtb / Rif,2280,2529,3600,37%,1320
+Gfr (Glomerular Filtration Rate),500,559,810,38%,310
+Ggt (Gamma-Gt),200,219,300,33%,100
+Gh (Growth Hormone),510,569,800,36%,290
+Gliadin Antibody Igg,1340,1489,2000,33%,660
+Globulin,120,129,180,33%,60
+Glomerular Basement Membrane Antibody(Gbm),1480,1649,2200,33%,720
+Glucose (Pp),60,69,90,33%,30
+"Glucose Challenge Test(Gct);Pregnancy,75G Gluc",70,79,110,36%,40
+Glucose Fasting,50,59,80,38%,30
+Glucose Random,60,69,95,37%,35
+Gram Stain,130,149,200,35%,70
+Gtt (Glucose Tolerance Test ),210,229,300,30%,90
+Hapatitis Virus Profile,4390,4879,6560,33%,2170
+Haptoglobin,1610,1789,2330,31%,720
+Hav (Hepatitis A Virus) - Igg,440,489,696,37%,256
+Hav (Hepatitis A Virus) - Igm,440,489,696,37%,256
+Hav (Igm),440,489,696,37%,256
+Hb & Esr,160,179,245,35%,85
+"Hb ,Tc ,Dc ,Mp",160,179,254,37%,94
+Hb Tc Dc,130,139,195,33%,65
+Hb Tc Dc Platelet Count,150,169,240,38%,90
+Hb Tc Esr,120,129,180,33%,60
+Hb% (Haemoglobin),90,99,136,34%,46
+"Hb, Tc, Dc, Esr",130,149,200,35%,70
+"Hb,Tc,Dc,Esr,Mp",160,179,250,36%,90
+"Hb,Tc,Dc,Mp,Platelet Count.",190,209,290,34%,100
+"Hb,Tc,Dc,Pcv",180,199,281,36%,101
+"Hb,Tc,Dc,Rbc Morphology",170,189,263,35%,93
+Hba1C(Glycosylated Haemoglobin) By Hplc,350,389,550,36%,200
+Hbcab-Total (Hepatitis B Core Antibody Total),410,459,651,37%,241
+Hbeag,410,459,651,37%,241
+Hbsag (Hepatitis B Surface Antigen) Elisa,390,429,610,36%,220
+Hbsag Test (Australia Antigen Test),240,269,380,37%,140
+Hcg,450,499,710,37%,260
+Hcv (Hepatitis C Virus) Antibody - Igg,450,499,710,37%,260
+Hcv (Hepatitis C Virus) Antibody - Igm,450,499,710,37%,260
+Hcv Ab,400,449,640,38%,240
+Hcv Genotyping + Viral Load,7550,8389,11000,31%,3450
+Hcv(Elisa),440,489,710,38%,270
+Hdl-Cholesterol,120,129,180,33%,60
+"Hdv (Hepatitis D Virus ) Antibody, Total",1610,1789,2380,32%,770
+He4 ( Human Epididymis Protein 4),2690,2989,3930,32%,1240
+Helicobacter Pylori Antigen,1140,1269,1740,34%,600
+Helicobacter Pylori Iga,850,939,1380,38%,530
+Helicobacter Pylori Igg,850,939,1280,34%,430
+Helicobacter Pylori Igm,850,939,1280,34%,430
+Hemosiderin Urine,1030,1139,1550,34%,520
+Hepatitis A Igm/ Igg (Each),410,459,650,37%,240
+Hepatitis B Envelope Antigen (Hbeag),410,459,650,37%,240
+Hepatitis B Surface Antibody (Anti- Hbs),410,459,650,37%,240
+"Hepatitis B Viral Dna Qualitative Pcr, Blood",1520,1689,2430,37%,910
+Hepatitis B Viral Dna Quantitative Real Time Pcr,1840,2039,2880,36%,1040
+"Hepatitis C Viral Rna Qualitative Pcr, Blood",1840,2039,2880,36%,1040
+Hepatitis C Virus Genotyping,5660,6289,8200,31%,2540
+Hepatitis-C Ab (Card),410,459,650,37%,240
+Her-2/Neu,1790,1989,2830,37%,1040
+Herpes (Hsv) 1 Igg,310,339,480,35%,170
+Herpes (Hsv) 1 Igm,310,339,480,35%,170
+Herpes (Hsv) 1&2 Igg,610,679,960,36%,350
+Herpes (Hsv) 1&2 Igm,610,679,960,36%,350
+Herpes (Hsv) 2 Igg,310,339,480,35%,170
+Herpes (Hsv) 2 Igm,310,339,480,35%,170
+Herpes Simplex Virus 1 & 2 Dna Qualitative Pcr,3460,3839,4970,30%,1510
+Hev Igg,410,459,650,37%,240
+Hev Igm,410,459,650,37%,240
+Hiv (I & Ii) Antibodies,410,459,650,37%,240
+"Hiv 1 & 2 Antibodies, Western Blot, Serum",1790,1989,2830,37%,1040
+Hiv- 1 Rna Quantitative,3490,3879,5430,36%,1940
+Hiv Elisa,410,459,650,37%,240
+"Hla - B*07, Whole Blood",6750,7499,9760,31%,3010
+Hla B27,970,1079,1530,37%,560
+Hla B27 (Pcr),1070,1189,1700,37%,630
+Homa Ir; Insulin Resistance Index,620,689,1000,38%,380
+Homocystine (Blood),1160,1289,1850,37%,690
+Hplc (Hb% Electrophoresis),430,479,690,38%,260
+Hs Crp (High Sensitivity C-Reactive Protein),510,569,810,37%,300
+"Htlv - I / Ii Antibody, Screen",2870,3189,4500,36%,1630
+Human Papilloma Virus (Hpv) Dna Pcr,1790,1989,2630,32%,840
+Hydatid Serology (Echinococcus Antibody - Igg),1120,1239,1850,39%,730
+Ige (Immunoglobulin E ) - Total,350,389,550,36%,200
+Igf-1 (Somatomedin-C),2960,3289,4390,33%,1430
+Ihc(Immunohisto Chemistry)1Marker,2960,3289,4290,31%,1330
+Ihc(Immunohisto Chemistry)2Marker,5390,5989,7700,30%,2310
+Ihc(Immunohisto Chemistry)3Marker,7190,7989,10560,32%,3370
+Immunofixation Electrophoresis,4940,5489,7500,34%,2560
+Immunoglobulin - Iga,390,429,610,36%,220
+Immunoglobulin - Igg,390,429,610,36%,220
+Immunoglobulin - Igm,390,429,610,36%,220
+"Immunoglobulin Igg Subclass 4 (Igg4),Serum",4940,5489,7660,36%,2720
+Inhibin A,1390,1539,2200,37%,810
+Inhibin B,1880,2089,2900,35%,1020
+Inorganic Phosphorus (Serum),130,149,200,35%,70
+Insulin - Random,350,389,550,36%,200
+Insulin (F),350,389,550,36%,200
+Insulin (Pp),350,389,550,36%,200
+Interleukin - 6 (Il-6),1670,1859,2650,37%,980
+Intrinsic Factor Antibody Igg,1340,1489,2844,53%,1504
+Iron,220,249,350,37%,130
+Iron & Tibc,450,499,700,36%,250
+Serum Iron,220,369,400,45%,180
+Iron Panel,510,569,800,36%,290
+Iron Studies Monitoring Panel,760,849,1200,37%,440
+Japanese Encephalitis Virus (Jev) Pcr,4490,4989,7000,36%,2510
+Kahn Test,90,99,150,40%,60
+Karyotyping (Chromosomal Analysis),2050,2279,2970,31%,920
+Karyotyping With C-Banding (Tissue),4090,4539,6500,37%,2410
+Ketone Bodies (Beta Hydroxybutyrate),1340,1489,1950,31%,610
+Ketone Random Urine,80,89,120,33%,40
+KFT,800,900,1900,58%,1100
+Klb Detection- Smear,160,179,250,36%,90
+"Lactate, Lactic Acid",510,569,810,37%,300
+"Ldh (Lactate Dehydrogenase), Fluid",220,249,350,37%,130
+Ldh (Total),290,319,450,36%,160
+Ldh-1,350,389,550,36%,200
+Ldl - Cholesterol,260,289,400,35%,140
+Ldl- Hdl Ratio,390,429,600,35%,210
+Ldl-Direct,260,289,400,35%,140
+Le-Cell Preparation,130,149,200,35%,70
+Leishmania (Kala Azar) Rk-39 Antibody,580,639,910,36%,330
+Leptospira Antibody Igg,440,489,710,38%,270
+Leptospira Antibody Igm,440,489,710,38%,270
+Lft (Liver Function Test),440,489,700,37%,260
+Lft With Ggt,490,539,750,35%,260
+Lh (Lutenising Hormone),310,339,450,31%,140
+Lipase,310,339,450,31%,140
+Lipase(Fluid),340,379,534,36%,194
+"Lipase, Urine 24 Hrs",320,359,500,36%,180
+Lipid Profile,440,499,700,37%,260
+Lipoprotein A (Lp-A),520,579,798,35%,278
+Lithium Level,320,359,500,36%,180
+Lkm (Liver Kidney Microsomal) Antibody,1340,1489,1990,33%,650
+Lkm1 Antibody,1340,1489,1990,33%,650
+Lupus Anticoagulant,1250,1389,1800,31%,550
+Magnesium (Mg++),350,389,550,36%,200
+Malaria By Real Time Pcr,2960,3289,4280,31%,1320
+Malaria(Pf. & Pv.) Dual Antigens,350,389,550,36%,200
+Mantoux Test ( 10 Tu Ppd),110,119,160,31%,50
+Mantoux Test ( 5 Tu Ppd),110,119,160,31%,50
+Mch (Mean Corpuscular Haemoglobin),100,109,150,33%,50
+Mchc (Mean Corpuscular Hb. Concentration),100,109,150,33%,50
+Mcv (Mean Corpuscular Volume),100,109,150,33%,50
+Mean Platelet Volume(Mpv),170,189,260,35%,90
+Measles / Rubeola Antibody - Igg,1120,1239,1604,30%,484
+Measles / Rubeola Antibody - Igm,1120,1239,1604,30%,484
+Measles/Rubeola Antibodies - (Igg & Igm),2240,2489,3280,32%,1040
+Mensturual Blood For Tb Dna Pcr,1250,1389,2000,38%,750
+"Metanephrines, 24 Hour Urine",2240,2489,3280,32%,1040
+"Metanephrines, Free, Plasma",3280,3639,4700,30%,1420
+Micro Filaria (Urine),90,99,150,40%,60
+Micro Filaria (Wet Preparation),120,129,180,33%,60
+Microalbumin Assay Urine (Spot/Morning),320,359,500,36%,180
+Microalbumin-Creatinine Ratio Urine,390,429,600,35%,210
+Microprotein /24Hrs Urinary Protein,320,359,500,36%,180
+Microprotein /Spot Urinary Protein,200,219,300,33%,100
+Mog (Myelin Oligodendrocyte Glycoprotein) Antibody,5210,5789,8000,35%,2790
+Mp (Malarial Parasite) Thick & Thin,170,189,260,35%,90
+"Mumps Virus Antibodies Panel, Igg & Igm",2280,2529,3600,37%,1320
+"Mumps Virus Antibody, Igg,Serum",1140,1269,1800,37%,660
+"Mumps Virus Antibody, Igm, Serum",1140,1269,1800,37%,660
+"Mycobacterium Tuberculosis Pcr, Tb Dna Pcr",1210,1339,1900,36%,690
+Myoglobin,950,1059,1500,37%,550
+Nasal Swab For Eosinophil Count,90,99,150,40%,60
+Neisseria Gonorrhoeae,2960,3289,4260,31%,1300
+Neonatal Bilirubin,150,169,250,40%,100
+Neutrophil To Lymphocyte Ratio (Nlr),160,179,250,36%,90
+Nipt(Non-Invasive Prenatal Screening Test Repor,8900,9889,12960,31%,4060
+Nmo-Mog Antibody (Cell Based Assay),8000,8889,11560,31%,3560
+"Nor-Metanephrines, 24 Hour Urine",2690,2989,4140,35%,1450
+Npn ( Non Protein Nitrogen),120,129,180,33%,60
+Nt- Probnp (N-Terminal Pro B Type Natriuretic Pept,1430,1589,2250,36%,820
+Optimal Malaria Antigen (Pf & Pv),350,389,550,36%,200
+Osmatic Fragility Test,1070,1189,1600,33%,530
+Osmolality (Serum),510,569,810,37%,300
+Osmolality (Urine),510,569,810,37%,300
+Ot Swabs Culture (Aerobic),260,289,400,35%,140
+"Oxalate, 24 Hour Urine",710,789,1100,35%,390
+Oxalates - Plasma,1120,1239,1700,34%,580
+Pap Smear -Cervical Cytology,230,259,360,36%,130
+Pap Stain:Smear (Out. Slide),220,249,350,37%,130
+Papp-A (Pregnancy Associated Plasma Protein -A),1390,1539,2200,37%,810
+"Parvovirus B 19 Antibody, Igg, Serum",2560,2839,3830,33%,1270
+"Parvovirus B 19 Antibody, Igm, Serum",2560,2839,3730,31%,1170
+Pcr,3930,4369,6240,37%,2310
+Pcv Haematocrit,90,99,150,40%,60
+Peripheral Smear,90,99,145,38%,55
+"Ph, Blood",1210,1339,1790,32%,580
+Phenytoin (Level) / Dilantin,610,679,900,32%,290
+Phospholipase A2 Receptor Antibody Igg,5840,6489,8500,31%,2660
+Phospholipid Antibody Igg & Igm,760,839,1200,37%,440
+Phosphorus,160,179,250,36%,90
+Phosphorus Random Urine,200,219,300,33%,100
+"Phosphorus, 24 Hour Urine",220,239,330,33%,110
+Plasma Renin Activity,2870,3189,4199,32%,1329
+Platelet Count,90,99,140,36%,50
+Pnh  Paroxysmal Nocturnal Haemoglobinuria Panel,4490,4989,6560,32%,2070
+Pocd (Poly Cystic Ovarian Disorder),1390,1539,2200,37%,810
+Positive Hiv I & Ii,410,459,650,37%,240
+Potassium (24Hrs. Urine),200,219,300,33%,100
+Potassium (Fluid ),200,219,300,33%,100
+"Potassium (K+), Random Urine Assay",200,219,300,33%,100
+Potassium (K+Serum),170,189,269,37%,99
+Potassium Creatinine Ratio(Random Urine),410,459,650,37%,240
+Pr (Progesterone Receptor),1700,1889,2550,33%,850
+Pregnancy Card Test(Hcg.02Iu),120,129,181,34%,61
+Pregnancy Elisa Test,120,129,180,33%,60
+Prl (Prolactin),290,319,450,36%,160
+Procalcitonin,1300,1439,2060,37%,760
+Progesterone,350,389,550,36%,200
+"Prostate Health Index (Phi), Serum",2870,3189,4190,32%,1320
+Protein C,2510,2789,3910,36%,1400
+Protein Creatinine Ratio,440,489,698,37%,258
+"Protein Electrophoresis, 24-Hour Urine",2420,2689,3860,37%,1440
+"Protein Electrophoresis, Blood",590,659,930,37%,340
+Protein S,2510,2789,3720,33%,1210
+Prothrombin Time (Pt/Inr),210,229,320,34%,110
+Psa (Prostate Specific Antigen),350,389,554,37%,204
+Pth Intact (Intact Parathyroid Hormone),620,689,980,37%,360
+Pus Culture And Sensitivity For Bacteria,580,639,900,36%,320
+Pus; Malignant Cells (Pap),220,249,350,37%,130
+Quadruple Marker Test,2290,2539,3650,37%,1360
+Ra-Factor,200,219,300,33%,100
+Rbc Count,80,89,120,33%,40
+Rdw,110,119,163,33%,53
+Reticulocyte Count,140,159,220,36%,80
+Reticulocyte Production Index,260,289,400,35%,140
+Rev T3 (Reverse Triiodothyronine),2240,2489,3500,36%,1260
+Review Biopsy (Each Slide),230,259,360,36%,130
+Review Fnac Slide,260,289,400,35%,140
+Rhd Antibody Titer,310,339,456,32%,146
+Roma (Risk Of Ovarian Malignancy Algorithm),4130,4589,6000,31%,1870
+"Rubella Avidity, Igg, Serum",710,789,1100,35%,390
+Rubella-Igg,310,339,480,35%,170
+Rubella-Igm,310,339,480,35%,170
+Saag (Serum Ascites Albumin Gradient),400,449,630,37%,230
+Sanger Sequencing For Tsc1 And Tsc2,20600,22889,32000,36%,11400
+Sars Cov 2 Antibody Igg,980,1089,1500,35%,520
+Sars Cov 2 Antibody Igm,980,1089,1500,35%,520
+Scl-70 Igg,1340,1489,2010,33%,670
+Scrub Typhus,800,889,1200,33%,400
+Scrub Typhus Antibody Igg(Eia),830,919,1300,36%,470
+Scrub Typhus Antibody Igm(Eia),830,919,1300,36%,470
+Scrub Typhus Igg & Igm,1660,1839,2600,36%,940
+Scrub Typhus Igm.,800,889,1200,33%,400
+Semen Analysis,200,219,300,33%,100
+Serum Albumin:Creatinine Ratio,350,389,550,36%,200
+Serum Cpk (Creatine Phospho Kinase),210,229,320,34%,110
+Sex Hormone Binding Globulin (Shbg),1520,1689,2400,37%,880
+Sgot / Ast,120,129,180,33%,60
+Sgpt / Alt,120,129,180,33%,60
+"Sickling, Screening Test",410,459,650,37%,240
+Skin Scraping For (Afb),200,219,300,33%,100
+Skin Scraping For (Fungus),260,289,400,35%,140
+Sm ( Smith) Antibody Igg,1340,1489,1950,31%,610
+Sm/Rnp Antibody/Anti-U1 Rnp Antibody,1340,1489,1950,31%,610
+Sodium & Potasium,310,339,480,35%,170
+Sodium (24Hrs. Urine),200,219,300,33%,100
+Sodium (Na+ Serum),200,219,300,33%,100
+"Sodium, Fluid",200,219,300,33%,100
+Soluble Liver Antigen(Sla),4760,5289,6940,31%,2180
+Sputum (Morning) : Fungus Stain,260,289,400,35%,140
+Sputum (Morning) : Gram Stain,130,149,200,35%,70
+Sputum Culture & Sensitivity,260,289,400,35%,140
+Sputum For Afb (Z.N. Stain),130,149,200,35%,70
+Sputum For Gram & Afb Stain,260,289,400,35%,140
+Sputum For Malignant Cell,220,249,350,37%,130
+Stool Culture & Sensitivity,200,219,300,33%,100
+Stool Occult Blood Test (Obt),80,89,120,33%,40
+Stool Re & Obt,120,129,180,33%,60
+Stool Reducing Substance,80,89,120,33%,40
+Stool Routine Examination,90,99,150,40%,60
+"Stool,Ph",80,89,120,33%,40
+Subtype Ige,410,459,650,37%,240
+T3 (Total Tri-Iodothyronine),170,189,270,37%,100
+T4 (Total Thyroxine),180,199,281,36%,101
+"T4 , Tsh",350,389,550,36%,200
+Tacrolimus Level,2690,2989,3910,31%,1220
+Tb Gold,1750,1939,2800,38%,1050
+Tb Pcr Dna,1120,1239,1800,38%,680
+Tb Pcr Rna,1700,1889,2700,37%,1000
+Tc,70,79,100,30%,30
+Tc Dc,110,119,160,31%,50
+Tc Dc Esr,120,129,180,33%,60
+"Tc,Dc,Mp",130,149,200,35%,70
+Testosterone / Cortisol Ratio,700,779,1100,36%,400
+"Testosterone, Total",360,399,569,37%,209
+Throat Swab Culture & Sensitivity,260,289,400,35%,140
+Throat Swab For Gram Stain,90,99,150,40%,60
+Throat Swab For Klb Stain,160,179,250,36%,90
+Thrombin Time,350,389,550,36%,200
+Thyroglobulin (Tg),800,889,1270,37%,470
+Thyroglobulin Antibody,800,889,1270,37%,470
+"Thyroid Profile (T3, T4, Tsh)",440,489,700,37%,260
+Thyroxine Binding Globulin (Tbg),1160,1289,1730,33%,570
+Tibc (Total Iron Binding Capacity),220,249,350,37%,130
+Tissue Culture And Sensitivity For Bacteria,670,739,1000,33%,330
+Tissue Transglutaminase (Ttg) Antibody Iga,890,989,1340,34%,450
+Torch -Igg & Igm (10 Parameter),1520,1689,2400,37%,880
+Torch -Igg & Igm (8 Parameter),1430,1589,2200,35%,770
+Torch-Igg,890,989,1400,36%,510
+Torch-Igm,890,989,1400,36%,510
+Total Protein,120,129,180,33%,60
+Total Protein: Albumin/ Globulin,170,189,250,32%,80
+Toxoplasma-Igg,310,339,480,35%,170
+Toxoplasma-Igm,310,339,480,35%,170
+Tpha (Syphilis Antibodies Screening Test),260,289,400,35%,140
+Transferrin Saturation Index,400,439,590,32%,190
+"Transferrin, Serum",710,789,1100,35%,390
+Triglycerides,220,239,330,33%,110
+Triglycerides (Fluid),210,229,319,34%,109
+Triple Marker Test,1160,1289,1800,36%,640
+"Troponin I, Serum (High Sensitive)",1160,1289,1730,33%,570
+Troponin-I,760,849,1200,37%,440
+Troponin-T (Trop-T),760,849,1200,37%,440
+Tsh - Thyroid-Stimulating Hormone,200,219,300,33%,100
+Tsh Receptor Antibody,3590,3989,5500,35%,1910
+Typhi Dot/ Salmonella Typhi Igm Elisa,580,639,910,36%,330
+Typhoid/Typhi Igg,220,249,350,37%,130
+Typhoid/Typhi Igm,220,249,350,37%,130
+Typhoid/Typhi Igm & Igg,320,359,500,36%,180
+Uibc (Unsaturated Iron Binding Capacity),260,289,400,35%,140
+Urea & Creatinine (Serum),160,179,250,36%,90
+Urea (Serum),130,149,200,35%,70
+"Urea, Cath Urine",130,149,209,38%,79
+Uric Acid (24 Hours Urine),190,209,299,36%,109
+Uric Acid (Serum),120,149,202,41%,82
+Urinary Beta Hcg(Titre),450,499,710,37%,260
+Urine (24 Hours) : Amylase,290,319,450,36%,160
+Urine (24 Hours) : Calcium,200,219,300,33%,100
+Urine (24 Hours) : Chloride,200,219,300,33%,100
+Urine (24 Hours) : Creatinine,200,219,300,33%,100
+Urine (24 Hours) : Magnesium,410,459,650,37%,240
+Urine (24 Hours) : Microalbumin,320,359,500,36%,180
+Urine (24 Hours) : Microprotein,200,219,300,33%,100
+Urine (24Hours) : Na+/K+ (Each),200,219,300,33%,100
+Urine (Spot/Morning) : Albumin,120,129,180,33%,60
+Urine (Spot/Morning) : Bence Jones Protein,400,449,630,37%,230
+Urine (Spot/Morning) : Calcium Assay,200,219,300,33%,100
+Urine (Spot/Morning) : Chloride Assay,200,219,300,33%,100
+Urine (Spot/Morning) : Magnesium Assay,410,459,650,37%,240
+Urine (Spot/Morning) : Malignant Cells (Pap),220,249,350,37%,130
+Urine (Spot/Morning) : Microalbumin Assay,320,359,500,36%,180
+Urine (Spot/Morning) : Microprotein Assay,200,219,300,33%,100
+Urine (Spot/Morning) : Na+/K+ Assay (Each),200,219,300,33%,100
+Urine (Spot/Morning) : Uric Acid Assay,200,219,300,33%,100
+Urine (Spot/Morning) Bile Pigments,40,49,60,33%,20
+Urine (Spot/Morning) Bile Salts,40,49,60,33%,20
+Urine (Spot/Morning) Excess Phosphate,130,139,199,35%,69
+Urine (Spot/Morning) Porphobilinogen,350,389,500,30%,150
+Urine (Spot/Morning) Specific Gravity,80,89,120,33%,40
+Urine (Spot/Morning) Sugar,50,59,80,38%,30
+Urine (Spot/Random) : Creatinine Assay,200,219,300,33%,100
+Urine (Spot/Random) : Urea Assay,170,189,250,32%,80
+Urine For Chyle Test,580,639,900,36%,320
+Urine For Culture & Sensitivity,200,219,300,33%,100
+Urine For Lemphocyte,580,639,900,36%,320
+Urine For Nitrate,580,639,900,36%,320
+Urine For Preg Colour Test,130,139,190,32%,60
+Urine For Toxicology/Drug Screen,3590,3989,5800,38%,2210
+Urine Ketone Body / Acetone,90,99,150,40%,60
+Urine Proteins (24Hrs),200,219,300,33%,100
+Urine Routine Examination,90,99,140,36%,50
+Urine Sugar (Spot/Morning),120,129,180,33%,60
+Urine Urobilinogen (Spot/Morning),90,99,130,31%,40
+"Urine, Reducing Substances",90,99,139,35%,49
+Vaginal Smear For Pap,220,249,350,37%,130
+Valproic Acid (Sodium Valproate),580,639,910,36%,330
+"Varicella Zoster Virus (Vzv) Antibody, Igg, Serum",1160,1289,1840,37%,680
+"Varicella Zoster Virus (Vzv) Antibody, Igm, Serum",1170,1299,1850,37%,680
+Vdrl Test,120,129,180,33%,60
+Vdrl Test With Quantitation,230,259,360,36%,130
+Vitamin A(Retinol),4025,3889,5980,33%,1700
+Vitamin B1 (Thiamine Pyrophosphate),4025,3889,5865,31%,1600
+Vitamin B12,633,689,1150,45%,450
+Vitamin B12; Cyanocobalamin,828,799,1300,36%,410
+Vitamin B2; Riboflavin,3611,3489,5198,31%,1380
+Vitamin B6; Pyridoxine,3818,3689,6072,37%,1960
+Vitamin C (L-Ascorbic Acid),3921,3789,5980,34%,1790
+Vitamin D3 (25 - Oh),633,689,1150,45%,450
+Vitamin E (Tocopherol),3921,3789,5980,34%,1790
+Vitamin K1,5164,4989,7981,35%,2450
+Vldl - Cholesterol,160,179,250,36%,90
+"Vma (Vanilmandelic Acid) , Random Urine",1250,1389,1790,30%,540
+"Vma (Vanilmandelic Acid), 24 Hour Urine",1250,1389,1790,30%,540
+Von Willebrand Factor Antigen; Vwf,2420,2689,3860,37%,1440
+Wassermann Reaction,130,149,200,35%,70
+Weil Felix Test,800,889,1250,36%,450
+Widal Test ( Slide Method ),130,139,190,32%,60
+Widal Test (Tube Method),150,169,229,34%,79
+Wound Swab : Cs,260,289,400,35%,140
+Zinc,1160,1289,1700,32%,540

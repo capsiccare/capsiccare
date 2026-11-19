@@ -1,0 +1,71 @@
+area_id,area_name,area_slug,district,service_type,status
+AREA001,Kolkata Central,kolkata-central,Kolkata,Home Collection,Active
+AREA002,Kolkata North,kolkata-north,Kolkata,Home Collection,Active
+AREA003,Kolkata South,kolkata-south,Kolkata,Home Collection,Active
+AREA004,Kolkata East,kolkata-east,Kolkata,Home Collection,Active
+AREA005,Kolkata West,kolkata-west,Kolkata,Home Collection,Active
+AREA006,Salt Lake,salt-lake,Kolkata,Home Collection,Active
+AREA007,New Town,new-town,Kolkata,Home Collection,Active
+AREA008,Rajarhat,rajarhat,North 24 Parganas,Home Collection,Active
+AREA009,Dum Dum,dum-dum,North 24 Parganas,Home Collection,Active
+AREA010,Baranagar,baranagar,North 24 Parganas,Home Collection,Active
+AREA011,Kamarhati,kamarhati,North 24 Parganas,Home Collection,Active
+AREA012,Panihati,panihati,North 24 Parganas,Home Collection,Active
+AREA013,Kharda,kharda,North 24 Parganas,Home Collection,Active
+AREA014,Barrackpore,barrackpore,North 24 Parganas,Home Collection,Active
+AREA015,Titagarh,titagarh,North 24 Parganas,Home Collection,Active
+AREA016,Madhyamgram,madhyamgram,North 24 Parganas,Home Collection,Active
+AREA017,Birati,birati,North 24 Parganas,Home Collection,Active
+AREA018,Naihati,naihati,North 24 Parganas,Home Collection,Active
+AREA019,Bhatpara,bhatpara,North 24 Parganas,Home Collection,Active
+AREA020,Kanchrapara,kanchrapara,North 24 Parganas,Home Collection,Active
+AREA021,Habra,habra,North 24 Parganas,Home Collection,Active
+AREA022,Ashoknagar,ashoknagar,North 24 Parganas,Home Collection,Active
+AREA023,Barasat,barasat,North 24 Parganas,Home Collection,Active
+AREA024,Basirhat,basirhat,North 24 Parganas,Home Collection,Active
+AREA025,Howrah City,howrah-city,Howrah,Home Collection,Active
+AREA026,Bankra,bankra,Howrah,Home Collection,Active
+AREA027,Liluah,liluah,Howrah,Home Collection,Active
+AREA028,Belur,belur,Howrah,Home Collection,Active
+AREA029,Bally,bally,Howrah,Home Collection,Active
+AREA030,Shibpur,shibpur,Howrah,Home Collection,Active
+AREA031,Santragachi,santragachi,Howrah,Home Collection,Active
+AREA032,Jagacha,jagacha,Howrah,Home Collection,Active
+AREA033,Domjur,domjur,Howrah,Home Collection,Active
+AREA034,Uluberia,uluberia,Howrah,Home Collection,Active
+AREA035,Bagnan,bagnan,Howrah,Home Collection,Active
+AREA036,Amta,amta,Howrah,Home Collection,Active
+AREA037,Serampore,serampore,Hooghly,Home Collection,Active
+AREA038,Chandannagar,chandannagar,Hooghly,Home Collection,Active
+AREA039,Uttarpara,uttarpara,Hooghly,Home Collection,Active
+AREA040,Konnagar,konnagar,Hooghly,Home Collection,Active
+AREA041,Rishra,rishra,Hooghly,Home Collection,Active
+AREA042,Baidyabati,baidyabati,Hooghly,Home Collection,Active
+AREA043,Dankuni,dankuni,Hooghly,Home Collection,Active
+AREA044,Chinsurah,chinsurah,Hooghly,Home Collection,Active
+AREA045,Bhadreswar,bhadreswar,Hooghly,Home Collection,Active
+AREA046,Tarakeswar,tarakeswar,Hooghly,Home Collection,Active
+AREA047,Maheshtala,maheshtala,South 24 Parganas,Home Collection,Active
+AREA048,Budge Budge,budge-budge,South 24 Parganas,Home Collection,Active
+AREA049,Pujali,pujali,South 24 Parganas,Home Collection,Active
+AREA050,Baruipur,baruipur,South 24 Parganas,Home Collection,Active
+AREA051,Sonarpur,sonarpur,South 24 Parganas,Home Collection,Active
+AREA052,Rajpur,rajpur,South 24 Parganas,Home Collection,Active
+AREA053,Narendrapur,narendrapur,South 24 Parganas,Home Collection,Active
+AREA054,Diamond Harbour,diamond-harbour,South 24 Parganas,Home Collection,Active
+AREA055,Kalyani,kalyani,Nadia,Home Collection,Active
+AREA056,Chakdaha,chakdaha,Nadia,Home Collection,Active
+AREA057,Ranaghat,ranaghat,Nadia,Home Collection,Active
+AREA058,Krishnanagar,krishnanagar,Nadia,Home Collection,Active
+AREA059,Shantipur,shantipur,Nadia,Home Collection,Active
+AREA060,Nabadwip,nabadwip,Nadia,Home Collection,Active
+AREA061,Bankra Bazar,bankra-bazar,Howrah,Home Collection,Active
+AREA062,Kabar Para,kabar-para,Howrah,Home Collection,Active
+AREA063,Kona,kona,Howrah,Home Collection,Active
+AREA064,Makardah,makardah,Howrah,Home Collection,Active
+AREA065,Salap,salap,Howrah,Home Collection,Active
+AREA066,Nibra,nibra,Howrah,Home Collection,Active
+AREA067,Andul,andul,Howrah,Home Collection,Active
+AREA068,Mahiari,mahiari,Howrah,Home Collection,Active
+AREA069,Kadamtala,kadamtala,Howrah,Home Collection,Active
+AREA070,Jalan Complex,jalan-complex,Howrah,Home Collection,Active

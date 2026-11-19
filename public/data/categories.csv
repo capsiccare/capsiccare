@@ -1,0 +1,11 @@
+category_id,category_name,category_slug,description,icon,status
+CAT001,Blood Tests,blood-tests,Blood Tests include laboratory diagnostic investigations.,lab,Active
+CAT002,General Lab Tests,general-lab-tests,General Lab Tests include laboratory diagnostic investigations.,lab,Active
+CAT003,Heart & Lipid Tests,heart-&-lipid-tests,Heart & Lipid Tests include laboratory diagnostic investigations.,lab,Active
+CAT004,Hormone Tests,hormone-tests,Hormone Tests include laboratory diagnostic investigations.,lab,Active
+CAT005,Infection Tests,infection-tests,Infection Tests include laboratory diagnostic investigations.,lab,Active
+CAT006,Molecular Tests,molecular-tests,Molecular Tests include laboratory diagnostic investigations.,lab,Active
+CAT007,Stool Tests,stool-tests,Stool Tests include laboratory diagnostic investigations.,lab,Active
+CAT008,Thyroid Tests,thyroid-tests,Thyroid Tests include laboratory diagnostic investigations.,lab,Active
+CAT009,Urine Tests,urine-tests,Urine Tests include laboratory diagnostic investigations.,lab,Active
+CAT010,Vitamin Tests,vitamin-tests,Vitamin Tests include laboratory diagnostic investigations.,lab,Active

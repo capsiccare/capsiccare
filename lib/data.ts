@@ -1,0 +1,645 @@
+export interface LabTest {
+  id: string
+  name: string
+  price: number
+  originalPrice?: number
+  category: string
+  organs: string[]
+  testCount: number
+  description: string
+  homeCollection: boolean
+  discount?: number
+  gender?: 'all' | 'male' | 'female'
+  image?: string
+}
+
+export interface HealthPackage {
+  id: string
+  name: string
+  price: number
+  originalPrice?: number
+  testCount: number
+  description: string
+  benefits: string[]
+  homeCollection: boolean
+  discount?: number
+  category: string
+  image?: string
+}
+
+export interface BlogPost {
+  id: string
+  title: string
+  excerpt: string
+  content: string
+  date: string
+  author: string
+  category: string
+  image?: string
+  readTime: number
+}
+
+export const categories = [
+  'Cardiac Health',
+  'Diabetes Screening',
+  'Liver Function',
+  'Kidney Health',
+  'Thyroid Panel',
+  'Vitamin & Mineral',
+  'Allergy Testing',
+  'Women Health',
+  'Men Health',
+  'Full Body Checkup',
+  'Blood Typing',
+  'Immunity Check',
+]
+
+export const labTests: LabTest[] = [
+  {
+    id: 'test-1',
+    name: 'Complete Blood Count (CBC)',
+    price: 176,
+    originalPrice: 462,
+    category: 'Blood Work',
+    organs: ['Blood'],
+    testCount: 26,
+    description: 'Comprehensive blood count analysis including RBC, WBC, and platelets.',
+    homeCollection: true,
+    discount: 62,
+    gender: 'all',
+  },
+  {
+    id: 'test-2',
+    name: 'Lipid Profile',
+    price: 440,
+    originalPrice: 1122,
+    category: 'Cardiac Health',
+    organs: ['Heart', 'Blood Vessels'],
+    testCount: 5,
+    description: 'Check cholesterol levels and risk factors for heart disease.',
+    homeCollection: true,
+    discount: 61,
+    gender: 'all',
+  },
+  {
+    id: 'test-3',
+    name: 'Thyroid Function Test (TSH)',
+    price: 198,
+    originalPrice: 506,
+    category: 'Thyroid Panel',
+    organs: ['Thyroid'],
+    testCount: 3,
+    description: 'Evaluate thyroid hormone levels and thyroid function.',
+    homeCollection: true,
+    discount: 61,
+    gender: 'all',
+  },
+  {
+    id: 'test-4',
+    name: 'Liver Function Test',
+    price: 440,
+    originalPrice: 1100,
+    category: 'Liver Function',
+    organs: ['Liver'],
+    testCount: 10,
+    description: 'Assess liver health and function with comprehensive markers.',
+    homeCollection: true,
+    discount: 60,
+    gender: 'all',
+  },
+  {
+    id: 'test-5',
+    name: 'Kidney Function Panel',
+    price: 165,
+    originalPrice: 418,
+    category: 'Kidney Health',
+    organs: ['Kidneys'],
+    testCount: 8,
+    description: 'Evaluate kidney function and detect any abnormalities.',
+    homeCollection: true,
+    discount: 61,
+    gender: 'all',
+  },
+  {
+    id: 'test-6',
+    name: 'Fasting Blood Sugar (FBS)',
+    price: 55,
+    originalPrice: 154,
+    category: 'Diabetes Screening',
+    organs: ['Blood'],
+    testCount: 1,
+    description: 'Screen for diabetes and blood sugar levels.',
+    homeCollection: true,
+    discount: 64,
+    gender: 'all',
+  },
+  {
+    id: 'test-7',
+    name: 'Vitamin B12 & Folate',
+    price: 708,
+    originalPrice: 1771,
+    category: 'Vitamin & Mineral',
+    organs: ['Blood'],
+    testCount: 2,
+    description: 'Check B12 and folate levels for energy and neurological health.',
+    homeCollection: true,
+    discount: 60,
+    gender: 'all',
+  },
+  {
+    id: 'test-8',
+    name: 'Iron Profile',
+    price: 506,
+    originalPrice: 1276,
+    category: 'Vitamin & Mineral',
+    organs: ['Blood'],
+    testCount: 4,
+    description: 'Assess iron levels and detect anemia.',
+    homeCollection: true,
+    discount: 60,
+    gender: 'all',
+  },
+  {
+    id: 'test-9',
+    name: 'Hormone Profile (Women)',
+    price: 616,
+    originalPrice: 1540,
+    category: 'Women Health',
+    organs: ['Endocrine'],
+    testCount: 5,
+    description: 'Comprehensive hormone evaluation for women\'s health.',
+    homeCollection: true,
+    discount: 60,
+    gender: 'female',
+  },
+  {
+    id: 'test-10',
+    name: 'PSA Test (Prostate)',
+    price: 352,
+    originalPrice: 880,
+    category: 'Men Health',
+    organs: ['Prostate'],
+    testCount: 1,
+    description: 'Screen for prostate health and potential issues.',
+    homeCollection: true,
+    discount: 60,
+    gender: 'male',
+  },
+  {
+    id: 'test-11',
+    name: 'Allergy Panel (IgE)',
+    price: 352,
+    originalPrice: 880,
+    category: 'Allergy Testing',
+    organs: ['Blood'],
+    testCount: 15,
+    description: 'Test for common allergens and allergic reactions.',
+    homeCollection: true,
+    discount: 60,
+    gender: 'all',
+  },
+  {
+    id: 'test-12',
+    name: 'COVID-19 RT-PCR',
+    price: 968,
+    originalPrice: 2420,
+    category: 'Viral Testing',
+    organs: ['Respiratory'],
+    testCount: 1,
+    description: 'RT-PCR testing for COVID-19 detection.',
+    homeCollection: true,
+    discount: 60,
+    gender: 'all',
+  },
+]
+
+export const healthPackages: HealthPackage[] = [
+  {
+    id: 'pkg-1',
+    name: 'Basic Full Body Check-Up',
+    price: 699,
+    originalPrice: 1713,
+    testCount: 7,
+    description: 'Stay Ahead. Stay Healthy. Essential 7-test preventive screening covering heart, liver, kidney, thyroid, blood count, and blood sugar.',
+    benefits: [
+      'Complete Blood Count (CBC)',
+      'Fasting Blood Sugar (FBS)',
+      'Lipid Profile (Cholesterol & Triglycerides)',
+      'Liver Function Test (LFT)',
+      'Urea (Kidney)',
+      'Creatinine (Kidney)',
+      'TSH (Thyroid Function)',
+    ],
+    homeCollection: true,
+    discount: 59,
+    category: 'Full Body Checkup',
+    image: '/images/packages/basic-full-body-checkup.jpg',
+  },
+  {
+    id: 'pkg-2',
+    name: 'Diabetes & Sugar Care Package',
+    price: 699,
+    originalPrice: 1650,
+    testCount: 4,
+    description: 'শুধু Sugar দেখবেন না— নিয়ন্ত্রণে আছে কি না জানুন। Complete 3-month average sugar control, fasting sugar, and lipid cardiovascular assessment.',
+    benefits: [
+      'Fasting Blood Sugar (FBS)',
+      'PP Blood Sugar (PPBS)',
+      'HbA1c (Average Blood Sugar last 2-3 months)',
+      'Lipid Profile (Total Cholesterol, HDL, LDL, Triglycerides)',
+    ],
+    homeCollection: true,
+    discount: 58,
+    category: 'Diabetes Screening',
+    image: '/images/packages/diabetes-sugar-care-package.jpg',
+  },
+  {
+    id: 'pkg-3',
+    name: 'Thyroid & Wellness Check Package',
+    price: 499,
+    originalPrice: 1289,
+    testCount: 3,
+    description: 'Small gland, big impact on your health. Complete Thyroid Assessment (T3, T4, TSH) with CBC and Hemoglobin check.',
+    benefits: [
+      'Thyroid Profile (T3, T4, TSH)',
+      'CBC (Complete Blood Count)',
+      'Hb% (Hemoglobin Check for Anemia)',
+    ],
+    homeCollection: true,
+    discount: 61,
+    category: 'Thyroid & Wellness',
+    image: '/images/packages/thyroid-wellness-check-package.jpg',
+  },
+  {
+    id: 'pkg-4',
+    name: 'Heart & Metabolic Check Package',
+    price: 799,
+    originalPrice: 1879,
+    testCount: 4,
+    description: 'Heart Health + Sugar + Cholesterol. Take a step today for a healthier tomorrow with comprehensive metabolic screening.',
+    benefits: [
+      'Lipid Profile (Complete Cholesterol & Triglycerides)',
+      'Fasting Blood Sugar (FBS)',
+      'HbA1c (3-Month Glycemic Index)',
+      'Creatinine (Kidney Filtration Function)',
+    ],
+    homeCollection: true,
+    discount: 57,
+    category: 'Cardiovascular & Metabolic',
+    image: '/images/packages/heart-metabolic-check-package.jpg',
+  },
+  {
+    id: 'pkg-5',
+    name: 'Vitamin & Energy Check Package',
+    price: 1091,
+    originalPrice: 2835,
+    testCount: 4,
+    description: 'বার-বার ক্লান্তি, দুর্বলতা? জানুন আপনার Vitamin Levels! More Energy. Better Everyday!',
+    benefits: [
+      'Vitamin B12 (Energy & Nervous System)',
+      'Vitamin D3 (Immunity & Bone Health)',
+      'Calcium (Strong Bones & Muscles)',
+      'CBC (General Health & Immunity Check)',
+    ],
+    homeCollection: true,
+    discount: 61,
+    category: 'Vitamins & Energy',
+    image: '/images/packages/vitamin-energy-check-package.jpg',
+  },
+  {
+    id: 'pkg-6',
+    name: 'Comprehensive Healthy Heart & Cardiac Risk Profile',
+    price: 1049,
+    originalPrice: 2900,
+    testCount: 7,
+    description: 'কার্ডিয়াক ও হার্ট কেয়ার প্যাকেজ। Complete cardiovascular, troponin, lipid, and metabolic risk evaluation.',
+    benefits: [
+      'Lipid Profile Comprehensive',
+      'Troponin-I Quantitative',
+      'Fasting Blood Sugar (FBS)',
+      'HbA1c (3-Month Glycated Sugar)',
+      'Urea & Creatinine (Kidney Function)',
+      'Serum Electrolytes (Na+, K+, Cl-)',
+      'Complete Blood Count (CBC)',
+    ],
+    homeCollection: true,
+    discount: 64,
+    category: 'Cardiology & Heart Care',
+    image: '/images/packages/comprehensive-healthy-heart-package.jpg',
+  },
+  {
+    id: 'pkg-7',
+    name: 'Advanced Spine, Joint & Nerve Pain Care Package',
+    price: 1199,
+    originalPrice: 3200,
+    testCount: 8,
+    description: 'স্পাইন, জয়েন্ট ও নার্ভ পেইন কেয়ার। Complete diagnostic screening for chronic spine, knee, joint and nerve pain.',
+    benefits: [
+      'Vitamin D3 (25-OH)',
+      'Vitamin B12 (Nerve Health)',
+      'Serum Calcium Total',
+      'Serum Uric Acid',
+      'RA (Rheumatoid) Factor',
+      'CRP Quantitative',
+      'ESR (Inflammation)',
+      'Complete Blood Count (CBC)',
+    ],
+    homeCollection: true,
+    discount: 63,
+    category: 'Pain Medicine & Joints',
+    image: '/images/packages/advanced-spine-joint-nerve-pain-package.jpg',
+  },
+  {
+    id: 'pkg-8',
+    name: 'Neuro-Metabolic & Memory Wellness Profile',
+    price: 1299,
+    originalPrice: 3400,
+    testCount: 9,
+    description: 'ব্রেন, স্মৃতিশক্তি ও মেটাবলিক স্বাস্থ্য। Comprehensive brain vitality, memory, dementia risk and metabolic balance.',
+    benefits: [
+      'Vitamin B12',
+      'Vitamin D3',
+      'Thyroid Profile (T3, T4, TSH)',
+      'HbA1c (3-Month Sugar)',
+      'Fasting Glucose (FBS)',
+      'Lipid Profile',
+      'Liver Function Test (LFT)',
+      'Kidney Function Test (KFT)',
+      'Serum Electrolytes',
+    ],
+    homeCollection: true,
+    discount: 62,
+    category: 'Neuro-Psychiatry & Dementia',
+    image: '/images/packages/neuro-metabolic-memory-wellness-package.jpg',
+  },
+  {
+    id: 'pkg-9',
+    name: 'PCOS, Hormonal & Women Wellness Complete Package',
+    price: 1049,
+    originalPrice: 3100,
+    testCount: 8,
+    description: 'নারী স্বাস্থ্য ও পিসিওডি কেয়ার প্যাকেজ। Complete hormonal balance, fertility, and reproductive health evaluation.',
+    benefits: [
+      'Thyroid Profile (T3, T4, TSH)',
+      'LH (Luteinizing Hormone)',
+      'FSH (Follicle Stimulating Hormone)',
+      'Prolactin',
+      'CBC with Hb% (Hemoglobin Check)',
+      'Fasting Blood Sugar',
+      'Urine Routine Examination',
+      'Serum Calcium Total',
+    ],
+    homeCollection: true,
+    discount: 66,
+    category: 'Women Health & Gynecology',
+    image: '/images/packages/pcos-hormonal-women-wellness-package.jpg',
+  },
+  {
+    id: 'pkg-10',
+    name: 'Orthopedic Bone Density & Joint Health Screening',
+    price: 999,
+    originalPrice: 2850,
+    testCount: 8,
+    description: 'অস্থি ও জয়েন্ট স্বাস্থ্য প্যাকেজ। Comprehensive bone mineral density, arthritis, and cartilage health assessment.',
+    benefits: [
+      'Vitamin D3 (25-OH)',
+      'Serum Calcium Total',
+      'Serum Phosphorus',
+      'Serum Uric Acid',
+      'Alkaline Phosphatase (ALP)',
+      'RA (Rheumatoid) Factor',
+      'ESR',
+      'Complete Blood Count (CBC)',
+    ],
+    homeCollection: true,
+    discount: 65,
+    category: 'Orthopedics & Bone Health',
+    image: '/images/packages/orthopedic-bone-density-joint-package.jpg',
+  },
+  {
+    id: 'pkg-11',
+    name: 'Acute Infection, Immunity & Fever Screening Profile',
+    price: 849,
+    originalPrice: 2400,
+    testCount: 7,
+    description: 'ইনফেকশন ও ফিভার কেয়ার প্যাকেজ। Rapid multi-pathogen screening for dengue, typhoid, bacterial infections, and acute fevers.',
+    benefits: [
+      'CBC with Differential & Platelets',
+      'ESR',
+      'CRP Quantitative',
+      'Dengue NS1 Antigen',
+      'Widal Test (Typhoid)',
+      'Urine Routine Examination',
+      'Fasting Blood Glucose',
+    ],
+    homeCollection: true,
+    discount: 65,
+    category: 'Critical Care & Fever Triage',
+    image: '/images/packages/acute-infection-immunity-fever-package.jpg',
+  },
+  {
+    id: 'pkg-12',
+    name: 'Advanced Diabetes Reversal & Vital Organ Shield',
+    price: 1149,
+    originalPrice: 3300,
+    testCount: 7,
+    description: 'সম্পূর্ণ ডায়াবেটিস ও অর্গান শিল্ড। Precision glycemic reversal monitoring with kidney, liver and cardiovascular protection.',
+    benefits: [
+      'Fasting Blood Sugar (FBS)',
+      'PP Blood Sugar (PPBS)',
+      'HbA1c (Glycated Hemoglobin)',
+      'Urine Microalbumin:Creatinine Ratio Spot',
+      'Lipid Profile Comprehensive',
+      'Serum Creatinine',
+      'Liver Function Test (LFT)',
+    ],
+    homeCollection: true,
+    discount: 65,
+    category: 'Diabetes & Organ Care',
+    image: '/images/packages/advanced-diabetes-reversal-organ-shield.jpg',
+  },
+  {
+    id: 'pkg-13',
+    name: 'Senior Citizen Comprehensive Chronic Disease & Vital Health Checkup',
+    price: 1299,
+    originalPrice: 3600,
+    testCount: 8,
+    description: 'সিনিয়র সিটিজেন কমপ্লিট হেলথ কেয়ার। Annual multi-system health checkup for senior citizens and chronic condition surveillance.',
+    benefits: [
+      'CBC with ESR',
+      'Fasting Glucose (FBS)',
+      'HbA1c',
+      'Lipid Profile',
+      'Liver Function Test (LFT)',
+      'Kidney Function Test (KFT)',
+      'Thyroid TSH',
+      'Urine Routine Examination',
+    ],
+    homeCollection: true,
+    discount: 64,
+    category: 'Senior Citizen & Geriatric',
+    image: '/images/packages/senior-citizen-chronic-disease-package.jpg',
+  },
+  {
+    id: 'pkg-14',
+    name: 'Junior Wellness & Child Growth Immunity Profile',
+    price: 949,
+    originalPrice: 2600,
+    testCount: 7,
+    description: 'শিশু স্বাস্থ্য ও পুষ্টি প্রোফাইল। Complete pediatric growth, nutrition, bone strength and anemia screening.',
+    benefits: [
+      'CBC with Hb% (Pediatric Anemia)',
+      'Vitamin D3 (25-OH)',
+      'Serum Calcium Total',
+      'Serum Ferritin (Iron Storage)',
+      'Urine Routine Examination',
+      'Blood Grouping & Rh Typing',
+      'Thyroid TSH',
+    ],
+    homeCollection: true,
+    discount: 63,
+    category: 'Pediatrics & Child Care',
+    image: '/images/packages/junior-wellness-child-growth-package.jpg',
+  },
+  {
+    id: 'pkg-15',
+    name: 'Neonatal & Pediatric Allergy & Nutrition Panel',
+    price: 999,
+    originalPrice: 2750,
+    testCount: 6,
+    description: 'শিশু পুষ্টি ও অ্যালার্জি প্যানেল। Targeted newborn jaundice, food allergy, eczema, and micronutrient screening.',
+    benefits: [
+      'CBC with AEC (Allergy Count)',
+      'Total IgE (Allergy Screening)',
+      'Bilirubin (Total & Direct)',
+      'Serum Calcium Total',
+      'Vitamin D3',
+      'Urine Routine Examination',
+    ],
+    homeCollection: true,
+    discount: 64,
+    category: 'Pediatric Nutrition & Allergies',
+    image: '/images/packages/neonatal-pediatric-allergy-nutrition-panel.jpg',
+  },
+  {
+    id: 'pkg-16',
+    name: 'Holistic Allergy & Chronic Inflammation Wellness Screen',
+    price: 899,
+    originalPrice: 2500,
+    testCount: 6,
+    description: 'হোলিস্টিক অ্যালার্জি ও ইনফ্লামেশন স্ক্রিন। Root-cause diagnostic evaluation for recurring allergies, asthma, and kidney stone risk.',
+    benefits: [
+      'Total IgE (Allergy Marker)',
+      'Absolute Eosinophil Count (AEC)',
+      'CBC (Complete Blood Count)',
+      'ESR (Inflammation)',
+      'Routine Urine Analysis',
+      'Liver Function Test (LFT)',
+    ],
+    homeCollection: true,
+    discount: 64,
+    category: 'Allergy & Holistic Health',
+    image: '/images/packages/holistic-allergy-inflammation-wellness-screen.jpg',
+  },
+]
+
+export const blogPosts: BlogPost[] = []
+
+export const testimonials = [
+  {
+    name: 'Rajesh Kumar',
+    role: 'Business Owner',
+    comment:
+      'Excellent service! The home collection was convenient, and results were delivered on time with detailed explanations.',
+    rating: 5,
+  },
+  {
+    name: 'Priya Desai',
+    role: 'Software Engineer',
+    comment:
+      'Very professional and hygienic sample collection. The report clarity is outstanding.',
+    rating: 5,
+  },
+  {
+    name: 'Amit Singh',
+    role: 'Student',
+    comment:
+      'Affordable packages and quick results. Highly recommend Capsic Care for all your health checkup needs.',
+    rating: 5,
+  },
+  {
+    name: 'Sneha Gupta',
+    role: 'Homemaker',
+    comment:
+      'The staff was very courteous and professional. Happy with the transparency in pricing and results.',
+    rating: 5,
+  },
+]
+
+export const ambassadors = [
+  {
+    id: 'amb-1',
+    name: 'Ambassador Program',
+    title: 'Become a Health Partner',
+    description: 'Join our team of health advocates and earn while helping others stay healthy.',
+    benefits: [
+      'Competitive commission on referrals',
+      'Free health packages for you and family',
+      'Marketing materials and support',
+      'Exclusive training sessions',
+      'Flexible working hours',
+    ],
+  },
+  {
+    id: 'amb-2',
+    name: 'Quality Sample Collection Centers',
+    title: 'Partner with Us',
+    description: 'Establish a professional sample collection center and grow your healthcare business.',
+    benefits: [
+      'Revenue share model',
+      'Equipment and training provided',
+      'Operational support',
+      'Brand recognition',
+      'Growth opportunities',
+    ],
+  },
+]
+
+export const faqs = [
+  {
+    id: 'faq-1',
+    question: 'How long does home sample collection take?',
+    answer:
+      'Our trained professionals typically complete sample collection in 5-10 minutes. They arrive at your preferred time slot.',
+  },
+  {
+    id: 'faq-2',
+    question: 'When will I get my test results?',
+    answer:
+      'Most results are available within 24-48 hours of sample collection. You will receive a notification via email and SMS.',
+  },
+  {
+    id: 'faq-3',
+    question: 'Is fasting required for all tests?',
+    answer:
+      'Some tests like glucose and lipid profile require 8-10 hours of fasting. You will receive specific instructions before your collection.',
+  },
+  {
+    id: 'faq-4',
+    question: 'Are the results confidential?',
+    answer:
+      'Absolutely! All patient data is confidential. We will send your reports directly and securely to your WhatsApp and Email.',
+  },
+  {
+    id: 'faq-5',
+    question: 'Can I modify my test package?',
+    answer:
+      'Yes, you can customize any package based on your requirements. Contact our team for personalized solutions.',
+  },
+  {
+    id: 'faq-6',
+    question: 'What is your cancellation policy?',
+    answer:
+      'Cancellations made 24 hours before collection are fully refundable. Late cancellations may have a nominal charge.',
+  },
+]

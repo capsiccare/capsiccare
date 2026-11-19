@@ -1,0 +1,4 @@
+faq_id,entity_type,entity_id,question,answer
+FAQ001,TEST,TST0001,How long does the test take?,Most tests take a few minutes for sample collection.
+FAQ002,TEST,TST0001,Is fasting required?,Some tests require fasting depending on the investigation.
+FAQ003,PACKAGE,PKG001,Is home sample collection available?,"Yes, home sample collection is available."
