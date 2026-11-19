@@ -41,7 +41,7 @@ const navItems: NavItem[] = [
   { name: 'Staff & Workforce', href: '/admin/staff', icon: UserCheck, status: 'active' },
   { name: 'Communications', href: '/admin/communications', icon: MessageSquare, status: 'active' },
   { name: 'Patient Experience', href: '/admin/patient-experience', icon: HeartHandshake, status: 'active' },
-  { name: 'CareFlow CRM', href: '/admin/careflow', icon: Workflow, badge: 'Step 08', status: 'planned' },
+  { name: 'CareFlow CRM', href: '/admin/careflow', icon: Workflow, badge: 'Active', status: 'active' },
   { name: 'Reports & Analytics', href: '/admin/reports', icon: BarChart3, badge: 'Step 09', status: 'planned' },
   { name: 'Security & Audit', href: '/admin/audit', icon: ShieldCheck, status: 'active' },
   { name: 'Settings & Access', href: '/admin/settings', icon: Settings, status: 'active' },
