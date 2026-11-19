@@ -1,9 +1,13 @@
 # CAPSIC CARE OS — Project Progress & Implementation Status
 
-**Document Version:** 1.3.0  
-**Current Milestone:** Step 02.1: Supabase Connection & Database Activation  
+**Document Version:** 1.4.0  
+**Current Milestone:** GitHub Integration & Local Development Setup (Completed)  
 **Last Updated:** 2026-11-19  
-**Branch / Environment:** Local Development Sandbox (Isolated)
+**Workspace Directory:** `C:\Users\Administrator\Desktop\CC WEB DEV\capsiccare-main`  
+**GitHub Remote:** `https://github.com/capsiccare/capsiccare.git`  
+**Active Development Branch:** `develop` (Tracking base: `main`)  
+**Latest Commit:** `7d99c0a` (`feat(core): initialize CAPSIC CARE OS foundation and backend infrastructure`)  
+**Local Development Server:** Running at `http://localhost:3000` (Next.js 16.1.6 Turbopack)
 
 ---
 
@@ -13,7 +17,8 @@
 |---|---|---|---|
 | **Step 01** | Project Foundation & Environment Baseline | **COMPLETED** | Tooling (Node 20, pnpm 12, Git), disk headroom, typecheck, Turbopack, master documents. |
 | **Step 02** | Database, Auth & Backend Foundation | **COMPLETED** | 6 SQL migrations, synthetic seed, SSR client bindings, RBAC service, `/api/v1` routes, 21 passing automated tests. |
-| **Step 02.1** | Supabase Connection & Database Activation | **IN PROGRESS** | Direct IPv6 & Session Pooler verified, RLS enforced across all 24 tables, transparent error handling in APIs, migration runner script created, awaiting database password entry in `.env.local`. |
+| **Step 02.1** | Supabase Connection & Database Activation | **PREPARED** | Direct IPv6 & Session Pooler verified, RLS enforced across all 24 tables, transparent error handling in APIs, migration runner script created, awaiting database password entry in `.env.local`. |
+| **GitHub Integration** | Workspace Alignment, Git Config & Local Dev | **COMPLETED** | Flattened directory structure to standard project root, initialized Git, configured `origin`, verified secrets exclusion, created `main` and `develop` branches, dev server active on port 3000. |
 | **Step 03** | Core Diagnostic & Cart Engine | *Next Implementation* | Unify CSV & DB catalogues, dynamic cart state, dual WhatsApp/database order desk. |
 | **Step 04** | Doctor Chamber Scheduling & Telemedicine | *Planned* | Physical slot management, token booking, telemedicine session dispatcher. |
 | **Step 05** | Auth & Patient Health Portal | *Planned* | OTP verification, electronic medical records, report downloads. |
@@ -25,33 +30,47 @@
 
 ---
 
-## 2. Step 02.1 Deliverables & Technical Readiness
+## 2. Git & Repository Architecture
 
-1. **Supabase Project Target:**
-   - Name: `capsic-care-dev`
-   - Reference: `ariswlepjxyjsnnttpyg`
-   - URL: `https://ariswlepjxyjsnnttpyg.supabase.co`
-2. **Network & Connection Verification:**
-   - Host `db.ariswlepjxyjsnnttpyg.supabase.co` resolved via IPv6 `AAAA` record.
-   - TCP handshake on port 5432 verified (`TcpTestSucceeded: True`).
-   - Session Pooler architecture (`aws-0-[region].pooler.supabase.com:5432`) documented and supported for IPv4 fallback.
-3. **Database Security Hardening:**
-   - Row-Level Security (RLS) policies expanded to cover all 24 database tables.
-   - Public read access permitted exclusively on active branches, doctors, schedules, tests, packages, and prices.
-   - Helper functions `has_role` and `has_branch_access` updated with `SET search_path = public, auth`.
-4. **Transparent API Integration:**
-   - Disabled silent fallback in `/api/v1/branches` and `/api/v1/doctors` when Supabase is configured; query errors throw explicit `ApiError('DATABASE_ERROR', 500)`.
-5. **Tooling & Migration Runner:**
-   - Installed `pg` and `@types/pg` in devDependencies.
-   - Created `scripts/db-migrate.ts` supporting `pnpm run db:migrate` and `pnpm run db:seed`.
-   - Created live integration test suite `tests/integration/database-live.test.ts`.
-6. **Code Quality:**
-   - `pnpm exec tsc --noEmit`: 0 errors.
-   - `node --import tsx --test "tests/**/*.test.ts"`: 21 passing unit & foundation integration tests.
+1. **Workspace Root Alignment:**
+   - Flattened project directory from `capsiccare-main/capsiccare-main/` to the canonical root `C:\Users\Administrator\Desktop\CC WEB DEV\capsiccare-main\`.
+   - `package.json`, `app/`, `lib/`, `supabase/`, `docs/`, `scripts/`, `tests/` operate directly from the repository root.
+2. **Git Branches & Remote:**
+   - Remote `origin`: `https://github.com/capsiccare/capsiccare.git`
+   - Primary stable branch: `main`
+   - Active development branch: `develop`
+   - Initial commit: `93ad3ed` (staged 350 files, 86,689 insertions)
+   - Latest commit: `7d99c0a` (`chore(scripts): add local http endpoint verification script`)
+3. **Security & Secrets Exclusion:**
+   - `.gitignore` hardened to strictly ignore `.env`, `.env*.local`, `.env.local`, `*.pem`, `*.key`, `node_modules/`, `.next/`, `tmp/`, `scratch/`, `supabase/.temp/`.
+   - Full automated regex scan verified zero leaked API keys, tokens, or plaintext credentials in Git index.
 
 ---
 
-## 3. Environment Boundary & Production Safety
+## 3. Local Development Commands
 
-- **Production Safety:** Live production at `capsic.in` remains 100% untouched.
-- **Git State:** Local isolated repository, no remote push, `.env.local` strictly Git-ignored.
+| Command | Purpose |
+|---|---|
+| `pnpm dev` | Starts Next.js development server with Turbopack on `http://localhost:3000` |
+| `pnpm test` | Runs automated test suite (`node --import tsx --test "tests/**/*.test.ts"`) |
+| `pnpm run typecheck` | Runs TypeScript static analysis (`tsc --noEmit`) |
+| `pnpm run db:migrate` | Connects to PostgreSQL and applies pending migrations from `supabase/migrations/` |
+| `pnpm run db:seed` | Applies synthetic development seed data from `supabase/seed.sql` |
+| `node scripts/verify-endpoints.mjs` | Runs smoke tests against active HTTP endpoints |
+
+---
+
+## 4. Verification & Project Health Summary
+
+- **TypeScript Compilation:** 0 errors (`pnpm exec tsc --noEmit`).
+- **Automated Tests:** 21 / 21 passed (duration ~900ms).
+- **HTTP Smoke Tests (Local Server on port 3000):**
+  - `GET /` -> HTTP 200 OK (Homepage rendered)
+  - `GET /doctors` -> HTTP 200 OK (Doctor directory rendered)
+  - `GET /lab-tests` -> HTTP 200 OK (Diagnostic catalogue rendered)
+  - `GET /health-packages` -> HTTP 200 OK (Health packages rendered)
+  - `GET /api/v1/health` -> HTTP 200 OK (API health status healthy)
+  - `GET /api/v1/me` -> HTTP 401 UNAUTHORIZED (Auth guard verified)
+  - `GET /api/v1/branches` & `/doctors` -> HTTP 500 `DATABASE_ERROR` (Transparently reflects unconfigured database password; no silent mock falsification)
+- **Supabase Pending Step:**
+  - Insert database password in `.env.local` and execute `pnpm run db:seed`.
