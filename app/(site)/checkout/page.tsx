@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { useCart } from '@/hooks/use-cart'
 import { useState } from 'react'
-import { ArrowLeft, Phone, Mail, MapPin, User, Calendar, CheckCircle2, AlertCircle, Loader, Share2, Copy, Download, FileText } from 'lucide-react'
+import { ArrowLeft, Phone, Mail, MapPin, User, Calendar, CheckCircle2, AlertCircle, Loader, Share2, Copy, Download, FileText, QrCode, Smartphone, CreditCard, Banknote, ShieldCheck } from 'lucide-react'
 import Link from 'next/link'
 import { validatePromoCode } from '@/lib/services/promos'
 import { validatePartnerCode } from '@/lib/services/partners'
@@ -24,6 +24,9 @@ export default function CheckoutPage() {
   const [invoiceNumber, setInvoiceNumber] = useState('')
   const [confirmedItems, setConfirmedItems] = useState<any[]>([])
   const [showCashMemoModal, setShowCashMemoModal] = useState(false)
+  const [paymentMode, setPaymentMode] = useState<'cod' | 'upi'>('cod')
+  const [transactionReference, setTransactionReference] = useState('')
+  const [isCopiedUpi, setIsCopiedUpi] = useState(false)
 
   const [formData, setFormData] = useState({
     fullName: '',
@@ -151,6 +154,9 @@ export default function CheckoutPage() {
         promoCode: formData.promoCode?.trim() || null,
         partnerCode: formData.partnerCode?.trim() || null,
         fulfillmentType: 'home_collection' as const,
+        paymentMode: paymentMode,
+        transactionReference: transactionReference.trim() || null,
+        isPaid: paymentMode === 'upi' && Boolean(transactionReference.trim()),
         items: items.map(i => ({
           id: i.id,
           name: i.name,
@@ -563,6 +569,135 @@ export default function CheckoutPage() {
                       </span>
                     </div>
                   </div>
+
+                  {/* Payment Method Selector */}
+                  <div className="space-y-4 pt-2">
+                    <div className="flex items-center justify-between">
+                      <label className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
+                        Choose Payment Method *
+                      </label>
+                      <span className="text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
+                        <ShieldCheck size={14} /> 100% Safe &amp; Verified
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {/* COD / Pay on Collection */}
+                      <button
+                        type="button"
+                        onClick={() => setPaymentMode('cod')}
+                        className={`p-4 rounded-2xl border-2 text-left transition-all cursor-pointer relative ${
+                          paymentMode === 'cod'
+                            ? 'border-teal-600 bg-teal-50/70 dark:bg-teal-950/30 text-teal-950 dark:text-teal-100 shadow-sm'
+                            : 'border-slate-200 dark:border-slate-700 hover:border-slate-300 text-slate-700 dark:text-slate-300'
+                        }`}
+                      >
+                        <div className="flex items-center gap-2 mb-1.5">
+                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${paymentMode === 'cod' ? 'bg-teal-600 text-white' : 'bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400'}`}>
+                            <Banknote size={16} />
+                          </div>
+                          <span className="font-bold text-sm">Pay at Doorstep</span>
+                        </div>
+                        <p className="text-xs text-slate-500 dark:text-slate-400">
+                          Cash or UPI on sample collection. No advance payment required.
+                        </p>
+                        {paymentMode === 'cod' && (
+                          <span className="absolute top-3 right-3 w-2.5 h-2.5 rounded-full bg-teal-600" />
+                        )}
+                      </button>
+
+                      {/* Online UPI Payment */}
+                      <button
+                        type="button"
+                        onClick={() => setPaymentMode('upi')}
+                        className={`p-4 rounded-2xl border-2 text-left transition-all cursor-pointer relative ${
+                          paymentMode === 'upi'
+                            ? 'border-teal-600 bg-teal-50/70 dark:bg-teal-950/30 text-teal-950 dark:text-teal-100 shadow-sm'
+                            : 'border-slate-200 dark:border-slate-700 hover:border-slate-300 text-slate-700 dark:text-slate-300'
+                        }`}
+                      >
+                        <div className="flex items-center gap-2 mb-1.5">
+                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${paymentMode === 'upi' ? 'bg-teal-600 text-white' : 'bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400'}`}>
+                            <QrCode size={16} />
+                          </div>
+                          <span className="font-bold text-sm">Pay Online via UPI</span>
+                        </div>
+                        <p className="text-xs text-slate-500 dark:text-slate-400">
+                          Google Pay, PhonePe, Paytm, BHIM, or Scan &amp; Pay QR.
+                        </p>
+                        {paymentMode === 'upi' && (
+                          <span className="absolute top-3 right-3 w-2.5 h-2.5 rounded-full bg-teal-600" />
+                        )}
+                      </button>
+                    </div>
+
+                    {/* Online UPI Details View */}
+                    {paymentMode === 'upi' && (
+                      <div className="p-4 sm:p-5 bg-gradient-to-br from-slate-900 to-teal-950 text-white rounded-2xl border border-teal-500/30 space-y-4 animate-in fade-in duration-200 shadow-lg">
+                        <div className="flex flex-col sm:flex-row items-center gap-5">
+                          {/* Dynamic UPI QR Code */}
+                          <div className="p-3 bg-white rounded-2xl shadow-md shrink-0 text-center">
+                            <img
+                              src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(`upi://pay?pa=capsiccare@icici&pn=Capsic+Care+Healthcare&am=${finalAmount}&cu=INR&tn=CapsicLabOrder`)}`}
+                              alt="Capsic Care UPI QR Code"
+                              width={140}
+                              height={140}
+                              className="mx-auto block rounded-lg"
+                            />
+                            <span className="block text-[10px] text-slate-600 font-bold mt-1 uppercase tracking-wide">
+                              Scan &amp; Pay ₹{finalAmount}
+                            </span>
+                          </div>
+
+                          {/* UPI Details & Intent */}
+                          <div className="flex-1 space-y-3 text-center sm:text-left min-w-0">
+                            <div>
+                              <span className="text-[10px] uppercase font-bold text-teal-300 tracking-wider block">Official Merchant UPI ID</span>
+                              <div className="flex items-center justify-center sm:justify-start gap-2 mt-1">
+                                <code className="text-sm sm:text-base font-mono font-bold bg-white/10 px-2.5 py-1 rounded-lg border border-white/15">
+                                  capsiccare@icici
+                                </code>
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    navigator.clipboard.writeText('capsiccare@icici')
+                                    setIsCopiedUpi(true)
+                                    setTimeout(() => setIsCopiedUpi(false), 2000)
+                                  }}
+                                  className="px-2.5 py-1 bg-teal-500/20 hover:bg-teal-500/30 border border-teal-400/40 rounded-lg text-xs font-semibold text-teal-200 transition-colors cursor-pointer"
+                                >
+                                  {isCopiedUpi ? 'Copied!' : 'Copy'}
+                                </button>
+                              </div>
+                            </div>
+
+                            <div>
+                              <a
+                                href={`upi://pay?pa=capsiccare@icici&pn=Capsic+Care+Healthcare&am=${finalAmount}&cu=INR&tn=CapsicLabOrder`}
+                                className="inline-flex items-center gap-2 px-4 py-2 bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold rounded-xl text-xs transition-colors shadow"
+                              >
+                                <Smartphone size={14} /> Open in UPI App (GPay / PhonePe / Paytm)
+                              </a>
+                            </div>
+
+                            <div className="pt-2">
+                              <label className="block text-xs font-medium text-teal-200 mb-1">
+                                UPI Reference / UTR Number (Optional, for instant verification):
+                              </label>
+                              <input
+                                type="text"
+                                value={transactionReference}
+                                onChange={(e) => setTransactionReference(e.target.value)}
+                                placeholder="e.g. 12-digit UTR from your UPI payment receipt"
+                                className="w-full px-3 py-2 bg-slate-800/90 border border-teal-500/40 rounded-xl text-xs text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-teal-400"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
                   <div className="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-700 text-xs text-slate-600 dark:text-slate-300">
                     ℹ️ For updated price or information, contact <a href="tel:+918910260709" className="font-bold underline text-teal-600 dark:text-teal-400">8910260709</a> or <a href="https://wa.me/918910260709?text=Hello%20Capsic%20Care%2C%20I%20have%20an%20inquiry%20regarding%20updated%20test%20prices%20and%20home%20sample%20collection." target="_blank" rel="noopener noreferrer" className="font-bold underline text-emerald-600 dark:text-emerald-400">WhatsApp</a>.
                   </div>
@@ -632,8 +767,10 @@ export default function CheckoutPage() {
                       </div>
                       <div className="col-span-2 pt-2 border-t border-slate-200 dark:border-slate-700">
                         <div className="flex justify-between font-bold">
-                          <p className="text-slate-900 dark:text-white">Amount Payable at Sample Collection</p>
-                          <p className="text-teal-600 dark:text-teal-300">₹{finalAmount}</p>
+                          <p className="text-slate-900 dark:text-white">Payment Status</p>
+                          <p className={paymentMode === 'upi' ? 'text-emerald-600 dark:text-emerald-400 font-extrabold' : 'text-teal-600 dark:text-teal-300'}>
+                            {paymentMode === 'upi' ? `✓ Paid via Online UPI (₹${finalAmount})` : `₹${finalAmount} (Pay on Sample Collection)`}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -779,15 +916,15 @@ Generated    : ${new Date().toLocaleString()}
                     age: formData.dateOfBirth ? new Date().getFullYear() - new Date(formData.dateOfBirth).getFullYear() : 35,
                     gender: formData.gender || 'Male',
                     category: 'PATHOLOGY',
-                    modeOfPayment: 'Pay on Sample Collection',
-                    accountName: 'Online Web Booking',
+                    modeOfPayment: paymentMode === 'upi' ? 'Online UPI' : 'Pay on Sample Collection',
+                    accountName: paymentMode === 'upi' ? 'Online UPI Gateway' : 'Online Web Booking',
                     items: (confirmedItems.length > 0 ? confirmedItems : items).map(i => ({
                       name: i.name,
                       price: i.price,
                       qty: 1,
                     })),
                     discountAmount: promoDiscountAmount,
-                    amountPaid: 0,
+                    amountPaid: paymentMode === 'upi' ? finalAmount : 0,
                   }}
                   onClose={() => setShowCashMemoModal(false)}
                 />

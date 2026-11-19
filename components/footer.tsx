@@ -235,6 +235,8 @@ export function Footer() {
             <Link href="/terms" className="hover:text-slate-300 transition-colors">Terms of Care</Link>
             <span>•</span>
             <Link href="/refund-policy" className="hover:text-slate-300 transition-colors">Refund & Cancellation</Link>
+            <span>•</span>
+            <Link href="/portal/login" className="text-teal-400 hover:text-teal-300 font-semibold transition-colors">Staff &amp; Doctor Chamber</Link>
           </div>
 
           <div className="flex items-center space-x-4">

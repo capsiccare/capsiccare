@@ -1,620 +1,319 @@
 'use client'
 
-import React, { useState, useEffect, Suspense } from 'react'
+import React, { useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
-import { createClient } from '@/lib/supabase/client'
 import {
   Activity,
-  Lock,
-  Mail,
-  Eye,
-  EyeOff,
+  Heart,
+  Phone,
   ArrowRight,
   AlertCircle,
   CheckCircle2,
   ShieldCheck,
+  FileText,
+  Clock,
+  Sparkles,
   Stethoscope,
-  Heart,
-  Users,
-  Building2,
-  Smartphone,
-  ChevronRight,
 } from 'lucide-react'
 
-type PortalType = 'doctor' | 'patient' | 'staff' | 'admin'
-
-function LoginForm() {
+function PatientLoginForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const portalParam = (searchParams.get('portal') as PortalType) || 'patient'
   const redirectQuery = searchParams.get('redirect')
 
-  const [portal, setPortal] = useState<PortalType>(portalParam)
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
   const [phoneOrUhid, setPhoneOrUhid] = useState('')
   const [otp, setOtp] = useState('')
   const [isOtpSent, setIsOtpSent] = useState(false)
-  const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
 
-  // Multiple roles workspace selector modal
-  const [userRoles, setUserRoles] = useState<any[] | null>(null)
-
-  // Forgot password state
-  const [showForgotModal, setShowForgotModal] = useState(false)
-  const [forgotEmail, setForgotEmail] = useState('')
-  const [forgotLoading, setForgotLoading] = useState(false)
-  const [forgotMessage, setForgotMessage] = useState<string | null>(null)
-
-  useEffect(() => {
-    if (portalParam) {
-      setPortal(portalParam)
-    }
-  }, [portalParam])
-
-  // Handle Smart Routing based on User Roles
-  const handleSmartRouting = async (fallbackPath: string) => {
-    try {
-      const res = await fetch('/api/v1/me')
-      if (res.ok) {
-        const json = await res.json()
-        const roles = json.data?.roles || []
-
-        if (redirectQuery) {
-          router.push(redirectQuery)
-          return
-        }
-
-        const roleNames = roles.map((r: any) => r.role)
-
-        // If multiple distinct portal permissions exist, let the user choose
-        const hasDoctor = roleNames.includes('doctor')
-        const hasAdmin = roleNames.some((r: string) => ['super_admin', 'org_admin', 'branch_admin'].includes(r))
-        const hasBilling = roleNames.includes('billing_staff')
-        const hasReception = roleNames.some((r: string) => ['receptionist', 'nurse'].includes(r))
-        const hasPatient = roleNames.includes('patient')
-
-        const uniqueWorkspaces = [
-          hasDoctor && { name: 'Doctor Chamber EMR', path: '/doctor', icon: 'stethoscope' },
-          hasAdmin && { name: 'Administrative OS & MIS', path: '/admin', icon: 'building' },
-          hasBilling && { name: 'Billing & POS Counter', path: '/admin/billing', icon: 'billing' },
-          hasReception && { name: 'OPD Reception & Queue', path: '/admin/appointments/queue', icon: 'users' },
-          hasPatient && { name: 'Personal Patient Portal', path: '/patient', icon: 'heart' },
-        ].filter(Boolean) as Array<{ name: string; path: string; icon: string }>
-
-        if (uniqueWorkspaces.length > 1) {
-          setUserRoles(uniqueWorkspaces)
-          return
-        }
-
-        if (hasDoctor) {
-          router.push('/doctor')
-          return
-        }
-        if (hasBilling) {
-          router.push('/admin/billing')
-          return
-        }
-        if (hasReception) {
-          router.push('/admin/appointments/queue')
-          return
-        }
-        if (hasAdmin) {
-          router.push('/admin')
-          return
-        }
-        if (hasPatient) {
-          router.push('/patient')
-          return
-        }
-      }
-    } catch (e) {
-      console.warn('Smart routing lookup skipped:', e)
-    }
-    router.push(fallbackPath)
-  }
-
-  // Handle Standard Email/Password Login (Doctor, Staff, Admin)
-  const handleEmailLogin = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setErrorMessage(null)
-    setSuccessMessage(null)
-    setLoading(true)
-
-    try {
-      const supabase = createClient()
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email: email.trim(),
-        password,
-      })
-
-      if (error) {
-        if (error.message.includes('Invalid login credentials')) {
-          setErrorMessage('Invalid credentials. Please verify your email and password, or register a new account.')
-        } else {
-          setErrorMessage(error.message)
-        }
-        setLoading(false)
-        return
-      }
-
-      if (data?.user) {
-        setSuccessMessage('Authentication verified! Loading your clinical workspace...')
-        const fallback =
-          portal === 'doctor'
-            ? '/doctor'
-            : portal === 'staff'
-            ? '/admin/billing'
-            : portal === 'patient'
-            ? '/patient'
-            : '/admin'
-
-        setTimeout(() => {
-          handleSmartRouting(fallback)
-        }, 600)
-      }
-    } catch (err: any) {
-      setErrorMessage(err.message || 'An unexpected error occurred during authentication.')
-      setLoading(false)
-    }
-  }
-
-  // Handle Patient Fast Phone/UHID Login
-  const handlePatientFastLogin = async (e: React.FormEvent) => {
+  const handleSendOtp = async (e: React.FormEvent) => {
     e.preventDefault()
     setErrorMessage(null)
     setSuccessMessage(null)
 
-    if (!phoneOrUhid.trim()) {
-      setErrorMessage('Please enter your 10-digit mobile number or UHID.')
+    const cleanInput = phoneOrUhid.trim().replace(/\D/g, '')
+    const isUhid = phoneOrUhid.trim().toUpperCase().startsWith('CAP-')
+
+    if (!isUhid && cleanInput.length < 10) {
+      setErrorMessage('Please enter a valid 10-digit mobile number or UHID (e.g. CAP-2026-XXXXXX).')
       return
     }
 
-    if (!isOtpSent) {
-      setIsOtpSent(true)
-      setSuccessMessage('Verification code sent to your registered mobile (demo mode: enter 123456).')
-      return
-    }
-
-    // Verify OTP
     setLoading(true)
     try {
-      const res = await fetch('/api/v1/patient/me', {
+      const res = await fetch('/api/v1/auth/patient-fast-login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          phone: phoneOrUhid.trim().startsWith('CAP-') ? undefined : phoneOrUhid.trim(),
-          uhid: phoneOrUhid.trim().startsWith('CAP-') ? phoneOrUhid.trim() : undefined,
+          phone: isUhid ? undefined : cleanInput.slice(-10),
+          uhid: isUhid ? phoneOrUhid.trim().toUpperCase() : undefined,
         }),
       })
 
       const json = await res.json()
       if (!res.ok) {
-        throw new Error(json.error || json.message || 'Patient verification failed')
+        throw new Error(json.error?.message || json.message || 'Patient verification failed.')
       }
 
-      setSuccessMessage(`Welcome back! Loading records for UHID ${json.data?.patient?.uhid}...`)
-      setTimeout(() => {
-        router.push(`/patient?patientId=${json.data?.patient?.id}&uhid=${json.data?.patient?.uhid}`)
-      }, 700)
+      setIsOtpSent(true)
+      setSuccessMessage('6-digit verification code sent via WhatsApp & SMS. (Demo PIN: 123456)')
     } catch (err: any) {
-      setErrorMessage(err.message || 'Verification failed. Please check mobile/UHID or register.')
+      console.error('Fast login error:', err)
+      setErrorMessage(err.message || 'Unable to find patient. Please check phone number or register.')
+    } finally {
       setLoading(false)
     }
   }
 
-  const handleForgotPassword = async (e: React.FormEvent) => {
+  const handleVerifyOtp = async (e: React.FormEvent) => {
     e.preventDefault()
-    setForgotLoading(true)
-    setForgotMessage(null)
+    setErrorMessage(null)
+    setSuccessMessage(null)
 
+    if (!otp.trim()) {
+      setErrorMessage('Please enter the 6-digit verification code.')
+      return
+    }
+
+    setLoading(true)
     try {
-      const supabase = createClient()
-      const { error } = await supabase.auth.resetPasswordForEmail(forgotEmail.trim(), {
-        redirectTo: `${window.location.origin}/login?reset=success`,
+      const cleanPhone = phoneOrUhid.trim().replace(/\D/g, '').slice(-10)
+      const isUhid = phoneOrUhid.trim().toUpperCase().startsWith('CAP-')
+
+      const res = await fetch('/api/v1/patient/me', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          phone: isUhid ? undefined : cleanPhone,
+          uhid: isUhid ? phoneOrUhid.trim().toUpperCase() : undefined,
+          otp: otp.trim(),
+        }),
       })
 
-      if (error) {
-        setForgotMessage(`Error: ${error.message}`)
-      } else {
-        setForgotMessage('Password reset instructions sent. Please check your inbox.')
+      const json = await res.json()
+      if (!res.ok) {
+        throw new Error(json.error || json.message || 'Verification failed')
       }
+
+      const patientData = json.data?.patient
+      setSuccessMessage(`Welcome back, ${patientData?.full_name || 'Patient'}! Loading records...`)
+
+      setTimeout(() => {
+        if (redirectQuery) {
+          router.push(redirectQuery)
+        } else {
+          router.push(`/patient?patientId=${patientData?.id}&uhid=${patientData?.uhid}`)
+        }
+      }, 600)
     } catch (err: any) {
-      setForgotMessage('Failed to trigger reset email. Please try again.')
+      setErrorMessage(err.message || 'Invalid code. Please try again.')
     } finally {
-      setForgotLoading(false)
+      setLoading(false)
+    }
+  }
+
+  const quickDemoLogin = async () => {
+    setPhoneOrUhid('9830225334')
+    setErrorMessage(null)
+    setLoading(true)
+    try {
+      const res = await fetch('/api/v1/patient/me', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone: '9830225334' }),
+      })
+      const json = await res.json()
+      if (!res.ok) throw new Error(json.error || 'Demo login failed')
+      const p = json.data?.patient
+      setSuccessMessage(`Signed in as ${p.full_name}! Redirecting to portal...`)
+      setTimeout(() => {
+        router.push(`/patient?patientId=${p.id}&uhid=${p.uhid}`)
+      }, 500)
+    } catch (err: any) {
+      setErrorMessage(err.message || 'Demo patient not found.')
+      setLoading(false)
     }
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <div className="min-h-screen bg-slate-950 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden text-slate-100">
       {/* Background Gradients */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10 text-center">
-        <Link href="/" className="inline-flex items-center justify-center gap-3 mb-4">
-          <div className="h-12 w-12 rounded-2xl bg-gradient-to-tr from-teal-500 to-emerald-400 flex items-center justify-center text-slate-950 font-black text-2xl shadow-lg shadow-teal-500/20">
-            C
+        {/* Brand Header */}
+        <Link href="/" className="inline-flex items-center justify-center gap-3 mb-4 group">
+          <div className="h-12 w-12 rounded-2xl bg-gradient-to-tr from-teal-500 to-emerald-400 flex items-center justify-center text-slate-950 font-black text-2xl shadow-lg shadow-teal-500/20 group-hover:scale-105 transition-transform">
+            <Activity size={26} />
           </div>
           <div className="text-left">
             <h1 className="text-xl font-black tracking-tight text-white flex items-center gap-2">
-              CAPSIC CARE <span className="text-xs px-2 py-0.5 rounded-full bg-teal-500/20 text-teal-300 font-mono border border-teal-500/30">OS</span>
+              CAPSIC CARE <span className="text-xs px-2 py-0.5 rounded-full bg-teal-500/20 text-teal-300 font-mono border border-teal-500/30">PATIENT</span>
             </h1>
-            <p className="text-[11px] text-slate-400">Healthcare Network & Operating System</p>
+            <p className="text-[11px] text-slate-400">Digital Health Records &amp; Self-Service</p>
           </div>
         </Link>
-        <h2 className="text-xl font-bold text-slate-200">
-          {portal === 'patient'
-            ? 'Patient Portal Sign In'
-            : portal === 'doctor'
-            ? 'Doctor Chamber EMR Sign In'
-            : portal === 'staff'
-            ? 'Staff & Operations Sign In'
-            : 'Administrator Sign In'}
+
+        <h2 className="text-2xl font-black text-white">
+          Patient Portal Sign In
         </h2>
-        <p className="mt-1 text-xs text-slate-400">
-          {portal === 'patient'
-            ? 'Access your prescriptions, diagnostic reports, and medical history.'
-            : 'Enter your credentials to open your authorized workspace.'}
+        <p className="mt-1 text-xs text-slate-400 max-w-sm mx-auto">
+          View your e-prescriptions, diagnostic test reports, queue tokens, and medical history in one place.
         </p>
 
-        {/* Portal Selection Tabs */}
-        <div className="mt-5 p-1 bg-slate-900 border border-slate-800 rounded-2xl grid grid-cols-4 gap-1 shadow-inner">
-          <button
-            type="button"
-            onClick={() => {
-              setPortal('patient')
-              setErrorMessage(null)
-              setSuccessMessage(null)
-            }}
-            className={`py-2 px-1.5 rounded-xl text-[11px] font-bold flex flex-col items-center justify-center gap-1 transition-all ${
-              portal === 'patient'
-                ? 'bg-gradient-to-r from-teal-500 to-emerald-500 text-slate-950 shadow-md'
-                : 'text-slate-400 hover:text-slate-200'
-            }`}
-          >
-            <Heart className="h-4 w-4" />
-            <span>Patient</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setPortal('doctor')
-              setErrorMessage(null)
-              setSuccessMessage(null)
-            }}
-            className={`py-2 px-1.5 rounded-xl text-[11px] font-bold flex flex-col items-center justify-center gap-1 transition-all ${
-              portal === 'doctor'
-                ? 'bg-gradient-to-r from-teal-500 to-emerald-500 text-slate-950 shadow-md'
-                : 'text-slate-400 hover:text-slate-200'
-            }`}
-          >
-            <Stethoscope className="h-4 w-4" />
-            <span>Doctor</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setPortal('staff')
-              setErrorMessage(null)
-              setSuccessMessage(null)
-            }}
-            className={`py-2 px-1.5 rounded-xl text-[11px] font-bold flex flex-col items-center justify-center gap-1 transition-all ${
-              portal === 'staff'
-                ? 'bg-gradient-to-r from-teal-500 to-emerald-500 text-slate-950 shadow-md'
-                : 'text-slate-400 hover:text-slate-200'
-            }`}
-          >
-            <Users className="h-4 w-4" />
-            <span>Staff</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setPortal('admin')
-              setErrorMessage(null)
-              setSuccessMessage(null)
-            }}
-            className={`py-2 px-1.5 rounded-xl text-[11px] font-bold flex flex-col items-center justify-center gap-1 transition-all ${
-              portal === 'admin'
-                ? 'bg-gradient-to-r from-teal-500 to-emerald-500 text-slate-950 shadow-md'
-                : 'text-slate-400 hover:text-slate-200'
-            }`}
-          >
-            <Building2 className="h-4 w-4" />
-            <span>Admin</span>
-          </button>
+        {/* Benefits Ribbon */}
+        <div className="mt-5 grid grid-cols-3 gap-2 text-left">
+          <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-xs">
+            <FileText size={16} className="text-teal-400 mb-1" />
+            <p className="font-bold text-slate-200">Prescriptions</p>
+            <p className="text-[10px] text-slate-400">Digital &amp; Paper</p>
+          </div>
+          <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-xs">
+            <Heart size={16} className="text-rose-400 mb-1" />
+            <p className="font-bold text-slate-200">Lab Reports</p>
+            <p className="text-[10px] text-slate-400">Direct Download</p>
+          </div>
+          <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-xs">
+            <Clock size={16} className="text-emerald-400 mb-1" />
+            <p className="font-bold text-slate-200">Live Tokens</p>
+            <p className="text-[10px] text-slate-400">Doctor Queue</p>
+          </div>
         </div>
       </div>
 
+      {/* Main Card */}
       <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-md relative z-10">
-        <div className="bg-slate-900/90 backdrop-blur-xl py-8 px-6 shadow-2xl border border-slate-800 rounded-2xl sm:px-10">
+        <div className="bg-slate-900/90 backdrop-blur border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-5">
           {errorMessage && (
-            <div className="mb-6 rounded-xl bg-red-950/60 border border-red-800/80 p-4 text-xs text-red-300 flex items-start gap-3">
-              <AlertCircle className="h-4 w-4 text-red-400 shrink-0 mt-0.5" />
-              <div>{errorMessage}</div>
+            <div className="p-4 rounded-2xl bg-red-950/60 border border-red-800/80 text-red-200 text-xs flex items-center gap-2.5">
+              <AlertCircle size={18} className="shrink-0 text-red-400" />
+              <span>{errorMessage}</span>
             </div>
           )}
 
           {successMessage && (
-            <div className="mb-6 rounded-xl bg-teal-950/60 border border-teal-800/80 p-4 text-xs text-teal-300 flex items-start gap-3">
-              <CheckCircle2 className="h-4 w-4 text-teal-400 shrink-0 mt-0.5" />
-              <div>{successMessage}</div>
+            <div className="p-4 rounded-2xl bg-emerald-950/60 border border-emerald-800/80 text-emerald-200 text-xs flex items-center gap-2.5">
+              <CheckCircle2 size={18} className="shrink-0 text-emerald-400" />
+              <span>{successMessage}</span>
             </div>
           )}
 
-          {/* Multiple Workspace Selector Modal */}
-          {userRoles && (
-            <div className="space-y-3 py-2 animate-in fade-in">
-              <h3 className="text-sm font-bold text-white text-center">
-                Select Your Workspace For This Session:
-              </h3>
-              <p className="text-xs text-slate-400 text-center mb-4">
-                You hold multiple authorized operational roles in CAPSIC CARE.
-              </p>
-              <div className="space-y-2">
-                {userRoles.map((ws, i) => (
-                  <button
-                    key={i}
-                    onClick={() => router.push(ws.path)}
-                    className="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-teal-500 flex items-center justify-between text-left text-xs font-semibold text-white transition-all group"
-                  >
-                    <span>{ws.name}</span>
-                    <ChevronRight className="h-4 w-4 text-slate-500 group-hover:text-teal-400" />
-                  </button>
-                ))}
+          {!isOtpSent ? (
+            <form onSubmit={handleSendOtp} className="space-y-4">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1.5">
+                  Mobile Number or UHID *
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                    <Phone size={16} />
+                  </div>
+                  <input
+                    type="text"
+                    required
+                    value={phoneOrUhid}
+                    onChange={(e) => setPhoneOrUhid(e.target.value)}
+                    placeholder="Enter 10-digit mobile or CAP-YYYY-XXXXXX"
+                    className="w-full pl-10 pr-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
+                  />
+                </div>
+                <p className="text-[11px] text-slate-500 mt-1">
+                  We will send a one-time login code via SMS / WhatsApp.
+                </p>
               </div>
-            </div>
-          )}
 
-          {!userRoles && (
-            <>
-              {/* PATIENT PORTAL FAST LOGIN (Phone / OTP / UHID) */}
-              {portal === 'patient' ? (
-                <form className="space-y-4" onSubmit={handlePatientFastLogin}>
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                      Patient Mobile Number or UHID
-                    </label>
-                    <div className="relative rounded-lg shadow-sm">
-                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
-                        <Smartphone className="h-4 w-4" />
-                      </div>
-                      <input
-                        type="text"
-                        required
-                        value={phoneOrUhid}
-                        onChange={(e) => setPhoneOrUhid(e.target.value)}
-                        placeholder="e.g. 9876543210 or CAP-2026-..."
-                        className="block w-full pl-10 pr-3 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-white placeholder-slate-500 text-xs focus:outline-none focus:ring-2 focus:ring-teal-500"
-                      />
-                    </div>
-                  </div>
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full py-3.5 px-4 bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold rounded-xl text-sm transition-all shadow-lg shadow-teal-500/20 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+              >
+                {loading ? 'Sending Code...' : 'Get Login Code'} <ArrowRight size={16} />
+              </button>
 
-                  {isOtpSent && (
-                    <div className="animate-in fade-in">
-                      <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                        6-Digit OTP (Use 123456)
-                      </label>
-                      <input
-                        type="text"
-                        maxLength={6}
-                        required
-                        value={otp}
-                        onChange={(e) => setOtp(e.target.value)}
-                        placeholder="123456"
-                        className="block w-full px-3 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-white text-center font-mono tracking-widest text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
-                      />
-                    </div>
-                  )}
-
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full flex justify-center items-center gap-2 py-2.5 px-4 rounded-xl text-xs font-bold text-slate-950 bg-gradient-to-r from-teal-400 to-emerald-400 hover:from-teal-300 hover:to-emerald-300 disabled:opacity-50 shadow-lg shadow-teal-500/20 transition-all"
-                  >
-                    {loading ? (
-                      <span>Verifying...</span>
-                    ) : (
-                      <>
-                        <span>{isOtpSent ? 'Verify OTP & Enter Portal' : 'Send Fast Sign-In OTP'}</span>
-                        <ArrowRight className="h-4 w-4" />
-                      </>
-                    )}
-                  </button>
-
-                  <div className="text-center pt-2">
-                    <Link
-                      href="/register?role=patient"
-                      className="text-xs text-teal-400 hover:underline"
-                    >
-                      New patient? Register here for an instant UHID
-                    </Link>
-                  </div>
-                </form>
-              ) : (
-                /* CLINICAL, STAFF & ADMIN EMAIL/PASSWORD LOGIN */
-                <form className="space-y-4" onSubmit={handleEmailLogin}>
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                      {portal === 'doctor'
-                        ? 'Doctor Email'
-                        : portal === 'staff'
-                        ? 'Staff Work Email'
-                        : 'Administrator Email'}
-                    </label>
-                    <div className="relative rounded-lg shadow-sm">
-                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
-                        <Mail className="h-4 w-4" />
-                      </div>
-                      <input
-                        type="email"
-                        required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder={
-                          portal === 'doctor'
-                            ? 'doctor@capsic.in'
-                            : portal === 'staff'
-                            ? 'staff@capsic.in'
-                            : 'admin@capsic.in'
-                        }
-                        className="block w-full pl-10 pr-3 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-white placeholder-slate-500 text-xs focus:outline-none focus:ring-2 focus:ring-teal-500"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="flex items-center justify-between mb-1.5">
-                      <label className="block text-xs font-semibold text-slate-300">
-                        Password
-                      </label>
-                      <button
-                        type="button"
-                        onClick={() => setShowForgotModal(true)}
-                        className="text-xs text-teal-400 hover:text-teal-300 transition-colors"
-                      >
-                        Forgot password?
-                      </button>
-                    </div>
-                    <div className="relative rounded-lg shadow-sm">
-                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
-                        <Lock className="h-4 w-4" />
-                      </div>
-                      <input
-                        type={showPassword ? 'text' : 'password'}
-                        required
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="••••••••••••"
-                        className="block w-full pl-10 pr-10 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-white placeholder-slate-500 text-xs focus:outline-none focus:ring-2 focus:ring-teal-500"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => setShowPassword(!showPassword)}
-                        className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-500 hover:text-slate-300"
-                      >
-                        {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                      </button>
-                    </div>
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full flex justify-center items-center gap-2 py-2.5 px-4 rounded-xl text-xs font-bold text-slate-950 bg-gradient-to-r from-teal-400 to-emerald-400 hover:from-teal-300 hover:to-emerald-300 disabled:opacity-50 shadow-lg shadow-teal-500/20 transition-all"
-                  >
-                    {loading ? (
-                      <span>Verifying Session...</span>
-                    ) : (
-                      <>
-                        <span>
-                          {portal === 'doctor'
-                            ? 'Open Doctor Chamber EMR'
-                            : portal === 'staff'
-                            ? 'Open Staff Workspace'
-                            : 'Sign In to Administrator MIS'}
-                        </span>
-                        <ArrowRight className="h-4 w-4" />
-                      </>
-                    )}
-                  </button>
-
-                  <div className="text-center pt-2">
-                    <Link
-                      href={`/register?role=${portal === 'admin' ? 'doctor' : portal}`}
-                      className="text-xs text-teal-400 hover:underline"
-                    >
-                      {portal === 'doctor'
-                        ? 'New Doctor? Register your chamber here'
-                        : portal === 'staff'
-                        ? 'New Staff Member? Register your account'
-                        : 'Need an account? Register as Doctor or Staff'}
-                    </Link>
-                  </div>
-                </form>
-              )}
-            </>
-          )}
-
-          {/* Security Assurance */}
-          <div className="mt-6 pt-6 border-t border-slate-800/80 text-center">
-            <div className="flex items-center justify-center gap-2 text-[11px] text-slate-500">
-              <ShieldCheck className="h-3.5 w-3.5 text-teal-400" />
-              <span>Multi-Tenant Enterprise RBAC • ABDM Compliant</span>
-            </div>
-            {portal === 'admin' && (
-              <div className="mt-2">
-                <Link
-                  href="/admin/setup"
-                  className="text-[11px] text-slate-500 hover:text-teal-400 underline"
-                >
-                  Bootstrap initial Super Admin
-                </Link>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* Forgot Password Modal */}
-      {showForgotModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
-            <h3 className="text-sm font-semibold text-white mb-2">Reset Password</h3>
-            <p className="text-xs text-slate-400 mb-4">
-              Enter your registered email address to receive password reset instructions.
-            </p>
-            {forgotMessage && (
-              <div className="mb-4 text-xs p-3 rounded-lg bg-slate-800 border border-slate-700 text-slate-300">
-                {forgotMessage}
-              </div>
-            )}
-            <form onSubmit={handleForgotPassword} className="space-y-4">
-              <input
-                type="email"
-                required
-                value={forgotEmail}
-                onChange={(e) => setForgotEmail(e.target.value)}
-                placeholder="doctor@capsic.in"
-                className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-white text-xs focus:outline-none focus:ring-2 focus:ring-teal-500"
-              />
-              <div className="flex justify-end gap-3 pt-2">
+              <div className="text-center pt-2">
                 <button
                   type="button"
-                  onClick={() => {
-                    setShowForgotModal(false)
-                    setForgotMessage(null)
-                  }}
-                  className="px-4 py-2 text-xs text-slate-400 hover:text-white"
+                  onClick={quickDemoLogin}
+                  disabled={loading}
+                  className="w-full py-2.5 px-3 bg-slate-800/80 hover:bg-slate-800 text-teal-300 font-semibold rounded-xl text-xs flex items-center justify-center gap-1.5 transition-colors border border-teal-500/20 cursor-pointer"
                 >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  disabled={forgotLoading}
-                  className="px-4 py-2 text-xs font-semibold text-slate-950 bg-teal-400 hover:bg-teal-300 rounded-xl disabled:opacity-50"
-                >
-                  {forgotLoading ? 'Sending...' : 'Send Reset Link'}
+                  <Sparkles size={14} className="text-teal-400" /> Quick Sign-in with Demo Patient (Tanuja Begum)
                 </button>
               </div>
             </form>
+          ) : (
+            <form onSubmit={handleVerifyOtp} className="space-y-4">
+              <div>
+                <div className="flex justify-between items-center mb-1.5">
+                  <label className="text-xs font-bold uppercase tracking-wider text-slate-300">
+                    Enter Verification Code *
+                  </label>
+                  <button
+                    type="button"
+                    onClick={() => setIsOtpSent(false)}
+                    className="text-xs text-teal-400 hover:underline"
+                  >
+                    Change Phone / UHID
+                  </button>
+                </div>
+                <input
+                  type="text"
+                  maxLength={6}
+                  required
+                  autoFocus
+                  value={otp}
+                  onChange={(e) => setOtp(e.target.value)}
+                  placeholder="Enter 6-digit code (e.g. 123456)"
+                  className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-center text-lg font-mono tracking-widest text-teal-400 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full py-3.5 px-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl text-sm transition-all shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+              >
+                {loading ? 'Verifying...' : 'Access My Health Records'} <ArrowRight size={16} />
+              </button>
+            </form>
+          )}
+
+          {/* Quick Registration Helper */}
+          <div className="pt-4 border-t border-slate-800/80 text-center text-xs text-slate-400">
+            First time at Capsic Care?{' '}
+            <Link href="/lab-tests" className="text-teal-400 font-bold hover:underline">
+              Book a Test
+            </Link>{' '}
+            or{' '}
+            <Link href="/doctors" className="text-teal-400 font-bold hover:underline">
+              Consult a Doctor
+            </Link>
           </div>
         </div>
-      )}
+
+        {/* Complete Separation: Discreet Internal Portal Link */}
+        <div className="text-center mt-6">
+          <Link
+            href="/portal/login"
+            className="inline-flex items-center gap-1.5 text-xs text-slate-500 hover:text-slate-300 transition-colors"
+          >
+            <Stethoscope size={14} className="text-teal-500" />
+            Doctor or Staff Member? <span className="underline font-semibold text-slate-400">Internal Clinical Portal</span>
+          </Link>
+        </div>
+      </div>
     </div>
   )
 }
 
 export default function LoginPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-slate-950" />}>
-      <LoginForm />
+    <Suspense fallback={<div className="min-h-screen bg-slate-950 flex items-center justify-center text-teal-400 font-bold">Loading Patient Portal...</div>}>
+      <PatientLoginForm />
     </Suspense>
   )
 }

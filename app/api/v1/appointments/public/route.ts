@@ -39,12 +39,22 @@ export async function POST(req: NextRequest) {
     // 2. Resolve Doctor
     let doctor: any = null
     if (parsed.doctor_id) {
-      const { data: docById } = await admin
-        .from('doctors')
-        .select('id, name, code, specialty, qualifications, physical_fee_paise, telemedicine_fee_paise')
-        .eq('id', parsed.doctor_id)
-        .maybeSingle()
-      doctor = docById
+      const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(parsed.doctor_id)
+      if (isUuid) {
+        const { data: docById } = await admin
+          .from('doctors')
+          .select('id, name, code, specialty, qualifications, physical_fee_paise, telemedicine_fee_paise')
+          .eq('id', parsed.doctor_id)
+          .maybeSingle()
+        doctor = docById
+      } else {
+        const { data: docBySlug } = await admin
+          .from('doctors')
+          .select('id, name, code, specialty, qualifications, physical_fee_paise, telemedicine_fee_paise')
+          .or(`slug.eq.${parsed.doctor_id},code.eq.${parsed.doctor_id}`)
+          .maybeSingle()
+        doctor = docBySlug
+      }
     }
 
     if (!doctor && parsed.doctor_slug) {
@@ -57,10 +67,11 @@ export async function POST(req: NextRequest) {
     }
 
     if (!doctor && parsed.doctor_name) {
+      const cleanName = parsed.doctor_name.replace(/^(Dr\.|Dr\s+|Doctor\s+)/i, '').trim()
       const { data: docByName } = await admin
         .from('doctors')
         .select('id, name, code, specialty, qualifications, physical_fee_paise, telemedicine_fee_paise')
-        .ilike('name', `%${parsed.doctor_name}%`)
+        .ilike('name', `%${cleanName}%`)
         .maybeSingle()
       doctor = docByName
     }

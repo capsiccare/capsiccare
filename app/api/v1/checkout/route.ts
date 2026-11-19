@@ -31,6 +31,9 @@ const checkoutSchema = z.object({
   promoCode: z.string().optional().or(z.literal('')).nullable(),
   partnerCode: z.string().optional().or(z.literal('')).nullable(),
   fulfillmentType: z.enum(['home_collection', 'center_visit']).default('home_collection'),
+  paymentMode: z.enum(['cod', 'upi', 'card', 'online']).default('cod'),
+  transactionReference: z.string().optional().or(z.literal('')).nullable(),
+  isPaid: z.boolean().default(false),
   items: z.array(cartItemSchema).min(1, 'Cart cannot be empty'),
 })
 
@@ -88,7 +91,7 @@ export async function POST(req: NextRequest) {
         .update({
           address_line1: parsed.address.trim(),
           city: parsed.city.trim(),
-          postal_code: parsed.pincode.trim(),
+          pincode: parsed.pincode.trim(),
           email: parsed.email?.trim() || undefined,
           age_years: calculatedAge ?? undefined,
         })
@@ -112,7 +115,7 @@ export async function POST(req: NextRequest) {
           city: parsed.city.trim(),
           district: parsed.city.trim() || 'Howrah',
           state: parsed.state || 'West Bengal',
-          postal_code: parsed.pincode.trim(),
+          pincode: parsed.pincode.trim(),
           primary_branch_id: branch.id,
           is_active: true,
         })
@@ -182,6 +185,9 @@ export async function POST(req: NextRequest) {
     const randOrderSuffix = Math.floor(1000 + Math.random() * 9000)
     const orderNumber = `ORD-${dateStr}-${randOrderSuffix}`
 
+    const isOrderPaid = parsed.isPaid || (parsed.paymentMode !== 'cod' && Boolean(parsed.transactionReference))
+    const dbPaymentMode = parsed.paymentMode === 'cod' ? 'cash' : (['upi', 'card', 'online', 'unpaid', 'cash'].includes(parsed.paymentMode) ? parsed.paymentMode : 'cash')
+
     // 5. Insert Diagnostic Order
     const { data: order, error: orderErr } = await admin
       .from('diagnostic_orders')
@@ -199,8 +205,8 @@ export async function POST(req: NextRequest) {
         discount_paise: totalDiscountPaise,
         collection_fee_paise: collectionFeePaise,
         total_paise: totalPayablePaise,
-        payment_status: 'unpaid',
-        payment_mode: 'cash',
+        payment_status: isOrderPaid ? 'paid' : 'unpaid',
+        payment_mode: dbPaymentMode,
         promo_code: parsed.promoCode || null,
         partner_code: parsed.partnerCode || null,
         special_instructions: parsed.notes?.trim() || 'Online Web Order Booking',
@@ -302,14 +308,29 @@ export async function POST(req: NextRequest) {
         discount_paise: totalDiscountPaise,
         tax_paise: 0,
         total_paise: totalPayablePaise,
-        paid_paise: 0,
-        status: 'issued',
-        payment_status: 'unpaid',
+        paid_paise: isOrderPaid ? totalPayablePaise : 0,
+        status: isOrderPaid ? 'paid' : 'issued',
+        payment_status: isOrderPaid ? 'paid' : 'unpaid',
         promo_code: parsed.promoCode || null,
         notes: `Online Cart Booking - Order #${orderNumber}`,
       })
       .select('id, invoice_number')
       .single()
+
+    // 8. If paid online, insert Payment Record
+    if (invoice && isOrderPaid) {
+      const receiptNumber = `RCP-${dateStr}-${randOrderSuffix}`
+      await admin.from('payments').insert({
+        organization_id: org.id,
+        branch_id: branch.id,
+        invoice_id: invoice.id,
+        receipt_number: receiptNumber,
+        amount_paise: totalPayablePaise,
+        payment_method: parsed.paymentMode === 'card' ? 'card' : 'upi',
+        transaction_reference: parsed.transactionReference || `TXN-${Date.now()}`,
+        notes: 'Online Cart Checkout Payment',
+      })
+    }
 
     // 8. Insert Invoice Items
     if (invoice) {
