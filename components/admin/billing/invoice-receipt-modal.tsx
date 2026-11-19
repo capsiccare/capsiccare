@@ -189,7 +189,7 @@ export function InvoiceReceiptModal({ isOpen, onClose, invoice }: InvoiceReceipt
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
-                {invoice.items.map((item, idx) => (
+                {(invoice.items || []).map((item, idx) => (
                   <tr key={item.id || idx}>
                     <td className="py-2.5 px-3 text-center text-slate-400">{idx + 1}</td>
                     <td className="py-2.5 px-3">
@@ -217,11 +217,11 @@ export function InvoiceReceiptModal({ isOpen, onClose, invoice }: InvoiceReceipt
               </div>
 
               {/* Payments receipt ledger */}
-              {invoice.payments.length > 0 && (
+              {(invoice.payments || []).length > 0 && (
                 <div className="space-y-1.5">
                   <span className="font-bold text-slate-800 text-[11px] block">Payment Receipts Recorded:</span>
                   <div className="space-y-1">
-                    {invoice.payments.map(pay => (
+                    {(invoice.payments || []).map(pay => (
                       <div key={pay.id} className="flex justify-between items-center bg-slate-50 px-2.5 py-1.5 rounded border border-slate-200 text-[11px]">
                         <span className="font-mono text-slate-700">{pay.receiptNumber}</span>
                         <span className="capitalize font-semibold text-slate-800">{pay.paymentMethod}</span>

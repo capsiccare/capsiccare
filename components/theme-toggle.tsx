@@ -28,7 +28,7 @@ export function ThemeToggle({ className = '', showLabel = false, variant = 'icon
     )
   }
 
-  const isDark = resolvedTheme === 'dark'
+  const isDark = resolvedTheme === 'dark' || theme === 'dark'
 
   const toggleTheme = () => {
     setTheme(isDark ? 'light' : 'dark')

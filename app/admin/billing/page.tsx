@@ -405,11 +405,11 @@ export default function BillingPOSPage() {
 
                     <td className="py-3.5 px-4">
                       <div className="text-xs text-foreground font-medium">
-                        {inv.items.map(it => it.description).slice(0, 2).join(', ')}
-                        {inv.items.length > 2 ? ` +${inv.items.length - 2} more` : ''}
+                        {(inv.items || []).map(it => it.description).slice(0, 2).join(', ') || 'Diagnostic / Consultation'}
+                        {(inv.items?.length || 0) > 2 ? ` +${inv.items.length - 2} more` : ''}
                       </div>
                       <div className="text-[11px] text-muted-foreground">
-                        {inv.items.length} item{inv.items.length > 1 ? 's' : ''}
+                        {inv.items?.length || 0} item{(inv.items?.length || 0) > 1 ? 's' : ''}
                       </div>
                     </td>
 

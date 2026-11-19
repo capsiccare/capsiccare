@@ -125,6 +125,23 @@ export async function GET(req: NextRequest) {
       diagnosticOrderId: inv.diagnostic_order_id,
       lineItemsCount: inv.invoice_items?.length || 0,
       paymentsCount: inv.payments?.length || 0,
+      items: (inv.invoice_items || []).map((it: any) => ({
+        id: it.id,
+        itemType: it.item_type,
+        description: it.description,
+        quantity: it.quantity,
+        unitPriceInr: Math.round(it.unit_price_paise / 100),
+        totalInr: Math.round(it.total_paise / 100),
+        hsnSac: it.hsn_sac,
+      })),
+      payments: (inv.payments || []).map((p: any) => ({
+        id: p.id,
+        receiptNumber: p.receipt_number,
+        amountInr: Math.round(p.amount_paise / 100),
+        paymentMethod: p.payment_method,
+        paymentDate: p.payment_date,
+        reference: p.transaction_reference,
+      })),
       createdAt: inv.created_at,
     }))
 

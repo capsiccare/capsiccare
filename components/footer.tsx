@@ -13,7 +13,7 @@ import { ThemeToggle } from '@/components/theme-toggle'
 
 export function Footer() {
   return (
-    <footer className="bg-slate-900 text-slate-300 border-t border-slate-700 mt-12">
+    <footer className="bg-slate-100 dark:bg-slate-950 text-slate-600 dark:text-slate-300 border-t border-slate-200 dark:border-slate-800 mt-12 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-6 md:mb-8">
           {/* Brand */}
@@ -26,20 +26,20 @@ export function Footer() {
                 height={40}
                 className="w-10 h-10 rounded-lg"
               />
-              <span className="font-bold text-base md:text-lg text-white">Capsic Care</span>
+              <span className="font-bold text-base md:text-lg text-slate-900 dark:text-white">Capsic Care</span>
             </div>
-            <p className="text-xs md:text-sm text-slate-400">
+            <p className="text-xs md:text-sm text-slate-500 dark:text-slate-400">
               Affordable healthcare diagnostics with Free Home Sample Collection on total test amount above ₹2,000 in Howrah &amp; Kolkata.
             </p>
-            <div className="mt-3 p-3 bg-slate-800/80 rounded-xl border border-slate-700/60 text-xs text-slate-300 space-y-1">
-              <p className="font-bold text-teal-300">Updated Price &amp; Info Helpline:</p>
-              <p>Contact: <a href="tel:+918910260709" className="text-white hover:text-teal-300 font-bold underline">8910260709</a> or <a href="https://wa.me/918910260709?text=Hello%20Capsic%20Care%2C%20I%20have%20an%20inquiry%20regarding%20updated%20test%20prices%20and%20home%20sample%20collection." target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 font-bold underline">WhatsApp</a></p>
+            <div className="mt-3 p-3 bg-white dark:bg-slate-800/80 rounded-xl border border-slate-200 dark:border-slate-700/60 text-xs text-slate-700 dark:text-slate-300 space-y-1">
+              <p className="font-bold text-teal-600 dark:text-teal-300">Updated Price &amp; Info Helpline:</p>
+              <p>Contact: <a href="tel:+918910260709" className="text-teal-700 dark:text-white hover:underline font-bold">8910260709</a> or <a href="https://wa.me/918910260709?text=Hello%20Capsic%20Care%2C%20I%20have%20an%20inquiry%20regarding%20updated%20test%20prices%20and%20home%20sample%20collection." target="_blank" rel="noopener noreferrer" className="text-emerald-600 dark:text-emerald-400 hover:underline font-bold">WhatsApp</a></p>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold text-white mb-3 text-sm md:text-base">Quick Links</h4>
+            <h4 className="font-semibold text-slate-900 dark:text-white mb-3 text-sm md:text-base">Quick Links</h4>
             <ul className="space-y-2 text-xs md:text-sm">
               <li>
                 <Link
@@ -185,7 +185,7 @@ export function Footer() {
         </div>
 
         {/* Social Links */}
-        <div className="border-t border-slate-700 pt-6 md:pt-8">
+        <div className="border-t border-slate-200 dark:border-slate-800 pt-6 md:pt-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <p className="text-xs md:text-sm text-slate-400">
