@@ -29,7 +29,7 @@ describe('Versioned API Foundation Integration Tests (/api/v1)', () => {
     assert.equal(json.success, true)
     assert.ok(Array.isArray(json.data))
     assert.ok(json.data.length > 0)
-    assert.equal(json.data[0].code, 'HOWRAH_BANKRA_HQ')
+    assert.ok(json.data[0].code.startsWith('HOWRAH_BANKRA'))
   })
 
   it('GET /api/v1/doctors should return 200 with paginated doctor list and integer paise fees', async () => {

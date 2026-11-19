@@ -7,7 +7,16 @@ import { env, isSupabaseConfigured } from '@/lib/config/env'
  * and Route Handlers with secure cookie persistence.
  */
 export async function createServerSupabaseClient() {
-  const cookieStore = await cookies()
+  let cookieStore: any
+  try {
+    cookieStore = await cookies()
+  } catch {
+    // Graceful fallback when invoked outside a Next.js request store (e.g. Unit and integration tests)
+    cookieStore = {
+      getAll: () => [],
+      set: () => {},
+    }
+  }
 
   if (!isSupabaseConfigured()) {
     return createServerClient(

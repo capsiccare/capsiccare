@@ -1,7 +1,7 @@
 # CAPSIC CARE OS — Database Architecture & Schema Specification
 
-**Document Version:** 1.2.0  
-**Status:** Step 02.1 Supabase Connection & Activation Prepared  
+**Document Version:** 1.3.0  
+**Status:** Step 03 Complete OS Shell & Admin Management Active  
 **Engine:** PostgreSQL 15+ (via Supabase)  
 **Project:** `capsic-care-dev` (Reference: `ariswlepjxyjsnnttpyg`)  
 **Project URL:** `https://ariswlepjxyjsnnttpyg.supabase.co`  

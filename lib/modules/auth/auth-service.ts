@@ -145,8 +145,8 @@ export async function bootstrapFirstAdmin(params: {
   const { data: existingOrg } = await adminClient
     .from('organizations')
     .select('id')
-    .eq('code', 'CAPSIC_CARE')
-    .single()
+    .limit(1)
+    .maybeSingle()
 
   if (existingOrg) {
     orgId = existingOrg.id

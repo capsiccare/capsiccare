@@ -1,7 +1,7 @@
 # CAPSIC CARE OS — Technical Architecture Specification
 
-**Document Version:** 1.1.0  
-**Status:** Active Foundation & Backend Complete (Step 02)  
+**Document Version:** 1.2.0  
+**Status:** Complete OS Shell, Auth & Admin Management (Step 03)  
 **Target Architecture:** Next.js 16 (App Router) + React 19 + TypeScript + Supabase (PostgreSQL & GoTrue Auth) + Tailwind CSS 4 + Expo Router  
 **Environment Status:** Local Development Environment Isolated
 
@@ -132,3 +132,16 @@ All programmatic interactions adhere to strict REST conventions:
 1. **Auth Migration:** Replace Firebase Auth with `@supabase/supabase-js` using `AsyncStorage` persistence in `mobile-app/lib/supabase.ts`.
 2. **Unified Data Layer:** Configure `mobile-app/` to query the shared `/api/v1` Next.js route handlers (`/api/v1/doctors`, `/api/v1/branches`, `/api/v1/orders`).
 3. **Shared Contracts:** Type definitions in `lib/data/types.ts` and `lib/modules/auth/types.ts` serve as the single source of truth across web and mobile builds.
+
+---
+
+## 5. Admin Operating System & Shell Architecture (Step 03)
+
+### Application Shell & State Hierarchy
+- **Context Layer (`BranchProvider`):** Provides selected operating branch context (`selectedBranchId`, `activeBranch`, `branches`) down to all admin pages, allowing instant switching between enterprise-wide global view and specific branch rosters.
+- **Middleware Security Barrier (`middleware.ts`):** Enforces `@supabase/ssr` session cookie validation before serving any `/admin/:path*` page. Unauthenticated requests are immediately 307-redirected to `/login?redirect=...`. Whitelists `/admin/setup` for first-time owner bootstrap.
+- **Top Bar (`AdminTopBar`):** Sticky command bar integrating branch switcher dropdown, global omnibox search foundation, real-time operational notifications, and user session menu.
+- **Sidebar (`AdminSidebar`):** Collapsible desktop rail and mobile drawer exposing the 11 healthcare operational modules with status badges.
+- **Decoupled Patient Intake:** Receptionist walk-in registration creates clinical records with auto-generated UHID (`CC-YYYY-XXXXX`) without mandating Supabase Auth credentials for patients.
+- **Integer Paise Financial Engine:** All consultation fees, diagnostic prices, order subtotals, and invoice balances are handled strictly in integer paise (`₹500` stored as `50000`), completely eliminating floating-point rounding errors.
+

@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 import { Phone } from 'lucide-react'
 
 // WhatsApp Icon SVG
@@ -18,6 +19,7 @@ const WhatsAppIcon = ({ size = 24, className = "" }: { size?: number, className?
 )
 
 export function FloatingButtons() {
+  const pathname = usePathname()
   const [showText, setShowText] = useState(false)
   
   const whatsappUrl = 'https://wa.me/918910260709?text=Hi, I want to upload my prescription for lab tests.'
@@ -29,6 +31,10 @@ export function FloatingButtons() {
     }, 3000)
     return () => clearInterval(interval)
   }, [])
+
+  if (pathname?.startsWith('/admin') || pathname?.startsWith('/login')) {
+    return null
+  }
 
   return (
     <div className="fixed bottom-6 right-6 z-[100] flex flex-col gap-4 items-end sm:bottom-8 sm:right-8">
