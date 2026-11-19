@@ -19,7 +19,22 @@ export async function resolvePatientContext(req: NextRequest) {
   }
 
   const { searchParams } = new URL(req.url)
-  const targetPatientId = searchParams.get('patientId') || undefined
+  let targetPatientId = searchParams.get('patientId') || undefined
+
+  // Also read patientId from secure session cookie if not explicitly passed in query
+  if (!targetPatientId) {
+    const sessionCookie = req.cookies.get('capsic_patient_session')?.value
+    if (sessionCookie) {
+      try {
+        const decoded = JSON.parse(Buffer.from(sessionCookie, 'base64').toString('utf8'))
+        if (decoded.patientId) {
+          targetPatientId = decoded.patientId
+        }
+      } catch {
+        // Fallback
+      }
+    }
+  }
 
   const context = await getPatientContext(userId, targetPatientId)
   return { context, userId }

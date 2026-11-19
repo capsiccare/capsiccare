@@ -620,10 +620,13 @@ export default function CheckoutPage() {
                           <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${paymentMode === 'upi' ? 'bg-teal-600 text-white' : 'bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400'}`}>
                             <QrCode size={16} />
                           </div>
-                          <span className="font-bold text-sm">Pay Online via UPI</span>
+                          <div>
+                            <span className="font-bold text-sm block">Pay Online (HDFC SmartHub)</span>
+                            <span className="text-[10px] text-teal-600 dark:text-teal-400 font-bold uppercase">HDFC Bank Verified</span>
+                          </div>
                         </div>
                         <p className="text-xs text-slate-500 dark:text-slate-400">
-                          Google Pay, PhonePe, Paytm, BHIM, or Scan &amp; Pay QR.
+                          Instant Scan &amp; Pay: GPay, PhonePe, Paytm, BHIM, RuPay, Card.
                         </p>
                         {paymentMode === 'upi' && (
                           <span className="absolute top-3 right-3 w-2.5 h-2.5 rounded-full bg-teal-600" />
@@ -631,20 +634,36 @@ export default function CheckoutPage() {
                       </button>
                     </div>
 
-                    {/* Online UPI Details View */}
+                    {/* Online UPI Details View with HDFC SmartHub Vyapar */}
                     {paymentMode === 'upi' && (
-                      <div className="p-4 sm:p-5 bg-gradient-to-br from-slate-900 to-teal-950 text-white rounded-2xl border border-teal-500/30 space-y-4 animate-in fade-in duration-200 shadow-lg">
+                      <div className="p-4 sm:p-5 bg-gradient-to-br from-slate-900 via-slate-950 to-teal-950 text-white rounded-2xl border border-teal-500/30 space-y-4 animate-in fade-in duration-200 shadow-xl">
+                        {/* HDFC SmartHub Vyapar Header Banner */}
+                        <div className="flex items-center justify-between pb-3 border-b border-teal-500/20">
+                          <div className="flex items-center gap-2">
+                            <div className="px-2 py-1 rounded bg-[#004c8f] text-white font-black text-xs tracking-wider">
+                              HDFC BANK
+                            </div>
+                            <div>
+                              <span className="text-xs font-bold text-slate-100 block">SmartHub VYAPAR</span>
+                              <span className="text-[10px] text-teal-300 font-mono">TID: 82308299 • CAPSIC CARE</span>
+                            </div>
+                          </div>
+                          <span className="text-[11px] font-semibold text-emerald-400 flex items-center gap-1 bg-emerald-950/60 px-2 py-0.5 rounded-full border border-emerald-500/30">
+                            <ShieldCheck size={12} /> Bank Secure
+                          </span>
+                        </div>
+
                         <div className="flex flex-col sm:flex-row items-center gap-5">
-                          {/* Dynamic UPI QR Code */}
-                          <div className="p-3 bg-white rounded-2xl shadow-md shrink-0 text-center">
+                          {/* Official HDFC SmartHub Scan Card */}
+                          <div className="p-2.5 bg-white rounded-2xl shadow-xl shrink-0 text-center border-2 border-teal-400/50">
                             <img
-                              src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(`upi://pay?pa=capsiccare@icici&pn=Capsic+Care+Healthcare&am=${finalAmount}&cu=INR&tn=CapsicLabOrder`)}`}
-                              alt="Capsic Care UPI QR Code"
+                              src="/images/payments/hdfc-smarthub-qr.jpg"
+                              alt="HDFC Bank SmartHub Vyapar QR"
                               width={140}
-                              height={140}
-                              className="mx-auto block rounded-lg"
+                              height={190}
+                              className="mx-auto block rounded-lg object-contain max-h-[180px]"
                             />
-                            <span className="block text-[10px] text-slate-600 font-bold mt-1 uppercase tracking-wide">
+                            <span className="block text-[10px] text-slate-900 font-black mt-1 uppercase tracking-wide">
                               Scan &amp; Pay ₹{finalAmount}
                             </span>
                           </div>
@@ -652,15 +671,15 @@ export default function CheckoutPage() {
                           {/* UPI Details & Intent */}
                           <div className="flex-1 space-y-3 text-center sm:text-left min-w-0">
                             <div>
-                              <span className="text-[10px] uppercase font-bold text-teal-300 tracking-wider block">Official Merchant UPI ID</span>
+                              <span className="text-[10px] uppercase font-bold text-teal-300 tracking-wider block">Official Merchant VPA</span>
                               <div className="flex items-center justify-center sm:justify-start gap-2 mt-1">
-                                <code className="text-sm sm:text-base font-mono font-bold bg-white/10 px-2.5 py-1 rounded-lg border border-white/15">
-                                  capsiccare@icici
+                                <code className="text-xs sm:text-sm font-mono font-bold bg-white/10 px-2.5 py-1 rounded-lg border border-white/15 text-teal-200">
+                                  capsiccare.82308299@hdfcbank
                                 </code>
                                 <button
                                   type="button"
                                   onClick={() => {
-                                    navigator.clipboard.writeText('capsiccare@icici')
+                                    navigator.clipboard.writeText('capsiccare.82308299@hdfcbank')
                                     setIsCopiedUpi(true)
                                     setTimeout(() => setIsCopiedUpi(false), 2000)
                                   }}
@@ -673,24 +692,27 @@ export default function CheckoutPage() {
 
                             <div>
                               <a
-                                href={`upi://pay?pa=capsiccare@icici&pn=Capsic+Care+Healthcare&am=${finalAmount}&cu=INR&tn=CapsicLabOrder`}
-                                className="inline-flex items-center gap-2 px-4 py-2 bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold rounded-xl text-xs transition-colors shadow"
+                                href={`upi://pay?pa=capsiccare.82308299@hdfcbank&pn=CAPSIC+CARE&am=${finalAmount}&cu=INR&tn=CapsicCareLab&mc=8099`}
+                                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-teal-400 to-emerald-400 hover:from-teal-300 hover:to-emerald-300 text-slate-950 font-black rounded-xl text-xs transition-all shadow-md"
                               >
                                 <Smartphone size={14} /> Open in UPI App (GPay / PhonePe / Paytm)
                               </a>
                             </div>
 
-                            <div className="pt-2">
+                            <div className="pt-1">
                               <label className="block text-xs font-medium text-teal-200 mb-1">
-                                UPI Reference / UTR Number (Optional, for instant verification):
+                                Bank UTR / Transaction Reference (12 Digits):
                               </label>
                               <input
                                 type="text"
                                 value={transactionReference}
                                 onChange={(e) => setTransactionReference(e.target.value)}
-                                placeholder="e.g. 12-digit UTR from your UPI payment receipt"
-                                className="w-full px-3 py-2 bg-slate-800/90 border border-teal-500/40 rounded-xl text-xs text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-teal-400"
+                                placeholder="Enter 12-digit UTR from your bank or UPI app"
+                                className="w-full px-3 py-2 bg-slate-950 border border-teal-500/40 rounded-xl text-xs text-white placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-teal-400 font-mono"
                               />
+                              <p className="text-[10px] text-slate-400 mt-1">
+                                Payments are automatically verified with HDFC Bank SmartHub and credited instantly.
+                              </p>
                             </div>
                           </div>
                         </div>
@@ -916,8 +938,8 @@ Generated    : ${new Date().toLocaleString()}
                     age: formData.dateOfBirth ? new Date().getFullYear() - new Date(formData.dateOfBirth).getFullYear() : 35,
                     gender: formData.gender || 'Male',
                     category: 'PATHOLOGY',
-                    modeOfPayment: paymentMode === 'upi' ? 'Online UPI' : 'Pay on Sample Collection',
-                    accountName: paymentMode === 'upi' ? 'Online UPI Gateway' : 'Online Web Booking',
+                    modeOfPayment: paymentMode === 'upi' ? 'Online UPI (HDFC SmartHub TID: 82308299)' : 'Pay on Sample Collection (Doorstep)',
+                    accountName: paymentMode === 'upi' ? 'HDFC Bank SmartHub VYAPAR' : 'Capsic Care Outpatient Billing',
                     items: (confirmedItems.length > 0 ? confirmedItems : items).map(i => ({
                       name: i.name,
                       price: i.price,

@@ -10,64 +10,88 @@ import {
   ArrowRight,
   AlertCircle,
   CheckCircle2,
-  ShieldCheck,
   FileText,
   Clock,
   Sparkles,
   Stethoscope,
+  Lock,
+  MessageSquare,
+  KeyRound,
+  ExternalLink,
+  Eye,
+  EyeOff,
+  ShieldCheck,
 } from 'lucide-react'
+
+// Safe fetch helper that guarantees no raw HTML parse crash
+async function safeJsonFetch(url: string, options?: RequestInit) {
+  const res = await fetch(url, options)
+  const text = await res.text()
+  let data: any = null
+  try {
+    data = JSON.parse(text)
+  } catch {
+    throw new Error(`Server responded with ${res.status}. Please check your connection or try again.`)
+  }
+  if (!res.ok) {
+    throw new Error(data?.error?.message || data?.message || data?.error || `Request failed (${res.status})`)
+  }
+  return data
+}
 
 function PatientLoginForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const redirectQuery = searchParams.get('redirect')
 
-  const [phoneOrUhid, setPhoneOrUhid] = useState('')
+  const [authMethod, setAuthMethod] = useState<'otp' | 'password'>('otp')
+  const [identifier, setIdentifier] = useState('')
+  const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const [otp, setOtp] = useState('')
   const [isOtpSent, setIsOtpSent] = useState(false)
   const [loading, setLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
+  const [whatsappDirectUrl, setWhatsappDirectUrl] = useState<string | null>(null)
+  const [sentTargetMasked, setSentTargetMasked] = useState<string | null>(null)
 
+  // 1. Send OTP to WhatsApp / Email
   const handleSendOtp = async (e: React.FormEvent) => {
     e.preventDefault()
     setErrorMessage(null)
     setSuccessMessage(null)
 
-    const cleanInput = phoneOrUhid.trim().replace(/\D/g, '')
-    const isUhid = phoneOrUhid.trim().toUpperCase().startsWith('CAP-')
-
-    if (!isUhid && cleanInput.length < 10) {
-      setErrorMessage('Please enter a valid 10-digit mobile number or UHID (e.g. CAP-2026-XXXXXX).')
+    const trimmed = identifier.trim()
+    if (!trimmed) {
+      setErrorMessage('Please enter your Mobile Number, UHID, or Email address.')
       return
     }
 
     setLoading(true)
     try {
-      const res = await fetch('/api/v1/auth/patient-fast-login', {
+      const json = await safeJsonFetch('/api/v1/auth/otp/send', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          phone: isUhid ? undefined : cleanInput.slice(-10),
-          uhid: isUhid ? phoneOrUhid.trim().toUpperCase() : undefined,
-        }),
+        body: JSON.stringify({ identifier: trimmed }),
       })
 
-      const json = await res.json()
-      if (!res.ok) {
-        throw new Error(json.error?.message || json.message || 'Patient verification failed.')
-      }
-
+      const result = json.data || {}
       setIsOtpSent(true)
-      setSuccessMessage('6-digit verification code sent via WhatsApp & SMS. (Demo PIN: 123456)')
+      setSentTargetMasked(result.maskedTarget || trimmed)
+      setWhatsappDirectUrl(result.whatsappDirectUrl || null)
+      setSuccessMessage(
+        result.message || 'Verification code sent via WhatsApp & SMS. (Demo code: 123456)'
+      )
     } catch (err: any) {
-      console.error('Fast login error:', err)
-      setErrorMessage(err.message || 'Unable to find patient. Please check phone number or register.')
+      console.error('Send OTP error:', err)
+      setErrorMessage(err.message || 'Unable to send verification code. Please check your details.')
     } finally {
       setLoading(false)
     }
   }
 
+  // 2. Verify OTP
   const handleVerifyOtp = async (e: React.FormEvent) => {
     e.preventDefault()
     setErrorMessage(null)
@@ -80,73 +104,100 @@ function PatientLoginForm() {
 
     setLoading(true)
     try {
-      const cleanPhone = phoneOrUhid.trim().replace(/\D/g, '').slice(-10)
-      const isUhid = phoneOrUhid.trim().toUpperCase().startsWith('CAP-')
-
-      const res = await fetch('/api/v1/patient/me', {
+      const json = await safeJsonFetch('/api/v1/auth/otp/verify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          phone: isUhid ? undefined : cleanPhone,
-          uhid: isUhid ? phoneOrUhid.trim().toUpperCase() : undefined,
+          identifier: identifier.trim(),
           otp: otp.trim(),
         }),
       })
 
-      const json = await res.json()
-      if (!res.ok) {
-        throw new Error(json.error || json.message || 'Verification failed')
-      }
-
-      const patientData = json.data?.patient
-      setSuccessMessage(`Welcome back, ${patientData?.full_name || 'Patient'}! Loading records...`)
-
+      setSuccessMessage('Authentication successful! Opening your health records...')
+      const targetUrl = redirectQuery || json.data?.redirectUrl || '/patient'
       setTimeout(() => {
-        if (redirectQuery) {
-          router.push(redirectQuery)
-        } else {
-          router.push(`/patient?patientId=${patientData?.id}&uhid=${patientData?.uhid}`)
-        }
-      }, 600)
+        router.push(targetUrl)
+      }, 400)
     } catch (err: any) {
-      setErrorMessage(err.message || 'Invalid code. Please try again.')
+      console.error('Verify OTP error:', err)
+      setErrorMessage(err.message || 'Invalid or expired verification code.')
     } finally {
       setLoading(false)
     }
   }
 
-  const quickDemoLogin = async () => {
-    setPhoneOrUhid('9830225334')
+  // 3. Password / PIN Login
+  const handlePasswordLogin = async (e: React.FormEvent) => {
+    e.preventDefault()
     setErrorMessage(null)
+    setSuccessMessage(null)
+
+    if (!identifier.trim() || !password.trim()) {
+      setErrorMessage('Please enter your Mobile/UHID and Password/PIN.')
+      return
+    }
+
     setLoading(true)
     try {
-      const res = await fetch('/api/v1/patient/me', {
+      const json = await safeJsonFetch('/api/v1/auth/password-login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phone: '9830225334' }),
+        body: JSON.stringify({
+          identifier: identifier.trim(),
+          password: password.trim(),
+          portal: 'patient',
+        }),
       })
-      const json = await res.json()
-      if (!res.ok) throw new Error(json.error || 'Demo login failed')
-      const p = json.data?.patient
-      setSuccessMessage(`Signed in as ${p.full_name}! Redirecting to portal...`)
+
+      setSuccessMessage('Login verified! Redirecting to Patient Portal...')
+      const targetUrl = redirectQuery || json.data?.redirectUrl || '/patient'
       setTimeout(() => {
-        router.push(`/patient?patientId=${p.id}&uhid=${p.uhid}`)
-      }, 500)
+        router.push(targetUrl)
+      }, 400)
     } catch (err: any) {
-      setErrorMessage(err.message || 'Demo patient not found.')
+      console.error('Password login error:', err)
+      setErrorMessage(err.message || 'Incorrect credentials. Try default PIN 123456 or request OTP.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  // 4. Quick Demo Sign-in with Tanuja Begum
+  const quickDemoLogin = async () => {
+    setLoading(true)
+    setErrorMessage(null)
+    setSuccessMessage(null)
+    setIdentifier('9830225334')
+    try {
+      const json = await safeJsonFetch('/api/v1/auth/password-login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          identifier: '9830225334',
+          password: '123456',
+          portal: 'patient',
+        }),
+      })
+
+      setSuccessMessage('Logged in as Tanuja Begum (Demo Patient). Loading...')
+      setTimeout(() => {
+        router.push(redirectQuery || '/patient')
+      }, 300)
+    } catch (err: any) {
+      setErrorMessage(err.message || 'Demo login failed.')
+    } finally {
       setLoading(false)
     }
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden text-slate-100">
-      {/* Background Gradients */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+    <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-slate-950 text-slate-100 relative overflow-hidden">
+      {/* Background Decorative Glow */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-teal-500/10 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10 text-center">
-        {/* Brand Header */}
-        <Link href="/" className="inline-flex items-center justify-center gap-3 mb-4 group">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md text-center relative z-10 px-4">
+        {/* Brand Logo & Name */}
+        <Link href="/" className="inline-flex items-center gap-3 group mb-4">
           <div className="h-12 w-12 rounded-2xl bg-gradient-to-tr from-teal-500 to-emerald-400 flex items-center justify-center text-slate-950 font-black text-2xl shadow-lg shadow-teal-500/20 group-hover:scale-105 transition-transform">
             <Activity size={26} />
           </div>
@@ -185,8 +236,8 @@ function PatientLoginForm() {
         </div>
       </div>
 
-      {/* Main Card */}
-      <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-md relative z-10">
+      {/* Main Form Card */}
+      <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-md relative z-10 px-4">
         <div className="bg-slate-900/90 backdrop-blur border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-5">
           {errorMessage && (
             <div className="p-4 rounded-2xl bg-red-950/60 border border-red-800/80 text-red-200 text-xs flex items-center gap-2.5">
@@ -202,8 +253,165 @@ function PatientLoginForm() {
             </div>
           )}
 
-          {!isOtpSent ? (
-            <form onSubmit={handleSendOtp} className="space-y-4">
+          {/* Dual Mode Switcher (OTP vs Password) */}
+          <div className="grid grid-cols-2 p-1 bg-slate-950 border border-slate-800 rounded-xl">
+            <button
+              type="button"
+              onClick={() => {
+                setAuthMethod('otp')
+                setErrorMessage(null)
+              }}
+              className={`py-2 text-xs font-bold rounded-lg transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                authMethod === 'otp'
+                  ? 'bg-teal-500 text-slate-950 shadow-sm'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <MessageSquare size={14} /> OTP (WhatsApp/Email)
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setAuthMethod('password')
+                setErrorMessage(null)
+              }}
+              className={`py-2 text-xs font-bold rounded-lg transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                authMethod === 'password'
+                  ? 'bg-teal-500 text-slate-950 shadow-sm'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <KeyRound size={14} /> Password / PIN
+            </button>
+          </div>
+
+          {/* METHOD 1: OTP AUTHENTICATION */}
+          {authMethod === 'otp' && (
+            <>
+              {!isOtpSent ? (
+                <form onSubmit={handleSendOtp} className="space-y-4">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1.5">
+                      Mobile Number, UHID or Email *
+                    </label>
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                        <Phone size={16} />
+                      </div>
+                      <input
+                        type="text"
+                        required
+                        value={identifier}
+                        onChange={(e) => setIdentifier(e.target.value)}
+                        placeholder="e.g. 9830225334 or CAP-2026-XXXXXX"
+                        className="w-full pl-10 pr-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
+                      />
+                    </div>
+                    <p className="text-[11px] text-slate-500 mt-1">
+                      We will send a 6-digit verification code directly to WhatsApp &amp; Email.
+                    </p>
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full py-3.5 px-4 bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold rounded-xl text-sm transition-all shadow-lg shadow-teal-500/20 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                  >
+                    {loading ? 'Sending Code...' : 'Get Login Code'} <ArrowRight size={16} />
+                  </button>
+
+                  <div className="text-center pt-2">
+                    <button
+                      type="button"
+                      onClick={quickDemoLogin}
+                      disabled={loading}
+                      className="w-full py-2.5 px-3 bg-slate-800/80 hover:bg-slate-800 text-teal-300 font-semibold rounded-xl text-xs flex items-center justify-center gap-1.5 transition-colors border border-teal-500/20 cursor-pointer"
+                    >
+                      <Sparkles size={14} className="text-teal-400" /> Quick Sign-in with Demo Patient (Tanuja Begum)
+                    </button>
+                  </div>
+                </form>
+              ) : (
+                <form onSubmit={handleVerifyOtp} className="space-y-4">
+                  <div>
+                    <div className="flex items-center justify-between mb-1.5">
+                      <label className="text-xs font-bold uppercase tracking-wider text-slate-300">
+                        Enter 6-Digit Code *
+                      </label>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setIsOtpSent(false)
+                          setOtp('')
+                          setErrorMessage(null)
+                        }}
+                        className="text-[11px] text-teal-400 hover:underline"
+                      >
+                        Change number
+                      </button>
+                    </div>
+                    <input
+                      type="text"
+                      maxLength={6}
+                      required
+                      autoFocus
+                      value={otp}
+                      onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))}
+                      placeholder="• • • • • •"
+                      className="w-full py-3 text-center tracking-[0.5em] font-mono text-xl bg-slate-950 border border-slate-800 rounded-xl text-white placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-teal-500 transition-all"
+                    />
+
+                    <div className="mt-2 flex items-center justify-between text-xs text-slate-400">
+                      <span>Sent to {sentTargetMasked}</span>
+                      <button
+                        type="button"
+                        onClick={() => setOtp('123456')}
+                        className="text-xs font-bold text-teal-400 hover:underline bg-teal-500/10 px-2 py-0.5 rounded border border-teal-500/20"
+                      >
+                        Use Demo PIN (123456)
+                      </button>
+                    </div>
+
+                    {whatsappDirectUrl && (
+                      <div className="mt-3">
+                        <a
+                          href={whatsappDirectUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full py-2 px-3 rounded-xl bg-emerald-950/70 border border-emerald-700/60 text-emerald-300 text-xs font-medium flex items-center justify-center gap-2 hover:bg-emerald-900/60 transition-colors"
+                        >
+                          <ExternalLink size={14} /> Open OTP message in WhatsApp Web/App
+                        </a>
+                      </div>
+                    )}
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full py-3.5 px-4 bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold rounded-xl text-sm transition-all shadow-lg shadow-teal-500/20 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                  >
+                    {loading ? 'Verifying...' : 'Verify & Enter Patient Portal'} <ArrowRight size={16} />
+                  </button>
+
+                  <div className="text-center pt-2">
+                    <button
+                      type="button"
+                      onClick={handleSendOtp}
+                      disabled={loading}
+                      className="text-xs text-slate-400 hover:text-teal-300 underline"
+                    >
+                      Didn&apos;t receive code? Resend OTP
+                    </button>
+                  </div>
+                </form>
+              )}
+            </>
+          )}
+
+          {/* METHOD 2: PASSWORD / PORTAL PIN AUTHENTICATION */}
+          {authMethod === 'password' && (
+            <form onSubmit={handlePasswordLogin} className="space-y-4">
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1.5">
                   Mobile Number or UHID *
@@ -215,15 +423,43 @@ function PatientLoginForm() {
                   <input
                     type="text"
                     required
-                    value={phoneOrUhid}
-                    onChange={(e) => setPhoneOrUhid(e.target.value)}
+                    value={identifier}
+                    onChange={(e) => setIdentifier(e.target.value)}
                     placeholder="Enter 10-digit mobile or CAP-YYYY-XXXXXX"
-                    className="w-full pl-10 pr-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
+                    className="w-full pl-10 pr-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500 transition-all"
                   />
                 </div>
-                <p className="text-[11px] text-slate-500 mt-1">
-                  We will send a one-time login code via SMS / WhatsApp.
-                </p>
+              </div>
+
+              <div>
+                <div className="flex items-center justify-between mb-1.5">
+                  <label className="text-xs font-bold uppercase tracking-wider text-slate-300">
+                    Password or 6-Digit Portal PIN *
+                  </label>
+                  <span className="text-[11px] text-teal-400/80 font-mono">
+                    Default PIN: 123456
+                  </span>
+                </div>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                    <Lock size={16} />
+                  </div>
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter your Portal PIN or Password"
+                    className="w-full pl-10 pr-10 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500 transition-all"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-200"
+                  >
+                    {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                  </button>
+                </div>
               </div>
 
               <button
@@ -231,7 +467,7 @@ function PatientLoginForm() {
                 disabled={loading}
                 className="w-full py-3.5 px-4 bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold rounded-xl text-sm transition-all shadow-lg shadow-teal-500/20 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
               >
-                {loading ? 'Sending Code...' : 'Get Login Code'} <ArrowRight size={16} />
+                {loading ? 'Authenticating...' : 'Sign In with Password'} <ArrowRight size={16} />
               </button>
 
               <div className="text-center pt-2">
@@ -244,41 +480,6 @@ function PatientLoginForm() {
                   <Sparkles size={14} className="text-teal-400" /> Quick Sign-in with Demo Patient (Tanuja Begum)
                 </button>
               </div>
-            </form>
-          ) : (
-            <form onSubmit={handleVerifyOtp} className="space-y-4">
-              <div>
-                <div className="flex justify-between items-center mb-1.5">
-                  <label className="text-xs font-bold uppercase tracking-wider text-slate-300">
-                    Enter Verification Code *
-                  </label>
-                  <button
-                    type="button"
-                    onClick={() => setIsOtpSent(false)}
-                    className="text-xs text-teal-400 hover:underline"
-                  >
-                    Change Phone / UHID
-                  </button>
-                </div>
-                <input
-                  type="text"
-                  maxLength={6}
-                  required
-                  autoFocus
-                  value={otp}
-                  onChange={(e) => setOtp(e.target.value)}
-                  placeholder="Enter 6-digit code (e.g. 123456)"
-                  className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-center text-lg font-mono tracking-widest text-teal-400 focus:outline-none focus:ring-2 focus:ring-teal-500"
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full py-3.5 px-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl text-sm transition-all shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
-              >
-                {loading ? 'Verifying...' : 'Access My Health Records'} <ArrowRight size={16} />
-              </button>
             </form>
           )}
 

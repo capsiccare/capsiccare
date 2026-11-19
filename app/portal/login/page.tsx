@@ -325,13 +325,13 @@ function InternalLoginForm() {
             </span>
             <div className="grid grid-cols-2 gap-2 text-xs">
               <Link
-                href="/portal/register-doctor"
+                href="/register?role=doctor"
                 className="p-2.5 rounded-xl bg-slate-950 border border-slate-800 hover:border-teal-500/50 text-slate-300 hover:text-teal-400 transition-colors text-center font-medium"
               >
                 Register as Doctor
               </Link>
               <Link
-                href="/portal/register-staff"
+                href="/register?role=staff"
                 className="p-2.5 rounded-xl bg-slate-950 border border-slate-800 hover:border-teal-500/50 text-slate-300 hover:text-teal-400 transition-colors text-center font-medium"
               >
                 Register as Staff
