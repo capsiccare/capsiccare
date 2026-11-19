@@ -104,7 +104,10 @@ export default function AdminPatientsPage() {
   const [isDetailOpen, setIsDetailOpen] = useState(false)
   const [selectedPatient, setSelectedPatient] = useState<PatientDetail | null>(null)
   const [detailLoading, setDetailLoading] = useState(false)
-  const [detailTab, setDetailTab] = useState<'overview' | 'appointments' | 'orders'>('overview')
+  const [detailTab, setDetailTab] = useState<'overview' | 'appointments' | 'orders' | 'documents' | 'communications'>('overview')
+  const [patientDocs, setPatientDocs] = useState<any[]>([])
+  const [patientMessages, setPatientMessages] = useState<any[]>([])
+  const [docsLoading, setDocsLoading] = useState(false)
 
   // Form State
   const [formData, setFormData] = useState({
@@ -167,6 +170,8 @@ export default function AdminPatientsPage() {
     setDetailLoading(true)
     setDetailTab('overview')
     setSelectedPatient(null)
+    fetchPatientDocs(patient.id)
+    fetchPatientMessages(patient.id)
     try {
       const res = await fetch(`/api/v1/admin/patients/${patient.id}`)
       const data = await res.json()
@@ -179,6 +184,31 @@ export default function AdminPatientsPage() {
       setSelectedPatient(patient as PatientDetail)
     } finally {
       setDetailLoading(false)
+    }
+  }
+
+  const fetchPatientDocs = async (patientId?: string) => {
+    if (!patientId) return
+    setDocsLoading(true)
+    try {
+      const res = await fetch(`/api/v1/patients/${patientId}/documents`)
+      const data = await res.json()
+      if (data.success) setPatientDocs(data.data.documents || [])
+    } catch (e) {
+      console.error(e)
+    } finally {
+      setDocsLoading(false)
+    }
+  }
+
+  const fetchPatientMessages = async (patientId?: string) => {
+    if (!patientId) return
+    try {
+      const res = await fetch(`/api/v1/communications/messages?patientId=${patientId}`)
+      const data = await res.json()
+      if (data.success) setPatientMessages(data.data.messages || [])
+    } catch (e) {
+      console.error(e)
     }
   }
 
@@ -927,13 +957,39 @@ export default function AdminPatientsPage() {
               </button>
               <button
                 onClick={() => setDetailTab('orders')}
-                className={`py-3 text-xs font-semibold border-b-2 transition-colors ${
+                className={`py-3 text-xs font-semibold border-b-2 mr-4 transition-colors ${
                   detailTab === 'orders'
                     ? 'border-emerald-600 text-emerald-700'
                     : 'border-transparent text-slate-500 hover:text-slate-800'
                 }`}
               >
                 Diagnostic Orders ({selectedPatient?.orders?.length || 0})
+              </button>
+              <button
+                onClick={() => {
+                  setDetailTab('documents')
+                  fetchPatientDocs(selectedPatient?.id)
+                }}
+                className={`py-3 text-xs font-semibold border-b-2 mr-4 transition-colors ${
+                  detailTab === 'documents'
+                    ? 'border-emerald-600 text-emerald-700'
+                    : 'border-transparent text-slate-500 hover:text-slate-800'
+                }`}
+              >
+                Documents & RX ({patientDocs.length})
+              </button>
+              <button
+                onClick={() => {
+                  setDetailTab('communications')
+                  fetchPatientMessages(selectedPatient?.id)
+                }}
+                className={`py-3 text-xs font-semibold border-b-2 transition-colors ${
+                  detailTab === 'communications'
+                    ? 'border-emerald-600 text-emerald-700'
+                    : 'border-transparent text-slate-500 hover:text-slate-800'
+                }`}
+              >
+                Communications ({patientMessages.length})
               </button>
             </div>
 
@@ -1069,6 +1125,69 @@ export default function AdminPatientsPage() {
                       ) : (
                         <div className="p-8 bg-slate-50 border border-dashed border-slate-200 rounded-xl text-center text-xs text-slate-400">
                           No diagnostic orders recorded for this patient.
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {detailTab === 'documents' && (
+                    <div className="space-y-3">
+                      {patientDocs && patientDocs.length > 0 ? (
+                        patientDocs.map((doc) => (
+                          <div key={doc.id} className="p-3 bg-white border border-slate-200 rounded-xl text-xs space-y-2">
+                            <div className="flex items-center justify-between">
+                              <span className="font-mono font-bold text-slate-900">{doc.document_number}</span>
+                              <Badge variant="outline" className="text-[10px] uppercase font-mono">
+                                {doc.document_type}
+                              </Badge>
+                            </div>
+                            <div className="font-semibold text-slate-800">{doc.title}</div>
+                            <div className="flex items-center justify-between text-slate-500 text-[11px] pt-1 border-t border-slate-100">
+                              <span>Version {doc.version}</span>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const link = `${window.location.origin}/api/v1/documents/${doc.security_token}`
+                                  navigator.clipboard.writeText(link)
+                                  alert('Copied 48-hour secure expiring delivery link to clipboard!')
+                                }}
+                                className="text-teal-600 hover:text-teal-700 font-medium text-xs flex items-center gap-1 cursor-pointer"
+                              >
+                                📋 Copy 48h Secure Link
+                              </button>
+                            </div>
+                          </div>
+                        ))
+                      ) : (
+                        <div className="p-8 bg-slate-50 border border-dashed border-slate-200 rounded-xl text-center text-xs text-slate-400">
+                          No digital prescriptions or lab reports uploaded yet.
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {detailTab === 'communications' && (
+                    <div className="space-y-3">
+                      {patientMessages && patientMessages.length > 0 ? (
+                        patientMessages.map((msg) => (
+                          <div key={msg.id} className="p-3 bg-white border border-slate-200 rounded-xl text-xs space-y-1.5">
+                            <div className="flex items-center justify-between">
+                              <Badge variant="outline" className="text-[10px] uppercase font-mono">
+                                {msg.channel}
+                              </Badge>
+                              <Badge className="bg-emerald-50 text-emerald-700 border-emerald-200 text-[10px]">
+                                {msg.status}
+                              </Badge>
+                            </div>
+                            <div className="text-slate-700 leading-relaxed">{msg.message_body}</div>
+                            <div className="text-slate-400 text-[11px] pt-1 border-t border-slate-100">
+                              {msg.delivered_at ? new Date(msg.delivered_at).toLocaleString() : 'Pending'}
+                            </div>
+                          </div>
+                        ))
+                      ) : (
+                        <div className="p-8 bg-slate-50 border border-dashed border-slate-200 rounded-xl text-center text-xs text-slate-400">
+                          No communication messages dispatched to this patient yet.
                         </div>
                       )}
                     </div>

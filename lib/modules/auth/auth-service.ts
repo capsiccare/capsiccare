@@ -65,7 +65,7 @@ export function hasRole(user: AuthUser, requiredRole: AppRole, branchId?: string
   if (!user.isActive) return false
 
   // Super admin possesses platform-wide privileges
-  const isSuperAdmin = user.roles.some((r) => r.role === 'super_admin')
+  const isSuperAdmin = user.roles.some((r) => r.role === 'super_admin' || r.role === 'org_admin')
   if (isSuperAdmin) return true
 
   return user.roles.some((r) => {
@@ -76,6 +76,28 @@ export function hasRole(user: AuthUser, requiredRole: AppRole, branchId?: string
     if (branchId) return r.branchId === branchId
     return true
   })
+}
+
+/**
+ * Checks if a user holds any of the specified roles.
+ */
+export function hasAnyRole(user: AuthUser, allowedRoles: AppRole[], branchId?: string): boolean {
+  if (!user.isActive) return false
+  const isSuperAdmin = user.roles.some((r) => r.role === 'super_admin' || r.role === 'org_admin')
+  if (isSuperAdmin) return true
+
+  return allowedRoles.some((role) => hasRole(user, role, branchId))
+}
+
+/**
+ * Asserts the caller has any of the required roles.
+ */
+export async function requireAnyRole(allowedRoles: AppRole[], branchId?: string): Promise<AuthUser> {
+  const user = await requireAuth()
+  if (!hasAnyRole(user, allowedRoles, branchId)) {
+    throw new Error(`FORBIDDEN: Requires one of roles: [${allowedRoles.join(', ')}]`)
+  }
+  return user
 }
 
 /**

@@ -19,6 +19,8 @@ import {
   ChevronRight,
   Activity,
   X,
+  MessageSquare,
+  HeartHandshake,
 } from 'lucide-react'
 
 interface NavItem {
@@ -36,7 +38,9 @@ const navItems: NavItem[] = [
   { name: 'Appointments', href: '/admin/appointments', icon: Calendar, status: 'active' },
   { name: 'Diagnostics & Orders', href: '/admin/diagnostics', icon: FlaskConical, status: 'active' },
   { name: 'Billing & POS', href: '/admin/billing', icon: Receipt, status: 'active' },
-  { name: 'Staff & Tasks', href: '/admin/staff', icon: UserCheck, badge: 'Step 06', status: 'planned' },
+  { name: 'Staff & Workforce', href: '/admin/staff', icon: UserCheck, status: 'active' },
+  { name: 'Communications', href: '/admin/communications', icon: MessageSquare, status: 'active' },
+  { name: 'Patient Experience', href: '/admin/patient-experience', icon: HeartHandshake, status: 'active' },
   { name: 'CareFlow CRM', href: '/admin/careflow', icon: Workflow, badge: 'Step 08', status: 'planned' },
   { name: 'Reports & Analytics', href: '/admin/reports', icon: BarChart3, badge: 'Step 09', status: 'planned' },
   { name: 'Security & Audit', href: '/admin/audit', icon: ShieldCheck, status: 'active' },
