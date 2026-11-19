@@ -1,7 +1,7 @@
 # CAPSIC CARE OS — Database Architecture & Schema Specification
 
-**Document Version:** 1.3.0  
-**Status:** Step 03 Complete OS Shell & Admin Management Active  
+**Document Version:** 1.4.0  
+**Status:** Step 04 Unified Appointments & Chambers Active (Migration 007 Applied)  
 **Engine:** PostgreSQL 15+ (via Supabase)  
 **Project:** `capsic-care-dev` (Reference: `ariswlepjxyjsnnttpyg`)  
 **Project URL:** `https://ariswlepjxyjsnnttpyg.supabase.co`  
@@ -141,3 +141,17 @@ The development seed data populates an isolated, fictional healthcare environmen
 - **Patients:** Rahul Sen (`CC-2026-SYN001`), Fatima Begum (`CC-2026-SYN002`)
 - **Appointments & Orders:** Fictional confirmed physical appointment and pending home collection order.
 - **Repeatability:** Seed statements are idempotent using `ON CONFLICT DO NOTHING`.
+
+---
+
+## 6. Chambers & Enhanced Scheduling (Migration 007)
+
+Applied via `20261119000007_chambers_and_scheduling.sql`:
+- **`chambers`:** Master table for consultation chambers and rooms, with unique constraint `(branch_id, room_number)`.
+- **`doctor_schedules.chamber_id`:** Foreign key linking weekly recurring OPD sessions to specific chambers.
+- **`appointments.chamber_id`:** Foreign key persisting room assignment per appointment.
+- **`appointments` Lifecycle Timestamps:** `check_in_time`, `consultation_start_time`, `consultation_end_time`.
+- **`appointments.status` Constraint:** Expanded to include `'waiting'`:
+  `CHECK (status IN ('scheduled', 'confirmed', 'checked_in', 'waiting', 'in_consultation', 'completed', 'cancelled', 'no_show'))`
+- **Dual Overlap Protection Trigger:** Validates both doctor availability and room availability concurrently, preventing double-booking of doctors or chambers.
+

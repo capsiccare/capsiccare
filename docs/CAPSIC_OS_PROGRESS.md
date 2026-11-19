@@ -1,12 +1,11 @@
 # CAPSIC CARE OS — Project Progress & Implementation Status
 
-**Document Version:** 1.6.0  
-**Current Milestone:** Step 03: Complete OS Shell, Auth Frontend & Admin Management (Completed)  
+**Document Version:** 1.7.0  
+**Current Milestone:** Step 04: Unified Appointment, Doctor Scheduling & Reception Operations (Completed)  
 **Last Updated:** 2026-11-19  
 **Workspace Directory:** `C:\Users\Administrator\Desktop\CC WEB DEV\capsiccare-main`  
 **GitHub Remote:** `https://github.com/capsiccare/capsiccare.git`  
 **Active Development Branch:** `develop` (Tracking base: `main`, up to date with `origin/develop`)  
-**Latest Synced Remote Commit:** `7951f45`  
 **Database Status:** Connected & Operational (`postgresql://db.ariswlepjxyjsnnttpyg.supabase.co:5432/postgres`)  
 **Local Development Server:** Running at `http://localhost:3000` (Next.js 16.1.6 Turbopack)  
 
@@ -21,8 +20,8 @@
 | **Step 02.1** | Supabase Connection & Database Activation | **COMPLETED** | Connected to `ariswlepjxyjsnnttpyg.supabase.co`, applied all 6 migrations, executed synthetic seed data, 25 tables RLS protected, verified with 8 live database tests. Total 29/29 automated tests passing. |
 | **GitHub Integration** | Workspace Alignment, Git Config & Remote Sync | **COMPLETED** | Flattened directory structure, synchronized with `https://github.com/capsiccare/capsiccare.git`, pushed `main` and `develop` branches via authenticated Git Credential Manager. |
 | **Step 03** | Complete OS Shell, Auth Frontend & Admin Management | **COMPLETED** | OS shell (collapsible sidebar, top bar, branch selector context, global search foundation), `/login`, `/admin/setup` (first-time bootstrap), `middleware.ts` route protection, `/admin` KPI dashboard, `/admin/doctors` (CRUD + integer paise), `/admin/patients` (decoupled intake + auto-UHID), `/admin/settings`, `/admin/audit`, and 6 planned module previews. 32/32 tests passing. Typecheck: 0 errors. |
-| **Step 04** | Unified Appointment & Doctor Chamber Scheduling Engine | *Next Implementation* | Multi-view calendar, real-time doctor OPD chamber slots, reception booking desk, token generation, queue management. |
-| **Step 05** | Diagnostics, Home Sample Collection & Lab Fulfillment | *Planned* | Test master catalogue, phlebotomist dispatch run-sheets, barcode allocation, report verification and digital signing. |
+| **Step 04** | Unified Appointment, Doctor Scheduling & Reception Operations | **COMPLETED** | Migration 007 (`chambers`, doctor & chamber overlap trigger, lifecycle timestamps), availability engine (`getDoctorDayAvailability`), interactive calendar (`/admin/appointments` in Day, Week, and Chamber Grid views), Reception Queue terminal (`/admin/appointments/queue`), front-desk booking modal with auto-tokening, printable appointment slip voucher (`window.print`). 38/38 tests passing. Typecheck: 0 errors. |
+| **Step 05** | Diagnostics, Home Sample Collection & Lab Fulfillment | *Next Implementation* | Test master catalogue, phlebotomist dispatch run-sheets, barcode allocation, report verification and digital signing. |
 | **Step 06** | Billing, Payment Reconciliation & Ledger | *Planned* | OPD consultation billing, diagnostic invoicing, thermal receipts, cash drawer handover, integer paise ledger. |
 | **Step 07** | Staff Management & Branch RBAC | *Planned* | Staff invitation, multi-branch role assignment, nurse & phlebotomist rosters, MFA enforcement. |
 | **Step 08** | CareFlow & Patient Retention Engine | *Planned* | Automated 3-day post-OPD check-ins, chronic disease recall pipelines, tele-caller workspace. |
@@ -32,82 +31,66 @@
 
 ---
 
-## 2. Step 03 Implementation Details
+## 2. Step 04 Implementation Details
 
-### A. Authentication & Route Protection
-- **`middleware.ts`:** App Router middleware utilizing `@supabase/ssr` to refresh session cookies, intercept unauthenticated visits to `/admin/:path*` and redirect to `/login?redirect=...`. Whitelists `/admin/setup` for first-time owner bootstrap. Redirects authenticated users from `/login` to `/admin`.
-- **`/login` (`app/login/page.tsx`):** Enterprise login screen with email/password authentication, error alerts, forgot-password modal (`resetPasswordForEmail`), and first-time Super Admin bootstrap link.
-- **`/admin/setup` (`app/admin/setup/page.tsx`):** First-time Super Administrator bootstrap screen. Verifies `/api/v1/auth/bootstrap` availability lock; displays confirmation and securely establishes the first global administrator.
-- **`components/floating-buttons.tsx`:** Pathname-aware suppression hiding floating consumer WhatsApp and call widgets when viewing `/admin` and `/login`.
+### A. Database Enhancements (Migration 007)
+- **`chambers` Master Table:** Tracks clinic rooms and physical consultation chambers per branch with unique constraint on `(branch_id, room_number)`. Seeded Chambers 101, 102, 103 for `HOWRAH_BANKRA_CENTRAL`.
+- **`doctor_schedules` Extension:** Linked with `chamber_id` for room reservation during doctor OPD sessions.
+- **`appointments` Extensions:** Added `chamber_id`, `check_in_time`, `consultation_start_time`, `consultation_end_time`, and updated status check constraint to support `'waiting'`.
+- **Enhanced Concurrency Overlap Trigger:**
+  - Prevents doctor double-booking across overlapping consultation windows.
+  - Prevents physical chamber overlap (two different doctors cannot occupy the same chamber at the same date and overlapping time interval).
 
-### B. CAPSIC CARE OS Shell & Dashboard
-- **`lib/context/branch-context.tsx`:** `BranchProvider` and `useBranch()` hook providing branch switcher state across the admin layout.
-- **`components/admin/sidebar.tsx`:** Collapsible desktop and responsive mobile drawer sidebar with active route highlighting, brand header, and module status badges.
-- **`components/admin/top-bar.tsx`:** Sticky navigation bar with mobile hamburger trigger, branch selector dropdown, global search bar foundation (with Enter-key routing), live operational alerts, and user profile / logout menu.
-- **`components/admin/breadcrumbs.tsx`:** Dynamic breadcrumb navigation mapping URL path segments.
-- **`/admin` Overview Dashboard (`app/admin/page.tsx`):** Live database-backed executive command center:
-  - 4 Key Metric KPI cards (Today's Consultations, Active Doctors, Total Patients, Integer Paise Revenue).
-  - Doctor OPD chamber timetable for the current day.
-  - Recent appointments table with status badges.
-  - Recent diagnostic orders table.
-  - Quick reception action shortcuts.
-  - Infrastructure status banner (Database: Connected, RLS: Active, Timezone: Asia/Kolkata).
+### B. Availability Engine (`lib/modules/appointments/availability-service.ts`)
+- Computes real-time doctor slot availability for any requested date (`getDoctorDayAvailability`).
+- Evaluates:
+  - Weekly recurring doctor sessions.
+  - Schedule exceptions (leaves, holidays, emergency cancellations).
+  - Slot duration intervals (e.g. 15 mins).
+  - Existing non-cancelled bookings against `max_patients_per_slot`.
+  - Chamber occupancy conflicts.
+  - Current IST time bounds (slots in the past marked `'passed'`).
+- Returns slot objects tagged: `'available'`, `'booked'`, or `'passed'`, with fee snapshots.
 
-### C. Doctor Management (`/admin/doctors`)
-- **Backend APIs:**
-  - `GET /api/v1/admin/doctors`: Supports search (`q`), specialty filter, branch affiliation filter, and pagination.
-  - `POST /api/v1/admin/doctors`: Zod validation, auto-slugification, integer paise consultation fee enforcement, multi-branch association, and audit log generation (`DOCTOR_CREATED`).
-  - `GET /api/v1/admin/doctors/[id]`: Full profile with associated branches and weekly OPD schedules.
-  - `PATCH /api/v1/admin/doctors/[id]`: Updates credentials, fees in paise, active status, branch affiliations, and audit logging (`DOCTOR_UPDATED`).
-- **Frontend Page (`app/admin/doctors/page.tsx`):**
-  - Searchable, specialty-filterable directory table.
-  - "Add Doctor" modal dialog with validation and INR-to-paise conversion (`₹500` -> `50,000 paise`).
-  - "Edit Doctor" modal dialog.
-  - "Doctor Profile & Schedule" side drawer displaying weekly OPD timetables and branch affiliations.
+### C. Interactive Appointment Calendar (`/admin/appointments`)
+- **Day View:** Hourly time grid displaying scheduled consultations, token numbers, patient name, UHID, physician, chamber, and status tags.
+- **Week View:** 7-day calendar displaying daily consultation tallies and doctor availability rosters.
+- **Chamber Grid View:** Matrix view displaying chambers as columns and time bands as rows, visualizing room occupancy and available booking slots.
+- **Appointment Detail Drawer:** Displays appointment metadata and provides 1-click state transitions (`confirmed`, `checked_in`, `waiting`, `in_consultation`, `completed`, `cancelled`, `no_show`).
 
-### D. Patient Directory (`/admin/patients`)
-- **Backend APIs:**
-  - `GET /api/v1/admin/patients`: Supports search by patient name, phone (+91), or UHID, branch filter, and pagination.
-  - `POST /api/v1/admin/patients`: Auto-generates UHID format `CC-YYYY-XXXXX`, checks phone normalization, establishes decoupled clinical record (no `auth.users` account required), creates primary contact in `patient_contacts`, and logs audit event (`PATIENT_REGISTERED`).
-  - `GET /api/v1/admin/patients/[id]`: Clinical profile with emergency contacts, DPDP consents, past appointments, and diagnostic orders.
-  - `PATCH /api/v1/admin/patients/[id]`: Updates demographics, emergency contact, active status, and logs audit event (`PATIENT_UPDATED`).
-- **Frontend Page (`app/admin/patients/page.tsx`):**
-  - Patient directory table with monospace UHID chips, demographics, and primary branch tags.
-  - "Register Patient" receptionist intake modal (fast walk-in registration).
-  - "Edit Patient" modal dialog.
-  - "Patient Health Record" drawer with tabs for Demographics & DPDP Consents, Appointment History, and Diagnostic Orders.
+### D. Front-Desk Reception Booking Modal (`ReceptionBookingModal`)
+- Instant patient lookup by UHID, phone (+91), or full name.
+- Inline "Quick Walk-in Patient Registration" drawer if patient is not yet in system.
+- Live slot selector querying availability service.
+- Immutable consultation fee snapshotting (`fee_paise`).
+- Auto-token assignment (Token #1, #2, #3...) per doctor per day.
 
-### E. Settings & Access Management (`/admin/settings`)
-- **Backend API (`GET /api/v1/admin/settings`):** Returns organization details, registered branch directory, staff profiles with roles, and healthcare operating standards.
-- **Frontend Page (`app/admin/settings/page.tsx`):**
-  - Healthcare Organization profile card.
-  - Healthcare & Clinical Standards card (Timezone: `Asia/Kolkata`, Currency: `INR (₹)`, Monetary Unit: `Integer Paise`, UHID Scheme: `CC-YYYY-XXXXX`, Compliance: `DISHA & DPDP Act 2023`).
-  - Clinical Branches Directory card (Headquarters tag, contact numbers, address).
-  - Role-Based Access Control card (11 system roles with operational definitions).
+### E. Printable Appointment Voucher Slip (`AppointmentSlipModal`)
+- Clean, thermal/A4-friendly printable confirmation voucher with `@media print` layout.
+- Displays CAPSIC CARE branding, clinic branch address & phone, appointment reference, daily token number, patient UHID & demographics, doctor name & specialty, chamber room number, scheduled time window, and fee snapshot.
+- Clearly states: *"Non-Invoice Slip - Valid for Clinic Token/Chamber Entry"*.
 
-### F. Security & Audit Trail (`/admin/audit`)
-- **Backend API (`GET /api/v1/admin/audit`):** Fetches forensic events from `audit_logs` table joined with user profiles.
-- **Frontend Page (`app/admin/audit/page.tsx`):**
-  - Live audit log viewer with event filtering (`SUPER_ADMIN_BOOTSTRAP`, `DOCTOR_CREATED`, `DOCTOR_UPDATED`, `PATIENT_REGISTERED`, `PATIENT_UPDATED`).
-  - Timestamp in IST, actor name/phone, entity type/id, and expandable JSON state diff viewer.
-
-### G. Future Module Placeholders
-Clean operational preview pages indicating database readiness and feature plans:
-- `/admin/appointments` (Step 04: Unified Appointment & Doctor Chamber Scheduling Engine)
-- `/admin/diagnostics` (Step 05: Diagnostics, Home Sample Collection & Lab Fulfillment)
-- `/admin/billing` (Step 06: Billing, Payment Reconciliation & Ledger)
-- `/admin/staff` (Step 07: Staff Management & Branch RBAC)
-- `/admin/careflow` (Step 08: CareFlow & Patient Retention Engine)
-- `/admin/reports` (Step 09: MIS, Analytics & Executive Reporting)
+### F. Reception Queue Terminal (`/admin/appointments/queue`)
+- Real-time desk workflow for receptionists.
+- 5 operational KPI summary cards: In Chamber, Waiting Lobby, Upcoming Today, Completed, Total.
+- Priority-ordered consultation run-sheet (In-Chamber &rarr; Waiting &rarr; Checked-In &rarr; Confirmed &rarr; Completed).
+- Real-time waiting duration counter (`12m waiting`).
+- 1-click status transitions: Confirm, Check-in, Mark Waiting, Call into Chamber, Complete, No-Show.
+- Auto-refresh polling every 15 seconds.
 
 ---
 
-## 3. Automated Test Suite (32 / 32 Passed in 5.3s)
+## 3. Automated Test Suite (38 / 38 Passed in 7.2s)
 
+- **Step 04 Appointments & Reception Tests (6/6):**
+  - Active chambers master verification.
+  - Slot availability calculations for working day.
+  - Schedule exception (leaves/holidays) handling.
+  - Booking & token sequencing.
+  - Concurrency guard preventing overlapping consultations.
+  - Status lifecycle transitions and timestamp recording.
 - **Admin Management & CRUD Integration Tests (3/3):**
-  - Doctor CRUD: creates, queries, updates doctor with integer paise fee and branch links.
-  - Patient Directory: registers patient with auto-generated UHID format `CC-YYYY-XXXXX` and primary contacts.
-  - Audit Logs: captures mutations in forensic audit trail.
+  - Doctor CRUD, Patient registration with auto-UHID, and Audit log capture.
 - **Versioned API Foundation Integration Tests (5/5):**
   - Health endpoint, branches endpoint, doctors list, specialty filtering, and auth guard.
 - **Live Supabase Database & Security Verification (8/8):**
@@ -125,21 +108,13 @@ Clean operational preview pages indicating database readiness and feature plans:
 
 ## 4. Live Local Endpoints Verified
 
+- `GET /admin/appointments` -> HTTP 307 Redirect (Protected)
+- `GET /admin/appointments/queue` -> HTTP 307 Redirect (Protected)
+- `GET /api/v1/chambers` -> HTTP 401 UNAUTHORIZED (Protected)
+- `GET /api/v1/appointments` -> HTTP 401 UNAUTHORIZED (Protected)
+- `GET /api/v1/appointments/queue` -> HTTP 401 UNAUTHORIZED (Protected)
+- `GET /api/v1/doctor-schedules` -> HTTP 401 UNAUTHORIZED (Protected)
+- `GET /api/v1/doctors/:id/availability` -> HTTP 401 UNAUTHORIZED (Protected)
 - `GET /` -> HTTP 200 OK (Public Home)
-- `GET /doctors` -> HTTP 200 OK (Public Doctor Directory)
-- `GET /lab-tests` -> HTTP 200 OK (Public Lab Catalogue)
-- `GET /health-packages` -> HTTP 200 OK (Public Packages)
-- `GET /login` -> HTTP 200 OK (Admin Authentication Screen)
-- `GET /admin/setup` -> HTTP 200 OK (First-time Super Admin Bootstrap)
-- `GET /admin` -> HTTP 307 Redirect (Redirects unauthenticated visitors to `/login?redirect=/admin`)
-- `GET /admin/doctors` -> HTTP 307 Redirect (Redirects unauthenticated visitors to `/login`)
-- `GET /admin/patients` -> HTTP 307 Redirect (Redirects unauthenticated visitors to `/login`)
-- `GET /api/v1/auth/bootstrap` -> HTTP 200 OK (`{ isBootstrapAllowed: true }`)
-- `GET /api/v1/health` -> HTTP 200 OK (`database: { status: 'connected' }`)
-- `GET /api/v1/branches` -> HTTP 200 OK
-- `GET /api/v1/doctors` -> HTTP 200 OK
-- `GET /api/v1/admin/dashboard` -> HTTP 401 UNAUTHORIZED (Protected)
-- `GET /api/v1/admin/doctors` -> HTTP 401 UNAUTHORIZED (Protected)
-- `GET /api/v1/admin/patients` -> HTTP 401 UNAUTHORIZED (Protected)
-- `GET /api/v1/admin/settings` -> HTTP 401 UNAUTHORIZED (Protected)
-- `GET /api/v1/admin/audit` -> HTTP 401 UNAUTHORIZED (Protected)
+- `GET /doctors` -> HTTP 200 OK (Public Directory)
+- `GET /lab-tests` -> HTTP 200 OK (Public Catalogue)

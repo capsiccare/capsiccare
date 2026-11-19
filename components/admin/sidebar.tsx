@@ -33,7 +33,7 @@ const navItems: NavItem[] = [
   { name: 'Overview', href: '/admin', icon: LayoutDashboard, status: 'active' },
   { name: 'Doctor Management', href: '/admin/doctors', icon: Stethoscope, status: 'active' },
   { name: 'Patient Directory', href: '/admin/patients', icon: Users, status: 'active' },
-  { name: 'Appointments', href: '/admin/appointments', icon: Calendar, badge: 'Step 04', status: 'planned' },
+  { name: 'Appointments', href: '/admin/appointments', icon: Calendar, status: 'active' },
   { name: 'Diagnostics & Orders', href: '/admin/diagnostics', icon: FlaskConical, badge: 'Step 05', status: 'planned' },
   { name: 'Billing & Invoices', href: '/admin/billing', icon: Receipt, badge: 'Step 06', status: 'planned' },
   { name: 'Staff & Tasks', href: '/admin/staff', icon: UserCheck, badge: 'Step 07', status: 'planned' },

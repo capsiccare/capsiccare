@@ -1,7 +1,7 @@
 # CAPSIC CARE OS — Technical Architecture Specification
 
-**Document Version:** 1.2.0  
-**Status:** Complete OS Shell, Auth & Admin Management (Step 03)  
+**Document Version:** 1.3.0  
+**Status:** Unified Appointments & Reception Operations Active (Step 04)  
 **Target Architecture:** Next.js 16 (App Router) + React 19 + TypeScript + Supabase (PostgreSQL & GoTrue Auth) + Tailwind CSS 4 + Expo Router  
 **Environment Status:** Local Development Environment Isolated
 
@@ -144,4 +144,16 @@ All programmatic interactions adhere to strict REST conventions:
 - **Sidebar (`AdminSidebar`):** Collapsible desktop rail and mobile drawer exposing the 11 healthcare operational modules with status badges.
 - **Decoupled Patient Intake:** Receptionist walk-in registration creates clinical records with auto-generated UHID (`CC-YYYY-XXXXX`) without mandating Supabase Auth credentials for patients.
 - **Integer Paise Financial Engine:** All consultation fees, diagnostic prices, order subtotals, and invoice balances are handled strictly in integer paise (`₹500` stored as `50000`), completely eliminating floating-point rounding errors.
+
+---
+
+## 6. Unified Appointment Engine & Reception Operations (Step 04)
+
+### Availability & Scheduling Core
+- **Availability Service (`availability-service.ts`):** Dynamically computes real-time doctor slot availability based on weekly recurring schedules (`doctor_schedules`), room/chamber reservations (`chambers`), schedule exceptions (`schedule_exceptions`), and existing non-cancelled bookings.
+- **Concurrency & Overlap Protection:** Enforced at the database transaction layer via PostgreSQL triggers preventing both doctor double-booking and chamber collision.
+- **State Machine Lifecycle:** Appointments progress strictly through permitted state transitions (`scheduled` &rarr; `confirmed` &rarr; `checked_in` &rarr; `waiting` &rarr; `in_consultation` &rarr; `completed`), appending immutable audit records to `appointment_status_history`.
+- **Reception Queue (`/admin/appointments/queue`):** Real-time priority run-sheet supporting token numbering, arrival timestamps, waiting duration metrics, and 1-click stage progression.
+- **Printable Slip Generation:** Branded confirmation voucher optimized for thermal/A4 browser printing (`@media print`), explicitly distinguished from finalized tax invoices.
+
 
