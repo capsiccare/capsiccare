@@ -21,6 +21,7 @@ import {
   X,
   MessageSquare,
   HeartHandshake,
+  Pill,
 } from 'lucide-react'
 
 interface NavItem {
@@ -33,6 +34,9 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { name: 'Overview', href: '/admin', icon: LayoutDashboard, status: 'active' },
+  { name: 'Doctor Portal', href: '/doctor', icon: Stethoscope, badge: 'Live', status: 'active' },
+  { name: 'Clinical Control', href: '/admin/clinical', icon: ShieldCheck, badge: 'Gov', status: 'active' },
+  { name: 'Medicine Formulary', href: '/admin/medicines', icon: Pill, status: 'active' },
   { name: 'Doctor Management', href: '/admin/doctors', icon: Stethoscope, status: 'active' },
   { name: 'Patient Directory', href: '/admin/patients', icon: Users, status: 'active' },
   { name: 'Appointments', href: '/admin/appointments', icon: Calendar, status: 'active' },
