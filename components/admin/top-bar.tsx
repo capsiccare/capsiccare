@@ -16,6 +16,7 @@ import {
   Check,
   Sparkles,
 } from 'lucide-react'
+import { ThemeToggle } from '@/components/theme-toggle'
 
 interface TopBarProps {
   onMobileMenuClick: () => void
@@ -173,6 +174,9 @@ export function AdminTopBar({ onMobileMenuClick }: TopBarProps) {
 
       {/* Right: Notifications & User Profile Menu */}
       <div className="flex items-center gap-2">
+        {/* Theme Toggle */}
+        <ThemeToggle className="bg-slate-800/80 border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800" />
+
         {/* Notification Bell */}
         <div className="relative">
           <button

@@ -9,6 +9,7 @@ import {
   Youtube,
   Twitter,
 } from 'lucide-react'
+import { ThemeToggle } from '@/components/theme-toggle'
 
 export function Footer() {
   return (
@@ -186,9 +187,12 @@ export function Footer() {
         {/* Social Links */}
         <div className="border-t border-slate-700 pt-6 md:pt-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-            <p className="text-xs md:text-sm text-slate-400">
-              © 2024 Capsic Care. All rights reserved.
-            </p>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              <p className="text-xs md:text-sm text-slate-400">
+                © 2024 Capsic Care. All rights reserved.
+              </p>
+              <ThemeToggle variant="pill" />
+            </div>
             <div className="flex space-x-4">
               <a
                 href="https://facebook.com/profile.php?id=61587413380650"

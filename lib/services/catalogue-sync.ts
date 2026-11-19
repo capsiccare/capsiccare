@@ -214,11 +214,12 @@ export async function syncCatalogueData(dryRun: boolean = true): Promise<SyncVal
   if (!dryRun && isSupabaseConfigured()) {
     try {
       const admin = createAdminClient()
-      const { data: org } = await admin.from('organizations').select('id').eq('code', 'CAPSIC_CARE').single()
+      const { data: org } = await admin.from('organizations').select('id').limit(1).single()
       if (org) {
-        // Upsert categories
+        // 1. Upsert categories
+        const catMap = new Map<string, string>()
         for (const cat of validatedCategories) {
-          await admin.from('diagnostic_categories').upsert(
+          const { data: catRow } = await admin.from('diagnostic_categories').upsert(
             {
               organization_id: org.id,
               code: `CAT-${cat.id}`,
@@ -227,7 +228,91 @@ export async function syncCatalogueData(dryRun: boolean = true): Promise<SyncVal
               is_active: true,
             },
             { onConflict: 'slug' }
-          )
+          ).select('id, code').single()
+          if (catRow) {
+            catMap.set(cat.id, catRow.id)
+            catMap.set(`CAT-${cat.id}`, catRow.id)
+          }
+        }
+
+        // 2. Upsert tests
+        const defaultCatId = catMap.values().next().value || null
+        for (const test of validatedTests) {
+          const categoryId = catMap.get(test.categoryId) || defaultCatId
+          const { data: testRow } = await admin.from('diagnostic_tests').upsert(
+            {
+              organization_id: org.id,
+              code: test.code,
+              name: test.name,
+              slug: test.slug,
+              category_id: categoryId,
+              sample_type: test.sampleType,
+              fasting_required: false,
+              turnaround_hours: test.turnaroundHours,
+              home_collection_supported: test.homeCollection,
+              is_active: true,
+            },
+            { onConflict: 'code' }
+          ).select('id').single()
+
+          if (testRow) {
+            const { data: existingPrice } = await admin
+              .from('diagnostic_prices')
+              .select('id')
+              .eq('test_id', testRow.id)
+              .is('branch_id', null)
+              .eq('is_active', true)
+              .maybeSingle()
+
+            if (!existingPrice) {
+              await admin.from('diagnostic_prices').insert({
+                organization_id: org.id,
+                branch_id: null,
+                item_type: 'test',
+                test_id: testRow.id,
+                price_paise: test.pricePaise,
+                mrp_paise: test.mrpPaise,
+                is_active: true,
+              })
+            }
+          }
+        }
+
+        // 3. Upsert packages
+        for (const pkg of validatedPackages) {
+          const { data: pkgRow } = await admin.from('diagnostic_packages').upsert(
+            {
+              organization_id: org.id,
+              code: pkg.code,
+              name: pkg.name,
+              slug: pkg.slug,
+              badge: 'POPULAR',
+              is_active: true,
+            },
+            { onConflict: 'code' }
+          ).select('id').single()
+
+          if (pkgRow) {
+            const { data: existingPrice } = await admin
+              .from('diagnostic_prices')
+              .select('id')
+              .eq('package_id', pkgRow.id)
+              .is('branch_id', null)
+              .eq('is_active', true)
+              .maybeSingle()
+
+            if (!existingPrice) {
+              await admin.from('diagnostic_prices').insert({
+                organization_id: org.id,
+                branch_id: null,
+                item_type: 'package',
+                package_id: pkgRow.id,
+                price_paise: pkg.pricePaise,
+                mrp_paise: pkg.mrpPaise,
+                is_active: true,
+              })
+            }
+          }
         }
 
         report.databaseSyncApplied = true

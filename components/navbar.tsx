@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { Menu, X, ShoppingCart } from 'lucide-react'
 import { useCart } from '@/hooks/use-cart'
 import { SearchBar } from '@/components/search-bar'
+import { ThemeToggle } from '@/components/theme-toggle'
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -103,6 +104,7 @@ export function Navbar({ onCartClick }: NavbarProps) {
 
             {/* CTA Button - Desktop */}
             <div className="hidden md:flex gap-2 items-center">
+              <ThemeToggle />
               {cartCount > 0 && (
                 <button
                   onClick={onCartClick}
@@ -119,6 +121,7 @@ export function Navbar({ onCartClick }: NavbarProps) {
 
             {/* Mobile Controls */}
             <div className="md:hidden flex gap-1 items-center">
+              <ThemeToggle />
               {/* Mobile Cart Button */}
               {cartCount > 0 && (
                 <button
