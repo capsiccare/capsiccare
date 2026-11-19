@@ -20,6 +20,9 @@ export default function CheckoutPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
   const [bookingId, setBookingId] = useState('')
+  const [patientUhid, setPatientUhid] = useState('')
+  const [invoiceNumber, setInvoiceNumber] = useState('')
+  const [confirmedItems, setConfirmedItems] = useState<any[]>([])
   const [showCashMemoModal, setShowCashMemoModal] = useState(false)
 
   const [formData, setFormData] = useState({
@@ -38,7 +41,7 @@ export default function CheckoutPage() {
   })
   const [discount, setDiscount] = useState(0)
 
-  if (items.length === 0) {
+  if (items.length === 0 && step !== 'confirmation') {
     return (
       <div className="min-h-screen pt-24 pb-8">
         <div className="max-w-2xl mx-auto px-4 text-center">
@@ -134,52 +137,55 @@ export default function CheckoutPage() {
     setError('')
 
     try {
-      console.log('[v0] Booking submission:', {
-        fullName: formData.fullName,
-        phone: formData.phone,
-        totalAmount,
-        promoDiscountAmount,
-        finalAmount,
-      })
-
-      // Create a mock booking ID instead of relying on a database
-      const bkId = `BC-${Date.now()}`
-      setBookingId(bkId)
-
-      // Generate WhatsApp message using service
-      const message = generateBookingWhatsAppMessage({
-        fullName: formData.fullName,
-        phone: formData.phone,
-        email: formData.email,
-        dateOfBirth: formData.dateOfBirth,
-        gender: formData.gender,
-        notes: formData.notes,
-        address: formData.address,
-        city: formData.city,
+      const payload = {
+        fullName: formData.fullName.trim(),
+        phone: formData.phone.trim(),
+        email: formData.email?.trim() || null,
+        address: formData.address.trim(),
+        city: formData.city.trim(),
         state: formData.state || 'West Bengal',
-        pincode: formData.pincode,
-        bookingId: bkId,
-        tests: items,
-        totalAmount: totalMrp,
-        discountAmount: overallSavings,
-        finalAmount: finalAmount,
-        promoCode: formData.promoCode,
-        partnerCode: formData.partnerCode
+        pincode: formData.pincode.trim(),
+        dateOfBirth: formData.dateOfBirth || null,
+        gender: formData.gender || null,
+        notes: formData.notes?.trim() || null,
+        promoCode: formData.promoCode?.trim() || null,
+        partnerCode: formData.partnerCode?.trim() || null,
+        fulfillmentType: 'home_collection' as const,
+        items: items.map(i => ({
+          id: i.id,
+          name: i.name,
+          price: i.price,
+          mrp: i.mrp || i.price,
+          code: (i as any).code || i.id,
+        })),
+      }
+
+      const res = await fetch('/api/v1/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
       })
 
-      // Proceed to WhatsApp confirmation with the booking details
-      const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '918910260709'
-      window.open(
-        `https://wa.me/${whatsappNumber}?text=${message}`,
-        '_blank'
-      )
+      const json = await res.json()
+      if (!res.ok || !json.success) {
+        throw new Error(json.error?.message || 'Failed to place booking order')
+      }
 
-      // Clear cart and show confirmation
+      const orderData = json.data.order
+      const patientData = json.data.patient
+      const invoiceData = json.data.invoice
+
+      setConfirmedItems([...items])
+      setBookingId(orderData.order_number)
+      setPatientUhid(patientData.uhid)
+      setInvoiceNumber(invoiceData?.invoice_number || '')
+
+      // Clear active cart and transition to confirmation
       clearCart()
       setStep('confirmation')
-    } catch (err) {
-      console.error('[v0] Booking error:', err)
-      setError('Failed to process booking. Please try again.')
+    } catch (err: any) {
+      console.error('[Checkout Error]:', err)
+      setError(err.message || 'Failed to process booking. Please try again.')
     } finally {
       setIsLoading(false)
     }
@@ -597,8 +603,12 @@ export default function CheckoutPage() {
 
                     <div className="grid grid-cols-2 gap-4 text-sm">
                       <div>
-                        <p className="text-slate-600 dark:text-slate-200">Booking ID</p>
-                        <p className="font-mono font-bold text-slate-900 dark:text-white">{bookingId}</p>
+                        <p className="text-slate-600 dark:text-slate-200">Order Reference</p>
+                        <p className="font-mono font-bold text-teal-600 dark:text-teal-400">{bookingId}</p>
+                      </div>
+                      <div>
+                        <p className="text-slate-600 dark:text-slate-200">Patient UHID</p>
+                        <p className="font-mono font-bold text-slate-900 dark:text-white">{patientUhid || 'Generated'}</p>
                       </div>
                       <div>
                         <p className="text-slate-600 dark:text-slate-200">Patient Name</p>
@@ -608,26 +618,22 @@ export default function CheckoutPage() {
                         <p className="text-slate-600 dark:text-slate-200">Phone</p>
                         <p className="font-medium text-slate-900 dark:text-white">{formData.phone}</p>
                       </div>
-                      <div>
-                        <p className="text-slate-600 dark:text-slate-200">Age</p>
-                        <p className="font-medium text-slate-900 dark:text-white">{formData.dateOfBirth ? new Date().getFullYear() - new Date(formData.dateOfBirth).getFullYear() : 'N/A'}</p>
-                      </div>
                       <div className="col-span-2">
-                        <p className="text-slate-600 dark:text-slate-200">Address</p>
+                        <p className="text-slate-600 dark:text-slate-200">Collection Address</p>
                         <p className="font-medium text-slate-900 dark:text-white">{formData.address}, {formData.city} - {formData.pincode}</p>
                       </div>
                       <div className="col-span-2">
-                        <p className="text-slate-600 dark:text-slate-200">Tests/Packages</p>
+                        <p className="text-slate-600 dark:text-slate-200">Tests / Health Packages Booked</p>
                         <div className="space-y-1 mt-1">
-                          {items.map(item => (
+                          {(confirmedItems.length > 0 ? confirmedItems : items).map(item => (
                             <p key={item.id} className="text-slate-900 dark:text-white">• {item.name} - ₹{item.price}</p>
                           ))}
                         </div>
                       </div>
                       <div className="col-span-2 pt-2 border-t border-slate-200 dark:border-slate-700">
                         <div className="flex justify-between font-bold">
-                          <p className="text-slate-900 dark:text-white">Amount Paid</p>
-                          <p className="text-teal-600 dark:text-teal-300">₹0 (Pay Later)</p>
+                          <p className="text-slate-900 dark:text-white">Amount Payable at Sample Collection</p>
+                          <p className="text-teal-600 dark:text-teal-300">₹{finalAmount}</p>
                         </div>
                       </div>
                     </div>
@@ -641,22 +647,22 @@ export default function CheckoutPage() {
                       </div>
                       <div>
                         <h3 className="font-black text-sm text-white">Official Outpatient Cash Memo</h3>
-                        <p className="text-xs text-teal-200">Generated bill with patient metadata, pathology test details & print ready receipt.</p>
+                        <p className="text-xs text-teal-200">Generated bill with patient metadata, pathology test details &amp; print ready receipt.</p>
                       </div>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
                       <button
                         type="button"
                         onClick={() => setShowCashMemoModal(true)}
-                        className="py-2.5 px-4 bg-teal-500 hover:bg-teal-400 text-slate-950 font-extrabold rounded-xl text-xs flex items-center justify-center gap-2 transition-all shadow-md"
+                        className="py-2.5 px-4 bg-teal-500 hover:bg-teal-400 text-slate-950 font-extrabold rounded-xl text-xs flex items-center justify-center gap-2 transition-all shadow-md cursor-pointer"
                       >
-                        <FileText size={15} /> View & Print Cash Memo
+                        <FileText size={15} /> View &amp; Print Cash Memo
                       </button>
                       <Link
-                        href={`/invoice?name=${encodeURIComponent(formData.fullName)}&phone=${encodeURIComponent(formData.phone)}&age=${formData.dateOfBirth ? new Date().getFullYear() - new Date(formData.dateOfBirth).getFullYear() : '35'}&gender=${encodeURIComponent(formData.gender || 'Male')}`}
+                        href="/login"
                         className="py-2.5 px-4 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-2 transition-colors border border-white/20 text-center"
                       >
-                        Open in Billing Module
+                        Access Patient Portal
                       </Link>
                     </div>
                   </div>
@@ -681,51 +687,60 @@ export default function CheckoutPage() {
                       </button>
                       <button
                         onClick={() => {
-                          const message = `Booking Details:\n\nID: ${bookingId}\nPatient: ${formData.fullName}\nPhone: ${formData.phone}\nAge: ${formData.dateOfBirth ? new Date().getFullYear() - new Date(formData.dateOfBirth).getFullYear() : 'N/A'}\nAddress: ${formData.address}, ${formData.city}\nTests:\n${items.map(i => { const m = Math.max(i.mrp || i.price, i.price); return `• ${i.name}\n  MRP: ₹${m} | Price: ₹${i.price} | Save: ₹${m - i.price}` }).join('\n')}\n\nSubtotal: ₹${totalMrp}\nDiscount: ₹${overallSavings}\nFinal Amount: ₹${finalAmount}`
+                          const activeList = confirmedItems.length > 0 ? confirmedItems : items
+                          const message = `Capsic Care Order Details:\n\nOrder Ref: ${bookingId}\nUHID: ${patientUhid}\nPatient: ${formData.fullName}\nPhone: ${formData.phone}\nAddress: ${formData.address}, ${formData.city}\nTests Booked:\n${activeList.map(i => { const m = Math.max(i.mrp || i.price, i.price); return `• ${i.name}\n  MRP: ₹${m} | Price: ₹${i.price} | Save: ₹${m - i.price}` }).join('\n')}\n\nPayable at Collection: ₹${finalAmount}`
                           window.open(
                             `https://wa.me/?text=${encodeURIComponent(message)}`,
                             '_blank'
                           )
                         }}
-                        className="flex items-center justify-center gap-2 px-3 py-2 bg-green-100 dark:bg-green-900/30 border border-green-300 dark:border-green-700 rounded-lg hover:bg-green-200 dark:hover:bg-green-900/50 text-sm font-medium text-green-700 dark:text-green-400"
+                        className="flex items-center justify-center gap-2 px-3 py-2 bg-green-100 dark:bg-green-900/30 border border-green-300 dark:border-green-700 rounded-lg hover:bg-green-200 dark:hover:bg-green-900/50 text-sm font-medium text-green-700 dark:text-green-400 cursor-pointer"
                       >
                         <Share2 size={16} />
-                        WhatsApp
+                        Share Receipt
                       </button>
                       <button
                         onClick={() => {
+                          const activeList = confirmedItems.length > 0 ? confirmedItems : items
                           const content = `
-BOOKING CONFIRMATION
-====================
-Booking ID: ${bookingId}
+CAPSIC CARE HEALTHCARE SERVICES
+==============================
+OFFICIAL BOOKING RECEIPT
+==============================
+Order Reference : ${bookingId}
+Patient UHID    : ${patientUhid}
+Invoice Number  : ${invoiceNumber || 'INV-PENDING'}
+Booking Date    : ${new Date().toLocaleDateString()}
 
 PATIENT INFORMATION
-Name: ${formData.fullName}
-Phone: ${formData.phone}
-Age: ${formData.dateOfBirth ? new Date().getFullYear() - new Date(formData.dateOfBirth).getFullYear() : 'N/A'}
-Gender: ${formData.gender || 'Not specified'}
-Address: ${formData.address}, ${formData.city} - ${formData.pincode}
+-------------------
+Name    : ${formData.fullName}
+Phone   : ${formData.phone}
+Age     : ${formData.dateOfBirth ? new Date().getFullYear() - new Date(formData.dateOfBirth).getFullYear() : 'N/A'}
+Gender  : ${formData.gender || 'Not specified'}
+Address : ${formData.address}, ${formData.city} - ${formData.pincode}
 
-TESTS/PACKAGES
-${items.map(i => { const m = Math.max(i.mrp || i.price, i.price); return `• ${i.name}\n  MRP: ₹${m} | Price: ₹${i.price} | Save: ₹${m - i.price}` }).join('\n')}
+TESTS / PACKAGES BOOKED
+-----------------------
+${activeList.map(i => { const m = Math.max(i.mrp || i.price, i.price); return `• ${i.name}\n  MRP: ₹${m} | Price: ₹${i.price} | Save: ₹${m - i.price}` }).join('\n')}
 
 AMOUNT DETAILS
-Subtotal: ₹${totalMrp}
-Discount: ₹${overallSavings}
-Final Amount: ₹${finalAmount}
-
-Status: CONFIRMED
-Generated: ${new Date().toLocaleString()}
+--------------
+Subtotal     : ₹${totalMrp}
+Discount     : ₹${overallSavings}
+Final Amount : ₹${finalAmount}
+Status       : CONFIRMED & QUEUED FOR PHLEBOTOMIST
+Generated    : ${new Date().toLocaleString()}
                           `
                           const element = document.createElement('a')
                           element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content))
-                          element.setAttribute('download', `booking-${bookingId}.txt`)
+                          element.setAttribute('download', `capsic-order-${bookingId}.txt`)
                           element.style.display = 'none'
                           document.body.appendChild(element)
                           element.click()
                           document.body.removeChild(element)
                         }}
-                        className="flex items-center justify-center gap-2 px-3 py-2 bg-blue-100 dark:bg-blue-900/30 border border-blue-300 dark:border-blue-700 rounded-lg hover:bg-blue-200 dark:hover:bg-blue-900/50 text-sm font-medium text-blue-700 dark:text-blue-400"
+                        className="flex items-center justify-center gap-2 px-3 py-2 bg-blue-100 dark:bg-blue-900/30 border border-blue-300 dark:border-blue-700 rounded-lg hover:bg-blue-200 dark:hover:bg-blue-900/50 text-sm font-medium text-blue-700 dark:text-blue-400 cursor-pointer"
                       >
                         <Download size={16} />
                         Download
@@ -733,14 +748,20 @@ Generated: ${new Date().toLocaleString()}
                     </div>
                   </div>
 
-                  <div className="bg-teal-50 dark:bg-teal-900/20 rounded-lg p-4 space-y-2 text-sm">
-                    <p className="text-slate-600 dark:text-slate-200">A confirmation message has been sent to your WhatsApp.</p>
-                    <p className="text-slate-600 dark:text-slate-200">We will contact you within 24 hours to schedule your home collection.</p>
+                  <div className="bg-teal-50 dark:bg-teal-900/20 rounded-lg p-4 space-y-2 text-sm border border-teal-200 dark:border-teal-800">
+                    <p className="text-teal-900 dark:text-teal-200 font-semibold">✓ Order recorded directly in CAPSIC CARE OS.</p>
+                    <p className="text-slate-600 dark:text-slate-200">Our phlebotomist team has received your order and will contact you to collect samples at your doorstep.</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">You can log into the Patient Portal anytime using your phone ({formData.phone}) to track status and download test reports.</p>
                   </div>
 
-                  <Link href="/" className="block text-center px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 font-medium">
-                    Back to Home
-                  </Link>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <Link href="/login" className="block text-center px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 font-semibold">
+                      Open Patient Portal
+                    </Link>
+                    <Link href="/" className="block text-center px-6 py-3 bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg hover:bg-slate-200 font-semibold">
+                      Back to Home
+                    </Link>
+                  </div>
                 </div>
               )}
             </div>
@@ -758,15 +779,15 @@ Generated: ${new Date().toLocaleString()}
                     age: formData.dateOfBirth ? new Date().getFullYear() - new Date(formData.dateOfBirth).getFullYear() : 35,
                     gender: formData.gender || 'Male',
                     category: 'PATHOLOGY',
-                    modeOfPayment: 'Online',
-                    accountName: 'Online Booking',
-                    items: items.map(i => ({
+                    modeOfPayment: 'Pay on Sample Collection',
+                    accountName: 'Online Web Booking',
+                    items: (confirmedItems.length > 0 ? confirmedItems : items).map(i => ({
                       name: i.name,
                       price: i.price,
                       qty: 1,
                     })),
                     discountAmount: promoDiscountAmount,
-                    amountPaid: finalAmount,
+                    amountPaid: 0,
                   }}
                   onClose={() => setShowCashMemoModal(false)}
                 />

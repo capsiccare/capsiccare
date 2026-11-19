@@ -27,7 +27,7 @@ type PortalType = 'doctor' | 'patient' | 'staff' | 'admin'
 function LoginForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const portalParam = (searchParams.get('portal') as PortalType) || 'doctor'
+  const portalParam = (searchParams.get('portal') as PortalType) || 'patient'
   const redirectQuery = searchParams.get('redirect')
 
   const [portal, setPortal] = useState<PortalType>(portalParam)
@@ -249,30 +249,22 @@ function LoginForm() {
           </div>
         </Link>
         <h2 className="text-xl font-bold text-slate-200">
-          Sign In to Your Workspace
+          {portal === 'patient'
+            ? 'Patient Portal Sign In'
+            : portal === 'doctor'
+            ? 'Doctor Chamber EMR Sign In'
+            : portal === 'staff'
+            ? 'Staff & Operations Sign In'
+            : 'Administrator Sign In'}
         </h2>
         <p className="mt-1 text-xs text-slate-400">
-          Select your portal to access clinical records, prescriptions, and operations.
+          {portal === 'patient'
+            ? 'Access your prescriptions, diagnostic reports, and medical history.'
+            : 'Enter your credentials to open your authorized workspace.'}
         </p>
 
         {/* Portal Selection Tabs */}
         <div className="mt-5 p-1 bg-slate-900 border border-slate-800 rounded-2xl grid grid-cols-4 gap-1 shadow-inner">
-          <button
-            type="button"
-            onClick={() => {
-              setPortal('doctor')
-              setErrorMessage(null)
-              setSuccessMessage(null)
-            }}
-            className={`py-2 px-1.5 rounded-xl text-[11px] font-bold flex flex-col items-center justify-center gap-1 transition-all ${
-              portal === 'doctor'
-                ? 'bg-gradient-to-r from-teal-500 to-emerald-500 text-slate-950 shadow-md'
-                : 'text-slate-400 hover:text-slate-200'
-            }`}
-          >
-            <Stethoscope className="h-4 w-4" />
-            <span>Doctor</span>
-          </button>
           <button
             type="button"
             onClick={() => {
@@ -292,6 +284,22 @@ function LoginForm() {
           <button
             type="button"
             onClick={() => {
+              setPortal('doctor')
+              setErrorMessage(null)
+              setSuccessMessage(null)
+            }}
+            className={`py-2 px-1.5 rounded-xl text-[11px] font-bold flex flex-col items-center justify-center gap-1 transition-all ${
+              portal === 'doctor'
+                ? 'bg-gradient-to-r from-teal-500 to-emerald-500 text-slate-950 shadow-md'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <Stethoscope className="h-4 w-4" />
+            <span>Doctor</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => {
               setPortal('staff')
               setErrorMessage(null)
               setSuccessMessage(null)
@@ -303,7 +311,7 @@ function LoginForm() {
             }`}
           >
             <Users className="h-4 w-4" />
-            <span>Staff Desk</span>
+            <span>Staff</span>
           </button>
           <button
             type="button"

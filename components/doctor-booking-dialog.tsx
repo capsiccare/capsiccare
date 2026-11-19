@@ -2,7 +2,8 @@
 
 import { useState, useMemo } from 'react'
 import Image from 'next/image'
-import { Video, MapPin, Calendar, Clock, User, Phone, CheckCircle2, X, Stethoscope, AlertCircle, ArrowRight } from 'lucide-react'
+import Link from 'next/link'
+import { Video, MapPin, Calendar, Clock, User, Phone, CheckCircle2, X, Stethoscope, AlertCircle, ArrowRight, Loader2, Download, FileText } from 'lucide-react'
 import { Doctor, doctorsData } from '@/data/doctors'
 
 interface DoctorBookingDialogProps {
@@ -35,6 +36,10 @@ export function DoctorBookingDialog({
   const [symptoms, setSymptoms] = useState('')
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [bookingRef, setBookingRef] = useState('')
+  const [confirmedToken, setConfirmedToken] = useState<number | null>(null)
+  const [patientUhid, setPatientUhid] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
 
   const activeDoctor = doctor || doctorsData.find((d) => d.id === selectedDoctorId) || doctorsData[0]
 
@@ -79,41 +84,55 @@ export function DoctorBookingDialog({
 
   if (!isOpen) return null
 
-  const handleBooking = (sendToWhatsApp = true) => {
-    if (!patientName.trim() || !patientPhone.trim()) {
-      alert('Please provide patient name and phone number.')
+  const handleBooking = async () => {
+    if (!patientName.trim()) {
+      setErrorMessage('Please provide the patient full name.')
+      return
+    }
+    const cleanPhone = patientPhone.trim().replace(/\D/g, '').slice(-10)
+    if (!cleanPhone || cleanPhone.length < 10) {
+      setErrorMessage('Please provide a valid 10-digit mobile number.')
       return
     }
 
-    const ref = `DOC-${Date.now().toString().slice(-6)}`
-    setBookingRef(ref)
-    setIsSubmitted(true)
+    setIsSubmitting(true)
+    setErrorMessage('')
 
-    if (sendToWhatsApp) {
-      const modeLabel = consultationMode === 'telemedicine' ? '📹 ASSISTED TELEMEDICINE (ONLINE)' : '🏥 PHYSICAL CLINIC VISIT (BANKRA BAZAR)'
-      const clinicLocation = 'Capsic Care Healthcare Centre, Bankra Bazar, Dewan Para Rd, Domjur, Howrah - 711403'
-      const feeLabel = activeFee > 0 ? `₹${activeFee}` : 'Free (₹0)'
+    try {
+      const res = await fetch('/api/v1/appointments/public', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          patient_name: patientName.trim(),
+          patient_phone: cleanPhone,
+          patient_age: patientAge ? Number(patientAge) : undefined,
+          patient_gender: patientGender.toLowerCase(),
+          doctor_id: activeDoctor.id,
+          doctor_name: activeDoctor.name,
+          consultation_type: consultationMode,
+          scheduled_date: selectedDate,
+          slot: effectiveSlot,
+          symptoms: symptoms.trim() || undefined,
+        }),
+      })
 
-      const msg = `*NEW DOCTOR CONSULTATION BOOKING*\n` +
-        `------------------------------------\n` +
-        `*Booking Ref:* ${ref}\n` +
-        `*Consultation Mode:* ${modeLabel}\n` +
-        `*Doctor:* ${activeDoctor.name} (${activeDoctor.specialty})\n` +
-        `*Qualifications:* ${activeDoctor.qualifications || 'Specialist'}\n` +
-        `*Consultation Fee:* ${feeLabel}` + (activeDoctor.followUpFee ? ` (Follow-up: ₹${activeDoctor.followUpFee})` : '') + `\n` +
-        `*Available Schedule:* ${activeDays} (${activeTiming})\n` +
-        `*Preferred Date:* ${selectedDate}\n` +
-        `*Chosen Slot:* ${effectiveSlot}\n\n` +
-        `*PATIENT DETAILS:*\n` +
-        `• Name: ${patientName}\n` +
-        `• Phone: ${patientPhone}\n` +
-        `• Age/Gender: ${patientAge || 'N/A'} Year(s) / ${patientGender}\n` +
-        (symptoms ? `• Symptoms/Reason: ${symptoms}\n` : '') +
-        (consultationMode === 'physical' ? `\n*Clinic Address:* ${clinicLocation}\n` : `\n*Platform:* Video & Assisted Medical Telemedicine support provided\n`) +
-        `------------------------------------\n` +
-        `Please confirm this appointment slot.`
+      const json = await res.json()
+      if (!res.ok || !json.success) {
+        throw new Error(json.error?.message || 'Failed to book appointment')
+      }
 
-      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank')
+      const apt = json.data.appointment
+      const pat = json.data.patient
+
+      setBookingRef(apt.appointment_number)
+      setConfirmedToken(apt.token_number)
+      setPatientUhid(pat.uhid)
+      setIsSubmitted(true)
+    } catch (err: any) {
+      console.error('[Doctor Booking Error]:', err)
+      setErrorMessage(err.message || 'Unable to confirm appointment. Please try again.')
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -123,6 +142,8 @@ export function DoctorBookingDialog({
     setPatientPhone('')
     setPatientAge('')
     setSymptoms('')
+    setErrorMessage('')
+    setConfirmedToken(null)
     onClose()
   }
 
@@ -358,21 +379,31 @@ export function DoctorBookingDialog({
               </div>
             </div>
 
+            {errorMessage && (
+              <div className="p-3 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 rounded-xl flex items-center gap-2 text-xs text-red-700 dark:text-red-300">
+                <AlertCircle size={16} className="shrink-0 text-red-600 dark:text-red-400" />
+                <span>{errorMessage}</span>
+              </div>
+            )}
+
             {/* Action Buttons */}
             <div className="space-y-3 pt-2">
               <button
                 type="button"
-                onClick={() => handleBooking(true)}
-                className="w-full py-3.5 px-6 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-xl transition-all shadow-lg shadow-teal-600/20 flex items-center justify-center gap-2 text-sm cursor-pointer"
+                disabled={isSubmitting}
+                onClick={handleBooking}
+                className="w-full py-3.5 px-6 bg-teal-600 hover:bg-teal-700 disabled:bg-teal-400 text-white font-bold rounded-xl transition-all shadow-lg shadow-teal-600/20 flex items-center justify-center gap-2 text-sm cursor-pointer"
               >
-                Confirm & Book Appointment on WhatsApp (₹{activeFee}) <ArrowRight size={16} />
-              </button>
-              <button
-                type="button"
-                onClick={() => handleBooking(false)}
-                className="w-full py-2.5 px-4 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold rounded-xl text-xs text-center transition-colors cursor-pointer"
-              >
-                Generate Booking Reference & Confirm Online
+                {isSubmitting ? (
+                  <>
+                    <Loader2 size={16} className="animate-spin" />
+                    Confirming Appointment & Allocating Token...
+                  </>
+                ) : (
+                  <>
+                    Confirm &amp; Book Appointment (₹{activeFee}) <ArrowRight size={16} />
+                  </>
+                )}
               </button>
             </div>
           </div>
@@ -384,18 +415,22 @@ export function DoctorBookingDialog({
             </div>
 
             <div>
-              <span className="text-xs font-bold text-teal-600 dark:text-teal-400 tracking-wider uppercase">
-                Appointment Requested
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-green-50 dark:bg-green-950/40 text-green-700 dark:text-green-300 rounded-full text-xs font-bold uppercase tracking-wider mb-2 border border-green-200 dark:border-green-800">
+                Token #{confirmedToken || '1'} Allocated
               </span>
               <h2 className="text-2xl font-black text-slate-900 dark:text-white mt-1">
-                Booking Reference: {bookingRef}
+                {bookingRef}
               </h2>
               <p className="text-sm text-slate-600 dark:text-slate-400 mt-2 max-w-sm mx-auto">
-                Your appointment request for <strong>{activeDoctor.name}</strong> ({activeDoctor.specialty}) has been recorded.
+                Your consultation with <strong>{activeDoctor.name}</strong> ({activeDoctor.specialty}) has been confirmed.
               </p>
             </div>
 
             <div className="bg-slate-50 dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 text-left space-y-3 text-xs">
+              <div className="flex justify-between">
+                <span className="text-slate-500 dark:text-slate-400">Patient UHID:</span>
+                <span className="font-mono font-bold text-slate-900 dark:text-white">{patientUhid || 'CAP-2026-CONFIRMED'}</span>
+              </div>
               <div className="flex justify-between">
                 <span className="text-slate-500 dark:text-slate-400">Consultation Mode:</span>
                 <span className="font-bold text-slate-900 dark:text-white flex items-center gap-1">
@@ -415,15 +450,15 @@ export function DoctorBookingDialog({
                 <span className="font-black text-teal-600 dark:text-teal-400">₹{activeFee}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-slate-500 dark:text-slate-400">Date & Slot:</span>
+                <span className="text-slate-500 dark:text-slate-400">Date &amp; Slot:</span>
                 <span className="font-bold text-slate-900 dark:text-white">{selectedDate} ({effectiveSlot})</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-500 dark:text-slate-400">Patient Name:</span>
-                <span className="font-bold text-slate-900 dark:text-white">{patientName}</span>
+                <span className="font-bold text-slate-900 dark:text-white">{patientName} ({patientPhone})</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-slate-500 dark:text-slate-400">Location:</span>
+                <span className="text-slate-500 dark:text-slate-400">Location / Platform:</span>
                 <span className="font-bold text-slate-900 dark:text-white">
                   {consultationMode === 'physical'
                     ? 'Bankra Bazar, Dewan Para Rd, Domjur, Howrah'
@@ -432,19 +467,58 @@ export function DoctorBookingDialog({
               </div>
             </div>
 
-            <div className="space-y-3">
-              <a
-                href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Hi Capsic Care, I have booked Ref: ${bookingRef} for ${activeDoctor.name} on ${selectedDate} (${effectiveSlot}). Please confirm my appointment.`)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-3 px-6 bg-green-600 hover:bg-green-700 text-white font-bold rounded-xl transition-all shadow-md flex items-center justify-center gap-2 text-sm cursor-pointer"
+            <div className="space-y-2.5">
+              <button
+                type="button"
+                onClick={() => {
+                  const content = `
+CAPSIC CARE HEALTHCARE SERVICES
+==============================
+OFFICIAL APPOINTMENT SLIP
+==============================
+Appointment No : ${bookingRef}
+Queue Token    : Token #${confirmedToken || '1'}
+Patient UHID   : ${patientUhid}
+Doctor         : ${activeDoctor.name} (${activeDoctor.specialty})
+Date & Slot    : ${selectedDate} (${effectiveSlot})
+Mode           : ${consultationMode === 'physical' ? 'Physical Clinic Visit' : 'Assisted Telemedicine'}
+Fee            : ₹${activeFee}
+
+PATIENT DETAILS
+---------------
+Name   : ${patientName}
+Phone  : ${patientPhone}
+Age    : ${patientAge || 'N/A'}
+Gender : ${patientGender}
+${symptoms ? `Symptoms: ${symptoms}\n` : ''}
+Center Address:
+Capsic Care Healthcare Centre, Bankra Bazar, Dewan Para Rd, Domjur, Howrah - 711403
+Helpline: +91 8910260709
+Generated on: ${new Date().toLocaleString()}
+                  `
+                  const element = document.createElement('a')
+                  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content))
+                  element.setAttribute('download', `appointment-${bookingRef}.txt`)
+                  element.style.display = 'none'
+                  document.body.appendChild(element)
+                  element.click()
+                  document.body.removeChild(element)
+                }}
+                className="w-full py-3 px-6 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-xl transition-all shadow-md flex items-center justify-center gap-2 text-xs sm:text-sm cursor-pointer"
               >
-                Chat on WhatsApp Support (8910260709)
-              </a>
+                <Download size={16} /> Download Appointment Slip
+              </button>
+
+              <Link
+                href="/login"
+                className="w-full py-2.5 px-4 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-semibold rounded-xl text-xs flex items-center justify-center gap-2 transition-colors"
+              >
+                Access Patient Portal (Track Appointment)
+              </Link>
 
               <button
                 onClick={handleReset}
-                className="w-full py-2.5 px-4 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold rounded-xl text-xs transition-colors cursor-pointer"
+                className="w-full py-2 px-4 text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 text-xs transition-colors cursor-pointer"
               >
                 Done / Close
               </button>
