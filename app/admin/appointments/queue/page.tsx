@@ -149,28 +149,28 @@ export default function ReceptionQueuePage() {
     }
   }
 
-  const handlePrint = (item: QueueItem) => {
+  const handlePrint = (item: QueueItem | any) => {
     setActiveSlip({
-      appointmentNumber: item.appointmentNumber,
-      tokenNumber: item.tokenNumber,
-      patientName: item.patientName,
-      patientUhid: item.patientUhid,
-      patientPhone: item.patientPhone,
-      patientGender: item.patientGender,
-      patientAge: item.patientAge,
-      doctorName: item.doctorName,
-      doctorSpecialty: item.doctorSpecialty,
-      doctorCode: item.doctorCode,
-      branchName: item.branchName,
-      chamberName: item.chamberName,
-      chamberRoom: item.chamberRoom,
-      scheduledDate: item.scheduledDate,
-      startTime: item.startTime,
-      endTime: item.endTime,
-      consultationType: item.consultationType,
-      feeInr: item.feeInr,
-      status: item.status,
-      chiefComplaint: item.chiefComplaint,
+      appointmentNumber: item.appointmentNumber || item.appointment_number || 'APT-PENDING',
+      tokenNumber: item.tokenNumber ?? item.token_number ?? 1,
+      patientName: item.patientName || item.patients?.full_name || 'Walk-in Patient',
+      patientUhid: item.patientUhid || item.patients?.uhid || '-',
+      patientPhone: item.patientPhone || item.patients?.phone || '-',
+      patientGender: item.patientGender || item.patients?.gender,
+      patientAge: item.patientAge || item.patients?.age_years,
+      doctorName: item.doctorName || item.doctors?.name || 'Doctor',
+      doctorSpecialty: item.doctorSpecialty || item.doctors?.specialty || '',
+      doctorCode: item.doctorCode || item.doctors?.code,
+      branchName: item.branchName || item.branches?.name || 'Capsic Care Diagnostic Hub',
+      chamberName: item.chamberName || item.chambers?.name,
+      chamberRoom: item.chamberRoom || item.chambers?.room_number,
+      scheduledDate: item.scheduledDate || item.scheduled_date || new Date().toISOString().split('T')[0],
+      startTime: item.startTime || item.start_time || '00:00',
+      endTime: item.endTime || item.end_time || '00:00',
+      consultationType: item.consultationType || item.consultation_type || 'physical',
+      feeInr: item.feeInr ?? (item.fee_paise ? Math.round(item.fee_paise / 100) : 0),
+      status: item.status || 'scheduled',
+      chiefComplaint: item.chiefComplaint || item.chief_complaint,
     })
   }
 
@@ -357,7 +357,7 @@ export default function ReceptionQueuePage() {
                       <td className="px-4 py-3.5">
                         <div className="space-y-0.5 text-xs">
                           <span className="font-mono font-medium text-slate-800 block">
-                            Slot: {item.startTime.substring(0, 5)} - {item.endTime.substring(0, 5)}
+                            Slot: {(item.startTime || '00:00').slice(0, 5)} - {(item.endTime || '00:00').slice(0, 5)}
                           </span>
 
                           {item.waitingMinutes !== null && item.waitingMinutes !== undefined && item.status !== 'completed' && (

@@ -70,11 +70,13 @@ export function AppointmentSlipModal({ data, onClose }: AppointmentSlipProps) {
           >
             {/* Header Brand */}
             <div className="border-b-2 border-slate-800 pb-3 text-center space-y-1">
-              <div className="flex items-center justify-center gap-1.5 font-black text-lg tracking-tight text-slate-950 uppercase">
+              <div className="flex items-center justify-center gap-2 font-black text-lg tracking-tight text-slate-950 uppercase">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/logo.png" alt="Capsic Care" className="w-7 h-7 object-contain inline-block" />
                 <span>CAPSIC CARE</span>
-                <span className="text-xs px-1.5 py-0.2 rounded bg-slate-900 text-white font-mono">OS</span>
+                <span className="text-xs px-1.5 py-0.5 rounded bg-slate-900 text-white font-mono">OS</span>
               </div>
-              <p className="font-bold text-xs uppercase tracking-wider text-slate-700">{data.branchName}</p>
+              <p className="font-bold text-xs uppercase tracking-wider text-slate-700">{data.branchName || 'Diagnostic & Healthcare Hub'}</p>
               {data.branchAddress && (
                 <p className="text-[11px] text-slate-600">{data.branchAddress}</p>
               )}
@@ -141,21 +143,25 @@ export function AppointmentSlipModal({ data, onClose }: AppointmentSlipProps) {
               <div>
                 <span className="text-slate-400 block text-[10px] uppercase font-bold">Date & Time</span>
                 <span className="font-bold text-slate-900">
-                  {new Date(data.scheduledDate).toLocaleDateString('en-IN', {
-                    weekday: 'short',
-                    day: '2-digit',
-                    month: 'short',
-                    year: 'numeric',
-                  })}
+                  {data.scheduledDate ? (
+                    new Date(data.scheduledDate).toLocaleDateString('en-IN', {
+                      weekday: 'short',
+                      day: '2-digit',
+                      month: 'short',
+                      year: 'numeric',
+                    })
+                  ) : (
+                    'Date Scheduled'
+                  )}
                 </span>
                 <p className="font-mono text-[11px] text-slate-700 mt-0.5">
-                  {data.startTime.substring(0, 5)} - {data.endTime.substring(0, 5)}
+                  {(data.startTime || '00:00').slice(0, 5)} - {(data.endTime || '00:00').slice(0, 5)}
                 </p>
               </div>
               <div>
                 <span className="text-slate-400 block text-[10px] uppercase font-bold">Consultation Fee</span>
                 <span className="font-bold text-base text-slate-950 block mt-0.5">
-                  ₹{data.feeInr}
+                  ₹{data.feeInr ?? 0}
                 </span>
                 <span className="text-[10px] text-slate-500">Fixed Consultation Fee</span>
               </div>

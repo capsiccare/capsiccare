@@ -48,8 +48,13 @@ export async function GET(
           branches ( id, name, code, city, phone )
         ),
         doctor_schedules (
-          id, branch_id, consultation_type, day_of_week,
+          id, branch_id, chamber_id, consultation_type, day_of_week,
           start_time, end_time, slot_duration_minutes, max_patients_per_slot, is_active,
+          branches ( id, name ),
+          chambers ( id, name, room_number )
+        ),
+        schedule_exceptions (
+          id, branch_id, exception_date, exception_type, start_time, end_time, reason, created_at,
           branches ( id, name )
         )
       `)
@@ -81,6 +86,9 @@ export async function GET(
         id: s.id,
         branchId: s.branch_id,
         branchName: s.branches?.name || 'Clinic',
+        chamberId: s.chamber_id || null,
+        chamberName: s.chambers?.name || null,
+        chamberRoom: s.chambers?.room_number || null,
         consultationType: s.consultation_type,
         dayOfWeek: s.day_of_week,
         startTime: s.start_time,
@@ -88,6 +96,17 @@ export async function GET(
         slotDurationMinutes: s.slot_duration_minutes,
         maxPatientsPerSlot: s.max_patients_per_slot,
         isActive: s.is_active,
+      })),
+      exceptions: (doctor.schedule_exceptions || []).map((ex: any) => ({
+        id: ex.id,
+        branchId: ex.branch_id,
+        branchName: ex.branches?.name || 'All Branches',
+        exceptionDate: ex.exception_date,
+        exceptionType: ex.exception_type,
+        startTime: ex.start_time,
+        endTime: ex.end_time,
+        reason: ex.reason,
+        createdAt: ex.created_at,
       })),
     }
 

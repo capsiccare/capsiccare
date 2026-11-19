@@ -640,7 +640,7 @@ export function ReceptionBookingModal({
                       }`}
                       title={slot.reason || slot.status}
                     >
-                      {slot.startTime.substring(0, 5)}
+                      {(slot.startTime || '00:00').slice(0, 5)}
                     </button>
                   )
                 })}

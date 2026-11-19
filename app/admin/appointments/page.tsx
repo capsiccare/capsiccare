@@ -193,28 +193,28 @@ export default function AppointmentsCalendarPage() {
   }
 
   // Print slip handler
-  const handlePrintSlip = (apt: AppointmentRecord) => {
+  const handlePrintSlip = (apt: AppointmentRecord | any) => {
     setActiveSlip({
-      appointmentNumber: apt.appointmentNumber,
-      tokenNumber: apt.tokenNumber,
-      patientName: apt.patientName || 'Patient',
-      patientUhid: apt.patientUhid || '-',
-      patientPhone: apt.patientPhone || '-',
-      patientGender: apt.patientGender,
-      patientAge: apt.patientAge,
-      doctorName: apt.doctorName || 'Doctor',
-      doctorSpecialty: apt.doctorSpecialty || '',
-      doctorCode: apt.doctorCode,
-      branchName: apt.branchName || 'Capsic Care Diagnostic Hub',
-      chamberName: apt.chamberName,
-      chamberRoom: apt.chamberRoom,
-      scheduledDate: apt.scheduledDate,
-      startTime: apt.startTime,
-      endTime: apt.endTime,
-      consultationType: apt.consultationType,
-      feeInr: apt.feeInr,
-      status: apt.status,
-      chiefComplaint: apt.chiefComplaint,
+      appointmentNumber: apt.appointmentNumber || apt.appointment_number || 'APT-PENDING',
+      tokenNumber: apt.tokenNumber ?? apt.token_number ?? 1,
+      patientName: apt.patientName || apt.patients?.full_name || 'Patient',
+      patientUhid: apt.patientUhid || apt.patients?.uhid || '-',
+      patientPhone: apt.patientPhone || apt.patients?.phone || '-',
+      patientGender: apt.patientGender || apt.patients?.gender,
+      patientAge: apt.patientAge || apt.patients?.age_years,
+      doctorName: apt.doctorName || apt.doctors?.name || 'Doctor',
+      doctorSpecialty: apt.doctorSpecialty || apt.doctors?.specialty || '',
+      doctorCode: apt.doctorCode || apt.doctors?.code,
+      branchName: apt.branchName || apt.branches?.name || 'Capsic Care Diagnostic Hub',
+      chamberName: apt.chamberName || apt.chambers?.name,
+      chamberRoom: apt.chamberRoom || apt.chambers?.room_number,
+      scheduledDate: apt.scheduledDate || apt.scheduled_date || new Date().toISOString().split('T')[0],
+      startTime: apt.startTime || apt.start_time || '00:00',
+      endTime: apt.endTime || apt.end_time || '00:00',
+      consultationType: apt.consultationType || apt.consultation_type || 'physical',
+      feeInr: apt.feeInr ?? (apt.fee_paise ? Math.round(apt.fee_paise / 100) : 0),
+      status: apt.status || 'scheduled',
+      chiefComplaint: apt.chiefComplaint || apt.chief_complaint,
     })
   }
 
@@ -421,7 +421,7 @@ export default function AppointmentsCalendarPage() {
                         <div className="flex items-center gap-2">
                           <span className="font-mono text-xs font-bold text-slate-900 flex items-center gap-1">
                             <Clock className="w-3.5 h-3.5 text-slate-400" />
-                            {apt.startTime.substring(0, 5)} - {apt.endTime.substring(0, 5)}
+                            {(apt.startTime || '00:00').slice(0, 5)} - {(apt.endTime || '00:00').slice(0, 5)}
                           </span>
                           <span className="font-mono text-[10px] text-slate-400">({apt.appointmentNumber})</span>
                         </div>
@@ -521,7 +521,7 @@ export default function AppointmentsCalendarPage() {
                         className="p-1.5 bg-white border border-slate-200 rounded-lg text-[11px] shadow-2xs hover:border-emerald-400 cursor-pointer transition-colors"
                       >
                         <span className="font-mono text-[10px] font-bold text-slate-500 block">
-                          {apt.startTime.substring(0, 5)} • #{apt.tokenNumber || 1}
+                          {(apt.startTime || '00:00').slice(0, 5)} • #{apt.tokenNumber || 1}
                         </span>
                         <p className="font-semibold text-slate-900 truncate">{apt.patientName}</p>
                         <p className="text-[10px] text-slate-400 truncate">{apt.doctorName}</p>
@@ -607,7 +607,7 @@ export default function AppointmentsCalendarPage() {
                               >
                                 <div className="flex items-center justify-between">
                                   <span className="font-mono text-[10px] font-bold text-emerald-900">
-                                    {occupyingApt.startTime.substring(0, 5)} • Token #{occupyingApt.tokenNumber}
+                                    {(occupyingApt.startTime || '00:00').slice(0, 5)} • Token #{occupyingApt.tokenNumber}
                                   </span>
                                   <Badge className="text-[9px] bg-emerald-600 text-white capitalize px-1 py-0">
                                     {occupyingApt.status}
@@ -737,7 +737,7 @@ export default function AppointmentsCalendarPage() {
                   })}
                 </p>
                 <p className="font-mono font-medium text-slate-700">
-                  {selectedAppointment.startTime.substring(0, 5)} - {selectedAppointment.endTime.substring(0, 5)}
+                  {(selectedAppointment.startTime || '00:00').slice(0, 5)} - {(selectedAppointment.endTime || '00:00').slice(0, 5)}
                 </p>
               </div>
 
