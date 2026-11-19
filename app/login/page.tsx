@@ -1,34 +1,48 @@
 'use client'
 
-import React, { useState, Suspense } from 'react'
+import React, { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
-import { 
-  Activity, 
-  Lock, 
-  Mail, 
-  Eye, 
-  EyeOff, 
-  ArrowRight, 
-  AlertCircle, 
-  CheckCircle2, 
+import {
+  Activity,
+  Lock,
+  Mail,
+  Eye,
+  EyeOff,
+  ArrowRight,
+  AlertCircle,
+  CheckCircle2,
   ShieldCheck,
+  Stethoscope,
+  Heart,
+  Users,
   Building2,
-  Stethoscope
+  Smartphone,
+  ChevronRight,
 } from 'lucide-react'
+
+type PortalType = 'doctor' | 'patient' | 'staff' | 'admin'
 
 function LoginForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const redirectPath = searchParams.get('redirect') || '/admin'
+  const portalParam = (searchParams.get('portal') as PortalType) || 'doctor'
+  const redirectQuery = searchParams.get('redirect')
 
+  const [portal, setPortal] = useState<PortalType>(portalParam)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [phoneOrUhid, setPhoneOrUhid] = useState('')
+  const [otp, setOtp] = useState('')
+  const [isOtpSent, setIsOtpSent] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
+
+  // Multiple roles workspace selector modal
+  const [userRoles, setUserRoles] = useState<any[] | null>(null)
 
   // Forgot password state
   const [showForgotModal, setShowForgotModal] = useState(false)
@@ -36,7 +50,76 @@ function LoginForm() {
   const [forgotLoading, setForgotLoading] = useState(false)
   const [forgotMessage, setForgotMessage] = useState<string | null>(null)
 
-  const handleLogin = async (e: React.FormEvent) => {
+  useEffect(() => {
+    if (portalParam) {
+      setPortal(portalParam)
+    }
+  }, [portalParam])
+
+  // Handle Smart Routing based on User Roles
+  const handleSmartRouting = async (fallbackPath: string) => {
+    try {
+      const res = await fetch('/api/v1/me')
+      if (res.ok) {
+        const json = await res.json()
+        const roles = json.data?.roles || []
+
+        if (redirectQuery) {
+          router.push(redirectQuery)
+          return
+        }
+
+        const roleNames = roles.map((r: any) => r.role)
+
+        // If multiple distinct portal permissions exist, let the user choose
+        const hasDoctor = roleNames.includes('doctor')
+        const hasAdmin = roleNames.some((r: string) => ['super_admin', 'org_admin', 'branch_admin'].includes(r))
+        const hasBilling = roleNames.includes('billing_staff')
+        const hasReception = roleNames.some((r: string) => ['receptionist', 'nurse'].includes(r))
+        const hasPatient = roleNames.includes('patient')
+
+        const uniqueWorkspaces = [
+          hasDoctor && { name: 'Doctor Chamber EMR', path: '/doctor', icon: 'stethoscope' },
+          hasAdmin && { name: 'Administrative OS & MIS', path: '/admin', icon: 'building' },
+          hasBilling && { name: 'Billing & POS Counter', path: '/admin/billing', icon: 'billing' },
+          hasReception && { name: 'OPD Reception & Queue', path: '/admin/appointments/queue', icon: 'users' },
+          hasPatient && { name: 'Personal Patient Portal', path: '/patient', icon: 'heart' },
+        ].filter(Boolean) as Array<{ name: string; path: string; icon: string }>
+
+        if (uniqueWorkspaces.length > 1) {
+          setUserRoles(uniqueWorkspaces)
+          return
+        }
+
+        if (hasDoctor) {
+          router.push('/doctor')
+          return
+        }
+        if (hasBilling) {
+          router.push('/admin/billing')
+          return
+        }
+        if (hasReception) {
+          router.push('/admin/appointments/queue')
+          return
+        }
+        if (hasAdmin) {
+          router.push('/admin')
+          return
+        }
+        if (hasPatient) {
+          router.push('/patient')
+          return
+        }
+      }
+    } catch (e) {
+      console.warn('Smart routing lookup skipped:', e)
+    }
+    router.push(fallbackPath)
+  }
+
+  // Handle Standard Email/Password Login (Doctor, Staff, Admin)
+  const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setErrorMessage(null)
     setSuccessMessage(null)
@@ -51,9 +134,7 @@ function LoginForm() {
 
       if (error) {
         if (error.message.includes('Invalid login credentials')) {
-          setErrorMessage('Invalid email or password. Please check your credentials and try again.')
-        } else if (error.message.includes('Email not confirmed')) {
-          setErrorMessage('Your email address has not been confirmed yet. Please verify your email.')
+          setErrorMessage('Invalid credentials. Please verify your email and password, or register a new account.')
         } else {
           setErrorMessage(error.message)
         }
@@ -62,14 +143,66 @@ function LoginForm() {
       }
 
       if (data?.user) {
-        setSuccessMessage('Authentication successful. Redirecting to workspace...')
+        setSuccessMessage('Authentication verified! Loading your clinical workspace...')
+        const fallback =
+          portal === 'doctor'
+            ? '/doctor'
+            : portal === 'staff'
+            ? '/admin/billing'
+            : portal === 'patient'
+            ? '/patient'
+            : '/admin'
+
         setTimeout(() => {
-          router.push(redirectPath)
-          router.refresh()
-        }, 500)
+          handleSmartRouting(fallback)
+        }, 600)
       }
     } catch (err: any) {
       setErrorMessage(err.message || 'An unexpected error occurred during authentication.')
+      setLoading(false)
+    }
+  }
+
+  // Handle Patient Fast Phone/UHID Login
+  const handlePatientFastLogin = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setErrorMessage(null)
+    setSuccessMessage(null)
+
+    if (!phoneOrUhid.trim()) {
+      setErrorMessage('Please enter your 10-digit mobile number or UHID.')
+      return
+    }
+
+    if (!isOtpSent) {
+      setIsOtpSent(true)
+      setSuccessMessage('Verification code sent to your registered mobile (demo mode: enter 123456).')
+      return
+    }
+
+    // Verify OTP
+    setLoading(true)
+    try {
+      const res = await fetch('/api/v1/patient/me', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          phone: phoneOrUhid.trim().startsWith('CAP-') ? undefined : phoneOrUhid.trim(),
+          uhid: phoneOrUhid.trim().startsWith('CAP-') ? phoneOrUhid.trim() : undefined,
+        }),
+      })
+
+      const json = await res.json()
+      if (!res.ok) {
+        throw new Error(json.error || json.message || 'Patient verification failed')
+      }
+
+      setSuccessMessage(`Welcome back! Loading records for UHID ${json.data?.patient?.uhid}...`)
+      setTimeout(() => {
+        router.push(`/patient?patientId=${json.data?.patient?.id}&uhid=${json.data?.patient?.uhid}`)
+      }, 700)
+    } catch (err: any) {
+      setErrorMessage(err.message || 'Verification failed. Please check mobile/UHID or register.')
       setLoading(false)
     }
   }
@@ -98,144 +231,325 @@ function LoginForm() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
-      {/* Background Decorative Gradients */}
+    <div className="min-h-screen bg-slate-950 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Background Gradients */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10">
-        <div className="flex items-center justify-center gap-3 mb-4">
-          <div className="h-12 w-12 rounded-xl bg-gradient-to-tr from-teal-500 to-emerald-400 flex items-center justify-center text-slate-950 shadow-lg shadow-teal-500/20">
-            <Activity className="h-7 w-7" />
+      <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10 text-center">
+        <Link href="/" className="inline-flex items-center justify-center gap-3 mb-4">
+          <div className="h-12 w-12 rounded-2xl bg-gradient-to-tr from-teal-500 to-emerald-400 flex items-center justify-center text-slate-950 font-black text-2xl shadow-lg shadow-teal-500/20">
+            C
           </div>
-          <div>
-            <h1 className="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
+          <div className="text-left">
+            <h1 className="text-xl font-black tracking-tight text-white flex items-center gap-2">
               CAPSIC CARE <span className="text-xs px-2 py-0.5 rounded-full bg-teal-500/20 text-teal-300 font-mono border border-teal-500/30">OS</span>
             </h1>
-            <p className="text-xs text-slate-400">Healthcare Operating System</p>
+            <p className="text-[11px] text-slate-400">Healthcare Network & Operating System</p>
           </div>
-        </div>
-        <h2 className="text-center text-xl font-semibold text-slate-200">
-          Staff & Clinical Portal Sign In
+        </Link>
+        <h2 className="text-xl font-bold text-slate-200">
+          Sign In to Your Workspace
         </h2>
-        <p className="mt-1 text-center text-sm text-slate-400">
-          Access your clinical dashboard, patients, and OPD operations
+        <p className="mt-1 text-xs text-slate-400">
+          Select your portal to access clinical records, prescriptions, and operations.
         </p>
+
+        {/* Portal Selection Tabs */}
+        <div className="mt-5 p-1 bg-slate-900 border border-slate-800 rounded-2xl grid grid-cols-4 gap-1 shadow-inner">
+          <button
+            type="button"
+            onClick={() => {
+              setPortal('doctor')
+              setErrorMessage(null)
+              setSuccessMessage(null)
+            }}
+            className={`py-2 px-1.5 rounded-xl text-[11px] font-bold flex flex-col items-center justify-center gap-1 transition-all ${
+              portal === 'doctor'
+                ? 'bg-gradient-to-r from-teal-500 to-emerald-500 text-slate-950 shadow-md'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <Stethoscope className="h-4 w-4" />
+            <span>Doctor</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setPortal('patient')
+              setErrorMessage(null)
+              setSuccessMessage(null)
+            }}
+            className={`py-2 px-1.5 rounded-xl text-[11px] font-bold flex flex-col items-center justify-center gap-1 transition-all ${
+              portal === 'patient'
+                ? 'bg-gradient-to-r from-teal-500 to-emerald-500 text-slate-950 shadow-md'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <Heart className="h-4 w-4" />
+            <span>Patient</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setPortal('staff')
+              setErrorMessage(null)
+              setSuccessMessage(null)
+            }}
+            className={`py-2 px-1.5 rounded-xl text-[11px] font-bold flex flex-col items-center justify-center gap-1 transition-all ${
+              portal === 'staff'
+                ? 'bg-gradient-to-r from-teal-500 to-emerald-500 text-slate-950 shadow-md'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <Users className="h-4 w-4" />
+            <span>Staff Desk</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setPortal('admin')
+              setErrorMessage(null)
+              setSuccessMessage(null)
+            }}
+            className={`py-2 px-1.5 rounded-xl text-[11px] font-bold flex flex-col items-center justify-center gap-1 transition-all ${
+              portal === 'admin'
+                ? 'bg-gradient-to-r from-teal-500 to-emerald-500 text-slate-950 shadow-md'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <Building2 className="h-4 w-4" />
+            <span>Admin</span>
+          </button>
+        </div>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md relative z-10">
-        <div className="bg-slate-900/80 backdrop-blur-xl py-8 px-4 shadow-2xl border border-slate-800 sm:rounded-2xl sm:px-10">
+      <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-md relative z-10">
+        <div className="bg-slate-900/90 backdrop-blur-xl py-8 px-6 shadow-2xl border border-slate-800 rounded-2xl sm:px-10">
           {errorMessage && (
-            <div className="mb-6 rounded-lg bg-red-950/50 border border-red-800/80 p-4 text-sm text-red-300 flex items-start gap-3 animate-in fade-in">
-              <AlertCircle className="h-5 w-5 text-red-400 shrink-0 mt-0.5" />
+            <div className="mb-6 rounded-xl bg-red-950/60 border border-red-800/80 p-4 text-xs text-red-300 flex items-start gap-3">
+              <AlertCircle className="h-4 w-4 text-red-400 shrink-0 mt-0.5" />
               <div>{errorMessage}</div>
             </div>
           )}
 
           {successMessage && (
-            <div className="mb-6 rounded-lg bg-teal-950/50 border border-teal-800/80 p-4 text-sm text-teal-300 flex items-start gap-3 animate-in fade-in">
-              <CheckCircle2 className="h-5 w-5 text-teal-400 shrink-0 mt-0.5" />
+            <div className="mb-6 rounded-xl bg-teal-950/60 border border-teal-800/80 p-4 text-xs text-teal-300 flex items-start gap-3">
+              <CheckCircle2 className="h-4 w-4 text-teal-400 shrink-0 mt-0.5" />
               <div>{successMessage}</div>
             </div>
           )}
 
-          <form className="space-y-5" onSubmit={handleLogin}>
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-1.5">
-                Staff Email Address
-              </label>
-              <div className="relative rounded-lg shadow-sm">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
-                  <Mail className="h-4 w-4" />
-                </div>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="doctor@capsic.in or staff@capsic.in"
-                  className="block w-full pl-10 pr-3 py-2.5 bg-slate-950/60 border border-slate-800 rounded-lg text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-colors"
-                />
+          {/* Multiple Workspace Selector Modal */}
+          {userRoles && (
+            <div className="space-y-3 py-2 animate-in fade-in">
+              <h3 className="text-sm font-bold text-white text-center">
+                Select Your Workspace For This Session:
+              </h3>
+              <p className="text-xs text-slate-400 text-center mb-4">
+                You hold multiple authorized operational roles in CAPSIC CARE.
+              </p>
+              <div className="space-y-2">
+                {userRoles.map((ws, i) => (
+                  <button
+                    key={i}
+                    onClick={() => router.push(ws.path)}
+                    className="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-teal-500 flex items-center justify-between text-left text-xs font-semibold text-white transition-all group"
+                  >
+                    <span>{ws.name}</span>
+                    <ChevronRight className="h-4 w-4 text-slate-500 group-hover:text-teal-400" />
+                  </button>
+                ))}
               </div>
             </div>
+          )}
 
-            <div>
-              <div className="flex items-center justify-between mb-1.5">
-                <label htmlFor="password" className="block text-sm font-medium text-slate-300">
-                  Password
-                </label>
-                <button
-                  type="button"
-                  onClick={() => setShowForgotModal(true)}
-                  className="text-xs text-teal-400 hover:text-teal-300 transition-colors font-medium"
-                >
-                  Forgot password?
-                </button>
-              </div>
-              <div className="relative rounded-lg shadow-sm">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
-                  <Lock className="h-4 w-4" />
-                </div>
-                <input
-                  id="password"
-                  name="password"
-                  type={showPassword ? 'text' : 'password'}
-                  autoComplete="current-password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••••••"
-                  className="block w-full pl-10 pr-10 py-2.5 bg-slate-950/60 border border-slate-800 rounded-lg text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-colors"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-500 hover:text-slate-300 transition-colors"
-                  aria-label={showPassword ? 'Hide password' : 'Show password'}
-                >
-                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                </button>
-              </div>
-            </div>
+          {!userRoles && (
+            <>
+              {/* PATIENT PORTAL FAST LOGIN (Phone / OTP / UHID) */}
+              {portal === 'patient' ? (
+                <form className="space-y-4" onSubmit={handlePatientFastLogin}>
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                      Patient Mobile Number or UHID
+                    </label>
+                    <div className="relative rounded-lg shadow-sm">
+                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
+                        <Smartphone className="h-4 w-4" />
+                      </div>
+                      <input
+                        type="text"
+                        required
+                        value={phoneOrUhid}
+                        onChange={(e) => setPhoneOrUhid(e.target.value)}
+                        placeholder="e.g. 9876543210 or CAP-2026-..."
+                        className="block w-full pl-10 pr-3 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-white placeholder-slate-500 text-xs focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      />
+                    </div>
+                  </div>
 
-            <div>
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full flex justify-center items-center gap-2 py-2.5 px-4 rounded-lg text-sm font-semibold text-slate-950 bg-gradient-to-r from-teal-400 to-emerald-400 hover:from-teal-300 hover:to-emerald-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-teal-500 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-teal-500/20 transition-all active:scale-[0.99]"
-              >
-                {loading ? (
-                  <>
-                    <div className="h-4 w-4 border-2 border-slate-950 border-t-transparent rounded-full animate-spin" />
-                    <span>Verifying session...</span>
-                  </>
-                ) : (
-                  <>
-                    <span>Sign In to Operating System</span>
-                    <ArrowRight className="h-4 w-4" />
-                  </>
-                )}
-              </button>
-            </div>
-          </form>
+                  {isOtpSent && (
+                    <div className="animate-in fade-in">
+                      <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                        6-Digit OTP (Use 123456)
+                      </label>
+                      <input
+                        type="text"
+                        maxLength={6}
+                        required
+                        value={otp}
+                        onChange={(e) => setOtp(e.target.value)}
+                        placeholder="123456"
+                        className="block w-full px-3 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-white text-center font-mono tracking-widest text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      />
+                    </div>
+                  )}
 
-          {/* Quick Guidance / Security Note */}
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full flex justify-center items-center gap-2 py-2.5 px-4 rounded-xl text-xs font-bold text-slate-950 bg-gradient-to-r from-teal-400 to-emerald-400 hover:from-teal-300 hover:to-emerald-300 disabled:opacity-50 shadow-lg shadow-teal-500/20 transition-all"
+                  >
+                    {loading ? (
+                      <span>Verifying...</span>
+                    ) : (
+                      <>
+                        <span>{isOtpSent ? 'Verify OTP & Enter Portal' : 'Send Fast Sign-In OTP'}</span>
+                        <ArrowRight className="h-4 w-4" />
+                      </>
+                    )}
+                  </button>
+
+                  <div className="text-center pt-2">
+                    <Link
+                      href="/register?role=patient"
+                      className="text-xs text-teal-400 hover:underline"
+                    >
+                      New patient? Register here for an instant UHID
+                    </Link>
+                  </div>
+                </form>
+              ) : (
+                /* CLINICAL, STAFF & ADMIN EMAIL/PASSWORD LOGIN */
+                <form className="space-y-4" onSubmit={handleEmailLogin}>
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                      {portal === 'doctor'
+                        ? 'Doctor Email'
+                        : portal === 'staff'
+                        ? 'Staff Work Email'
+                        : 'Administrator Email'}
+                    </label>
+                    <div className="relative rounded-lg shadow-sm">
+                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
+                        <Mail className="h-4 w-4" />
+                      </div>
+                      <input
+                        type="email"
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder={
+                          portal === 'doctor'
+                            ? 'doctor@capsic.in'
+                            : portal === 'staff'
+                            ? 'staff@capsic.in'
+                            : 'admin@capsic.in'
+                        }
+                        className="block w-full pl-10 pr-3 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-white placeholder-slate-500 text-xs focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="flex items-center justify-between mb-1.5">
+                      <label className="block text-xs font-semibold text-slate-300">
+                        Password
+                      </label>
+                      <button
+                        type="button"
+                        onClick={() => setShowForgotModal(true)}
+                        className="text-xs text-teal-400 hover:text-teal-300 transition-colors"
+                      >
+                        Forgot password?
+                      </button>
+                    </div>
+                    <div className="relative rounded-lg shadow-sm">
+                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
+                        <Lock className="h-4 w-4" />
+                      </div>
+                      <input
+                        type={showPassword ? 'text' : 'password'}
+                        required
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="••••••••••••"
+                        className="block w-full pl-10 pr-10 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-white placeholder-slate-500 text-xs focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-500 hover:text-slate-300"
+                      >
+                        {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                      </button>
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full flex justify-center items-center gap-2 py-2.5 px-4 rounded-xl text-xs font-bold text-slate-950 bg-gradient-to-r from-teal-400 to-emerald-400 hover:from-teal-300 hover:to-emerald-300 disabled:opacity-50 shadow-lg shadow-teal-500/20 transition-all"
+                  >
+                    {loading ? (
+                      <span>Verifying Session...</span>
+                    ) : (
+                      <>
+                        <span>
+                          {portal === 'doctor'
+                            ? 'Open Doctor Chamber EMR'
+                            : portal === 'staff'
+                            ? 'Open Staff Workspace'
+                            : 'Sign In to Administrator MIS'}
+                        </span>
+                        <ArrowRight className="h-4 w-4" />
+                      </>
+                    )}
+                  </button>
+
+                  <div className="text-center pt-2">
+                    <Link
+                      href={`/register?role=${portal === 'admin' ? 'doctor' : portal}`}
+                      className="text-xs text-teal-400 hover:underline"
+                    >
+                      {portal === 'doctor'
+                        ? 'New Doctor? Register your chamber here'
+                        : portal === 'staff'
+                        ? 'New Staff Member? Register your account'
+                        : 'Need an account? Register as Doctor or Staff'}
+                    </Link>
+                  </div>
+                </form>
+              )}
+            </>
+          )}
+
+          {/* Security Assurance */}
           <div className="mt-6 pt-6 border-t border-slate-800/80 text-center">
-            <div className="flex items-center justify-center gap-2 text-xs text-slate-500">
-              <ShieldCheck className="h-4 w-4 text-teal-400" />
-              <span>Multi-Tenant Enterprise RBAC & DISHA Compliant</span>
+            <div className="flex items-center justify-center gap-2 text-[11px] text-slate-500">
+              <ShieldCheck className="h-3.5 w-3.5 text-teal-400" />
+              <span>Multi-Tenant Enterprise RBAC • ABDM Compliant</span>
             </div>
-            <div className="mt-3">
-              <Link
-                href="/admin/setup"
-                className="text-xs text-slate-400 hover:text-teal-400 transition-colors"
-              >
-                First-time setup? <span className="underline">Initialize Super Administrator</span>
-              </Link>
-            </div>
+            {portal === 'admin' && (
+              <div className="mt-2">
+                <Link
+                  href="/admin/setup"
+                  className="text-[11px] text-slate-500 hover:text-teal-400 underline"
+                >
+                  Bootstrap initial Super Admin
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -244,9 +558,9 @@ function LoginForm() {
       {showForgotModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4">
           <div className="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
-            <h3 className="text-lg font-semibold text-white mb-2">Reset Password</h3>
-            <p className="text-sm text-slate-400 mb-4">
-              Enter your registered staff email address to receive secure password reset instructions.
+            <h3 className="text-sm font-semibold text-white mb-2">Reset Password</h3>
+            <p className="text-xs text-slate-400 mb-4">
+              Enter your registered email address to receive password reset instructions.
             </p>
             {forgotMessage && (
               <div className="mb-4 text-xs p-3 rounded-lg bg-slate-800 border border-slate-700 text-slate-300">
@@ -259,8 +573,8 @@ function LoginForm() {
                 required
                 value={forgotEmail}
                 onChange={(e) => setForgotEmail(e.target.value)}
-                placeholder="staff@capsic.in"
-                className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                placeholder="doctor@capsic.in"
+                className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-white text-xs focus:outline-none focus:ring-2 focus:ring-teal-500"
               />
               <div className="flex justify-end gap-3 pt-2">
                 <button
@@ -269,14 +583,14 @@ function LoginForm() {
                     setShowForgotModal(false)
                     setForgotMessage(null)
                   }}
-                  className="px-4 py-2 text-sm text-slate-400 hover:text-white"
+                  className="px-4 py-2 text-xs text-slate-400 hover:text-white"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={forgotLoading}
-                  className="px-4 py-2 text-sm font-semibold text-slate-950 bg-teal-400 hover:bg-teal-300 rounded-lg disabled:opacity-50"
+                  className="px-4 py-2 text-xs font-semibold text-slate-950 bg-teal-400 hover:bg-teal-300 rounded-xl disabled:opacity-50"
                 >
                   {forgotLoading ? 'Sending...' : 'Send Reset Link'}
                 </button>

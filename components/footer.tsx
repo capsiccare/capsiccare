@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
 import {
@@ -8,229 +10,271 @@ import {
   Instagram,
   Youtube,
   Twitter,
+  ShieldCheck,
+  Heart,
+  Stethoscope,
+  Building2,
+  Users,
+  AlertTriangle,
+  Award,
+  CheckCircle2,
 } from 'lucide-react'
 import { ThemeToggle } from '@/components/theme-toggle'
 
 export function Footer() {
   return (
-    <footer className="bg-slate-100 dark:bg-slate-950 text-slate-600 dark:text-slate-300 border-t border-slate-200 dark:border-slate-800 mt-12 transition-colors duration-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-6 md:mb-8">
-          {/* Brand */}
-          <div className="sm:col-span-2 md:col-span-1">
-            <div className="flex items-center space-x-2 mb-4">
-              <Image
-                src="/logo.png"
-                alt="Capsic Care Logo"
-                width={40}
-                height={40}
-                className="w-10 h-10 rounded-lg"
-              />
-              <span className="font-bold text-base md:text-lg text-slate-900 dark:text-white">Capsic Care</span>
+    <footer className="bg-slate-900 text-slate-400 border-t border-slate-800 mt-16 transition-colors duration-200">
+      {/* Top Trust & Emergency Banner */}
+      <div className="bg-slate-950/80 border-b border-slate-800 py-4 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 sm:gap-6 text-slate-300">
+            <div className="flex items-center gap-2">
+              <Award className="h-4 w-4 text-teal-400" />
+              <span><strong>NABL</strong> Accredited Partner Labs</span>
             </div>
-            <p className="text-xs md:text-sm text-slate-500 dark:text-slate-400">
-              Affordable healthcare diagnostics with Free Home Sample Collection on total test amount above ₹2,000 in Howrah &amp; Kolkata.
-            </p>
-            <div className="mt-3 p-3 bg-white dark:bg-slate-800/80 rounded-xl border border-slate-200 dark:border-slate-700/60 text-xs text-slate-700 dark:text-slate-300 space-y-1">
-              <p className="font-bold text-teal-600 dark:text-teal-300">Updated Price &amp; Info Helpline:</p>
-              <p>Contact: <a href="tel:+918910260709" className="text-teal-700 dark:text-white hover:underline font-bold">8910260709</a> or <a href="https://wa.me/918910260709?text=Hello%20Capsic%20Care%2C%20I%20have%20an%20inquiry%20regarding%20updated%20test%20prices%20and%20home%20sample%20collection." target="_blank" rel="noopener noreferrer" className="text-emerald-600 dark:text-emerald-400 hover:underline font-bold">WhatsApp</a></p>
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="h-4 w-4 text-teal-400" />
+              <span><strong>ABDM / ABHA</strong> Digital Health Compliant</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="h-4 w-4 text-teal-400" />
+              <span><strong>DPDP Act 2023</strong> Data Privacy Protected</span>
             </div>
           </div>
 
-          {/* Quick Links */}
+          <div className="flex items-center gap-3">
+            <span className="text-rose-400 font-bold flex items-center gap-1.5 bg-rose-950/50 px-2.5 py-1 rounded-full border border-rose-800/60">
+              <AlertTriangle className="h-3.5 w-3.5" />
+              <span>24x7 Ambulance: 108 / 102</span>
+            </span>
+            <span className="text-slate-500">|</span>
+            <a
+              href="tel:+918910260709"
+              className="text-white font-bold hover:text-teal-400 transition-colors"
+            >
+              📞 8910260709
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Footer Links */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 mb-10">
+          {/* Column 1: Brand & About */}
+          <div className="sm:col-span-2 md:col-span-1.5">
+            <div className="flex items-center space-x-2.5 mb-4">
+              <Image
+                src="/logo.png"
+                alt="Capsic Care Logo"
+                width={36}
+                height={36}
+                className="w-9 h-9 rounded-xl"
+              />
+              <span className="font-black text-lg text-white tracking-tight">
+                CAPSIC CARE <span className="text-xs px-2 py-0.5 rounded-full bg-teal-500/20 text-teal-300 font-mono border border-teal-500/30">OS</span>
+              </span>
+            </div>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              Integrated healthcare operating system and polyclinic network providing affordable doctor consultations, pathology tests, and free home sample collection in Howrah and Kolkata.
+            </p>
+            <div className="mt-4 p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-1">
+              <p className="font-bold text-teal-400">Home Sample Collection:</p>
+              <p className="text-[11px] text-slate-400">
+                Complimentary for lab test bookings above ₹2,000. Book online or via WhatsApp.
+              </p>
+            </div>
+          </div>
+
+          {/* Column 2: Digital Portals & Workspace */}
           <div>
-            <h4 className="font-semibold text-slate-900 dark:text-white mb-3 text-sm md:text-base">Quick Links</h4>
-            <ul className="space-y-2 text-xs md:text-sm">
+            <h4 className="font-bold text-white mb-3 text-xs uppercase tracking-wider text-teal-400">
+              Healthcare Portals
+            </h4>
+            <ul className="space-y-2 text-xs">
               <li>
-                <Link
-                  href="/services"
-                  className="hover:text-teal-400 transition-all duration-300 ease-out"
-                >
-                  Services
+                <Link href="/patient" className="hover:text-white transition-colors flex items-center gap-1.5">
+                  <Heart className="h-3.5 w-3.5 text-teal-400" />
+                  <span>Patient Health Locker</span>
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/doctors"
-                  className="hover:text-teal-400 transition-all duration-300 ease-out"
-                >
-                  Doctors
+                <Link href="/doctor" className="hover:text-white transition-colors flex items-center gap-1.5">
+                  <Stethoscope className="h-3.5 w-3.5 text-blue-400" />
+                  <span>Doctor Chamber EMR</span>
                 </Link>
               </li>
               <li>
-                <Link href="/health-camps" className="hover:text-teal-400 transition-all duration-300 ease-out">
-                  Health Camps
+                <Link href="/login?portal=staff" className="hover:text-white transition-colors flex items-center gap-1.5">
+                  <Users className="h-3.5 w-3.5 text-emerald-400" />
+                  <span>Staff & Billing Desk</span>
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/business-opportunity"
-                  className="text-teal-400 font-semibold hover:text-teal-300 transition-all duration-300 ease-out flex items-center gap-1"
-                >
-                  Business Opportunity
+                <Link href="/admin" className="hover:text-white transition-colors flex items-center gap-1.5">
+                  <Building2 className="h-3.5 w-3.5 text-slate-300" />
+                  <span>Enterprise Admin MIS</span>
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/business-opportunity"
-                  className="hover:text-teal-400 transition-all duration-300 ease-out"
-                >
-                  Become a Franchise Partner
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/partner"
-                  className="hover:text-teal-400 transition-all duration-300 ease-out"
-                >
-                  Partner With Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="hover:text-teal-400 transition-all duration-300 ease-out"
-                >
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/sktaslimuddin"
-                  className="hover:text-teal-400 transition-all duration-300 ease-out"
-                >
-                  Founder & CEO
+              <li className="pt-1 border-t border-slate-800 mt-2">
+                <Link href="/register?role=doctor" className="text-teal-400 font-bold hover:underline">
+                  + Join as Doctor
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Column 3: Medical & Diagnostic Services */}
           <div>
-            <h4 className="font-semibold text-white mb-3 text-sm md:text-base">Services</h4>
-            <ul className="space-y-2 text-xs md:text-sm">
+            <h4 className="font-bold text-white mb-3 text-xs uppercase tracking-wider text-teal-400">
+              Services
+            </h4>
+            <ul className="space-y-2 text-xs">
               <li>
-                <Link href="/services" className="hover:text-teal-400 transition-all duration-300 ease-out">
-                  Doctor Consultation
+                <Link href="/doctors" className="hover:text-white transition-colors">
+                  OPD Doctor Consultation
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="hover:text-teal-400 transition-all duration-300 ease-out">
+                <Link href="/lab-tests" className="hover:text-white transition-colors">
+                  Pathology & Diagnostics
+                </Link>
+              </li>
+              <li>
+                <Link href="/health-packages" className="hover:text-white transition-colors">
+                  Preventive Health Packages
+                </Link>
+              </li>
+              <li>
+                <Link href="/services" className="hover:text-white transition-colors">
+                  Home Blood Collection
+                </Link>
+              </li>
+              <li>
+                <Link href="/services" className="hover:text-white transition-colors">
                   Assisted Telemedicine
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="hover:text-teal-400 transition-all duration-300 ease-out">
-                  Diagnostics
-                </Link>
-              </li>
-              <li>
-                <Link href="/invoice" className="hover:text-teal-400 transition-all duration-300 ease-out">
-                  Cash Memo / Bill Generator
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="hover:text-teal-400 transition-all duration-300 ease-out">
-                  Health Packages
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="hover:text-teal-400 transition-all duration-300 ease-out">
-                  Preventive Care
+                <Link href="/partner" className="hover:text-white transition-colors">
+                  Franchise & Partner With Us
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Information */}
+          {/* Column 4: Clinic Addresses & Branches */}
           <div>
-            <h4 className="font-semibold text-white mb-3 text-sm md:text-base">Clinic Address</h4>
-            <div className="space-y-2 text-xs md:text-sm text-slate-400">
-              <p className="font-medium text-slate-300">Capsic Care Centre</p>
-              <p>Bankra Bazar</p>
-              <p>Dewan Para Road</p>
-              <p>Domjur</p>
-              <p>Howrah – 711403</p>
+            <h4 className="font-bold text-white mb-3 text-xs uppercase tracking-wider text-teal-400">
+              Clinic Hubs
+            </h4>
+            <div className="space-y-3 text-xs">
+              <div>
+                <p className="font-semibold text-white">Bankra Central Hub (HQ)</p>
+                <p className="text-slate-400 text-[11px] mt-0.5">
+                  Bankra Bazar, Dewan Para Road, Domjur, Howrah – 711403
+                </p>
+              </div>
+              <div>
+                <p className="font-semibold text-white">Kolkata City Desk</p>
+                <p className="text-slate-400 text-[11px] mt-0.5">
+                  Salt Lake & Kolkata Central Collection Network
+                </p>
+              </div>
+              <div className="pt-1">
+                <p className="text-[11px] text-slate-500">
+                  Daily OPD: 08:00 AM – 09:00 PM
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* Contact */}
-          <div className="sm:col-span-2 md:col-span-1">
-            <h4 className="font-semibold text-white mb-3 text-sm md:text-base">Contact Us</h4>
-            <div className="space-y-2 md:space-y-3 text-xs md:text-sm">
-              <div className="flex items-start space-x-2">
-                <Mail size={16} className="mt-0.5 flex-shrink-0 text-teal-400" />
-                <a
-                  href="mailto:capsiccare@gmail.com"
-                  className="hover:text-teal-400 transition-all duration-300 ease-out break-all"
-                >
+          {/* Column 5: Contact & Help */}
+          <div>
+            <h4 className="font-bold text-white mb-3 text-xs uppercase tracking-wider text-teal-400">
+              Contact Desk
+            </h4>
+            <div className="space-y-2.5 text-xs">
+              <div className="flex items-center space-x-2">
+                <Phone size={14} className="text-teal-400 shrink-0" />
+                <a href="tel:+918910260709" className="hover:text-white font-medium">
+                  +91 8910260709
+                </a>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Mail size={14} className="text-teal-400 shrink-0" />
+                <a href="mailto:capsiccare@gmail.com" className="hover:text-white">
                   capsiccare@gmail.com
                 </a>
               </div>
               <div className="flex items-start space-x-2">
-                <Phone size={16} className="mt-0.5 flex-shrink-0 text-teal-400" />
-                <a
-                  href="tel:+918910260709"
-                  className="hover:text-teal-400 transition-all duration-300 ease-out"
-                >
-                  +91 8910260709
-                </a>
+                <MapPin size={14} className="text-teal-400 shrink-0 mt-0.5" />
+                <span>Howrah & Kolkata, West Bengal</span>
               </div>
-              <div className="flex items-start space-x-2">
-                <MapPin size={16} className="mt-0.5 flex-shrink-0 text-teal-400" />
-                <span>Kolkata, India</span>
+              <div className="pt-2">
+                <a
+                  href="https://wa.me/918910260709?text=Hello%20Capsic%20Care%20Support"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-sm transition-all"
+                >
+                  <span>Chat on WhatsApp</span>
+                </a>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Social Links */}
-        <div className="border-t border-slate-200 dark:border-slate-800 pt-6 md:pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-              <p className="text-xs md:text-sm text-slate-400">
-                © 2024 Capsic Care. All rights reserved.
-              </p>
-              <ThemeToggle variant="pill" />
-            </div>
-            <div className="flex space-x-4">
-              <a
-                href="https://facebook.com/profile.php?id=61587413380650"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-slate-400 hover:text-teal-400 transition-all duration-300 ease-out"
-                aria-label="Facebook"
-              >
-                <Facebook size={20} />
-              </a>
-              <a
-                href="https://instagram.com/capsiccare"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-slate-400 hover:text-teal-400 transition-all duration-300 ease-out"
-                aria-label="Instagram"
-              >
-                <Instagram size={20} />
-              </a>
-              <a
-                href="https://youtube.com/@capsiccare"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-slate-400 hover:text-teal-400 transition-all duration-300 ease-out"
-                aria-label="YouTube"
-              >
-                <Youtube size={20} />
-              </a>
-              <a
-                href="https://twitter.com/capsicCare"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-slate-400 hover:text-teal-400 transition-all duration-300 ease-out"
-                aria-label="Twitter"
-              >
-                <Twitter size={20} />
-              </a>
-            </div>
+        {/* Bottom Social, Legal & Accreditation Strip */}
+        <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
+          <div className="flex flex-wrap items-center gap-4 text-slate-500">
+            <span>© {new Date().getFullYear()} CAPSIC CARE Health Network. All rights reserved.</span>
+            <span>•</span>
+            <Link href="/privacy" className="hover:text-slate-300 transition-colors">Privacy Policy</Link>
+            <span>•</span>
+            <Link href="/terms" className="hover:text-slate-300 transition-colors">Terms of Care</Link>
+            <span>•</span>
+            <Link href="/refund-policy" className="hover:text-slate-300 transition-colors">Refund & Cancellation</Link>
+          </div>
+
+          <div className="flex items-center space-x-4">
+            <ThemeToggle variant="pill" />
+            <a
+              href="https://facebook.com/profile.php?id=61587413380650"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-400 hover:text-teal-400 transition-colors"
+              aria-label="Facebook"
+            >
+              <Facebook size={18} />
+            </a>
+            <a
+              href="https://instagram.com/capsiccare"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-400 hover:text-teal-400 transition-colors"
+              aria-label="Instagram"
+            >
+              <Instagram size={18} />
+            </a>
+            <a
+              href="https://youtube.com/@capsiccare"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-400 hover:text-teal-400 transition-colors"
+              aria-label="YouTube"
+            >
+              <Youtube size={18} />
+            </a>
+            <a
+              href="https://twitter.com/capsicCare"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-400 hover:text-teal-400 transition-colors"
+              aria-label="Twitter"
+            >
+              <Twitter size={18} />
+            </a>
           </div>
         </div>
       </div>
