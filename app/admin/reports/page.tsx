@@ -1,71 +1,148 @@
 'use client'
 
 import React from 'react'
-import { BarChart3, TrendingUp, CheckCircle2, ArrowRight } from 'lucide-react'
-import { Badge } from '@/components/ui/badge'
 import Link from 'next/link'
+import {
+  BarChart3,
+  TrendingUp,
+  FileSpreadsheet,
+  Download,
+  Receipt,
+  Stethoscope,
+  FlaskConical,
+  Building2,
+  ChevronRight,
+  ShieldCheck,
+  ArrowUpRight
+} from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
 
-export default function ReportsPlaceholderPage() {
+export default function ReportsIndexPage() {
   return (
     <div className="space-y-6">
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold tracking-tight text-slate-900">MIS & Executive Analytics</h1>
-            <Badge className="bg-indigo-100 text-indigo-800 border-indigo-300 text-xs">
-              Step 09 Planned
-            </Badge>
+          <div className="flex items-center gap-2 text-sm text-slate-500 mb-1">
+            <span className="font-semibold text-teal-600 dark:text-teal-400">CAPSIC CARE OS</span>
+            <ChevronRight className="w-3.5 h-3.5" />
+            <span className="font-medium text-slate-900 dark:text-slate-100">MIS Reports Hub</span>
           </div>
-          <p className="text-sm text-slate-500 mt-0.5">
-            Executive operational reporting, doctor productivity matrices, clinical turn-around time (TAT), and financial MIS.
+          <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2.5">
+            <BarChart3 className="w-7 h-7 text-indigo-600" />
+            Management Information System (MIS) Reports Hub
+          </h1>
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+            Authoritative executive dashboards, doctor productivity matrices, financial aging, and exportable data tables.
           </p>
         </div>
+
+        <Link href="/admin/analytics/reports">
+          <Button size="sm" className="gap-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white">
+            <FileSpreadsheet className="w-4 h-4" />
+            Custom Report Builder
+          </Button>
+        </Link>
       </div>
 
-      <div className="bg-white rounded-2xl border border-slate-200/80 shadow-xs p-8 max-w-3xl space-y-6">
-        <div className="flex items-start gap-4">
-          <div className="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0">
-            <BarChart3 className="w-6 h-6" />
+      {/* Primary Navigation Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <Link
+          href="/admin/analytics"
+          className="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all group shadow-xs"
+        >
+          <div className="flex items-center justify-between">
+            <div className="p-2.5 rounded-lg bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600">
+              <BarChart3 className="w-5 h-5" />
+            </div>
+            <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition-colors" />
           </div>
-          <div className="space-y-1">
-            <h3 className="text-lg font-bold text-slate-900">Module Scope & Implementation Plan</h3>
-            <p className="text-sm text-slate-600">
-              The aggregation views, indexing, integer paise rollups, and audit logging foundations were established in Step 02 and Step 03.
-            </p>
+          <h3 className="font-bold text-slate-900 dark:text-white mt-3 text-base">Executive Command Center</h3>
+          <p className="text-xs text-slate-500 mt-1">
+            Today's revenue, collections, consultation volumes, diagnostic orders, and decision alerts.
+          </p>
+        </Link>
+
+        <Link
+          href="/admin/analytics/revenue"
+          className="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all group shadow-xs"
+        >
+          <div className="flex items-center justify-between">
+            <div className="p-2.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600">
+              <Receipt className="w-5 h-5" />
+            </div>
+            <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition-colors" />
           </div>
-        </div>
+          <h3 className="font-bold text-slate-900 dark:text-white mt-3 text-base">Revenue & Margin Analytics</h3>
+          <p className="text-xs text-slate-500 mt-1">
+            Gross invoiced revenue, deductions, direct provider costs, and contribution margins.
+          </p>
+        </Link>
 
-        <div className="border-t border-slate-100 pt-6 space-y-3">
-          <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">Features Scheduled for Step 09:</h4>
-          <ul className="space-y-2 text-sm text-slate-600">
-            <li className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span>Doctor OPD productivity, revenue contribution, and consultation duration analysis</span>
-            </li>
-            <li className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span>Lab test volume distribution, sample collection TAT, and verification backlog</span>
-            </li>
-            <li className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span>Multi-branch revenue comparison & counter cash reconciliation reports</span>
-            </li>
-            <li className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span>Automated Excel / CSV / PDF export for clinical administration and accountants</span>
-            </li>
-          </ul>
-        </div>
+        <Link
+          href="/admin/analytics/doctors"
+          className="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all group shadow-xs"
+        >
+          <div className="flex items-center justify-between">
+            <div className="p-2.5 rounded-lg bg-teal-50 dark:bg-teal-950/40 text-teal-600">
+              <Stethoscope className="w-5 h-5" />
+            </div>
+            <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition-colors" />
+          </div>
+          <h3 className="font-bold text-slate-900 dark:text-white mt-3 text-base">Doctor Productivity Matrix</h3>
+          <p className="text-xs text-slate-500 mt-1">
+            Consultations completed, cancellation rates, waiting times, and patient satisfaction ratings.
+          </p>
+        </Link>
 
-        <div className="border-t border-slate-100 pt-4 flex items-center justify-between">
-          <span className="text-xs text-slate-400">Database Status: Ready (All 6 core migrations applied)</span>
-          <Link href="/admin">
-            <Button variant="outline" size="sm" className="text-xs">
-              Return to Dashboard <ArrowRight className="w-3.5 h-3.5 ml-1" />
-            </Button>
-          </Link>
-        </div>
+        <Link
+          href="/admin/analytics/diagnostics"
+          className="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all group shadow-xs"
+        >
+          <div className="flex items-center justify-between">
+            <div className="p-2.5 rounded-lg bg-purple-50 dark:bg-purple-950/40 text-purple-600">
+              <FlaskConical className="w-5 h-5" />
+            </div>
+            <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition-colors" />
+          </div>
+          <h3 className="font-bold text-slate-900 dark:text-white mt-3 text-base">Diagnostic BI & TAT</h3>
+          <p className="text-xs text-slate-500 mt-1">
+            Order-to-collection, turnaround time SLAs, P90 analysis, and home vs walk-in collection split.
+          </p>
+        </Link>
+
+        <Link
+          href="/admin/analytics/branches"
+          className="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all group shadow-xs"
+        >
+          <div className="flex items-center justify-between">
+            <div className="p-2.5 rounded-lg bg-amber-50 dark:bg-amber-950/40 text-amber-600">
+              <Building2 className="w-5 h-5" />
+            </div>
+            <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition-colors" />
+          </div>
+          <h3 className="font-bold text-slate-900 dark:text-white mt-3 text-base">Multi-Branch Analytics</h3>
+          <p className="text-xs text-slate-500 mt-1">
+            Comparative performance, average transaction value, and cross-clinic capacity benchmarking.
+          </p>
+        </Link>
+
+        <Link
+          href="/admin/analytics/data-quality"
+          className="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all group shadow-xs"
+        >
+          <div className="flex items-center justify-between">
+            <div className="p-2.5 rounded-lg bg-blue-50 dark:bg-blue-950/40 text-blue-600">
+              <ShieldCheck className="w-5 h-5" />
+            </div>
+            <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition-colors" />
+          </div>
+          <h3 className="font-bold text-slate-900 dark:text-white mt-3 text-base">Data Quality Audit</h3>
+          <p className="text-xs text-slate-500 mt-1">
+            Audits patient demographics, financial balance consistency, and timestamp integrity.
+          </p>
+        </Link>
       </div>
     </div>
   )
