@@ -16,9 +16,14 @@ import {
   Clock,
   IndianRupee,
   Cpu,
+  Plus,
+  Edit2,
+  X,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
+import { useBranch } from '@/lib/context/branch-context'
 
 interface SettingsData {
   organization: {
@@ -66,9 +71,92 @@ interface SettingsData {
 }
 
 export default function AdminSettingsPage() {
+  const { refreshBranches } = useBranch()
   const [data, setData] = useState<SettingsData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+
+  // Branch Modal State
+  const [isBranchModalOpen, setIsBranchModalOpen] = useState(false)
+  const [isEditingBranch, setIsEditingBranch] = useState(false)
+  const [branchFormSubmitting, setBranchFormSubmitting] = useState(false)
+  const [branchForm, setBranchForm] = useState({
+    id: '',
+    name: '',
+    code: '',
+    address: '',
+    city: 'Howrah',
+    district: 'Howrah',
+    state: 'West Bengal',
+    pincode: '',
+    phone: '',
+    email: '',
+    is_headquarters: false,
+    is_active: true,
+  })
+
+  const openAddBranch = () => {
+    setIsEditingBranch(false)
+    setBranchForm({
+      id: '',
+      name: '',
+      code: '',
+      address: '',
+      city: 'Howrah',
+      district: 'Howrah',
+      state: 'West Bengal',
+      pincode: '',
+      phone: '',
+      email: '',
+      is_headquarters: false,
+      is_active: true,
+    })
+    setIsBranchModalOpen(true)
+  }
+
+  const openEditBranch = (b: any) => {
+    setIsEditingBranch(true)
+    setBranchForm({
+      id: b.id,
+      name: b.name,
+      code: b.code,
+      address: b.address,
+      city: b.city,
+      district: b.district,
+      state: b.state,
+      pincode: b.pincode,
+      phone: b.phone,
+      email: b.email || '',
+      is_headquarters: Boolean(b.is_headquarters),
+      is_active: Boolean(b.is_active),
+    })
+    setIsBranchModalOpen(true)
+  }
+
+  const handleBranchSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setBranchFormSubmitting(true)
+    try {
+      const url = '/api/v1/branches'
+      const method = isEditingBranch ? 'PATCH' : 'POST'
+      const res = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(branchForm),
+      })
+      const result = await res.json()
+      if (!res.ok || !result.success) {
+        throw new Error(result.error?.message || 'Failed to save branch')
+      }
+      setIsBranchModalOpen(false)
+      await fetchSettings()
+      await refreshBranches()
+    } catch (err: any) {
+      alert(err.message)
+    } finally {
+      setBranchFormSubmitting(false)
+    }
+  }
 
   const fetchSettings = async () => {
     setLoading(true)
@@ -220,7 +308,7 @@ export default function AdminSettingsPage() {
 
           {/* Clinical Branches Directory */}
           <div className="bg-white rounded-xl border border-slate-200/80 shadow-xs p-6 space-y-4 lg:col-span-2">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-slate-100 pb-3">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center">
                   <Building2 className="w-4 h-4" />
@@ -230,19 +318,38 @@ export default function AdminSettingsPage() {
                   <p className="text-xs text-slate-500">Physical clinics, sample collection centers and regional hubs</p>
                 </div>
               </div>
-              <Badge variant="outline" className="text-xs font-semibold">
-                {data.branches.length} Registered Hubs
-              </Badge>
+              <div className="flex items-center gap-2">
+                <Badge variant="outline" className="text-xs font-semibold">
+                  {data.branches.length} Registered Hubs
+                </Badge>
+                <Button
+                  size="sm"
+                  onClick={openAddBranch}
+                  className="h-8 text-xs bg-teal-600 hover:bg-teal-700 text-white flex items-center gap-1.5"
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                  Add Branch
+                </Button>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {data.branches.map((b) => (
-                <div key={b.id} className="p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-2">
+                <div key={b.id} className="p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-2 relative group">
                   <div className="flex items-center justify-between">
                     <h4 className="font-bold text-slate-900">{b.name}</h4>
-                    {b.is_headquarters && (
-                      <Badge className="bg-emerald-600 text-white text-[10px]">Headquarters</Badge>
-                    )}
+                    <div className="flex items-center gap-1.5">
+                      {b.is_headquarters && (
+                        <Badge className="bg-emerald-600 text-white text-[10px]">Headquarters</Badge>
+                      )}
+                      <button
+                        onClick={() => openEditBranch(b)}
+                        className="p-1 rounded text-slate-400 hover:text-slate-800 hover:bg-slate-200/60 transition-colors"
+                        title="Edit Branch"
+                      >
+                        <Edit2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
                   </div>
                   <p className="text-xs text-slate-600">{b.address}</p>
                   <p className="text-xs text-slate-500">{b.city}, {b.district}, {b.state} - {b.pincode}</p>
@@ -288,6 +395,155 @@ export default function AdminSettingsPage() {
           </div>
         </div>
       ) : null}
+
+      {/* Add / Edit Branch Modal */}
+      {isBranchModalOpen && (
+        <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white dark:bg-slate-900 rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-xl border border-slate-200 dark:border-slate-800">
+            <div className="flex items-center justify-between border-b pb-3">
+              <h3 className="font-bold text-lg text-slate-900 dark:text-slate-100">
+                {isEditingBranch ? 'Edit Clinic Branch' : 'Add New Clinic Branch Hub'}
+              </h3>
+              <button
+                onClick={() => setIsBranchModalOpen(false)}
+                className="text-slate-400 hover:text-slate-600 text-xl font-bold"
+              >
+                &times;
+              </button>
+            </div>
+
+            <form onSubmit={handleBranchSubmit} className="space-y-3">
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="text-xs font-medium text-slate-700 dark:text-slate-300">Branch Name *</label>
+                  <Input
+                    required
+                    value={branchForm.name}
+                    onChange={(e) => setBranchForm({ ...branchForm, name: e.target.value })}
+                    className="text-xs h-9 mt-1"
+                    placeholder="e.g. Barasat Clinic & Lab Hub"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-medium text-slate-700 dark:text-slate-300">Branch Code *</label>
+                  <Input
+                    required
+                    value={branchForm.code}
+                    onChange={(e) => setBranchForm({ ...branchForm, code: e.target.value })}
+                    className="text-xs h-9 mt-1 font-mono uppercase"
+                    placeholder="e.g. BARASAT_HUB"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="text-xs font-medium text-slate-700 dark:text-slate-300">Physical Address *</label>
+                <Input
+                  required
+                  value={branchForm.address}
+                  onChange={(e) => setBranchForm({ ...branchForm, address: e.target.value })}
+                  className="text-xs h-9 mt-1"
+                  placeholder="Street / Market / Landmark"
+                />
+              </div>
+
+              <div className="grid grid-cols-3 gap-2">
+                <div>
+                  <label className="text-xs font-medium text-slate-700 dark:text-slate-300">City</label>
+                  <Input
+                    required
+                    value={branchForm.city}
+                    onChange={(e) => setBranchForm({ ...branchForm, city: e.target.value })}
+                    className="text-xs h-9 mt-1"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-medium text-slate-700 dark:text-slate-300">District</label>
+                  <Input
+                    required
+                    value={branchForm.district}
+                    onChange={(e) => setBranchForm({ ...branchForm, district: e.target.value })}
+                    className="text-xs h-9 mt-1"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-medium text-slate-700 dark:text-slate-300">Pincode *</label>
+                  <Input
+                    required
+                    value={branchForm.pincode}
+                    onChange={(e) => setBranchForm({ ...branchForm, pincode: e.target.value })}
+                    className="text-xs h-9 mt-1 font-mono"
+                    placeholder="700124"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="text-xs font-medium text-slate-700 dark:text-slate-300">Phone *</label>
+                  <Input
+                    required
+                    value={branchForm.phone}
+                    onChange={(e) => setBranchForm({ ...branchForm, phone: e.target.value })}
+                    className="text-xs h-9 mt-1 font-mono"
+                    placeholder="Official Contact"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-medium text-slate-700 dark:text-slate-300">Email</label>
+                  <Input
+                    type="email"
+                    value={branchForm.email}
+                    onChange={(e) => setBranchForm({ ...branchForm, email: e.target.value })}
+                    className="text-xs h-9 mt-1"
+                    placeholder="branch@capsic.in"
+                  />
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4 pt-2">
+                <label className="flex items-center gap-2 text-xs font-medium text-slate-700 dark:text-slate-300 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={branchForm.is_headquarters}
+                    onChange={(e) => setBranchForm({ ...branchForm, is_headquarters: e.target.checked })}
+                    className="rounded"
+                  />
+                  <span>Mark as Headquarters</span>
+                </label>
+
+                <label className="flex items-center gap-2 text-xs font-medium text-slate-700 dark:text-slate-300 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={branchForm.is_active}
+                    onChange={(e) => setBranchForm({ ...branchForm, is_active: e.target.checked })}
+                    className="rounded"
+                  />
+                  <span>Active Operational</span>
+                </label>
+              </div>
+
+              <div className="flex justify-end gap-2 pt-4 border-t">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => setIsBranchModalOpen(false)}
+                  className="h-9 text-xs"
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="submit"
+                  disabled={branchFormSubmitting}
+                  className="h-9 text-xs bg-teal-600 hover:bg-teal-700 text-white"
+                >
+                  {branchFormSubmitting ? 'Saving...' : isEditingBranch ? 'Save Changes' : 'Create Branch'}
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

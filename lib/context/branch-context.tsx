@@ -16,6 +16,7 @@ interface BranchContextType {
   branches: BranchInfo[]
   activeBranch: BranchInfo | null
   isLoading: boolean
+  refreshBranches: () => Promise<void>
 }
 
 const BranchContext = createContext<BranchContextType | undefined>(undefined)
@@ -25,25 +26,21 @@ export function BranchProvider({ children }: { children: React.ReactNode }) {
   const [selectedBranchId, setSelectedBranchId] = useState<string>('all')
   const [isLoading, setIsLoading] = useState(true)
 
-  useEffect(() => {
-    async function loadBranches() {
-      try {
-        const res = await fetch('/api/v1/branches')
-        const json = await res.json()
-        if (json.success && Array.isArray(json.data)) {
-          setBranches(json.data)
-          // Default to HQ or first branch if not 'all'
-          const hq = json.data.find((b: any) => b.isHeadquarters)
-          if (hq && selectedBranchId === 'all') {
-            // keep 'all' or default
-          }
-        }
-      } catch (err) {
-        console.error('Failed to load branches in context:', err)
-      } finally {
-        setIsLoading(false)
+  const loadBranches = async () => {
+    try {
+      const res = await fetch('/api/v1/branches')
+      const json = await res.json()
+      if (json.success && Array.isArray(json.data)) {
+        setBranches(json.data)
       }
+    } catch (err) {
+      console.error('Failed to load branches in context:', err)
+    } finally {
+      setIsLoading(false)
     }
+  }
+
+  useEffect(() => {
     loadBranches()
   }, [])
 
@@ -57,6 +54,7 @@ export function BranchProvider({ children }: { children: React.ReactNode }) {
         branches,
         activeBranch,
         isLoading,
+        refreshBranches: loadBranches,
       }}
     >
       {children}

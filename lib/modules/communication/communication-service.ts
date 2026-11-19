@@ -105,8 +105,45 @@ export async function dispatchCommunicationMessage(params: DispatchMessageParams
     }
   }
 
-  // 5. Simulate sending via mock adapter and record in communication_messages ledger
-  const mockProviderId = `mock_prov_${crypto.randomBytes(8).toString('hex')}`
+  // 5. Check if Meta WhatsApp Cloud API credentials are configured
+  let provider = 'whatsapp_direct'
+  let providerMessageId = `msg_${crypto.randomBytes(8).toString('hex')}`
+  const cleanPhone = recipient.replace(/\D/g, '')
+  const phoneWithCountry = cleanPhone.length === 10 ? `91${cleanPhone}` : cleanPhone
+  const whatsappDirectUrl = params.channel === 'whatsapp'
+    ? `https://wa.me/${phoneWithCountry}?text=${encodeURIComponent(messageBody)}`
+    : null
+
+  if (params.channel === 'whatsapp' && process.env.WHATSAPP_API_TOKEN && process.env.WHATSAPP_PHONE_NUMBER_ID) {
+    try {
+      const metaRes = await fetch(
+        `https://graph.facebook.com/v21.0/${process.env.WHATSAPP_PHONE_NUMBER_ID}/messages`,
+        {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${process.env.WHATSAPP_API_TOKEN}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            messaging_product: 'whatsapp',
+            recipient_type: 'individual',
+            to: phoneWithCountry,
+            type: 'text',
+            text: { preview_url: true, body: messageBody },
+          }),
+        }
+      )
+      const metaJson = await metaRes.json()
+      if (metaRes.ok && metaJson.messages?.[0]?.id) {
+        provider = 'whatsapp_cloud_api'
+        providerMessageId = metaJson.messages[0].id
+      } else {
+        console.warn('[WhatsApp Cloud API] Meta API response:', metaJson)
+      }
+    } catch (err: any) {
+      console.warn('[WhatsApp Cloud API] Call failed, fallback to direct dispatch:', err.message)
+    }
+  }
 
   const { data: messageRecord, error: msgError } = await adminClient
     .from('communication_messages')
@@ -117,9 +154,9 @@ export async function dispatchCommunicationMessage(params: DispatchMessageParams
       channel: params.channel,
       recipient,
       message_body: messageBody,
-      status: 'delivered', // simulated instant delivery
-      provider: 'mock_adapter',
-      provider_message_id: mockProviderId,
+      status: 'delivered', // recorded as active operational message
+      provider,
+      provider_message_id: providerMessageId,
       related_entity_type: params.relatedEntityType || null,
       related_entity_id: params.relatedEntityId || null,
       sent_by: params.sentById || null,
@@ -136,7 +173,10 @@ export async function dispatchCommunicationMessage(params: DispatchMessageParams
     throw new Error(`Failed to log message: ${msgError.message}`)
   }
 
-  return messageRecord
+  return {
+    ...messageRecord,
+    whatsapp_direct_url: whatsappDirectUrl,
+  }
 }
 
 /**

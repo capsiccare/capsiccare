@@ -114,7 +114,8 @@ export async function onboardStaffMember(params: {
   phone: string
   email?: string | null
   gender?: 'male' | 'female' | 'other'
-  roleName: string
+  roleName?: string
+  roleNames?: string[]
   branchId?: string | null
   designation: string
   department?: string
@@ -129,15 +130,18 @@ export async function onboardStaffMember(params: {
   const { data: org } = await adminClient.from('organizations').select('id').limit(1).single()
   if (!org) throw new Error('No organization found')
 
-  // 2. Lookup role ID
-  const { data: roleData, error: roleError } = await adminClient
+  // 2. Resolve target roles (supports single roleName or multiple roleNames)
+  const targetRoles = params.roleNames && params.roleNames.length > 0 
+    ? params.roleNames 
+    : [params.roleName || 'receptionist']
+
+  const { data: rolesData, error: roleError } = await adminClient
     .from('roles')
     .select('id, name')
-    .eq('name', params.roleName)
-    .single()
+    .in('name', targetRoles)
 
-  if (roleError || !roleData) {
-    throw new Error(`Role '${params.roleName}' not found in database`)
+  if (roleError || !rolesData || rolesData.length === 0) {
+    throw new Error(`Roles [${targetRoles.join(', ')}] not found in database`)
   }
 
   // 3. Find or create profile
@@ -217,36 +221,71 @@ export async function onboardStaffMember(params: {
     throw new Error(`Failed to save staff details: ${staffDetailError.message}`)
   }
 
-  // 6. Assign role
+  // 6. Assign roles (single or multiple)
+  await adminClient
+    .from('user_role_assignments')
+    .delete()
+    .eq('user_id', userId)
+
+  const roleAssignments = rolesData.map((r) => ({
+    user_id: userId,
+    role_id: r.id,
+    organization_id: org.id,
+    branch_id: params.branchId || null,
+  }))
+
   const { error: roleAssignError } = await adminClient
     .from('user_role_assignments')
-    .upsert(
-      {
-        user_id: userId,
-        role_id: roleData.id,
-        organization_id: org.id,
-        branch_id: params.branchId || null,
-      },
-      { onConflict: 'user_id,role_id' }
-    )
+    .insert(roleAssignments)
 
   if (roleAssignError) {
-    // If table doesn't have composite unique constraint on (user_id, role_id), insert with conflict handling
-    await adminClient.from('user_role_assignments').insert({
-      user_id: userId,
-      role_id: roleData.id,
-      organization_id: org.id,
-      branch_id: params.branchId || null,
-    })
+    throw new Error(`Failed to assign staff roles: ${roleAssignError.message}`)
   }
 
   return {
     userId,
     employeeId: empId,
     fullName: params.fullName,
-    role: params.roleName,
+    roles: rolesData.map((r) => r.name),
     branchId: params.branchId || null,
   }
+}
+
+/**
+ * Update active roles for an existing staff member.
+ */
+export async function updateStaffRoles(userId: string, roleNames: string[], branchId?: string | null) {
+  const adminClient = createAdminClient()
+  const { data: org } = await adminClient.from('organizations').select('id').limit(1).single()
+  if (!org) throw new Error('No organization found')
+
+  const { data: rolesData, error: rolesError } = await adminClient
+    .from('roles')
+    .select('id, name')
+    .in('name', roleNames)
+
+  if (rolesError || !rolesData || rolesData.length === 0) {
+    throw new Error('No valid matching roles found in database')
+  }
+
+  // Remove existing assignments
+  await adminClient
+    .from('user_role_assignments')
+    .delete()
+    .eq('user_id', userId)
+
+  // Insert new assignments
+  const records = rolesData.map((r) => ({
+    user_id: userId,
+    role_id: r.id,
+    organization_id: org.id,
+    branch_id: branchId || null,
+  }))
+
+  const { error: insertErr } = await adminClient.from('user_role_assignments').insert(records)
+  if (insertErr) throw new Error(`Failed to assign roles: ${insertErr.message}`)
+
+  return { userId, roles: rolesData.map((r) => r.name), branchId }
 }
 
 /**

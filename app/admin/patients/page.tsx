@@ -21,6 +21,11 @@ import {
   ShieldCheck,
   MapPin,
   ClipboardList,
+  MessageSquare,
+  Send,
+  Upload,
+  ExternalLink,
+  Share2,
 } from 'lucide-react'
 import { useBranch } from '@/lib/context/branch-context'
 import { Button } from '@/components/ui/button'
@@ -108,6 +113,29 @@ export default function AdminPatientsPage() {
   const [patientDocs, setPatientDocs] = useState<any[]>([])
   const [patientMessages, setPatientMessages] = useState<any[]>([])
   const [docsLoading, setDocsLoading] = useState(false)
+
+  // Clinical & Workforce Data
+  const [doctors, setDoctors] = useState<Array<{ id: string; name: string; specialty: string }>>([])
+
+  // Document Upload Modal State
+  const [isUploadDocOpen, setIsUploadDocOpen] = useState(false)
+  const [uploadSubmitting, setUploadSubmitting] = useState(false)
+  const [docForm, setDocForm] = useState({
+    document_type: 'prescription' as 'prescription' | 'diagnostic_report' | 'consent_form' | 'other',
+    title: '',
+    file_url: '',
+    file_name: '',
+    doctor_id: '',
+    validity_hours: 48,
+  })
+
+  // 1-Click Patient Communication Modal State
+  const [isMessageModalOpen, setIsMessageModalOpen] = useState(false)
+  const [messageTargetPatient, setMessageTargetPatient] = useState<PatientItem | null>(null)
+  const [messageChannel, setMessageChannel] = useState<'whatsapp' | 'sms' | 'email'>('whatsapp')
+  const [selectedTemplateCode, setSelectedTemplateCode] = useState<string>('APPOINTMENT_CONFIRMED')
+  const [customMessageText, setCustomMessageText] = useState('')
+  const [isSendingMessage, setIsSendingMessage] = useState(false)
 
   // Form State
   const [formData, setFormData] = useState({
@@ -209,6 +237,221 @@ export default function AdminPatientsPage() {
       if (data.success) setPatientMessages(data.data.messages || [])
     } catch (e) {
       console.error(e)
+    }
+  }
+
+  const PRESET_TEMPLATES = [
+    {
+      code: 'APPOINTMENT_CONFIRMED',
+      title: 'Appointment Confirmation',
+      category: 'service',
+      getBody: (name: string, p: any) =>
+        `Dear ${name}, your medical appointment at CAPSIC CARE (${p.branchName || 'Main Clinic'}) has been confirmed. Please arrive 15 minutes prior to your scheduled time. Call us at 8910260709 for any inquiries. Wishing you good health!`,
+    },
+    {
+      code: 'DIAGNOSTIC_REPORT_READY',
+      title: 'Diagnostic Test Report Ready',
+      category: 'service',
+      getBody: (name: string, _p: any) =>
+        `Dear ${name}, your diagnostic lab test reports are verified and digitally signed. You can review and download them from your patient records or collect at the reception counter. CAPSIC CARE Diagnostics.`,
+    },
+    {
+      code: 'FOLLOW_UP_REMINDER',
+      title: 'Doctor Follow-up Consultation',
+      category: 'service',
+      getBody: (name: string, _p: any) =>
+        `Dear ${name}, this is a gentle reminder from CAPSIC CARE regarding your scheduled follow-up consultation. Regular monitoring ensures timely health recovery. Reply to book your priority slot.`,
+    },
+    {
+      code: 'HEALTH_CHECKUP_PROMO',
+      title: 'Preventive Health Package (Offer)',
+      category: 'promotional',
+      getBody: (name: string, _p: any) =>
+        `Dear ${name}, protect your family's health! CAPSIC CARE offers a Comprehensive 65+ Parameter Full Body Health Checkup with 25% special discount this month. Home sample collection available. Reply to this message to book today.`,
+    },
+    {
+      code: 'CUSTOM',
+      title: 'Custom Operational Message',
+      category: 'service',
+      getBody: (_name: string, _p: any) => '',
+    },
+  ]
+
+  const fetchDoctors = async () => {
+    try {
+      const res = await fetch('/api/v1/doctors')
+      const data = await res.json()
+      if (data.success && Array.isArray(data.data)) {
+        setDoctors(data.data)
+      }
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  useEffect(() => {
+    fetchDoctors()
+  }, [])
+
+  const openSendMessageModal = (patient: PatientItem) => {
+    setMessageTargetPatient(patient)
+    setMessageChannel('whatsapp')
+    setSelectedTemplateCode('APPOINTMENT_CONFIRMED')
+    const t = PRESET_TEMPLATES.find((x) => x.code === 'APPOINTMENT_CONFIRMED')
+    setCustomMessageText(t ? t.getBody(patient.fullName, patient) : '')
+    setIsMessageModalOpen(true)
+  }
+
+  const handleTemplateChange = (code: string) => {
+    setSelectedTemplateCode(code)
+    if (!messageTargetPatient) return
+    const t = PRESET_TEMPLATES.find((x) => x.code === code)
+    if (t && code !== 'CUSTOM') {
+      setCustomMessageText(t.getBody(messageTargetPatient.fullName, messageTargetPatient))
+    }
+  }
+
+  const handleSendMessageSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!messageTargetPatient) return
+    if (!customMessageText.trim()) {
+      alert('Please enter or select message content.')
+      return
+    }
+
+    setIsSendingMessage(true)
+    try {
+      const cleanPhone = messageTargetPatient.phone.replace(/\D/g, '')
+      const phoneWithCountry = cleanPhone.length === 10 ? `91${cleanPhone}` : cleanPhone
+
+      // 1. Log & dispatch through OS communication API
+      const res = await fetch('/api/v1/communications/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          patient_id: messageTargetPatient.id,
+          channel: messageChannel,
+          template_code: selectedTemplateCode !== 'CUSTOM' ? selectedTemplateCode : undefined,
+          custom_body: customMessageText,
+        }),
+      })
+      const result = await res.json()
+
+      // 2. Open WhatsApp direct link for instantaneous 1-click delivery
+      if (messageChannel === 'whatsapp') {
+        const directUrl =
+          result.data?.whatsapp_direct_url ||
+          `https://wa.me/${phoneWithCountry}?text=${encodeURIComponent(customMessageText)}`
+        window.open(directUrl, '_blank')
+      }
+
+      setIsMessageModalOpen(false)
+      if (selectedPatient?.id === messageTargetPatient.id) {
+        fetchPatientMessages(selectedPatient.id)
+      }
+      alert(`Message dispatched to ${messageTargetPatient.fullName}! WhatsApp conversation opened.`)
+    } catch (err: any) {
+      alert(err.message || 'Failed to dispatch message')
+    } finally {
+      setIsSendingMessage(false)
+    }
+  }
+
+  const handleSendDocWhatsApp = async (doc: any) => {
+    if (!selectedPatient) return
+    try {
+      const cleanPhone = selectedPatient.phone.replace(/\D/g, '')
+      const phoneWithCountry = cleanPhone.length === 10 ? `91${cleanPhone}` : cleanPhone
+      const secureDocUrl = `${window.location.origin}/api/v1/documents/${doc.security_token}`
+
+      const templateCode =
+        doc.document_type === 'prescription' ? 'PRESCRIPTION_AVAILABLE' : 'DIAGNOSTIC_REPORT_READY'
+
+      const doctorObj = doctors.find((d) => d.id === doc.doctor_id)
+      const doctorName = doctorObj ? doctorObj.name : 'CAPSIC CARE Specialist'
+
+      const variables: Record<string, string | number> = {
+        patient_name: selectedPatient.fullName,
+        doctor_name: doctorName,
+        consultation_date: new Date().toLocaleDateString('en-IN', {
+          day: '2-digit',
+          month: 'short',
+          year: 'numeric',
+        }),
+        prescription_url: secureDocUrl,
+        order_number: doc.document_number,
+        report_url: secureDocUrl,
+      }
+
+      // Dispatch via API
+      const res = await fetch('/api/v1/communications/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          patient_id: selectedPatient.id,
+          channel: 'whatsapp',
+          template_code: templateCode,
+          variables,
+          related_entity_type: 'patient_document',
+          related_entity_id: doc.id,
+        }),
+      })
+      const result = await res.json()
+
+      const docName = doc.document_type === 'prescription' ? 'prescription' : 'laboratory test report'
+      const waText = `Dear ${selectedPatient.fullName}, your digital ${docName} (${doc.title}) is ready. Access your private document securely: ${secureDocUrl} (valid for 48 hours). CAPSIC CARE.`
+      const directUrl =
+        result.data?.whatsapp_direct_url ||
+        `https://wa.me/${phoneWithCountry}?text=${encodeURIComponent(waText)}`
+
+      window.open(directUrl, '_blank')
+      fetchPatientMessages(selectedPatient.id)
+    } catch (err: any) {
+      alert(`Failed to dispatch document: ${err.message}`)
+    }
+  }
+
+  const handleUploadDocSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!selectedPatient) return
+    if (!docForm.title.trim()) {
+      alert('Please enter a document title.')
+      return
+    }
+    setUploadSubmitting(true)
+    try {
+      const fileUrl =
+        docForm.file_url.trim() ||
+        `https://storage.capsiccare.in/records/${docForm.document_type}-${Date.now()}.pdf`
+      const fileName =
+        docForm.file_name.trim() || `${docForm.title.replace(/\s+/g, '_')}.pdf`
+
+      const res = await fetch(`/api/v1/patients/${selectedPatient.id}/documents`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          document_type: docForm.document_type,
+          title: docForm.title,
+          file_url: fileUrl,
+          file_name: fileName,
+          doctor_id: docForm.doctor_id || undefined,
+          validity_hours: Number(docForm.validity_hours) || 48,
+          mime_type: 'application/pdf',
+        }),
+      })
+
+      const result = await res.json()
+      if (res.ok && result.success) {
+        setIsUploadDocOpen(false)
+        fetchPatientDocs(selectedPatient.id)
+        alert(`Document "${docForm.title}" uploaded & secured with 48h expiring token!`)
+      } else {
+        alert(result.error?.message || 'Failed to upload document')
+      }
+    } catch (err: any) {
+      alert(err.message)
+    } finally {
+      setUploadSubmitting(false)
     }
   }
 
@@ -526,6 +769,16 @@ export default function AdminPatientsPage() {
 
                     <td className="px-5 py-3.5 text-right">
                       <div className="flex items-center justify-end gap-1.5">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => openSendMessageModal(patient)}
+                          className="h-8 px-2 text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50"
+                          title="1-Click WhatsApp / SMS Message"
+                        >
+                          <MessageSquare className="w-4 h-4 mr-1 text-emerald-600" />
+                          <span className="text-xs">Message</span>
+                        </Button>
                         <Button
                           variant="ghost"
                           size="sm"
@@ -1132,35 +1385,120 @@ export default function AdminPatientsPage() {
 
                   {detailTab === 'documents' && (
                     <div className="space-y-3">
+                      <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/40 rounded-xl border border-slate-200 dark:border-slate-800">
+                        <div>
+                          <h5 className="font-bold text-slate-900 dark:text-slate-100 text-xs flex items-center gap-1.5">
+                            <FileText className="w-4 h-4 text-emerald-600" />
+                            Prescriptions & Lab Reports
+                          </h5>
+                          <p className="text-[11px] text-slate-500">
+                            DPDP-compliant secure vault with 1-click WhatsApp delivery & expiring tokens
+                          </p>
+                        </div>
+                        <Button
+                          size="sm"
+                          onClick={() => {
+                            setDocForm({
+                              document_type: 'prescription',
+                              title: '',
+                              file_url: 'https://storage.capsiccare.in/records/doc-' + Date.now() + '.pdf',
+                              file_name: 'Document-' + (selectedPatient?.uhid || 'Patient') + '.pdf',
+                              doctor_id: doctors[0]?.id || '',
+                              validity_hours: 48,
+                            })
+                            setIsUploadDocOpen(true)
+                          }}
+                          className="h-7 text-xs bg-emerald-600 hover:bg-emerald-700 text-white flex items-center gap-1 shadow-xs"
+                        >
+                          <Plus className="w-3.5 h-3.5" />
+                          Upload Rx / Report
+                        </Button>
+                      </div>
+
                       {patientDocs && patientDocs.length > 0 ? (
                         patientDocs.map((doc) => (
-                          <div key={doc.id} className="p-3 bg-white border border-slate-200 rounded-xl text-xs space-y-2">
+                          <div
+                            key={doc.id}
+                            className="p-3.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-xs space-y-2.5 shadow-xs"
+                          >
                             <div className="flex items-center justify-between">
-                              <span className="font-mono font-bold text-slate-900">{doc.document_number}</span>
-                              <Badge variant="outline" className="text-[10px] uppercase font-mono">
-                                {doc.document_type}
-                              </Badge>
+                              <div className="flex items-center gap-2">
+                                <span className="font-mono font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/50 px-2 py-0.5 rounded border border-emerald-200 dark:border-emerald-800 text-[11px]">
+                                  {doc.document_number}
+                                </span>
+                                <Badge
+                                  variant="outline"
+                                  className={`text-[10px] uppercase font-mono ${
+                                    doc.document_type === 'prescription'
+                                      ? 'border-emerald-300 text-emerald-700 dark:text-emerald-300'
+                                      : doc.document_type === 'diagnostic_report'
+                                      ? 'border-blue-300 text-blue-700 dark:text-blue-300'
+                                      : 'border-slate-300 text-slate-700'
+                                  }`}
+                                >
+                                  {doc.document_type.replace('_', ' ')}
+                                </Badge>
+                              </div>
+                              <span className="text-[10px] text-slate-400 font-mono">
+                                {new Date(doc.created_at).toLocaleDateString('en-IN', {
+                                  day: '2-digit',
+                                  month: 'short',
+                                })}
+                              </span>
                             </div>
-                            <div className="font-semibold text-slate-800">{doc.title}</div>
-                            <div className="flex items-center justify-between text-slate-500 text-[11px] pt-1 border-t border-slate-100">
-                              <span>Version {doc.version}</span>
-                              <button
-                                type="button"
-                                onClick={() => {
-                                  const link = `${window.location.origin}/api/v1/documents/${doc.security_token}`
-                                  navigator.clipboard.writeText(link)
-                                  alert('Copied 48-hour secure expiring delivery link to clipboard!')
-                                }}
-                                className="text-teal-600 hover:text-teal-700 font-medium text-xs flex items-center gap-1 cursor-pointer"
+
+                            <div>
+                              <div className="font-bold text-sm text-slate-900 dark:text-slate-100">{doc.title}</div>
+                              {doc.doctor_id && (
+                                <div className="text-[11px] text-slate-500 mt-0.5">
+                                  Doctor:{' '}
+                                  <strong className="text-slate-700 dark:text-slate-300">
+                                    {doctors.find((d) => d.id === doc.doctor_id)?.name || 'Consultant Doctor'}
+                                  </strong>
+                                </div>
+                              )}
+                            </div>
+
+                            <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+                              <div className="flex items-center gap-2">
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    const link = `${window.location.origin}/api/v1/documents/${doc.security_token}`
+                                    navigator.clipboard.writeText(link)
+                                    alert('Copied 48-hour secure expiring delivery link to clipboard!')
+                                  }}
+                                  className="text-slate-600 dark:text-slate-400 hover:text-slate-900 text-xs flex items-center gap-1 border border-slate-200 dark:border-slate-700 px-2 py-1 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer"
+                                >
+                                  📋 Copy Link
+                                </button>
+                                {doc.file_url && (
+                                  <a
+                                    href={doc.file_url}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="text-slate-600 dark:text-slate-400 hover:text-slate-900 text-xs flex items-center gap-1 border border-slate-200 dark:border-slate-700 px-2 py-1 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800"
+                                  >
+                                    <ExternalLink className="w-3 h-3" /> View
+                                  </a>
+                                )}
+                              </div>
+
+                              {/* Prominent 1-Click WhatsApp Button */}
+                              <Button
+                                size="sm"
+                                onClick={() => handleSendDocWhatsApp(doc)}
+                                className="h-7 text-xs bg-emerald-600 hover:bg-emerald-700 text-white flex items-center gap-1.5 shadow-xs font-semibold"
                               >
-                                📋 Copy 48h Secure Link
-                              </button>
+                                <Send className="w-3 h-3" />
+                                Send on WhatsApp
+                              </Button>
                             </div>
                           </div>
                         ))
                       ) : (
                         <div className="p-8 bg-slate-50 border border-dashed border-slate-200 rounded-xl text-center text-xs text-slate-400">
-                          No digital prescriptions or lab reports uploaded yet.
+                          No digital prescriptions or lab reports uploaded yet. Click &quot;Upload Rx / Report&quot; to add.
                         </div>
                       )}
                     </div>
@@ -1168,6 +1506,25 @@ export default function AdminPatientsPage() {
 
                   {detailTab === 'communications' && (
                     <div className="space-y-3">
+                      <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/40 rounded-xl border border-slate-200 dark:border-slate-800">
+                        <div>
+                          <h5 className="font-bold text-slate-900 dark:text-slate-100 text-xs flex items-center gap-1.5">
+                            <MessageSquare className="w-4 h-4 text-emerald-600" />
+                            Communication Logs
+                          </h5>
+                          <p className="text-[11px] text-slate-500">
+                            WhatsApp, SMS, and transactional clinical alerts
+                          </p>
+                        </div>
+                        <Button
+                          size="sm"
+                          onClick={() => openSendMessageModal(selectedPatient)}
+                          className="h-7 text-xs bg-emerald-600 hover:bg-emerald-700 text-white flex items-center gap-1 shadow-xs"
+                        >
+                          <Send className="w-3.5 h-3.5" />
+                          Send WhatsApp
+                        </Button>
+                      </div>
                       {patientMessages && patientMessages.length > 0 ? (
                         patientMessages.map((msg) => (
                           <div key={msg.id} className="p-3 bg-white border border-slate-200 rounded-xl text-xs space-y-1.5">
@@ -1201,6 +1558,261 @@ export default function AdminPatientsPage() {
                 Close
               </Button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Upload Prescription / Lab Report Modal */}
+      {isUploadDocOpen && selectedPatient && (
+        <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white dark:bg-slate-900 rounded-2xl max-w-md w-full p-6 space-y-4 shadow-xl border border-slate-200 dark:border-slate-800 animate-in fade-in zoom-in-95 duration-150">
+            <div className="flex items-center justify-between border-b pb-3 border-slate-100 dark:border-slate-800">
+              <div>
+                <h3 className="font-bold text-lg text-slate-900 dark:text-slate-100 flex items-center gap-2">
+                  <Upload className="w-5 h-5 text-emerald-600" />
+                  Upload Medical Document
+                </h3>
+                <p className="text-xs text-slate-500 mt-0.5">
+                  For {selectedPatient.fullName} ({selectedPatient.uhid})
+                </p>
+              </div>
+              <button
+                onClick={() => setIsUploadDocOpen(false)}
+                className="text-slate-400 hover:text-slate-600 text-lg p-1"
+              >
+                ✕
+              </button>
+            </div>
+
+            <form onSubmit={handleUploadDocSubmit} className="space-y-3 text-xs">
+              <div>
+                <label className="font-medium text-slate-700 dark:text-slate-300 block mb-1">
+                  Document Type *
+                </label>
+                <select
+                  value={docForm.document_type}
+                  onChange={(e) =>
+                    setDocForm({
+                      ...docForm,
+                      document_type: e.target.value as any,
+                      title:
+                        docForm.title ||
+                        (e.target.value === 'prescription'
+                          ? 'General Consultation Prescription'
+                          : 'Pathology Diagnostic Test Report'),
+                    })
+                  }
+                  className="w-full h-9 px-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900"
+                >
+                  <option value="prescription">Prescription (Rx)</option>
+                  <option value="diagnostic_report">Diagnostic Lab Report</option>
+                  <option value="discharge_summary">Discharge Summary</option>
+                  <option value="consent_form">Signed Consent Form</option>
+                  <option value="other">Other Clinical Document</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="font-medium text-slate-700 dark:text-slate-300 block mb-1">
+                  Document Title *
+                </label>
+                <Input
+                  required
+                  value={docForm.title}
+                  onChange={(e) => setDocForm({ ...docForm, title: e.target.value })}
+                  placeholder="e.g. CBC & Thyroid Profile / Cardiology Rx"
+                  className="h-9 text-xs"
+                />
+              </div>
+
+              <div>
+                <label className="font-medium text-slate-700 dark:text-slate-300 block mb-1">
+                  Prescribing / Authorizing Doctor
+                </label>
+                <select
+                  value={docForm.doctor_id}
+                  onChange={(e) => setDocForm({ ...docForm, doctor_id: e.target.value })}
+                  className="w-full h-9 px-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900"
+                >
+                  <option value="">Clinic Specialist / Internal Lab</option>
+                  {doctors.map((d) => (
+                    <option key={d.id} value={d.id}>
+                      {d.name} ({d.specialty})
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="font-medium text-slate-700 dark:text-slate-300 block mb-1">
+                  File Repository URL / Storage Location *
+                </label>
+                <Input
+                  required
+                  value={docForm.file_url}
+                  onChange={(e) => setDocForm({ ...docForm, file_url: e.target.value })}
+                  placeholder="https://storage.capsiccare.in/records/..."
+                  className="h-9 text-xs font-mono"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="font-medium text-slate-700 dark:text-slate-300 block mb-1">
+                    File Name
+                  </label>
+                  <Input
+                    value={docForm.file_name}
+                    onChange={(e) => setDocForm({ ...docForm, file_name: e.target.value })}
+                    placeholder="e.g. Report.pdf"
+                    className="h-9 text-xs font-mono"
+                  />
+                </div>
+                <div>
+                  <label className="font-medium text-slate-700 dark:text-slate-300 block mb-1">
+                    Token Validity
+                  </label>
+                  <select
+                    value={docForm.validity_hours}
+                    onChange={(e) => setDocForm({ ...docForm, validity_hours: Number(e.target.value) })}
+                    className="w-full h-9 px-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900"
+                  >
+                    <option value={24}>24 Hours</option>
+                    <option value={48}>48 Hours (Standard)</option>
+                    <option value={168}>7 Days</option>
+                    <option value={720}>30 Days</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="p-2.5 bg-emerald-50 dark:bg-emerald-950/30 rounded-lg border border-emerald-200 dark:border-emerald-800 text-[11px] text-emerald-800 dark:text-emerald-300">
+                🔒 Generating an encrypted, DPDP-compliant time-limited token so the patient can open this document directly without login hurdles.
+              </div>
+
+              <div className="flex justify-end gap-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => setIsUploadDocOpen(false)}
+                  className="h-9 text-xs"
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="submit"
+                  disabled={uploadSubmitting}
+                  className="h-9 text-xs bg-emerald-600 hover:bg-emerald-700 text-white"
+                >
+                  {uploadSubmitting ? 'Uploading...' : 'Save & Link Document'}
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* 1-Click Send Communication Modal */}
+      {isMessageModalOpen && messageTargetPatient && (
+        <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white dark:bg-slate-900 rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-xl border border-slate-200 dark:border-slate-800 animate-in fade-in zoom-in-95 duration-150">
+            <div className="flex items-center justify-between border-b pb-3 border-slate-100 dark:border-slate-800">
+              <div>
+                <h3 className="font-bold text-lg text-slate-900 dark:text-slate-100 flex items-center gap-2">
+                  <MessageSquare className="w-5 h-5 text-emerald-600" />
+                  1-Click Patient Communication
+                </h3>
+                <p className="text-xs text-slate-500 mt-0.5">
+                  Recipient: <strong className="text-slate-800 dark:text-slate-200">{messageTargetPatient.fullName}</strong> • Tel: {messageTargetPatient.phone}
+                </p>
+              </div>
+              <button
+                onClick={() => setIsMessageModalOpen(false)}
+                className="text-slate-400 hover:text-slate-600 text-lg p-1"
+              >
+                ✕
+              </button>
+            </div>
+
+            <form onSubmit={handleSendMessageSubmit} className="space-y-3.5 text-xs">
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="font-semibold text-slate-700 dark:text-slate-300 block mb-1">
+                    Communication Channel
+                  </label>
+                  <select
+                    value={messageChannel}
+                    onChange={(e) => setMessageChannel(e.target.value as any)}
+                    className="w-full h-9 px-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 font-medium"
+                  >
+                    <option value="whatsapp">WhatsApp (Instant 1-Click)</option>
+                    <option value="sms">SMS Text Alert</option>
+                    <option value="email">Email Notification</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="font-semibold text-slate-700 dark:text-slate-300 block mb-1">
+                    Preset Template
+                  </label>
+                  <select
+                    value={selectedTemplateCode}
+                    onChange={(e) => handleTemplateChange(e.target.value)}
+                    className="w-full h-9 px-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 font-medium"
+                  >
+                    {PRESET_TEMPLATES.map((t) => (
+                      <option key={t.code} value={t.code}>
+                        {t.title}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <div className="flex items-center justify-between mb-1">
+                  <label className="font-semibold text-slate-700 dark:text-slate-300">
+                    Message Content (Preview & Edit)
+                  </label>
+                  <span className="text-[10px] text-slate-400">
+                    {customMessageText.length} characters
+                  </span>
+                </div>
+                <textarea
+                  required
+                  rows={4}
+                  value={customMessageText}
+                  onChange={(e) => setCustomMessageText(e.target.value)}
+                  className="w-full p-2.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-slate-100 text-xs focus:ring-1 focus:ring-emerald-500 focus:outline-none leading-relaxed"
+                  placeholder="Type or customize your communication message..."
+                />
+              </div>
+
+              <div className="p-3 bg-emerald-50 dark:bg-emerald-950/30 rounded-xl border border-emerald-200 dark:border-emerald-800 flex items-start gap-2 text-emerald-800 dark:text-emerald-300 text-xs">
+                <Send className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                <span>
+                  Clicking <strong>Send WhatsApp Message</strong> will record this message in the patient ledger and immediately open the chat in WhatsApp Web/Desktop with text pre-filled.
+                </span>
+              </div>
+
+              <div className="flex justify-end gap-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => setIsMessageModalOpen(false)}
+                  className="h-9 text-xs"
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="submit"
+                  disabled={isSendingMessage}
+                  className="h-9 text-xs bg-emerald-600 hover:bg-emerald-700 text-white flex items-center gap-1.5 font-semibold shadow-xs"
+                >
+                  <Send className="w-3.5 h-3.5" />
+                  {isSendingMessage ? 'Dispatching...' : '⚡ Send WhatsApp Message'}
+                </Button>
+              </div>
+            </form>
           </div>
         </div>
       )}

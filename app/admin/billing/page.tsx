@@ -9,6 +9,7 @@ import {
   Filter,
   RefreshCw,
   Printer,
+  Download,
   DollarSign,
   AlertCircle,
   CheckCircle2,
@@ -21,7 +22,7 @@ import {
   Receipt,
   Trash2
 } from 'lucide-react'
-import { InvoiceReceiptModal, InvoiceDetails } from '@/components/admin/billing/invoice-receipt-modal'
+import { InvoiceReceiptModal, InvoiceDetails, downloadInvoiceReceiptHtml } from '@/components/admin/billing/invoice-receipt-modal'
 
 interface Branch {
   id: string
@@ -451,6 +452,13 @@ export default function BillingPOSPage() {
                             Pay
                           </button>
                         )}
+                        <button
+                          onClick={() => downloadInvoiceReceiptHtml(inv)}
+                          className="p-1.5 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 border border-emerald-200 dark:border-emerald-800 rounded hover:bg-emerald-50 dark:hover:bg-emerald-950/40 transition-colors"
+                          title="Download Tax Invoice & Receipt (HTML)"
+                        >
+                          <Download className="h-4 w-4" />
+                        </button>
                         <button
                           onClick={() => {
                             setSelectedInvoiceForPrint(inv)

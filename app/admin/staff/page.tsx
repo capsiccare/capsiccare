@@ -54,6 +54,13 @@ export default function AdminStaffPage() {
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false)
   const [isCallModalOpen, setIsCallModalOpen] = useState(false)
 
+  // Manage Roles Modal State
+  const [isRoleModalOpen, setIsRoleModalOpen] = useState(false)
+  const [selectedStaffMember, setSelectedStaffMember] = useState<any | null>(null)
+  const [selectedStaffRoles, setSelectedStaffRoles] = useState<string[]>([])
+  const [staffRoleBranchId, setStaffRoleBranchId] = useState<string>('')
+  const [isSavingRoles, setIsSavingRoles] = useState(false)
+
   // Forms
   const [onboardForm, setOnboardForm] = useState({
     full_name: '',
@@ -61,6 +68,7 @@ export default function AdminStaffPage() {
     email: '',
     gender: 'male' as 'male' | 'female' | 'other',
     role_name: 'receptionist',
+    roles: ['receptionist'] as string[],
     branch_id: selectedBranchId || '',
     designation: 'Senior Receptionist',
     department: 'Reception & Front Desk',
@@ -144,6 +152,73 @@ export default function AdminStaffPage() {
     fetchData()
   }, [activeTab, selectedDate, selectedBranchId])
 
+  const AVAILABLE_ROLES = [
+    { id: 'receptionist', label: 'Receptionist / Front Desk', desc: 'OPD queue, bookings, patient intake' },
+    { id: 'billing_staff', label: 'Billing & POS Staff', desc: 'Invoicing, receipts, payments & collections' },
+    { id: 'phlebotomist', label: 'Phlebotomist', desc: 'Blood collection, home visits, accessioning' },
+    { id: 'lab_staff', label: 'Lab Technician', desc: 'Sample testing, pathology reports entry' },
+    { id: 'nurse', label: 'Nurse / Triage', desc: 'Vitals, consultation prep, patient care' },
+    { id: 'calling_executive', label: 'Calling Executive', desc: 'Patient recall, tele-follow-ups, campaigns' },
+    { id: 'branch_admin', label: 'Branch Admin', desc: 'Roster scheduling, local branch oversight' },
+  ]
+
+  const openRoleManager = (member: any) => {
+    setSelectedStaffMember(member)
+    const currentRoles = (member.roles || []).map((r: any) => r.role)
+    setSelectedStaffRoles(currentRoles.length > 0 ? currentRoles : ['receptionist'])
+    setStaffRoleBranchId(member.roles?.[0]?.branchId || selectedBranchId || '')
+    setIsRoleModalOpen(true)
+  }
+
+  const handleToggleStaffRole = (roleId: string) => {
+    setSelectedStaffRoles((prev) =>
+      prev.includes(roleId) ? prev.filter((r) => r !== roleId) : [...prev, roleId]
+    )
+  }
+
+  const handleToggleOnboardRole = (roleId: string) => {
+    setOnboardForm((prev) => {
+      const exists = prev.roles.includes(roleId)
+      const newRoles = exists ? prev.roles.filter((r) => r !== roleId) : [...prev.roles, roleId]
+      return {
+        ...prev,
+        roles: newRoles.length > 0 ? newRoles : [roleId],
+        role_name: newRoles[0] || roleId,
+      }
+    })
+  }
+
+  const handleSaveRoles = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!selectedStaffMember) return
+    if (selectedStaffRoles.length === 0) {
+      alert('Please assign at least one role to the staff member.')
+      return
+    }
+    setIsSavingRoles(true)
+    try {
+      const res = await fetch(`/api/v1/staff/${selectedStaffMember.id}/roles`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          roles: selectedStaffRoles,
+          branch_id: staffRoleBranchId || undefined,
+        }),
+      })
+      const result = await res.json()
+      if (res.ok && result.success) {
+        setIsRoleModalOpen(false)
+        await fetchData()
+      } else {
+        alert(result.error?.message || 'Failed to update roles')
+      }
+    } catch (err: any) {
+      alert(err.message)
+    } finally {
+      setIsSavingRoles(false)
+    }
+  }
+
   // Submissions
   const handleOnboardSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -151,7 +226,11 @@ export default function AdminStaffPage() {
       const res = await fetch('/api/v1/staff', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(onboardForm),
+        body: JSON.stringify({
+          ...onboardForm,
+          roles: onboardForm.roles,
+          role_name: onboardForm.roles[0] || 'receptionist',
+        }),
       })
       const result = await res.json()
       if (result.success) {
@@ -405,12 +484,13 @@ export default function AdminStaffPage() {
                     <th className="py-3 px-4 font-semibold">Branch</th>
                     <th className="py-3 px-4 font-semibold">MFA</th>
                     <th className="py-3 px-4 font-semibold">Status</th>
+                    <th className="py-3 px-4 font-semibold text-right">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                   {staff.length === 0 ? (
                     <tr>
-                      <td colSpan={7} className="py-8 text-center text-slate-400">
+                      <td colSpan={8} className="py-8 text-center text-slate-400">
                         No staff members found matching criteria.
                       </td>
                     </tr>
@@ -453,6 +533,17 @@ export default function AdminStaffPage() {
                           <Badge className="bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800 text-[11px]">
                             {member.employmentStatus}
                           </Badge>
+                        </td>
+                        <td className="py-3 px-4 text-right">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => openRoleManager(member)}
+                            className="h-7 text-xs flex items-center gap-1.5 text-teal-700 dark:text-teal-400 border-teal-200 dark:border-teal-800 hover:bg-teal-50 dark:hover:bg-teal-950/40 ml-auto"
+                          >
+                            <ShieldCheck className="w-3.5 h-3.5" />
+                            Manage Roles
+                          </Button>
                         </td>
                       </tr>
                     ))
@@ -746,19 +837,18 @@ export default function AdminStaffPage() {
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="text-xs font-medium text-slate-700 dark:text-slate-300">Role</label>
+                  <label className="text-xs font-medium text-slate-700 dark:text-slate-300">Branch</label>
                   <select
-                    value={onboardForm.role_name}
-                    onChange={(e) => setOnboardForm({ ...onboardForm, role_name: e.target.value })}
+                    value={onboardForm.branch_id}
+                    onChange={(e) => setOnboardForm({ ...onboardForm, branch_id: e.target.value })}
                     className="w-full text-xs h-9 px-3 rounded-lg border border-slate-200 dark:border-slate-800 mt-1 bg-white dark:bg-slate-900"
                   >
-                    <option value="receptionist">receptionist</option>
-                    <option value="nurse">nurse</option>
-                    <option value="phlebotomist">phlebotomist</option>
-                    <option value="lab_staff">lab_staff</option>
-                    <option value="billing_staff">billing_staff</option>
-                    <option value="calling_executive">calling_executive</option>
-                    <option value="branch_admin">branch_admin</option>
+                    <option value="">All Branches</option>
+                    {branches.map((b) => (
+                      <option key={b.id} value={b.id}>
+                        {b.name}
+                      </option>
+                    ))}
                   </select>
                 </div>
                 <div>
@@ -768,6 +858,38 @@ export default function AdminStaffPage() {
                     onChange={(e) => setOnboardForm({ ...onboardForm, department: e.target.value })}
                     className="text-xs h-9 mt-1"
                   />
+                </div>
+              </div>
+
+              <div>
+                <label className="text-xs font-medium text-slate-700 dark:text-slate-300 block mb-1">
+                  Assigned Roles (Select 1 or more roles) *
+                </label>
+                <div className="grid grid-cols-2 gap-2 max-h-36 overflow-y-auto p-2 bg-slate-50 dark:bg-slate-800/40 rounded-lg border border-slate-200 dark:border-slate-800">
+                  {AVAILABLE_ROLES.map((r) => {
+                    const isChecked = onboardForm.roles.includes(r.id)
+                    return (
+                      <label
+                        key={r.id}
+                        className={`flex items-start gap-2 p-2 rounded-md border text-xs cursor-pointer transition-colors ${
+                          isChecked
+                            ? 'bg-teal-50/80 border-teal-300 dark:bg-teal-950/40 dark:border-teal-700 text-teal-900 dark:text-teal-200 font-medium'
+                            : 'border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300'
+                        }`}
+                      >
+                        <input
+                          type="checkbox"
+                          checked={isChecked}
+                          onChange={() => handleToggleOnboardRole(r.id)}
+                          className="mt-0.5 rounded text-teal-600 focus:ring-teal-500"
+                        />
+                        <div className="leading-tight">
+                          <div>{r.label}</div>
+                          <div className="text-[10px] text-slate-400 font-normal">{r.desc}</div>
+                        </div>
+                      </label>
+                    )
+                  })}
                 </div>
               </div>
               <div>
@@ -786,6 +908,108 @@ export default function AdminStaffPage() {
                 </Button>
                 <Button type="submit" className="h-9 text-xs bg-teal-600 hover:bg-teal-700 text-white">
                   Save & Onboard
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Manage Roles Modal */}
+      {isRoleModalOpen && selectedStaffMember && (
+        <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white dark:bg-slate-900 rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-xl border border-slate-200 dark:border-slate-800 animate-in fade-in zoom-in-95 duration-150">
+            <div className="flex items-center justify-between border-b pb-3 border-slate-100 dark:border-slate-800">
+              <div>
+                <h3 className="font-bold text-lg text-slate-900 dark:text-slate-100 flex items-center gap-2">
+                  <ShieldCheck className="w-5 h-5 text-teal-600" />
+                  Manage Staff Roles & Access
+                </h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                  {selectedStaffMember.fullName} ({selectedStaffMember.employeeId || 'Staff Member'})
+                </p>
+              </div>
+              <button
+                onClick={() => setIsRoleModalOpen(false)}
+                className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 rounded-md text-base"
+              >
+                ✕
+              </button>
+            </div>
+
+            <form onSubmit={handleSaveRoles} className="space-y-4">
+              <div>
+                <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 block mb-1.5">
+                  Operational Roles (Select multiple to grant combined duties):
+                </label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-56 overflow-y-auto p-2 bg-slate-50 dark:bg-slate-800/40 rounded-xl border border-slate-200 dark:border-slate-800">
+                  {AVAILABLE_ROLES.map((r) => {
+                    const isChecked = selectedStaffRoles.includes(r.id)
+                    return (
+                      <label
+                        key={r.id}
+                        className={`flex items-start gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-all ${
+                          isChecked
+                            ? 'bg-teal-50 border-teal-400 dark:bg-teal-950/60 dark:border-teal-700 text-teal-950 dark:text-teal-200 shadow-xs'
+                            : 'border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300'
+                        }`}
+                      >
+                        <input
+                          type="checkbox"
+                          checked={isChecked}
+                          onChange={() => handleToggleStaffRole(r.id)}
+                          className="mt-0.5 rounded text-teal-600 focus:ring-teal-500"
+                        />
+                        <div>
+                          <div className="font-semibold">{r.label}</div>
+                          <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">{r.desc}</div>
+                        </div>
+                      </label>
+                    )
+                  })}
+                </div>
+              </div>
+
+              <div>
+                <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 block mb-1">
+                  Primary Operational Branch
+                </label>
+                <select
+                  value={staffRoleBranchId}
+                  onChange={(e) => setStaffRoleBranchId(e.target.value)}
+                  className="w-full text-xs h-9 px-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900"
+                >
+                  <option value="">All Branches / Global Organization</option>
+                  {branches.map((b) => (
+                    <option key={b.id} value={b.id}>
+                      {b.name} ({b.code})
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="p-3 bg-teal-50/60 dark:bg-teal-950/30 rounded-xl border border-teal-200 dark:border-teal-800/60 text-xs text-teal-800 dark:text-teal-300 flex items-start gap-2">
+                <ShieldCheck className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
+                <span>
+                  Assigning multiple roles allows this staff member to operate across front-desk intake, billing counter, phlebotomy tracking, and clinical triage without account switching.
+                </span>
+              </div>
+
+              <div className="flex justify-end gap-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => setIsRoleModalOpen(false)}
+                  className="h-9 text-xs"
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="submit"
+                  disabled={isSavingRoles}
+                  className="h-9 text-xs bg-teal-600 hover:bg-teal-700 text-white"
+                >
+                  {isSavingRoles ? 'Saving Roles...' : 'Save Role Assignments'}
                 </Button>
               </div>
             </form>
