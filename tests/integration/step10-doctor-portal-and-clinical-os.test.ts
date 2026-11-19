@@ -198,10 +198,10 @@ describe('Step 10: Doctor Portal, EMR, E-Prescription & Clinical Workspace', () 
     const paracetamol = meds[0]
 
     const draft = await createOrUpdatePrescriptionDraft(testEncounterId, testDoctor.id, {
-      diagnosisSummary: 'Acute nasopharyngitis',
-      adviceGeneral: 'Warm fluid intake, adequate sleep',
-      followUpDate: new Date(Date.now() + 7 * 86400000).toISOString().split('T')[0],
-      followUpReason: 'Clinical review',
+      diagnosis_summary: 'Acute nasopharyngitis',
+      advice_general: 'Warm fluid intake, adequate sleep',
+      follow_up_date: new Date(Date.now() + 7 * 86400000).toISOString().split('T')[0],
+      follow_up_reason: 'Clinical review',
       items: [
         {
           medicine_id: paracetamol.id,
@@ -291,7 +291,7 @@ describe('Step 10: Doctor Portal, EMR, E-Prescription & Clinical Workspace', () 
 
     // Verify appointment status updated to completed
     const { data: apt } = await supabase.from('appointments').select('status').eq('id', testAppointment.id).single()
-    assert.strictEqual(apt.status, 'completed')
+    assert.strictEqual(apt?.status, 'completed')
 
     // Verify CareFlow task exists for this patient follow-up
     const { data: tasks } = await supabase.from('careflow_tasks').select('id, status').eq('patient_id', testPatient.id)
